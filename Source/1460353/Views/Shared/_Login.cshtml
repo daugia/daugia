@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 1460353</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    @RenderSection("css", required: false)
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#naba">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dm">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img id="logo" width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
+                @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Thông Tin", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Liên Hệ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div id="naba" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.Partial("_LoginPartial")
+
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="container" style="margin-top:40px">
+
+        @RenderBody()
+
+    </div>
+
+
+    <hr />
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
+    <footer>
+        <div style="margin-top:80px" class="footerUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>Đấu Giá</h4>
+                    </div>
+                    <div class="col-md-offset-1 col-md-4">
+                        <h4>Thông Tin</h4>
+                        <ul class="list-unstyled latestPosts"></ul>
+                    </div>
+                    <div class="col-md-offset-1 col-md-3">
+                        <h4>Liên Hệ</h4>
+                        <ul class="list-unstyled">
+                            <li>DHKHTN</li>
+                            <li>14CK2</li>
+                            <li>Bùi Ngọc Hoàng :</li>
+                            <li>Phùng Quân Lạc :</li>
+                            <li>Bạch Thị Thu Hiền :</li>
+                            <li>Phạm Văn Tín Thành :</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footerDown">
+            <div class="container">
+                <p>@DateTime.Today.Year.ToString() &copy; All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/Site.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    @RenderSection("js", false)
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+
+</body>
+</html>

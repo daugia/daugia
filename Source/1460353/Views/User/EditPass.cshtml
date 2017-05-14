@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "EditPass";
+    Layout = "~/Views/Shared/_Login.cshtml";
+
+}
+@using BotDetect.Web.Mvc;
+@section css{
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+}
+
+<div class="text-success">
+    <h2>Đổi mật khẩu</h2>
+</div>
+@if (ViewBag.q == "1")
+{
+    <div class="alert-success">
+        <h4>Đổi mật khẩu thành công!</h4>
+    </div>
+}
+@if (ViewBag.q == "0")
+{
+    <div class="alert-danger">
+        <h4>Đổi mật khẩu thất bại!</h4>
+    </div>
+}
+<form id="myform" class="form-horizontal" method="post">
+    <div class="form-group">
+        <label class="control-label col-md-2">Mật khẩu cũ</label>
+        <div class="col-md-6">
+            <input type="password" name="passo" id="passo" class="form-control" placeholder="Mật khẩu cũ" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Mật khẩu mới</label>
+        <div class="col-md-6">
+            <input type="password" name="pass" id="pass" class="form-control" placeholder="Mật khẩu mới" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Nhập lại mật khẩu</label>
+        <div class="col-md-6">
+            <input type="password" name="passc" id="passc" class="form-control" placeholder="Nhập lại mật khẩus" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2"> Captcha</div>
+        <div class="col-md-4">
+            @{ var exampleCaptcha = new MvcCaptcha("ExampleCaptcha"); exampleCaptcha.Reset(); }
+            @Html.Captcha(exampleCaptcha)
+            @Html.TextBox("CaptchaCode", null, new { @class = "form-control",@placeholder="captcha" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label"> </label>
+        <div class="col-md-6">
+            <input class="form-control btn btn-success" type="submit" value="Cập nhập mật khẩu" />
+        </div>
+    </div>
+</form>
+
+@section js{
+    <script>
+
+        $("#myform").validate({
+
+            errorClass: "text-danger",
+
+            rules: {
+                passo: "required",
+                pass: {
+                    required: true,
+                    minlength: 8
+                },
+                passc: {
+                    required: true,
+                    equalTo: "#pass",
+
+                }
+            },
+            messages: {
+                passo: "Vui lòng điền vào trường này!",
+                pass: {
+                    required: "Vui lòng điền vào trường này!",
+                    minlength: "Mật khẩu tối thiểu 8 ký tự!"
+
+                },
+                passc: {
+                    required: "Vui lòng điền vào trường này!",
+                    equalsTo: "Mật khẩu không khớp!",
+
+                }
+            }
+        });
+
+    </script>
+}

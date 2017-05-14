@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="daugiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="binhluan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="500" />
+          <Property Name="ngaytao" Type="nchar" MaxLength="12" />
+          <Property Name="ngaycapnhat" Type="nchar" MaxLength="12" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="id_sanpham" Type="int" />
+        </EntityType>
+        <EntityType Name="chitietdanhgia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_nguoidung" Type="int" />
+        </EntityType>
+        <EntityType Name="danhgia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mot" Type="int" />
+          <Property Name="hai" Type="int" />
+          <Property Name="ba" Type="int" />
+          <Property Name="bon" Type="int" />
+          <Property Name="nam" Type="int" />
+        </EntityType>
+        <EntityType Name="danhmuc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="trinhtrang" Type="int" />
+          <Property Name="ngaytao" Type="nchar" MaxLength="12" />
+          <Property Name="ngaycapnhat" Type="nchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="lichsudau">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="100" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="500" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="12" />
+          <Property Name="ngaysinh" Type="datetime" />
+          <Property Name="gioitinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="anhdaidien" Type="nvarchar" MaxLength="100" />
+          <Property Name="ngaytao" Type="datetime" />
+          <Property Name="ngaycapnhat" Type="datetime" />
+          <Property Name="taikhoan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="diem" Type="int" />
+          <Property Name="quyen" Type="int" />
+          <Property Name="tinhtrang" Type="int" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_danhmuc" Type="int" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="chitiet" Type="nvarchar" MaxLength="250" />
+          <Property Name="giakhoidiem" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="giahientai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="diemduocdau" Type="int" />
+          <Property Name="id_nguoidunghientai" Type="int" />
+          <Property Name="ngaybatdau" Type="datetime" />
+          <Property Name="ngayketthuc" Type="datetime" />
+          <Property Name="id_lichsudau" Type="int" />
+          <Property Name="id_danhgia" Type="int" />
+          <Property Name="tinhtrang" Type="int" />
+          <Property Name="ngaytao" Type="nchar" MaxLength="12" />
+          <Property Name="ngaycapnhat" Type="nchar" MaxLength="12" />
+          <Property Name="hinhanh" Type="nchar" MaxLength="100" />
+          <Property Name="giacaonhat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="giamuangay" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="thongbao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="daugiaModelStoreContainer">
+          <EntitySet Name="binhluan" EntityType="Self.binhluan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitietdanhgia" EntityType="Self.chitietdanhgia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danhgia" EntityType="Self.danhgia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danhmuc" EntityType="Self.danhmuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lichsudau" EntityType="Self.lichsudau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thongbao" EntityType="Self.thongbao" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="daugiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="binhluan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ngaytao" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="ngaycapnhat" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="id_sanpham" Type="Int32" />
+        </EntityType>
+        <EntityType Name="chitietdanhgia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_nguoidung" Type="Int32" />
+        </EntityType>
+        <EntityType Name="danhgia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mot" Type="Int32" />
+          <Property Name="hai" Type="Int32" />
+          <Property Name="ba" Type="Int32" />
+          <Property Name="bon" Type="Int32" />
+          <Property Name="nam" Type="Int32" />
+        </EntityType>
+        <EntityType Name="danhmuc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="trinhtrang" Type="Int32" />
+          <Property Name="ngaytao" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="ngaycapnhat" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="lichsudau">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="noidung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="sodienthoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="ngaysinh" Type="DateTime" Precision="3" />
+          <Property Name="gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="anhdaidien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ngaytao" Type="DateTime" Precision="3" />
+          <Property Name="ngaycapnhat" Type="DateTime" Precision="3" />
+          <Property Name="taikhoan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="diem" Type="Int32" />
+          <Property Name="quyen" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tinhtrang" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_danhmuc" Type="Int32" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="chitiet" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="giakhoidiem" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="giahientai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="diemduocdau" Type="Int32" />
+          <Property Name="id_nguoidunghientai" Type="Int32" />
+          <Property Name="ngaybatdau" Type="DateTime" Precision="3" />
+          <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
+          <Property Name="id_lichsudau" Type="Int32" />
+          <Property Name="id_danhgia" Type="Int32" />
+          <Property Name="tinhtrang" Type="Int32" />
+          <Property Name="ngaytao" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="ngaycapnhat" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="hinhanh" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="giacaonhat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="giamuangay" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="thongbao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="daugiaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="binhluans" EntityType="Self.binhluan" />
+          <EntitySet Name="chitietdanhgias" EntityType="Self.chitietdanhgia" />
+          <EntitySet Name="danhgias" EntityType="Self.danhgia" />
+          <EntitySet Name="danhmucs" EntityType="Self.danhmuc" />
+          <EntitySet Name="lichsudaus" EntityType="Self.lichsudau" />
+          <EntitySet Name="nguoidungs" EntityType="Self.nguoidung" />
+          <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+          <EntitySet Name="thongbaos" EntityType="Self.thongbao" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="daugiaModelStoreContainer" CdmEntityContainer="daugiaEntities">
+          <EntitySetMapping Name="binhluans">
+            <EntityTypeMapping TypeName="daugiaModel.binhluan">
+              <MappingFragment StoreEntitySet="binhluan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitietdanhgias">
+            <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
+              <MappingFragment StoreEntitySet="chitietdanhgia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danhgias">
+            <EntityTypeMapping TypeName="daugiaModel.danhgia">
+              <MappingFragment StoreEntitySet="danhgia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mot" ColumnName="mot" />
+                <ScalarProperty Name="hai" ColumnName="hai" />
+                <ScalarProperty Name="ba" ColumnName="ba" />
+                <ScalarProperty Name="bon" ColumnName="bon" />
+                <ScalarProperty Name="nam" ColumnName="nam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danhmucs">
+            <EntityTypeMapping TypeName="daugiaModel.danhmuc">
+              <MappingFragment StoreEntitySet="danhmuc">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="trinhtrang" ColumnName="trinhtrang" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lichsudaus">
+            <EntityTypeMapping TypeName="daugiaModel.lichsudau">
+              <MappingFragment StoreEntitySet="lichsudau">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoidungs">
+            <EntityTypeMapping TypeName="daugiaModel.nguoidung">
+              <MappingFragment StoreEntitySet="nguoidung">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+                <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+                <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+                <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+                <ScalarProperty Name="diem" ColumnName="diem" />
+                <ScalarProperty Name="quyen" ColumnName="quyen" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanphams">
+            <EntityTypeMapping TypeName="daugiaModel.sanpham">
+              <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="chitiet" ColumnName="chitiet" />
+                <ScalarProperty Name="giakhoidiem" ColumnName="giakhoidiem" />
+                <ScalarProperty Name="giahientai" ColumnName="giahientai" />
+                <ScalarProperty Name="diemduocdau" ColumnName="diemduocdau" />
+                <ScalarProperty Name="id_nguoidunghientai" ColumnName="id_nguoidunghientai" />
+                <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+                <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+                <ScalarProperty Name="id_lichsudau" ColumnName="id_lichsudau" />
+                <ScalarProperty Name="id_danhgia" ColumnName="id_danhgia" />
+                <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+                <ScalarProperty Name="giacaonhat" ColumnName="giacaonhat" />
+                <ScalarProperty Name="giamuangay" ColumnName="giamuangay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thongbaos">
+            <EntityTypeMapping TypeName="daugiaModel.thongbao">
+              <MappingFragment StoreEntitySet="thongbao">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

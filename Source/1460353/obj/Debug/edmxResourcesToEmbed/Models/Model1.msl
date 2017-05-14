@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="daugiaModelStoreContainer" CdmEntityContainer="daugiaEntities">
+    <EntitySetMapping Name="binhluans">
+      <EntityTypeMapping TypeName="daugiaModel.binhluan">
+        <MappingFragment StoreEntitySet="binhluan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chitietdanhgias">
+      <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
+        <MappingFragment StoreEntitySet="chitietdanhgia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="danhgias">
+      <EntityTypeMapping TypeName="daugiaModel.danhgia">
+        <MappingFragment StoreEntitySet="danhgia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mot" ColumnName="mot" />
+          <ScalarProperty Name="hai" ColumnName="hai" />
+          <ScalarProperty Name="ba" ColumnName="ba" />
+          <ScalarProperty Name="bon" ColumnName="bon" />
+          <ScalarProperty Name="nam" ColumnName="nam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="danhmucs">
+      <EntityTypeMapping TypeName="daugiaModel.danhmuc">
+        <MappingFragment StoreEntitySet="danhmuc">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="trinhtrang" ColumnName="trinhtrang" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lichsudaus">
+      <EntityTypeMapping TypeName="daugiaModel.lichsudau">
+        <MappingFragment StoreEntitySet="lichsudau">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nguoidungs">
+      <EntityTypeMapping TypeName="daugiaModel.nguoidung">
+        <MappingFragment StoreEntitySet="nguoidung">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+          <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+          <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+          <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+          <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+          <ScalarProperty Name="diem" ColumnName="diem" />
+          <ScalarProperty Name="quyen" ColumnName="quyen" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sanphams">
+      <EntityTypeMapping TypeName="daugiaModel.sanpham">
+        <MappingFragment StoreEntitySet="sanpham">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="chitiet" ColumnName="chitiet" />
+          <ScalarProperty Name="giakhoidiem" ColumnName="giakhoidiem" />
+          <ScalarProperty Name="giahientai" ColumnName="giahientai" />
+          <ScalarProperty Name="diemduocdau" ColumnName="diemduocdau" />
+          <ScalarProperty Name="id_nguoidunghientai" ColumnName="id_nguoidunghientai" />
+          <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+          <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+          <ScalarProperty Name="id_lichsudau" ColumnName="id_lichsudau" />
+          <ScalarProperty Name="id_danhgia" ColumnName="id_danhgia" />
+          <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+          <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+          <ScalarProperty Name="giacaonhat" ColumnName="giacaonhat" />
+          <ScalarProperty Name="giamuangay" ColumnName="giamuangay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="thongbaos">
+      <EntityTypeMapping TypeName="daugiaModel.thongbao">
+        <MappingFragment StoreEntitySet="thongbao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

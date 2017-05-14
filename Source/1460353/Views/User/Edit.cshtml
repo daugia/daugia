@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "Cập nhật thông tin";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+
+@model _1460353.Models.nguoidung
+@using BotDetect.Web.Mvc;
+@section css{
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="text-success">
+        <h2>Thông tin tài khoản</h2>
+
+    </div>
+    @if (ViewBag.q == "1")
+    {
+        <div class="alert-success">
+            <h4>Cập nhật thành công!</h4>
+        </div>
+    }
+    @if (ViewBag.q == "0")
+    {
+        <div class="alert-danger">
+            <h4>Cập nhật thất bại!</h4>
+        </div>
+    }
+    @if (ViewBag.q == "2")
+    {
+        <div class="alert-danger">
+            <h4>Tên đăng nhập hoặc email đã tồn tại!</h4>
+        </div>
+    }
+
+
+    <div class="container-fluid">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "myform" ,@enctype="multipart/form-data"}))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "Thất bại", new { @class = "alert alert-danger" })
+            <input type="hidden" name="id" value="@Model.id" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Họ Và Tên", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ tên" } })
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @disabled = "true", @class = "form-control", placeholder = "Email" } })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Ảnh đại diện", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6 ">
+                        <input name="file" id="file" type="file" accept="image/*" onchange="previewFile()" />
+                        <img src="@Model.anhdaidien" id="img" width="100" height="100" alt="Hình ảnh" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Username", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @disabled = "true", @class = "form-control", placeholder = "Tên đăng nhập" } })
+
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    @Html.Label("Mật khẩu mới", new { @class = "control-label col-md-2" })
+                    <div class=" col-md-6 ">
+                        @Html.PasswordFor(model => model.pass, new { @class = "form-control", placeholder = "Mật khẩu" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Nhập lại mật khẩu", new { @class = "control-label col-md-2" })
+                    <div class=" col-md-6 ">
+                        @Html.Password("c_password", "", new { @class = "form-control", placeholder = "Nhập lại mật khẩu" })
+
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    @Html.Label("Địa chỉ", new { @class = "control-label col-md-2" })
+                    <div class=" col-md-6 ">
+                        @Html.EditorFor(model => model.diachi, new { htmlAttributes = new { @class = "form-control", placeholder = "Địa chỉ" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Số điện thoại", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.sodienthoai, new { type = "number", @class = "form-control", placeholder = "Số điện thoại" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Giới tính", new { @class = "control-label col-md-2" })
+                    <div class="col-md-6 ">
+
+                        <select name="gioitinh" class="form-control">
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                            <option value="2">Khác</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Ngày Sinh", new { @class = "control-label col-md-2" })
+                    <div class=" col-md-6 ">
+                        <div id="birthday" class="input-group date">
+                            <input name="ngaysinh" value="09/28/1996" readonly type="text" class="form-control input-group-addon" placeholder="Ngày sinh">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2"> Captcha</div>
+                    <div class="col-md-4">
+                        @{ var exampleCaptcha = new MvcCaptcha("ExampleCaptcha"); exampleCaptcha.Reset(); }
+                        @Html.Captcha(exampleCaptcha)
+                        @Html.TextBox("CaptchaCode", null, new { @class = "form-control", @placeholder = "captcha" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><a href="#" class="btn-link"></a></label>
+                    <div class="col-md-6 ">
+                        <input type="submit" value="Cập nhật thông tin" class="btn btn-primary" />
+
+                    </div>
+                </div>
+            </div>
+                            }
+    </div>
+</div>
+@section js{
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script>
+
+        $("#myform").validate({
+
+            errorClass: "text-danger",
+
+            rules: {
+                username: "required",
+                pass: {
+                    required: true,
+                    minlength: 8
+                },
+                ten: {
+                    required: true,
+                    maxlength: 50
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                ngaysinh: "required",
+                c_password: {
+                    required: true,
+                    equalTo: "#pass"
+                },
+                CaptchaCode: {
+                    required: true,
+
+                },
+                sodienthoai: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 12
+                }
+
+            },
+            messages: {
+                username: "ERROR :Username không được bỏ trống!",
+                pass: {
+                    required: "ERROR :Mật khẩu không được bỏ trống!",
+                    minlength: "ERROR :Mật khẩu tối thiếu 8 ký tự!"
+                },
+                ten: {
+                    required: "ERROR :Tên không được bỏ trống!",
+                    maxlength: "ERROR :Tên tối đa 50 ký tự!"
+                },
+                email: {
+                    required: "ERROR :Email không được bỏ trống!",
+                    email: "ERROR :Không đúng định dạng email!"
+                },
+                ngaysinh: "ERROR :Ngày sinh không được bỏ trống!",
+                c_password: {
+                    required: "ERROR :Nhập lại mật khẩu không được bỏ trống!",
+                    equalTo: "ERROR :Mật khẩu không khớp!",
+                },
+                CaptchaCode: {
+                    required: "ERROR :CAPTCHA không được bỏ trống!",
+
+                },
+                sodienthoai: {
+                    required: "ERROR :Số điện thoại không được bỏ trống!",
+                    minlength: "ERROR :Số điện thoại tối thiểu 10 số!",
+                    maxlength: "ERROR :Số điện thoại tối đa 12 số!",
+                }
+            },
+
+        });
+        $("#birthday").datepicker({
+            autoclose: true,
+        });
+
+        function previewFile() {
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                var idimg = document.getElementById("img");
+                idimg.src = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+}

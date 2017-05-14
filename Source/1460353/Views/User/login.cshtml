@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="text-success">
+    <h2>Đăng nhập</h2>
+</div>
+@if (ViewBag.q == "1")
+{
+    <div class="alert-success">
+        <h4>Đăng nhập thành công!</h4>
+    </div>
+}
+@if (ViewBag.q == "0")
+{
+    <div class="alert-danger">
+        <h4>Đăng nhập thất bại!</h4>
+    </div>
+}
+<form id="myform" class="form-horizontal" method="post">
+    <div class=" form-group">
+        @Html.Label("_Username ", new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" />
+        </div>
+        <span id="sp1" class="text-success" hidden>OK!</span>
+    </div>
+    <div class=" form-group">
+        @Html.Label("_Password ", new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            <input type="password" class=" form-control" id="password" name="pass" placeholder="Mật khẩu" />
+        </div>
+        <span id="password" class="col-md-1" hidden>Ok!</span>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2"></div>
+        <div class="col-md-6">
+            @Html.CheckBox("remember", true, htmlAttributes: new { })
+            Lưu đăng nhập
+        </div>
+    </div>
+    <div class=" form-group">
+        <a href="@Url.Action("signup","User")" class="control-label btn btn-link  col-md-2"><span class="glyphicon glyphicon-user">Đăng kí</span></a>
+
+        <div class="col-md-6">
+            <button type="submit" class="btn-success"><span class="glyphicon glyphicon-off"> Đăng nhập</span></button>
+        </div>
+    </div>
+</form>
+
+@section js{
+    <script>
+        $("#myform").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+            ,
+            rules: {
+                username: "required",
+                password: {
+                    required: true,
+                    minlength: 8
+                }
+
+            },
+            messages: {
+                username: "ERROR :Không được bỏ trống!",
+                password: {
+                    required: "ERROR :Không được bỏ trống!",
+                    minlength: "ERROR :Tối thiểu 8 ký tự!"
+                }
+            },
+
+
+        });
+    </script>
+
+}
