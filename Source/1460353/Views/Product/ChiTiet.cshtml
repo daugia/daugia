@@ -1,0 +1,61 @@
+﻿@using _1460353.Models
+@using _1460353.Helpers
+@model  sanpham
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model == null)
+{
+    <text> Sản Phẩm Không Tồn Tại</text>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
+        </div>
+        <div class="col-md-12">
+            <h3>@Model.ten</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Giá Khởi Điểm : @string.Format("{0:N0}", Model.giakhoidiem)</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Giá Hiện Tại : @string.Format("{0:N0}", Model.giahientai)</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Giá Mua Ngay: @string.Format("{0:N0}", Model.giamuangay)</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Số Lượng Sản Phẩm : @Model.soluong</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Miêu Tả Sản Phẩm @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Người Có Giá Cao Nhất: @Model.id_nguoidunghientai</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Người Giữ Sản Phẩm : @Model.id_nguoidung</h3>
+        </div>
+        @*@if (CurrentContext.IsLogged() == true)
+        {
+            <form class="form-horizontal" method="post" action="@Url.Action("Add","Cart")" id="frmAddItem">
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <input type="hidden" id="txtP" name="proId" value="@Model.ProID" />
+                        <div class="input-group" style="margin-left:24px;">
+                            <input id="txtQ" type="text" name="quantity" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-cart-plus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }*@
+    </div>
+}

@@ -25,7 +25,7 @@ else
                             <h3>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h3>
                             <h3>Miêu Tả Ngắn Sản Phẩm  @p.mieutangan</h3>
                             <p>
-                                <a href=@Url.Action("Detail","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
+                                <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
                                 @*@if (Login.IsLogged() == true)
                                 {
                                     <a href="javascript:;" class="btn btn-success addItem" role="button" data-id="@p.ProID">

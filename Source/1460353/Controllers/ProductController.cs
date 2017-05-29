@@ -30,5 +30,17 @@ namespace _1460353.Controllers
                 return View(list);
             }
         }
+        public ActionResult ChiTiet(int? id)
+        {
+            if(id.HasValue==false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == id).FirstOrDefault();
+                return View(model);
+            }
+        }
     }
 }

@@ -496,6 +496,7 @@
     <Content Include="Views\User\EditPass.cshtml" />
     <Content Include="Views\Product\New.cshtml" />
     <Content Include="Views\Product\LoadSPTheoDanhMuc.cshtml" />
+    <Content Include="Views\Product\ChiTiet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
