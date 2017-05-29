@@ -15,10 +15,8 @@ namespace _1460353.Models
     public partial class danhgia
     {
         public int id { get; set; }
-        public Nullable<int> mot { get; set; }
-        public Nullable<int> hai { get; set; }
-        public Nullable<int> ba { get; set; }
-        public Nullable<int> bon { get; set; }
-        public Nullable<int> nam { get; set; }
+        public Nullable<int> tot { get; set; }
+        public Nullable<int> xau { get; set; }
+        public Nullable<int> id_nguoidung { get; set; }
     }
 }

@@ -23,11 +23,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="mot" Type="int" />
-    <Property Name="hai" Type="int" />
-    <Property Name="ba" Type="int" />
-    <Property Name="bon" Type="int" />
-    <Property Name="nam" Type="int" />
+    <Property Name="tot" Type="int" />
+    <Property Name="xau" Type="int" />
+    <Property Name="id_nguoidung" Type="int" />
   </EntityType>
   <EntityType Name="danhmuc">
     <Key>
@@ -44,7 +42,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="noidung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="id_nguoidung" Type="int" />
+    <Property Name="id_sanpham" Type="int" />
+    <Property Name="tiendadau" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="nguoidung">
     <Key>
@@ -76,14 +76,13 @@
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="ten" Type="nvarchar" MaxLength="50" />
     <Property Name="soluong" Type="int" />
-    <Property Name="chitiet" Type="nvarchar" MaxLength="250" />
+    <Property Name="chitiet" Type="ntext" />
     <Property Name="giakhoidiem" Type="decimal" Precision="18" Scale="0" />
     <Property Name="giahientai" Type="decimal" Precision="18" Scale="0" />
     <Property Name="diemduocdau" Type="int" />
     <Property Name="id_nguoidunghientai" Type="int" />
     <Property Name="ngaybatdau" Type="datetime" />
     <Property Name="ngayketthuc" Type="datetime" />
-    <Property Name="id_lichsudau" Type="int" />
     <Property Name="id_danhgia" Type="int" />
     <Property Name="tinhtrang" Type="int" />
     <Property Name="ngaytao" Type="nchar" MaxLength="12" />
@@ -91,6 +90,9 @@
     <Property Name="hinhanh" Type="nchar" MaxLength="100" />
     <Property Name="giacaonhat" Type="decimal" Precision="18" Scale="0" />
     <Property Name="giamuangay" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="tang10phut" Type="int" />
+    <Property Name="solantang10phut" Type="int" />
+    <Property Name="mieutangan" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>

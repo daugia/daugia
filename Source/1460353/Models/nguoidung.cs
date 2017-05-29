@@ -17,6 +17,7 @@ namespace _1460353.Models
         public int id { get; set; }
         public string ten { get; set; }
         public string email { get; set; }
+        public string username { get; set; }
         public string pass { get; set; }
         public string diachi { get; set; }
         public string sodienthoai { get; set; }
@@ -28,7 +29,6 @@ namespace _1460353.Models
         public Nullable<decimal> taikhoan { get; set; }
         public Nullable<int> diem { get; set; }
         public Nullable<int> quyen { get; set; }
-        public string username { get; set; }
         public Nullable<int> tinhtrang { get; set; }
     }
 }

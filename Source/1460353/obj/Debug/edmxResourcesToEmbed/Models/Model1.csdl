@@ -23,11 +23,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="mot" Type="Int32" />
-    <Property Name="hai" Type="Int32" />
-    <Property Name="ba" Type="Int32" />
-    <Property Name="bon" Type="Int32" />
-    <Property Name="nam" Type="Int32" />
+    <Property Name="tot" Type="Int32" />
+    <Property Name="xau" Type="Int32" />
+    <Property Name="id_nguoidung" Type="Int32" />
   </EntityType>
   <EntityType Name="danhmuc">
     <Key>
@@ -44,7 +42,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="noidung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="id_nguoidung" Type="Int32" />
+    <Property Name="id_sanpham" Type="Int32" />
+    <Property Name="tiendadau" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="nguoidung">
     <Key>
@@ -53,6 +53,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="diachi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="sodienthoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
@@ -64,7 +65,6 @@
     <Property Name="taikhoan" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="diem" Type="Int32" />
     <Property Name="quyen" Type="Int32" />
-    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="tinhtrang" Type="Int32" />
   </EntityType>
   <EntityType Name="sanpham">
@@ -76,14 +76,13 @@
     <Property Name="id_nguoidung" Type="Int32" />
     <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="soluong" Type="Int32" />
-    <Property Name="chitiet" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="chitiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="giakhoidiem" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="giahientai" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="diemduocdau" Type="Int32" />
     <Property Name="id_nguoidunghientai" Type="Int32" />
     <Property Name="ngaybatdau" Type="DateTime" Precision="3" />
     <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
-    <Property Name="id_lichsudau" Type="Int32" />
     <Property Name="id_danhgia" Type="Int32" />
     <Property Name="tinhtrang" Type="Int32" />
     <Property Name="ngaytao" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
@@ -91,6 +90,9 @@
     <Property Name="hinhanh" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
     <Property Name="giacaonhat" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="giamuangay" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="tang10phut" Type="Int32" />
+    <Property Name="solantang10phut" Type="Int32" />
+    <Property Name="mieutangan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>
