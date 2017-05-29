@@ -1,5 +1,5 @@
 ﻿@model List<_1460353.Models.danhmuc>
 @foreach (var d in Model) {
-    <li><a href="#">@d.ten</a></li>
+    <li><a href="@Url.Action("LoadSPTheoDanhMuc","Product",new {iddm=d.id })">@d.ten</a></li>
 }
 
