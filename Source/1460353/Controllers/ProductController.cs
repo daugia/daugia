@@ -52,5 +52,29 @@ namespace _1460353.Controllers
                 return View(model);
             }
         }
+        
+        public ActionResult TimKiem(String TuKhoa, int ?page)
+        {
+            if (TuKhoa == null || page.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (var daugia = new daugiaEntities())
+            {
+                int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).Count();
+                int recordsPerPage = 4;
+                int nPage = n / recordsPerPage;
+                int m = n % recordsPerPage;
+                if (m > 0)
+                {
+                    nPage++;
+                }
+                ViewBag.TuKhoa = TuKhoa;
+                ViewBag.Pages = nPage;
+                ViewBag.CurPage = page;
+                var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).OrderBy(s => s.id).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                return View(list);
+            }
+        }
     }
 }
