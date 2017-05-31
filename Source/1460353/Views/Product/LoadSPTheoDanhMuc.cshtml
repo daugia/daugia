@@ -11,6 +11,7 @@
 }
 else
 {
+
     <div class="container-fluid">
         <div class="row">
             @foreach (var p in Model)
@@ -40,6 +41,32 @@ else
             }
         </div>
     </div>
+    <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="?page=@((ViewBag.CurPage>1)?ViewBag.CurPage-1 : 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= ViewBag.Pages; i++)
+                {
+                    if (ViewBag.CurPage == i)
+                    {
+                        <li class="active"><a href="?page=@i">@i</a></li>
+                    }
+                    else
+                    {
+                    <li><a href="?page=@i">@i</a></li>
+                     }
+                    }
+                <li>
+
+                    <a href="?page=@((ViewBag.CurPage<ViewBag.Pages)?ViewBag.CurPage+1 : ViewBag.Pages)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+    </ul>
+        </nav>
 }
 
 

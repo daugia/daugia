@@ -18,15 +18,25 @@ namespace _1460353.Controllers
         {
             return View();
         }
-        public ActionResult LoadSPTheoDanhMuc(int? iddm)
+        public ActionResult LoadSPTheoDanhMuc(int? id,int page=1)
         {
-            if (iddm.HasValue == false)
+            if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Home");
             }
             using (var daugia = new daugiaEntities())
             {
-                var list = daugia.sanphams.Where(s => s.id_danhmuc == iddm).ToList();
+                int n = daugia.sanphams.Where(s=>s.id_danhmuc == id).Count();
+                int recordsPerPage = 4;
+                int nPage = n / recordsPerPage;
+                int m = n % recordsPerPage;
+                if (m > 0)
+                {
+                    nPage++;
+                }
+                ViewBag.Pages = nPage;
+                ViewBag.CurPage = page;
+                var list = daugia.sanphams.Where(s => s.id_danhmuc == id).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
                 return View(list);
             }
         }
