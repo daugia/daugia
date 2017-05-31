@@ -36,6 +36,7 @@ namespace _1460353.Controllers
                 }
                 ViewBag.Pages = nPage;
                 ViewBag.CurPage = page;
+                ViewBag.iddm = id;
                 var list = daugia.sanphams.Where(s => s.id_danhmuc == id).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
                 return View(list);
             }
@@ -53,7 +54,7 @@ namespace _1460353.Controllers
             }
         }
         
-        public ActionResult TimKiem(String TuKhoa, int ?page)
+        public ActionResult TimKiem(String TuKhoa, int ?page,int ?iddm)
         {
             if (TuKhoa == null || page.HasValue == false)
             {
@@ -61,19 +62,39 @@ namespace _1460353.Controllers
             }
             using (var daugia = new daugiaEntities())
             {
-                int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).Count();
-                int recordsPerPage = 4;
-                int nPage = n / recordsPerPage;
-                int m = n % recordsPerPage;
-                if (m > 0)
+                if (iddm.HasValue == false)
                 {
-                    nPage++;
+                    int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).Count();
+                    int recordsPerPage = 4;
+                    int nPage = n / recordsPerPage;
+                    int m = n % recordsPerPage;
+                    if (m > 0)
+                    {
+                        nPage++;
+                    }
+                    ViewBag.TuKhoa = TuKhoa;
+                    ViewBag.Pages = nPage;
+                    ViewBag.CurPage = page;
+                    var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).OrderBy(s => s.id).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                    return View(list);
                 }
-                ViewBag.TuKhoa = TuKhoa;
-                ViewBag.Pages = nPage;
-                ViewBag.CurPage = page;
-                var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower())).OrderBy(s => s.id).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                return View(list);
+                else
+                {
+                    int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc==iddm).Count();
+                    int recordsPerPage = 4;
+                    int nPage = n / recordsPerPage;
+                    int m = n % recordsPerPage;
+                    if (m > 0)
+                    {
+                        nPage++;
+                    }
+                    ViewBag.TuKhoa = TuKhoa;
+                    ViewBag.Pages = nPage;
+                    ViewBag.CurPage = page;
+                    ViewBag.iddm = iddm;
+                    var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm).OrderBy(s => s.id).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                    return View(list);
+                }
             }
         }
     }
