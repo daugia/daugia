@@ -5,6 +5,11 @@
     ViewBag.Title = "Chi Tiết Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section css
+{
+<link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+
+}
 @section js
 {
     <script>
@@ -24,9 +29,19 @@
         clearInterval(x);
         document.getElementById("hengio").innerHTML = "Đã hết hạn";
     }
-}, 1000);
+    }, 1000);
 </script>
-    
+<script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script type="text/javascript">
+        $('#txtG').TouchSpin({
+            min: @Model.giahientai+100000,
+            step: 100000,
+            max: @Model.giamuangay,
+            postfix: 'VNĐ',
+      verticalbuttons: true,
+
+    });
+</script>
 }
 @if (Model == null)
 {
@@ -34,6 +49,13 @@
 }
 else
 {
+    if (ViewBag.Error != null)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong>@ViewBag.ErrorCaptcha
+        </div>
+    }
     <div class="row">
         <div class="col-md-12">
             <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
@@ -75,23 +97,24 @@ else
             <h3>Thời Gian Còn Lại</h3>
             <h3 id="hengio"></h3>
         </div>
-        @*@if (CurrentContext.IsLogged() == true)
+        @if (Login.IsLogin() == true)
         {
-            <form class="form-horizontal" method="post" action="@Url.Action("Add","Cart")" id="frmAddItem">
+            <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")" id="frmMuaHang">
                 <div class="form-group">
                     <div class="col-sm-4">
-                        <input type="hidden" id="txtP" name="proId" value="@Model.ProID" />
-                        <div class="input-group" style="margin-left:24px;">
-                            <input id="txtQ" type="text" name="quantity" class="form-control" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-cart-plus"></i>
-                                </button>
-                            </span>
-                        </div>
+                        <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                            <div class="input-group" style="margin-left:24px;">
+                                <input id="txtG" type="text" name="Gia" class="form-control" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-cart-plus"></i>
+                            </button>
+                        </span>
                     </div>
                 </div>
+            </div>
             </form>
-        }*@
+        }
     </div>
+
 }
