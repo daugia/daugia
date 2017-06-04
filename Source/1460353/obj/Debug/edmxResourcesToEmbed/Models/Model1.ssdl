@@ -17,8 +17,6 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_nguoidung" Type="int" />
-    <Property Name="noidung" Type="nvarchar" MaxLength="200" />
-    <Property Name="id_nguoidanhgia" Type="int" />
   </EntityType>
   <EntityType Name="danhgia">
     <Key>
@@ -36,15 +34,8 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ten" Type="nvarchar" MaxLength="50" />
     <Property Name="trinhtrang" Type="int" />
-  </EntityType>
-  <EntityType Name="kichnguoidung">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_nguoidung" Type="int" />
-    <Property Name="id_sanpham" Type="int" />
-    <Property Name="id_nguoidungquanlysp" Type="int" />
+    <Property Name="ngaytao" Type="nchar" MaxLength="12" />
+    <Property Name="ngaycapnhat" Type="nchar" MaxLength="12" />
   </EntityType>
   <EntityType Name="lichsudau">
     <Key>
@@ -54,7 +45,6 @@
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="id_sanpham" Type="int" />
     <Property Name="tiendadau" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="ngaydaugia" Type="datetime" />
   </EntityType>
   <EntityType Name="nguoidung">
     <Key>
@@ -95,12 +85,14 @@
     <Property Name="ngayketthuc" Type="datetime" />
     <Property Name="id_danhgia" Type="int" />
     <Property Name="tinhtrang" Type="int" />
+    <Property Name="ngaytao" Type="nchar" MaxLength="12" />
+    <Property Name="ngaycapnhat" Type="nchar" MaxLength="12" />
+    <Property Name="hinhanh" Type="nchar" MaxLength="100" />
     <Property Name="giacaonhat" Type="decimal" Precision="18" Scale="0" />
     <Property Name="giamuangay" Type="decimal" Precision="18" Scale="0" />
     <Property Name="tang10phut" Type="int" />
     <Property Name="solantang10phut" Type="int" />
     <Property Name="mieutangan" Type="nvarchar" MaxLength="50" />
-    <Property Name="luotview" Type="int" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>
@@ -110,24 +102,14 @@
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="noidung" Type="nvarchar" MaxLength="255" />
   </EntityType>
-  <EntityType Name="yeuthich">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_nguoidung" Type="int" />
-    <Property Name="id_sanpham" Type="int" />
-  </EntityType>
   <EntityContainer Name="daugiaModelStoreContainer">
     <EntitySet Name="binhluan" EntityType="Self.binhluan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="chitietdanhgia" EntityType="Self.chitietdanhgia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="danhgia" EntityType="Self.danhgia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="danhmuc" EntityType="Self.danhmuc" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="kichnguoidung" EntityType="Self.kichnguoidung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="lichsudau" EntityType="Self.lichsudau" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="thongbao" EntityType="Self.thongbao" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="yeuthich" EntityType="Self.yeuthich" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

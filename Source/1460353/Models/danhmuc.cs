@@ -17,5 +17,7 @@ namespace _1460353.Models
         public int id { get; set; }
         public string ten { get; set; }
         public Nullable<int> trinhtrang { get; set; }
+        public string ngaytao { get; set; }
+        public string ngaycapnhat { get; set; }
     }
 }
