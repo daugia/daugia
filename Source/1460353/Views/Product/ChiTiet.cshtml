@@ -5,6 +5,29 @@
     ViewBag.Title = "Chi Tiết Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section js
+{
+    <script>
+    var countDownDate = new Date("@Model.ngayketthuc").getTime();
+    var x = setInterval(function() {
+
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("hengio").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("hengio").innerHTML = "Đã hết hạn";
+    }
+}, 1000);
+</script>
+    
+}
 @if (Model == null)
 {
     <text> Sản Phẩm Không Tồn Tại</text>
@@ -38,6 +61,19 @@ else
         </div>
         <div class="col-md-12">
             <h3>Người Giữ Sản Phẩm : @Model.id_nguoidung</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Lượt Xem : @Model.luotview</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Thời Gian Bắt Đầu : @Model.ngaybatdau</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Thời Gian Kết Thúc : @Model.ngayketthuc</h3>
+        </div>
+        <div class="col-md-12">
+            <h3>Thời Gian Còn Lại</h3>
+            <h3 id="hengio"></h3>
         </div>
         @*@if (CurrentContext.IsLogged() == true)
         {
