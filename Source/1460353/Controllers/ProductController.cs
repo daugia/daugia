@@ -14,6 +14,7 @@ namespace _1460353.Controllers
         {
             return View();
         }
+        [Filters.Login]
         public ActionResult New()
         {
             using (var ctx = new daugiaEntities())
@@ -23,6 +24,7 @@ namespace _1460353.Controllers
             }
             return View();
         }
+        [Filters.Login]
         [HttpPost]
         public ActionResult New(sanpham sp)
         {
@@ -75,6 +77,8 @@ namespace _1460353.Controllers
             using (var daugia = new daugiaEntities())
             {
                 var model = daugia.sanphams.Where(s => s.id == id).FirstOrDefault();
+                model.luotview++;
+                daugia.SaveChanges();
                 return View(model);
             }
         }

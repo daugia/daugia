@@ -5,7 +5,14 @@
     ViewBag.Title = "Tim Kiem San Pham";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section css
+{
+<link href="~/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+}
+@section js
+{
+<script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+}
 @if (Model.Count == 0)
 {
     <text>Không Có Sản Phẩm</text>
@@ -17,7 +24,7 @@ else
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search Theo Ten Trong Danh Muc" name="TuKhoa" value="@ViewBag.TuKhoa">
                 <input type="hidden" name="page" value="1" />
-                <select class="form-group" name="iddm">
+                <select class="form-group selectpicker" name="iddm">
                     <option></option>
                     @foreach (var dm in ViewBag.listdm)
                     {
@@ -31,7 +38,7 @@ else
                         }
                     }
                 </select>
-                <select class="form-group" name="chon">
+                <select class="form-group selectpicker" name="chon">
                     @if (ViewBag.Chon == 1)
                     {
                         <option value="1" selected>Sắp Xếp Theo Thời Gian</option>
