@@ -28,13 +28,12 @@ namespace _1460353.Models
         public Nullable<System.DateTime> ngayketthuc { get; set; }
         public Nullable<int> id_danhgia { get; set; }
         public Nullable<int> tinhtrang { get; set; }
-        public string ngaytao { get; set; }
-        public string ngaycapnhat { get; set; }
-        public string hinhanh { get; set; }
         public Nullable<decimal> giacaonhat { get; set; }
         public Nullable<decimal> giamuangay { get; set; }
         public Nullable<int> tang10phut { get; set; }
         public Nullable<int> solantang10phut { get; set; }
         public string mieutangan { get; set; }
+        public Nullable<int> luotview { get; set; }
+        public Nullable<decimal> giabanmongmuon { get; set; }
     }
 }

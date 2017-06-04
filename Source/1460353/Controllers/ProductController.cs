@@ -34,8 +34,6 @@ namespace _1460353.Controllers
                 if (sp.id_nguoidung == null) sp.id_nguoidung = 0;
                 if (sp.id_nguoidunghientai == null) sp.id_nguoidunghientai = 0;
                 if (sp.tinhtrang == null) sp.tinhtrang = 1;
-                if (sp.ngaytao == null) sp.ngaytao = DateTime.Now.ToShortDateString();
-                if(sp.ngaycapnhat == null) sp.ngaycapnhat = DateTime.Now.ToShortDateString();
                 if (sp.solantang10phut == null) sp.solantang10phut = 0;
                 if (sp.tang10phut == null) sp.tang10phut = 0;
                 ctx.sanphams.Add(sp);

@@ -26,12 +26,15 @@ namespace _1460353.Models
         }
     
         public virtual DbSet<binhluan> binhluans { get; set; }
+        public virtual DbSet<chinhsuachitietsp> chinhsuachitietsps { get; set; }
         public virtual DbSet<chitietdanhgia> chitietdanhgias { get; set; }
         public virtual DbSet<danhgia> danhgias { get; set; }
         public virtual DbSet<danhmuc> danhmucs { get; set; }
+        public virtual DbSet<kichnguoidung> kichnguoidungs { get; set; }
         public virtual DbSet<lichsudau> lichsudaus { get; set; }
         public virtual DbSet<nguoidung> nguoidungs { get; set; }
         public virtual DbSet<sanpham> sanphams { get; set; }
         public virtual DbSet<thongbao> thongbaos { get; set; }
+        public virtual DbSet<yeuthich> yeuthiches { get; set; }
     }
 }
