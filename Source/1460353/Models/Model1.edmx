@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="daugiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="daugiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="binhluan">
           <Key>
             <PropertyRef Name="id" />
@@ -33,6 +33,7 @@
           <Property Name="id_nguoidung" Type="int" />
           <Property Name="noidung" Type="nvarchar" MaxLength="200" />
           <Property Name="id_nguoidanhgia" Type="int" />
+          <Property Name="ngaytao" Type="datetime" />
         </EntityType>
         <EntityType Name="danhgia">
           <Key>
@@ -50,6 +51,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ten" Type="nvarchar" MaxLength="50" />
           <Property Name="trinhtrang" Type="int" />
+          <Property Name="ngaytao" Type="datetime" />
+          <Property Name="ngaycapnhat" Type="datetime" />
         </EntityType>
         <EntityType Name="kichnguoidung">
           <Key>
@@ -124,6 +127,19 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_nguoidung" Type="int" />
           <Property Name="noidung" Type="nvarchar" MaxLength="255" />
+          <Property Name="ngaytao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="yeucau">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_nguoidung" Type="int" />
+          <Property Name="capphep" Type="int" />
+          <Property Name="ngaytao" Type="datetime" />
+          <Property Name="ngayduocban" Type="datetime" />
+          <Property Name="ngayketthuc" Type="datetime" />
+          <Property Name="tinhtrang" Type="int" />
         </EntityType>
         <EntityType Name="yeuthich">
           <Key>
@@ -144,10 +160,10 @@
           <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="thongbao" EntityType="Self.thongbao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yeucau" EntityType="Self.yeucau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="yeuthich" EntityType="Self.yeuthich" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="daugiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -179,6 +195,7 @@
           <Property Name="id_nguoidung" Type="Int32" />
           <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="id_nguoidanhgia" Type="Int32" />
+          <Property Name="ngaytao" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="danhgia">
           <Key>
@@ -196,6 +213,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="trinhtrang" Type="Int32" />
+          <Property Name="ngaytao" Type="DateTime" Precision="3" />
+          <Property Name="ngaycapnhat" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="kichnguoidung">
           <Key>
@@ -270,6 +289,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_nguoidung" Type="Int32" />
           <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ngaytao" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="yeuthich">
           <Key>
@@ -291,7 +311,20 @@
           <EntitySet Name="sanphams" EntityType="Self.sanpham" />
           <EntitySet Name="thongbaos" EntityType="Self.thongbao" />
           <EntitySet Name="yeuthiches" EntityType="Self.yeuthich" />
+          <EntitySet Name="yeucaus" EntityType="daugiaModel.yeucau" />
         </EntityContainer>
+        <EntityType Name="yeucau">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="capphep" Type="Int32" />
+          <Property Name="ngaytao" Type="DateTime" Precision="3" />
+          <Property Name="ngayduocban" Type="DateTime" Precision="3" />
+          <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
+          <Property Name="tinhtrang" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -323,6 +356,7 @@
           <EntitySetMapping Name="chitietdanhgias">
             <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
               <MappingFragment StoreEntitySet="chitietdanhgia">
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
@@ -343,6 +377,8 @@
           <EntitySetMapping Name="danhmucs">
             <EntityTypeMapping TypeName="daugiaModel.danhmuc">
               <MappingFragment StoreEntitySet="danhmuc">
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="ten" ColumnName="ten" />
                 <ScalarProperty Name="trinhtrang" ColumnName="trinhtrang" />
@@ -422,6 +458,7 @@
           <EntitySetMapping Name="thongbaos">
             <EntityTypeMapping TypeName="daugiaModel.thongbao">
               <MappingFragment StoreEntitySet="thongbao">
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
                 <ScalarProperty Name="noidung" ColumnName="noidung" />
@@ -434,6 +471,19 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
                 <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yeucaus">
+            <EntityTypeMapping TypeName="daugiaModel.yeucau">
+              <MappingFragment StoreEntitySet="yeucau">
+                <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+                <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+                <ScalarProperty Name="ngayduocban" ColumnName="ngayduocban" />
+                <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+                <ScalarProperty Name="capphep" ColumnName="capphep" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

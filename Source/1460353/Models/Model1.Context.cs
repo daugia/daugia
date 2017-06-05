@@ -36,5 +36,6 @@ namespace _1460353.Models
         public virtual DbSet<sanpham> sanphams { get; set; }
         public virtual DbSet<thongbao> thongbaos { get; set; }
         public virtual DbSet<yeuthich> yeuthiches { get; set; }
+        public virtual DbSet<yeucau> yeucaus { get; set; }
     }
 }

@@ -28,6 +28,7 @@
     <Property Name="id_nguoidung" Type="Int32" />
     <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="id_nguoidanhgia" Type="Int32" />
+    <Property Name="ngaytao" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="danhgia">
     <Key>
@@ -45,6 +46,8 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="trinhtrang" Type="Int32" />
+    <Property Name="ngaytao" Type="DateTime" Precision="3" />
+    <Property Name="ngaycapnhat" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="kichnguoidung">
     <Key>
@@ -119,6 +122,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_nguoidung" Type="Int32" />
     <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ngaytao" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="yeuthich">
     <Key>
@@ -140,5 +144,18 @@
     <EntitySet Name="sanphams" EntityType="Self.sanpham" />
     <EntitySet Name="thongbaos" EntityType="Self.thongbao" />
     <EntitySet Name="yeuthiches" EntityType="Self.yeuthich" />
+    <EntitySet Name="yeucaus" EntityType="daugiaModel.yeucau" />
   </EntityContainer>
+  <EntityType Name="yeucau">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_nguoidung" Type="Int32" />
+    <Property Name="capphep" Type="Int32" />
+    <Property Name="ngaytao" Type="DateTime" Precision="3" />
+    <Property Name="ngayduocban" Type="DateTime" Precision="3" />
+    <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
+    <Property Name="tinhtrang" Type="Int32" />
+  </EntityType>
 </Schema>
