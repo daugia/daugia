@@ -2,11 +2,17 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url("../Imgs/bg.png");
-    
 }
 
-.margin-top{
-    margin-top:20px;
+.txtover {
+    white-space: nowrap;
+    width: 200px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+.margin-top {
+    margin-top: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
