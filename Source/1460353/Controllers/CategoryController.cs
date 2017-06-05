@@ -19,9 +19,10 @@ namespace _1460353.Controllers
                 {
                     ViewBag.note = 1;
                     Session.Remove("note");
-                    list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 1).ToList());
-                    list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 0).ToList());
+              
                 }
+                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 1).ToList());
+                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 0).ToList());
                 return View(list);
             }
 
@@ -76,6 +77,21 @@ namespace _1460353.Controllers
                 dmold.trinhtrang = 0;
                 data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
+                Session["note"] = 1;
+                return RedirectToAction("Index", "Category");
+            }
+        }
+
+        [Filters.Login]
+        public ActionResult Restore(int id)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var dmold = data.danhmucs.Find(id);
+                dmold.trinhtrang = 1;
+                data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+                Session["note"] = 1;
                 return RedirectToAction("Index", "Category");
             }
         }

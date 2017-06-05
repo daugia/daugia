@@ -13,6 +13,9 @@
 }
 
 <div class="well">
+    <div class="well well-sm">
+       <strong>Danh mục hoạt động</strong>
+    </div>
     <table class="table table-striped">
         <tr>
             <td>Tên danh mục</td>
@@ -21,7 +24,7 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (var dm in Model.ToArray()[0])
+        @foreach (var dm in Model[0])
         {
             <tr>
                 <td>@dm.ten</td>
@@ -131,6 +134,9 @@
 
 
 <div class="well">
+    <div class="well well-sm">
+        <strong>Danh mục không hoạt động</strong>
+    </div>
     <table class="table table-striped">
         <tr>
             <td>Tên danh mục</td>
@@ -145,8 +151,7 @@
                 <td>@dm.ten</td>
                 <td>@dm.ngaytao</td>
                 <td>@dm.ngaycapnhat</td>
-                <td><a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal">Sửa</a></td>
-                <td><a href="@Url.Action("Delete", "Category", new {id=dm.id} )">Xóa</a></td>
+                <td><a href="@Url.Action("Restore", "Category", new {id=dm.id} )">Phục hồi</a></td>
             </tr>
         }
     </table>
