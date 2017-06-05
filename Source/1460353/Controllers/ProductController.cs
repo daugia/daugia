@@ -173,7 +173,7 @@ namespace _1460353.Controllers
                 }
             }
         }
-
+        [Filters.Login]
         [HttpPost]
         public ActionResult Mua(int? proId, decimal? Gia)
         {
@@ -196,12 +196,31 @@ namespace _1460353.Controllers
                                 model.giacaonhat = Gia;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+<<<<<<< HEAD
 
+=======
+                                if (model.tang10phut == 1)
+                                {
+                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut==0)
+                                    {
+                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                        model.solantang10phut = 1;
+                                    }
+                                }
+>>>>>>> origin/master
                                 TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                             }
                             else
                             {
                                 TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                if (model.tang10phut == 1)
+                                {
+                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                    {
+                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                        model.solantang10phut = 1;
+                                    }
+                                }
                                 model.giahientai = Gia;
                             }
                         }
@@ -221,6 +240,51 @@ namespace _1460353.Controllers
                 }
                 daugia.SaveChanges();
                 return RedirectToAction("ChiTiet", "Product", new { id = proId });
+            }
+        }
+
+        [Filters.Login]
+        [HttpPost]
+        public ActionResult MuaNgay(int? proId)
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
+                if (model.ngayketthuc >= DateTime.Now)
+                {
+                    var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+                    int n = Login.nguoidung().id;
+                    var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                    if (nguoidunght.diem >= 80)
+                    {
+                        if (nguoidunght.taikhoan >= model.giamuangay)
+                        {
+                            nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                            model.giahientai = model.giacaonhat;
+                            model.giacaonhat = model.giacaonhat;
+                            model.id_nguoidunghientai = Login.nguoidung().id;
+                            nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
+                            model.tinhtrang = 2;
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                            return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                        }
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                        return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                    return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                }
+                daugia.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
         }
     }
