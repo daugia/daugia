@@ -313,7 +313,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Helpers\ajax\yeuthich.js" />
     <Content Include="Imgs\bg.jpeg" />
     <Content Include="Imgs\bg.png" />
     <Content Include="Imgs\site.ico" />
@@ -708,6 +707,7 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\yeuthich.js" />
     <Content Include="Source\Images\Logo\logo.ico" />
     <Content Include="Source\Images\sp\10\main.jpg" />
     <Content Include="Source\Images\sp\10\main_thumbs.jpg" />
