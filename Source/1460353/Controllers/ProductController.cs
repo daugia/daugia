@@ -222,5 +222,50 @@ namespace _1460353.Controllers
                 return RedirectToAction("ChiTiet", "Product", new { id = proId });
             }
         }
+
+        [Filters.Login]
+        [HttpPost]
+        public ActionResult MuaNgay(int? proId)
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
+                if (model.ngayketthuc >= DateTime.Now)
+                {
+                    var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+                    int n = Login.nguoidung().id;
+                    var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                    if (nguoidunght.diem >= 80)
+                    {
+                        if (nguoidunght.taikhoan >= model.giamuangay)
+                        {
+                            nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                            model.giahientai = model.giacaonhat;
+                            model.giacaonhat = model.giacaonhat;
+                            model.id_nguoidunghientai = Login.nguoidung().id;
+                            nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
+                            model.tinhtrang = 2;
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                            return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                        }
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                        return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                    return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                }
+                daugia.SaveChanges();
+                return RedirectToAction("Index","Home");
+            }
+        }
     }
 }
