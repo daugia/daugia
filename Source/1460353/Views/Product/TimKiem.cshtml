@@ -56,19 +56,20 @@ else
             </div>
         </form>
     </div>
-    <div class="container-fluid">
+ 
         <div class="row">
             @foreach (var p in Model)
             {
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="thumbnail ">
                         <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" alt="@p.ten">
                         <div class="caption">
-                            <h3>@p.ten</h3>
-                            <h3>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h3>
-                            <h3>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h3>
-                            <h3>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h3>
-                            <h3>Miêu Tả Ngắn Sản Phẩm  @p.mieutangan</h3>
+                            <h5>@p.ten</h5>
+                            <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
+                            <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
+                            <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
+                            <h5>Miêu Tả Ngắn Sản Phẩm </h5>
+                            <p class="txtover">@p.mieutangan</p>
                             <p>
                                 <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
                                 @*@if (Login.IsLogged() == true)
@@ -84,7 +85,7 @@ else
                 </div>
             }
         </div>
-    </div>
+    
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>

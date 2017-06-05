@@ -10,7 +10,9 @@
     text-overflow: ellipsis;
     overflow:hidden;
 }
-
+.margin{
+    margin:5px;
+}
 .margin-top {
     margin-top: 20px;
 }

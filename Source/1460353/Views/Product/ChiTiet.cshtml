@@ -7,41 +7,41 @@
 }
 @section css
 {
-<link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
 }
 @section js
 {
     <script>
-    var countDownDate = new Date("@Model.ngayketthuc").getTime();
-    var x = setInterval(function() {
+        var countDownDate = new Date("@Model.ngayketthuc").getTime();
+        var x = setInterval(function() {
 
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("hengio").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("hengio").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("hengio").innerHTML = "Đã hết hạn";
-    }
-    }, 1000);
-</script>
-<script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
-<script type="text/javascript">
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("hengio").innerHTML = "Đã hết hạn";
+            }
+        }, 1000);
+    </script>
+    <script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script type="text/javascript">
         $('#txtG').TouchSpin({
             min: @Model.giahientai+100000,
             step: 100000,
             max:@decimal.MaxValue,
             postfix: 'VNĐ',
-      verticalbuttons: true,
+            verticalbuttons: true,
 
-    });
-</script>
+        });
+    </script>
 }
 @if (Model == null)
 {
@@ -65,65 +65,77 @@ else
             @ViewBag.Message
         </div>
     }
-    <div class="row">
-        <div class="col-md-12">
-            <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
-        </div>
-        <div class="col-md-12">
-            <h3>@Model.ten</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Giá Khởi Điểm : @string.Format("{0:N0}", Model.giakhoidiem)</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Giá Hiện Tại : @string.Format("{0:N0}", Model.giahientai)</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Giá Mua Ngay: @string.Format("{0:N0}", Model.giamuangay)</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Số Lượng Sản Phẩm : @Model.soluong</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Miêu Tả Sản Phẩm @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Người Có Giá Cao Nhất: @Model.id_nguoidunghientai</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Người Giữ Sản Phẩm : @Model.id_nguoidung</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Lượt Xem : @Model.luotview</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Thời Gian Bắt Đầu : @Model.ngaybatdau</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Thời Gian Kết Thúc : @Model.ngayketthuc</h3>
-        </div>
-        <div class="col-md-12">
-            <h3>Thời Gian Còn Lại</h3>
-            <h3 id="hengio"></h3>
-        </div>
-        @if (Login.IsLogin() == true)
-        {
-            <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <input type="hidden" id="txtP" name="proId" value="@Model.id" />
-                            <div class="input-group" style="margin-left:24px;">
-                                <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fa fa-cart-plus"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
+    <div class="well row">
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
             </div>
-            </form>
-        }
+            <div class="col-md-12">
+                <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
+            </div>
+            <div class="col-md-12">
+                <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <label>@Model.ten</label>
+            </div>
+            <div class="col-md-12">
+                <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
+            </div>
+
+            <div class="col-md-12">
+                <label>Người Có Giá Cao Nhất:</label><h5>  @Model.id_nguoidunghientai</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Người Giữ Sản Phẩm :</label><h5>  @Model.id_nguoidung</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
+            </div>
+            <div class="col-md-12">
+                <label>Thời Gian Còn Lại</label>
+                <label id="hengio"></label>
+            </div>
+            @if (Login.IsLogin() == true)
+            {
+                <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                            <div class="input-group com" style="margin-left:24px;">
+                                <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group pager">
+                        <input type="submit" class="btn btn-primary " value="Đặt" />
+                    </div>
+                </form>
+            }
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <label>Miêu Tả Sản Phẩm:</label><h5> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
+            </div>
+        </div>
+
     </div>
 
 }
