@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _1460353.Models;
+using _1460353.Helpers;
 namespace _1460353.Controllers
 {
     //[Filters.Login]
@@ -144,6 +145,26 @@ namespace _1460353.Controllers
                         return View(list);
                     }
                 }
+            }
+        }
+        [HttpPost]
+        public ActionResult Mua(int? proId,int ?Gia)
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
+                if (Gia > model.giacaonhat)
+                {
+                    model.giahientai = model.giacaonhat + 100000;
+                    model.giacaonhat = model.giacaonhat;
+                    model.id_nguoidunghientai=Login.nguoidung().id;
+                }
+                else
+                {
+                    ViewBag.Err="Có Giá Cao Hơn Giá Bạn Đặt";
+                }
+                daugia.SaveChanges();
+                return View();
             }
         }
     }
