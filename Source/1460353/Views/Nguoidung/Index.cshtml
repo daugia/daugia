@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<List<_1460353.Models.nguoidung>>
+<h2>Quản lí người dùng</h2>
+@if (ViewBag.note != null)
+{
+    <div class="alert alert-success">
+        <b>Thành công</b>
+    </div>
+}
+<div class="well">
+    <div class="well well-sm">
+        <strong>Danh  sách người dùng hoạt động</strong>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <td>Ảnh đại diện</td>
+            <td>Tên</td>
+            <td>Email</td>
+            <td>Địa chỉ</td>
+            <td>Số điện thoại</td>
+            <td>Điểm đánh giá</td>
+            <td>Tài khoản</td>
+            <td></td>
+        </tr>
+        @foreach (var nd in Model[0])
+        {
+            <tr>
+                <td><img src="@nd.anhdaidien" style="width:50px;height:50px;" /> </td>
+                <td>@nd.ten</td>
+                <td>@nd.email</td>
+                <td>@nd.diachi</td>
+                <td>@nd.sodienthoai</td>
+                <td>@nd.diem</td>
+                <td>@nd.taikhoan</td>
+                <td><a href="#nd_reset" title="@nd.id" name="@nd.email" onclick="document.getElementById('ten').innerText=this.name;document.getElementById('id').value=this.title" data-toggle="modal">Reset mật khẩu</a></td>
+                <td><a href="@Url.Action("Delete", "Nguoidung", new { id = @nd.id })">Xóa</a></td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section js{
+    <script>
+        $("#myform").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+           ,
+            rules: {
+                pass: {
+                    required: true,
+                    minlength: 8
+                }
+
+
+            },
+            messages: {
+                pass: {
+                    required: "ERROR :Không được bỏ trống!",
+                    minlength: "ERROR :Mật khẩu tối thiểu 8 kí tự!",
+                }
+            },
+
+
+        });
+    </script>
+
+}
+
+<div class="modal fade bd-outline" id="nd_reset" role="dialog">
+
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                <h4 class="modal-title text-success"><b>Reset mật khẩu người dùng</b></h4>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <form id="myform" class="form-horizontal" method="post" action="@Url.Action("Reset","Nguoidung")">
+                    <input type="hidden" name="id" id="id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Email:</label>
+                        <div class="col-md-5">
+                            <label class="form-control" name="ten" id="ten" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Mật khẩu:</label>
+                        <div class="col-md-5">
+                            <input class="form-control" type="password" name="pass" id="pass" />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+
+                        <button type="submit" class="btn btn-success btn-default">Sửa</button>
+                        <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+<div class="well">
+    <div class="well well-sm">
+        <strong>Danh  sách người dùng cấm hoạt động</strong>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <td>Ảnh đại diện</td>
+            <td>Tên</td>
+            <td>Email</td>
+            <td>Địa chỉ</td>
+            <td>Số điện thoại</td>
+            <td>Điểm đánh giá</td>
+            <td>Tài khoản</td>
+            <td></td>
+        </tr>
+        @foreach (var nd in Model[1])
+        {
+            <tr>
+                <td><img src="@nd.anhdaidien" style="width:50px;height:50px;" /> </td>
+                <td>@nd.ten</td>
+                <td>@nd.email</td>
+                <td>@nd.diachi</td>
+                <td>@nd.sodienthoai</td>
+                <td>@nd.diem</td>
+                <td>@nd.taikhoan</td>
+                <td><a href="@Url.Action("Restore", "Nguoidung", new  {id=@nd.id })">Khôi phục</a></td>
+
+            </tr>
+        }
+    </table>
+</div>

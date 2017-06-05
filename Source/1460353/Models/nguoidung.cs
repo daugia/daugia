@@ -30,5 +30,6 @@ namespace _1460353.Models
         public Nullable<int> diem { get; set; }
         public Nullable<int> quyen { get; set; }
         public Nullable<int> tinhtrang { get; set; }
+        public Nullable<int> capphep { get; set; }
     }
 }

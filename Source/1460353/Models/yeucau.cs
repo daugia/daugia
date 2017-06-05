@@ -21,5 +21,6 @@ namespace _1460353.Models
         public Nullable<System.DateTime> ngayduocban { get; set; }
         public Nullable<System.DateTime> ngayketthuc { get; set; }
         public Nullable<int> tinhtrang { get; set; }
+        public string noidung { get; set; }
     }
 }
