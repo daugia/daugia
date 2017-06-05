@@ -157,7 +157,7 @@ namespace _1460353.Controllers
                 }
             }
         }
-
+        [Filters.Login]
         [HttpPost]
         public ActionResult Mua(int? proId,decimal ?Gia)
         {
@@ -180,12 +180,27 @@ namespace _1460353.Controllers
                                 model.giacaonhat = Gia;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-                                
+                                if (model.tang10phut == 1)
+                                {
+                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut==0)
+                                    {
+                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                        model.solantang10phut = 1;
+                                    }
+                                }
                                 TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                             }
                             else
                             {
                                 TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                if (model.tang10phut == 1)
+                                {
+                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                    {
+                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                        model.solantang10phut = 1;
+                                    }
+                                }
                                 model.giahientai = Gia;
                             }
                         }
