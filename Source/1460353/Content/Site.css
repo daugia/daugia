@@ -10,6 +10,14 @@
     text-overflow: ellipsis;
     overflow:hidden;
 }
+.noficon{
+    background-color:red;
+    padding:5px;
+    border-radius:3px;
+    color:white;
+    font-weight:bold;
+    width:10px;
+}
 .margin{
     margin:5px;
 }
