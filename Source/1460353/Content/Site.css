@@ -1,7 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color:#7e7c7c;
+    background-image: url("../Imgs/bg.png");
+    
+}
+
+.margin-top{
+    margin-top:20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -37,6 +42,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
 #myBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
@@ -52,33 +58,41 @@ textarea {
     border-radius: 10px; /* Rounded corners */
 }
 
-#myBtn:hover {
-    background-color: #555; /* Add a dark-grey background on hover */
-}
+    #myBtn:hover {
+        background-color: #555; /* Add a dark-grey background on hover */
+    }
+
 footer {
     flex: none;
     color: white;
 }
-footer a {
-    color: #cecaca;
-}
-footer a:hover,
-footer a:focus {
-    color: #fff;
-}
-footer h4 {
-    margin-top: 32px;
-}
+
+    footer a {
+        color: #cecaca;
+    }
+
+        footer a:hover,
+        footer a:focus {
+            color: #fff;
+        }
+
+    footer h4 {
+        margin-top: 32px;
+    }
+
 .footerUp {
     padding-bottom: 26px;
     background: #6f6f6f;
 }
+
 .footerDown {
     background: #525252;
 }
-.footerDown p {
-    margin: 16px 0px;
-}
+
+    .footerDown p {
+        margin: 16px 0px;
+    }
+
 .wrapper {
     display: flex;
     height: 100vh;

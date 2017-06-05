@@ -313,6 +313,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Imgs\bg.jpeg" />
+    <Content Include="Imgs\bg.png" />
     <Content Include="Imgs\sp\10\main.jpg" />
     <Content Include="Imgs\sp\10\main_thumbs.jpg" />
     <Content Include="Imgs\sp\11\1.jpg" />
