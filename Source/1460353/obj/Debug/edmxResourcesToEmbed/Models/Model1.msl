@@ -79,6 +79,7 @@
     <EntitySetMapping Name="nguoidungs">
       <EntityTypeMapping TypeName="daugiaModel.nguoidung">
         <MappingFragment StoreEntitySet="nguoidung">
+          <ScalarProperty Name="capphep" ColumnName="capphep" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="ten" ColumnName="ten" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -147,6 +148,7 @@
     <EntitySetMapping Name="yeucaus">
       <EntityTypeMapping TypeName="daugiaModel.yeucau">
         <MappingFragment StoreEntitySet="yeucau">
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
           <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
           <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
           <ScalarProperty Name="ngayduocban" ColumnName="ngayduocban" />

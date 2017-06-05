@@ -88,6 +88,7 @@
     <Property Name="diem" Type="int" />
     <Property Name="quyen" Type="int" />
     <Property Name="tinhtrang" Type="int" />
+    <Property Name="capphep" Type="int" />
   </EntityType>
   <EntityType Name="sanpham">
     <Key>
@@ -135,6 +136,7 @@
     <Property Name="ngayduocban" Type="datetime" />
     <Property Name="ngayketthuc" Type="datetime" />
     <Property Name="tinhtrang" Type="int" />
+    <Property Name="noidung" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="yeuthich">
     <Key>

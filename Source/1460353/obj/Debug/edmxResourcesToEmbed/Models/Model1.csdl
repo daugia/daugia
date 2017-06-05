@@ -88,6 +88,7 @@
     <Property Name="diem" Type="Int32" />
     <Property Name="quyen" Type="Int32" />
     <Property Name="tinhtrang" Type="Int32" />
+    <Property Name="capphep" Type="Int32" />
   </EntityType>
   <EntityType Name="sanpham">
     <Key>
@@ -157,5 +158,6 @@
     <Property Name="ngayduocban" Type="DateTime" Precision="3" />
     <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
     <Property Name="tinhtrang" Type="Int32" />
+    <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

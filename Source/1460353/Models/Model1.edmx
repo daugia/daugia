@@ -93,6 +93,7 @@
           <Property Name="diem" Type="int" />
           <Property Name="quyen" Type="int" />
           <Property Name="tinhtrang" Type="int" />
+          <Property Name="capphep" Type="int" />
         </EntityType>
         <EntityType Name="sanpham">
           <Key>
@@ -140,6 +141,7 @@
           <Property Name="ngayduocban" Type="datetime" />
           <Property Name="ngayketthuc" Type="datetime" />
           <Property Name="tinhtrang" Type="int" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="yeuthich">
           <Key>
@@ -255,6 +257,7 @@
           <Property Name="diem" Type="Int32" />
           <Property Name="quyen" Type="Int32" />
           <Property Name="tinhtrang" Type="Int32" />
+          <Property Name="capphep" Type="Int32" />
         </EntityType>
         <EntityType Name="sanpham">
           <Key>
@@ -324,6 +327,7 @@
           <Property Name="ngayduocban" Type="DateTime" Precision="3" />
           <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
           <Property Name="tinhtrang" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -409,6 +413,7 @@
           <EntitySetMapping Name="nguoidungs">
             <EntityTypeMapping TypeName="daugiaModel.nguoidung">
               <MappingFragment StoreEntitySet="nguoidung">
+                <ScalarProperty Name="capphep" ColumnName="capphep" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="ten" ColumnName="ten" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -477,6 +482,7 @@
           <EntitySetMapping Name="yeucaus">
             <EntityTypeMapping TypeName="daugiaModel.yeucau">
               <MappingFragment StoreEntitySet="yeucau">
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
                 <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
                 <ScalarProperty Name="ngayduocban" ColumnName="ngayduocban" />
