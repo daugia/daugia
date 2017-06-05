@@ -36,7 +36,7 @@
         $('#txtG').TouchSpin({
             min: @Model.giahientai+100000,
             step: 100000,
-            max: @Model.giamuangay,
+            max:@decimal.MaxValue,
             postfix: 'VNĐ',
       verticalbuttons: true,
 
@@ -51,9 +51,18 @@ else
 {
     if (ViewBag.Error != null)
     {
-        <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Warning!</strong>@ViewBag.Error
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.Error
+        </div>
+    }
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Success:</span>
+            @ViewBag.Message
         </div>
     }
     <div class="row">
