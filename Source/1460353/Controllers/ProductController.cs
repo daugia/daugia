@@ -289,14 +289,6 @@ namespace _1460353.Controllers
         }
 
 
-        //Cua tao nhe 
-        public ActionResult searchshow(string q)
-        {
-            using(var data=new Models.daugiaEntities()){
-                var list = data.sanphams.Where(sp => sp.ten.ToLower().Contains(q)).ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }
-        }
-        //
+       
     }
 }
