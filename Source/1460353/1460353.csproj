@@ -831,9 +831,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\NguoidungController.cs" />
+    <Compile Include="Controllers\Admin\YeucauController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Nguoidung\YeucauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\Login.cs" />
@@ -841,6 +841,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Login.cs" />
+    <Compile Include="Helpers\nguoidung.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="MD5\mahoa.cs" />
     <Compile Include="Models\binhluan.cs">
@@ -928,7 +929,6 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Nguoidung\Index.cshtml" />
     <Content Include="Views\Yeucau\Index.cshtml" />
-    <Content Include="Views\Yeucau\New.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

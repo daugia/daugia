@@ -3,6 +3,64 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model List<List<_1460353.Models.yeucau>>
+<h2>Quản lí yêu cầu bán hàng</h2>
+@if(ViewBag.note!=null){
+    <div class="alert alert-success">
+        <b>Thành công</b>
+    </div>
+}
+<div class="well">
+    <div class="well-sm">
+        <b>Các đơn yêu cầu</b>
+    </div>
+    <table class="table table-striped">
+        <tr style="font-weight:bold;font-size:150%;">
+            <td>Tên người dùng</td>
+            <td>Email</td>
+            <td>Điểm</td>
+            <td>Ngày yêu cầu</td>
+            <td></td>
+        </tr>
+        @foreach (var yc in Model[1])
+        {
+            <tr>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).ten</td>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).email</td>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).diem</td>
+                <td>@yc.ngaytao</td>
+                <td><a href="@Url.Action("Accept", "Yeucau", new {id=@yc.id })">Duyệt</a></td>
+            </tr>
+        }
+    </table>
+</div>
 
-<h2>Index</h2>
+<div class="well">
+    <div class="well-sm">
+        <b>Các đơn đang hoạt động đăng bài</b>
+    </div>
+    <table class="table table-striped">
+        <tr style="font-weight:bold;font-size:150%;">
+            <td>Tên người dùng</td>
+            <td>Email</td>
+            <td>Điểm</td>
+            <td>Ngày yêu cầu</td>
+            <td>Ngày bắt đầu được đăng bài</td>
+            <td>Ngày kết thúc</td>
+            <td></td>
+        </tr>
+        @foreach (var yc in Model[0])
+        {
+            <tr>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).ten</td>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).email</td>
+                <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).diem</td>
+                <td>@yc.ngaytao</td>
+                <td>@yc.ngayduocban</td>
+                <td>@yc.ngayketthuc</td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>
 
