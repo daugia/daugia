@@ -830,6 +830,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\NguoidungController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -938,6 +939,7 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Nguoidung\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -9,7 +9,7 @@ namespace _1460353.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        [Filters.Login] //phan nay quan li cua admin
+        [Filters.LoginAdmin] //phan nay quan li cua admin
         public ActionResult Index()
         {
             using (var data = new Models.daugiaEntities())
@@ -38,7 +38,7 @@ namespace _1460353.Controllers
         }
 
 
-        [Filters.Login]
+        [Filters.LoginAdmin]
         public ActionResult Edit(Models.danhmuc dm)
         {
             using (var data = new Models.daugiaEntities())
@@ -54,7 +54,7 @@ namespace _1460353.Controllers
             }
         }
 
-        [Filters.Login]
+        [Filters.LoginAdmin]
         public ActionResult Add(Models.danhmuc dm)
         {
             using (var data = new Models.daugiaEntities())
@@ -68,7 +68,7 @@ namespace _1460353.Controllers
             }
         }
 
-        [Filters.Login]
+        [Filters.LoginAdmin]
         public ActionResult delete(int id)
         {
             using (var data = new Models.daugiaEntities())
@@ -82,7 +82,7 @@ namespace _1460353.Controllers
             }
         }
 
-        [Filters.Login]
+        [Filters.LoginAdmin]
         public ActionResult Restore(int id)
         {
             using (var data = new Models.daugiaEntities())
