@@ -31,7 +31,25 @@ else
         {
             <div class="col-md-3">
                 <div class="thumbnail ">
-                    <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" alt="@p.ten">
+                    <div class="col-md-12">
+                        <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" alt="@p.ten" class="col-md-9" />
+                        <div class="col-md-3">
+                            @if (_1460353.Helpers.Login.IsLogin())
+                            {
+                                if (_1460353.Helpers.Login.nguoidung().quyen == 0)
+                                {
+                                    if (p.yt == false)
+                                    {
+                                        <a style="font-size:30px;color:#ffff00;" href="#"><i class="yt glyphicon glyphicon-star-empty" data-idsanpham="@p.id"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a style="font-size:30px;color:#ffff00;" href="#"><i class="yt glyphicon glyphicon-star" data-idsanpham="@p.id"></i></a>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
                     <div class="caption">
                         <h5>@p.ten</h5>
                         <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
@@ -49,20 +67,7 @@ else
                                     </a>
                                 }*@
                         </p>
-                        @if (_1460353.Helpers.Login.IsLogin())
-                        {
-                            if (_1460353.Helpers.Login.nguoidung().quyen == 0)
-                            {
-                                if (p.yt == false)
-                                {
-                                    <a style="font-size:30px;" href="#"><i class="yt glyphicon glyphicon-star-empty" data-idsanpham="@p.id"></i></a>
-                                }
-                                else
-                                {
-                                    <a style="font-size:30px;" href="#"><i class="yt glyphicon glyphicon-star" data-idsanpham="@p.id"></i></a>
-                                }
-                            }
-                        }
+
                     </div>
                 </div>
             </div>

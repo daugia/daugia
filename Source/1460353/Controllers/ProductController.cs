@@ -196,9 +196,9 @@ namespace _1460353.Controllers
                                 model.giacaonhat = Gia;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-<<<<<<< HEAD
 
-=======
+
+
                                 if (model.tang10phut == 1)
                                 {
                                     if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut==0)
@@ -207,7 +207,7 @@ namespace _1460353.Controllers
                                         model.solantang10phut = 1;
                                     }
                                 }
->>>>>>> origin/master
+
                                 TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                             }
                             else
