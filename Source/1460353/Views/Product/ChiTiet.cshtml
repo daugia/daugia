@@ -11,7 +11,7 @@
 
 }
 @section js
-{
+{<script src="~/Scripts/elevatezoom/jquery.elevatezoom.js"></script>
     <script>
         var countDownDate = new Date("@Model.ngayketthuc").getTime();
         var x = setInterval(function() {
@@ -41,6 +41,9 @@
             verticalbuttons: true,
 
         });
+
+
+        $("#zoom_02").elevateZoom({tint:true, tintColour:'#F90', tintOpacity:0.5});
     </script>
 }
 @if (Model == null)
@@ -68,7 +71,7 @@ else
     <div class="well row">
         <div class="col-md-4">
             <div class="col-md-12">
-                <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
+                <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" id="zoom_02" data-zoom-image="~/Imgs/sp/@Model.id/main.jpg" alt="@Model.ten">
             </div>
             <div class="col-md-12">
                 <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
@@ -77,64 +80,73 @@ else
                 <img src="~/Imgs/sp/@Model.id/main_thumbs.jpg" alt="@Model.ten">
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="col-md-12">
-                <label>@Model.ten</label>
-            </div>
-            <div class="col-md-12">
-                <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
+        
+        <div class="col-md-8">
+            
+            <div class="col-md-12 pager">
+                <h2>@Model.ten</h2>
             </div>
 
-            <div class="col-md-12">
-                <label>Người Có Giá Cao Nhất:</label><h5>  @Model.id_nguoidunghientai</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Người Giữ Sản Phẩm :</label><h5>  @Model.id_nguoidung</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
-            </div>
-            <div class="col-md-12">
-                <label>Thời Gian Còn Lại</label>
-                <label id="hengio"></label>
-            </div>
-            @if (Login.IsLogin() == true)
-            {
-                <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <input type="hidden" id="txtP" name="proId" value="@Model.id" />
-                            <div class="input-group com" style="margin-left:24px;">
-                                <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group pager">
-                        <input type="submit" class="btn btn-primary " value="Đặt" />
-                    </div>
-                </form>
-            }
+           <div class="col-md-12">
+               <div class="col-md-6">
+                   <div class="col-md-12">
+                       <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
+                   </div>
+
+                   <div class="col-md-12">
+                       <label>Người Có Giá Cao Nhất:</label><h5>  @Model.id_nguoidunghientai</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Người Giữ Sản Phẩm :</label><h5>  @Model.id_nguoidung</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
+                   </div>
+                   <div class="col-md-12">
+                       <label>Thời Gian Còn Lại</label>
+                       <label id="hengio"></label>
+                   </div>
+                   @if (Login.IsLogin() == true)
+                   {
+                       <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
+                           <div class="form-group">
+                               <div class="form-group">
+                                   <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                                   <div class="input-group com" style="margin-left:24px;">
+                                       <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="form-group pager">
+                               <input type="submit" class="btn btn-primary " value="Đặt" />
+                           </div>
+                       </form>
+                   }
+               </div>
+               <div class="col-md-6">
+                   <div class="col-md-12">
+                       <label>Miêu Tả Sản Phẩm:</label><h5> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
+                   </div>
+               </div>
+           </div>
+
         </div>
-        <div class="col-md-4">
-            <div class="col-md-12">
-                <label>Miêu Tả Sản Phẩm:</label><h5> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
-            </div>
-        </div>
+       
 
     </div>
 
