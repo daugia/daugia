@@ -32,6 +32,7 @@ namespace _1460353.Models
         public Nullable<int> tinhtrang { get; set; }
         public Nullable<int> capphep { get; set; }
 
+        public List<Models.yeuthich> listyt { get; set; }
        
     }
 }

@@ -313,6 +313,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Helpers\ajax\yeuthich.js" />
     <Content Include="Imgs\bg.jpeg" />
     <Content Include="Imgs\bg.png" />
     <Content Include="Imgs\site.ico" />
@@ -839,6 +840,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\YeuthichController.cs" />
     <Compile Include="Filters\Login.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -846,6 +848,7 @@
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
+    <Compile Include="Helpers\yeuthich.cs" />
     <Compile Include="MD5\mahoa.cs" />
     <Compile Include="Models\binhluan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -947,6 +950,7 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Yeuthich\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

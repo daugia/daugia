@@ -29,7 +29,7 @@ namespace _1460353.Controllers
         [HttpPost]
         public ActionResult New(sanpham sp)
         {
-            using(var ctx = new daugiaEntities())
+            using (var ctx = new daugiaEntities())
             {
                 if (sp.id_danhgia == null) sp.id_danhgia = 0;
                 if (sp.giahientai == null) sp.giahientai = sp.giakhoidiem;
@@ -46,7 +46,7 @@ namespace _1460353.Controllers
             }
             return View();
         }
-        public ActionResult LoadSPTheoDanhMuc(int? id,int page=1)
+        public ActionResult LoadSPTheoDanhMuc(int? id, int page = 1)
         {
             if (id.HasValue == false)
             {
@@ -54,7 +54,7 @@ namespace _1460353.Controllers
             }
             using (var daugia = new daugiaEntities())
             {
-                int n = daugia.sanphams.Where(s=>s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).Count();
+                int n = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).Count();
                 int recordsPerPage = 4;
                 int nPage = n / recordsPerPage;
                 int m = n % recordsPerPage;
@@ -66,12 +66,28 @@ namespace _1460353.Controllers
                 ViewBag.CurPage = page;
                 ViewBag.iddm = id;
                 var list = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                return View(list);
+
+                return View(loadyeuthich(list));
             }
+        }
+        private List<Models.sanpham> loadyeuthich(List<Models.sanpham> list)
+        {
+            foreach (var sp in list)
+            {
+                if (Helpers.yeuthich.isYeuthich(sp.id))
+                {
+                    sp.yt = true;
+                }
+                else
+                {
+                    sp.yt = false;
+                }
+            }
+            return list;
         }
         public ActionResult ChiTiet(int? id)
         {
-            if(id.HasValue==false)
+            if (id.HasValue == false)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -93,8 +109,8 @@ namespace _1460353.Controllers
                 return View(model);
             }
         }
-        
-        public ActionResult TimKiem(String TuKhoa, int ?page,int ?iddm,int ?chon)
+
+        public ActionResult TimKiem(String TuKhoa, int? page, int? iddm, int? chon)
         {
             if (TuKhoa == null || page.HasValue == false)
             {
@@ -159,7 +175,7 @@ namespace _1460353.Controllers
         }
 
         [HttpPost]
-        public ActionResult Mua(int? proId,decimal ?Gia)
+        public ActionResult Mua(int? proId, decimal? Gia)
         {
             using (var daugia = new daugiaEntities())
             {
@@ -168,7 +184,7 @@ namespace _1460353.Controllers
                 {
                     var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
                     int n = Login.nguoidung().id;
-                    var nguoidunght = daugia.nguoidungs.Where(nd => nd.id ==n).FirstOrDefault();
+                    var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
                     if (nguoidunght.diem >= 80)
                     {
                         if (nguoidunght.taikhoan >= Gia)
@@ -180,7 +196,7 @@ namespace _1460353.Controllers
                                 model.giacaonhat = Gia;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-                                
+
                                 TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                             }
                             else

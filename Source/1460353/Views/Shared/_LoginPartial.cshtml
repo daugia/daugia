@@ -5,10 +5,11 @@
     {
         if (_1460353.Helpers.Login.nguoidung().quyen == 0)
         {
-            <li><a href="#"><i class="glyphicon glyphicon-star-empty"><sup><b style="color:red;font-weight:bold;">1</b></sup></i></a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-star-empty"><sup><b id="yeuthichtotal" style="color:red;font-weight:bold;">@_1460353.Helpers.yeuthich.total()</b></sup></i></a></li>
             <li><a href="#"><i class="glyphicon glyphicon-tag"><sup><b style="color:red;font-weight:bold;">1</b></sup></i></a></li>
             <li><a href="#"><i class="glyphicon glyphicon-globe"><sup><b style="color:red;font-weight:bold;">1</b></sup></i></a></li>
-            <li class="dropdown">
+          
+          <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     @_1460353.Helpers.Login.nguoidung().ten
                     (@String.Format("{0:N0}", _1460353.Helpers.Login.nguoidung().taikhoan) VNĐ)

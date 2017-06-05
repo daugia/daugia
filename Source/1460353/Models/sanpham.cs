@@ -35,5 +35,8 @@ namespace _1460353.Models
         public string mieutangan { get; set; }
         public Nullable<int> luotview { get; set; }
         public Nullable<decimal> giabanmongmuon { get; set; }
+
+
+        public bool yt { get; set; }//yeu thich
     }
 }
