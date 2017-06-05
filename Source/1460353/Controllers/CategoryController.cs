@@ -14,11 +14,15 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-                if(Session["note"]!=null){
+                var list=new  List<List<Models.danhmuc>>();
+                if (Session["note"] != null)
+                {
                     ViewBag.note = 1;
                     Session.Remove("note");
+                    list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 1).ToList());
+                    list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 0).ToList());
                 }
-                return View(data.danhmucs.ToList());
+                return View(list);
             }
 
         }
@@ -34,16 +38,45 @@ namespace _1460353.Controllers
 
 
         [Filters.Login]
-        public ActionResult Edit(int id,string ten)
+        public ActionResult Edit(Models.danhmuc dm)
         {
-            using(var data=new Models.daugiaEntities()){
+            using (var data = new Models.daugiaEntities())
+            {
 
-                var dm = data.danhmucs.Find(id);
-                dm.ten = ten;
-                data.Entry(dm).State = System.Data.Entity.EntityState.Modified;
+                var dmold = data.danhmucs.Find(dm.id);
+                dmold.ten = dm.ten;
+                dmold.ngaycapnhat = DateTime.Now;
+                data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
-               Session["note"] = 1;
-                return RedirectToAction("Index","Category");
+                Session["note"] = 1;
+                return RedirectToAction("Index", "Category");
+            }
+        }
+
+        [Filters.Login]
+        public ActionResult Add(Models.danhmuc dm)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                dm.ngaytao = DateTime.Now;
+                dm.trinhtrang = 1;
+                data.danhmucs.Add(dm);
+                data.SaveChanges();
+                Session["note"] = 1;
+                return RedirectToAction("Index", "Category");
+            }
+        }
+
+        [Filters.Login]
+        public ActionResult delete(int id)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var dmold = data.danhmucs.Find(id);
+                dmold.trinhtrang = 0;
+                data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+                return RedirectToAction("Index", "Category");
             }
         }
     }

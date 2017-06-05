@@ -2,13 +2,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model List<_1460353.Models.danhmuc>
+@model List<List<_1460353.Models.danhmuc>>
 
 <h2>Quản lí danh mục</h2>
-<a class="btn btn-primary" href="#">Tạo mới danh mục</a>
+<a class="btn btn-primary" href="#dm_add" data-toggle="modal">Tạo mới danh mục</a>
 @if(ViewBag.note!=null){
     <div class="alert alert-success">
-        <p>Cập nhật thành công</p>
+        <p>Thành công</p>
     </div>
 }
 
@@ -21,18 +21,20 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (var dm in Model)
+        @foreach (var dm in Model.ToArray()[0])
         {
             <tr>
                 <td>@dm.ten</td>
                 <td>@dm.ngaytao</td>
                 <td>@dm.ngaycapnhat</td>
-                <td><a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#md_login" data-toggle="modal">Sửa</a></td>
-                <td><a href="#">Xóa</a></td>
+                <td><a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal">Sửa</a></td>
+                <td><a href="@Url.Action("Delete", "Category", new {id=dm.id} )">Xóa</a></td>
             </tr>
         }
     </table>
 </div>
+
+
 @section js{
     <script>
         function a_edit(id,name) {
@@ -59,7 +61,7 @@
     </script>
 
 }
-<div class="modal fade bd-outline" id="md_login" role="dialog">
+<div class="modal fade bd-outline" id="dm_edit" role="dialog">
 
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -91,4 +93,61 @@
 
     </div>
 
+</div>
+
+<div class="modal fade bd-outline" id="dm_add" role="dialog">
+
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                <h4 class="modal-title text-success"><b>Cập nhật tên</b></h4>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <form id="myform" class="form-horizontal" method="post" action="@Url.Action("Add","Category")">
+                    <input type="hidden" name="id" id="id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Tên danh mục :</label>
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" name="ten" id="ten" />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+
+                        <button type="submit" class="btn btn-success btn-default">Sửa</button>
+                        <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+<div class="well">
+    <table class="table table-striped">
+        <tr>
+            <td>Tên danh mục</td>
+            <td>Ngày tạo</td>
+            <td>Ngày cập nhật</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var dm in Model[1])
+        {
+            <tr>
+                <td>@dm.ten</td>
+                <td>@dm.ngaytao</td>
+                <td>@dm.ngaycapnhat</td>
+                <td><a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal">Sửa</a></td>
+                <td><a href="@Url.Action("Delete", "Category", new {id=dm.id} )">Xóa</a></td>
+            </tr>
+        }
+    </table>
 </div>
