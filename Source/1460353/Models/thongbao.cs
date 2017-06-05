@@ -17,5 +17,6 @@ namespace _1460353.Models
         public int id { get; set; }
         public Nullable<int> id_nguoidung { get; set; }
         public string noidung { get; set; }
+        public Nullable<System.DateTime> ngaytao { get; set; }
     }
 }

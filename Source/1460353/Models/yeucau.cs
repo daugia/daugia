@@ -12,12 +12,14 @@ namespace _1460353.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class chitietdanhgia
+    public partial class yeucau
     {
         public int id { get; set; }
         public Nullable<int> id_nguoidung { get; set; }
-        public string noidung { get; set; }
-        public Nullable<int> id_nguoidanhgia { get; set; }
+        public Nullable<int> capphep { get; set; }
         public Nullable<System.DateTime> ngaytao { get; set; }
+        public Nullable<System.DateTime> ngayduocban { get; set; }
+        public Nullable<System.DateTime> ngayketthuc { get; set; }
+        public Nullable<int> tinhtrang { get; set; }
     }
 }

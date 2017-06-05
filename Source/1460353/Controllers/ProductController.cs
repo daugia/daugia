@@ -147,7 +147,7 @@ namespace _1460353.Controllers
                 }
             }
         }
-        [Filters.Login]
+        [Filters.LoginUser]
         [HttpPost]
         public ActionResult Mua(int? proId,int ?Gia)
         {

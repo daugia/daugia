@@ -28,6 +28,7 @@
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="noidung" Type="nvarchar" MaxLength="200" />
     <Property Name="id_nguoidanhgia" Type="int" />
+    <Property Name="ngaytao" Type="datetime" />
   </EntityType>
   <EntityType Name="danhgia">
     <Key>
@@ -45,6 +46,8 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ten" Type="nvarchar" MaxLength="50" />
     <Property Name="trinhtrang" Type="int" />
+    <Property Name="ngaytao" Type="datetime" />
+    <Property Name="ngaycapnhat" Type="datetime" />
   </EntityType>
   <EntityType Name="kichnguoidung">
     <Key>
@@ -119,6 +122,19 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="noidung" Type="nvarchar" MaxLength="255" />
+    <Property Name="ngaytao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="yeucau">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_nguoidung" Type="int" />
+    <Property Name="capphep" Type="int" />
+    <Property Name="ngaytao" Type="datetime" />
+    <Property Name="ngayduocban" Type="datetime" />
+    <Property Name="ngayketthuc" Type="datetime" />
+    <Property Name="tinhtrang" Type="int" />
   </EntityType>
   <EntityType Name="yeuthich">
     <Key>
@@ -139,6 +155,7 @@
     <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="thongbao" EntityType="Self.thongbao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="yeucau" EntityType="Self.yeucau" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="yeuthich" EntityType="Self.yeuthich" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
