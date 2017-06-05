@@ -147,21 +147,62 @@ namespace _1460353.Controllers
                 }
             }
         }
+        [Filters.Login]
         [HttpPost]
         public ActionResult Mua(int? proId,int ?Gia)
         {
             using (var daugia = new daugiaEntities())
             {
                 var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
-                if (Gia > model.giacaonhat)
+                if (model.ngayketthuc <= DateTime.Now)
                 {
-                    model.giahientai = model.giacaonhat + 100000;
-                    model.giacaonhat = model.giacaonhat;
-                    model.id_nguoidunghientai=Login.nguoidung().id;
+                    var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+                    var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == Login.nguoidung().id).FirstOrDefault();
+                    var diemsonguoidunght = daugia.danhgias.Where(nd => nd.id == Login.nguoidung().id).FirstOrDefault();
+                    int d = 0;
+                    if (diemsonguoidunght == null)
+                    {
+                        d = 100;
+                    }
+                    else if (diemsonguoidunght.xau == null)
+                    {
+                        d = diemsonguoidunght.tot.Value * 100;
+                    }
+                    else
+                    {
+                        d = (diemsonguoidunght.tot.Value / diemsonguoidunght.xau.Value) * 100;
+                    }
+                    if (d >= 80)
+                    {
+                        if (nguoidunght.diem >= Gia)
+                        {
+                            if (Gia > model.giacaonhat)
+                            {
+                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                model.giahientai = model.giacaonhat + 100000;
+                                model.giacaonhat = Gia;
+                                model.id_nguoidunghientai = Login.nguoidung().id;
+                                nguoidunght.diem = nguoidunght.diem - Gia;
+                            }
+                            else
+                            {
+                                ViewBag.Error = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                model.giahientai = Gia;
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.Error = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                    }
                 }
                 else
                 {
-                    ViewBag.Err="Có Giá Cao Hơn Giá Bạn Đặt";
+                        ViewBag.Error = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
                 }
                 daugia.SaveChanges();
                 return View();

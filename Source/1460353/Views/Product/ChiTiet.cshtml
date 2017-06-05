@@ -53,7 +53,7 @@ else
     {
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Warning!</strong>@ViewBag.ErrorCaptcha
+            <strong>Warning!</strong>@ViewBag.Error
         </div>
     }
     <div class="row">
@@ -99,12 +99,12 @@ else
         </div>
         @if (Login.IsLogin() == true)
         {
-            <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")" id="frmMuaHang">
+            <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
                 <div class="form-group">
                     <div class="col-sm-4">
                         <input type="hidden" id="txtP" name="proId" value="@Model.id" />
                             <div class="input-group" style="margin-left:24px;">
-                                <input id="txtG" type="text" name="Gia" class="form-control" />
+                                <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-cart-plus"></i>
