@@ -146,7 +146,7 @@
                 url: '@Url.Action("searchlist","Product")',
                 success: function (prolist) {
                     for (var i = 0; i < prolist.length;i++){
-                        $('#dropdown-menu').append('<li><a href="#">' + prolist[i].ten + '</a></li>');
+                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten +'&page=1&chon=1">' + prolist[i].ten + '</a></li>');
                     }
                 }
             });
