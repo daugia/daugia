@@ -10,7 +10,7 @@ namespace _1460353.Controllers
     public class YeuthichController : Controller
     {
         // GET: Yeuthich
-        public ActionResult Index(int page=2)
+        public ActionResult Index(int page=1)
         {
             ViewBag.page = page;
             ViewBag.pageTotal = Helpers.yeuthich.total() % 4 == 0 ? (Helpers.yeuthich.total() / 4) : (Helpers.yeuthich.total() /4) + 1;
