@@ -12,22 +12,22 @@
         {
             if (i == ViewBag.page)
             {
-                <li class="active"><a class="page" data-page="@i" href="@Url.Action("Index", "Yeuthich", new { page=@i})">@i</a></li>
+                <li class="active"><a class="page" data-page="@i" href="#">@i</a></li>
             }
             else
             {
-                <li><a class="page" data-page="@i" href="@Url.Action("Index", "Yeuthich", new { page=@i})">@i</a></li>
+                <li><a class="page" data-page="@i" href="#">@i</a></li>
             }
 
         }
     }
 </ul>
-<div class="well row div">
+<div id="container" class="well row div">
     @foreach (var sp in Model)
     {
         <table class="table table-striped">
             <tr data-id="@sp.id">
-                <td><img style="width:60px;height:60px;" src="~/Imgs/sp/@sp.id/main_thumbs.jpg" /></td>
+                <td><img style="width:60px;height:60px;" src="/Imgs/sp/@sp.id/main_thumbs.jpg" /></td>
                 <td><label>Giá khởi điểm :</label>@sp.giakhoidiem</td>
                 <td><label>Giá mua ngay :</label>@sp.giamuangay</td>
                 <td><label>Giá hiện tại :</label>@sp.giahientai</td>
@@ -43,7 +43,7 @@
     <script type="text/javascript">
         $().ready(function () {
 
-            @*$('.page').off('click').on('click', function () {
+            $('.page').off('click').on('click', function () {
 
 
                 var ul = $(this).parents('ul');
@@ -60,11 +60,12 @@
                     url: '@Url.Action("IndexAjax", "Yeuthich")',
                     success: function (prolist) {
                         $('.table').remove();
-                        for (var i = 0; i < prolist.length;i++){
+                        for (var i = 0; i < prolist.length; i++) {
+                            var src = "/Imgs/sp/"+prolist[i].id+"/main_thumbs.jpg";
                             $('.div').append(
                                 '<table class="table table-striped">'+
                                    '<tr data-id="'+prolist[i].id+'">'+
-                                        '<td><img style="width:60px;height:60px;" src="~/Imgs/sp/'+prolist[i].id+'/main_thumbs.jpg" /></td>'+
+                                        '<td><img style="width:60px;height:60px;" src="'+src+'" /></td>'+
                                         '<td><label>Giá khởi điểm :</label>'+prolist[i].giakhoidiem+'</td>'+
                                        ' <td><label>Giá mua ngay :</label>'+prolist[i].giamuangay+'</td>'+
                                         '<td><label>Giá hiện tại :</label>'+prolist[i].giahientai+'</td>'+
@@ -78,9 +79,9 @@
                     }
                 });
 
-            });*@
+            });
 
-            $('.yt').off('click').on('click', function () {
+            $('#container').off('click').on('click','.yt', function () {
                 var idsanpham = $(this).data('id');
                 var total = parseInt($('#yeuthichtotal').html());
                 //timthang cha va xoa

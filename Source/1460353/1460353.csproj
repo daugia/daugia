@@ -938,7 +938,6 @@
     <Content Include="Views\Yeucau\Index.cshtml" />
     <Content Include="Views\LichSuDau\Index.cshtml" />
     <Content Include="Views\Yeuthich\Index.cshtml" />
-    <Content Include="Views\Yeuthich\themyeuthich.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
