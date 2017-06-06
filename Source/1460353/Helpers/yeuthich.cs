@@ -32,5 +32,15 @@ namespace _1460353.Helpers
             }
             
         }
+        public static List<Models.sanpham> loaddanhsachsanpham(){
+            if(Helpers.Login.IsLogin()){
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                using(var data=new Models.daugiaEntities()){
+                    var listsanpham = data.yeuthiches.Join(data.sanphams, yt => yt.id_sanpham, sp => sp.id, (yt, sp) => new { yt, sp }).Where(l => l.yt.id_nguoidung == idnguoidung).Select(l=>l.sp).ToList();
+                    return listsanpham;
+                }
+            }
+            return null;
+        }
     }
 }

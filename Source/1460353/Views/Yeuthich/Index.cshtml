@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<_1460353.Models.sanpham>
+<h2>Danh sách sản phẩm yêu thích</h2>
+
+<div class="well row">
+    @foreach (var sp in Model)
+    {
+        <table class="table table-striped">
+            <tr data-id="@sp.id">
+                <td><img style="width:60px;height:60px;" src="~/Imgs/sp/@sp.id/main_thumbs.jpg" /></td>
+                <td><label>Giá khởi điểm :</label>@sp.giakhoidiem</td>
+                <td><label>Giá mua ngay :</label>@sp.giamuangay</td>
+                <td><label>Giá hiện tại :</label>@sp.giahientai</td>
+                <td><label>Lượt xem:</label>@sp.luotview</td>
+                <td><a data-id="@sp.id" class="btn btn-primary yt">Xóa</a></td>
+            </tr>
+        </table>
+    }
+
+</div>
+
+@section js{
+    <script type="text/javascript">
+        $().ready(function () {
+            $('.yt').off('click').on('click', function () {
+                var idsanpham = $(this).data('id');
+                var total = parseInt($('#yeuthichtotal').html());
+                //timthang cha va xoa
+              
+                //
+                @*$.ajax({
+                    type: 'get',
+                    data: { idsanpham: idsanpham },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("xoayeuthich","Yeuthich")',
+                    success: function () {
+                        $('#yeuthichtotal').html(total-1);
+                    }
+                });*@
+            });
+        });
+    </script>
+}

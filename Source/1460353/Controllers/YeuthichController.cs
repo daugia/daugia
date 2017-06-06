@@ -9,11 +9,12 @@ namespace _1460353.Controllers
     [Filters.LoginUser]
     public class YeuthichController : Controller
     {
-        //// GET: Yeuthich
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        // GET: Yeuthich
+        public ActionResult Index()
+        {
+            var listsanpham = Helpers.yeuthich.loaddanhsachsanpham();
+            return View(listsanpham);
+        }
 
         public ActionResult themyeuthich(int idsanpham)
         {

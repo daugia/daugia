@@ -32,7 +32,6 @@ E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\BotDetec
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\EntityFramework.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\EntityFramework.SqlServer.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\Microsoft.Web.Infrastructure.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\System.Web.Helpers.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\System.Web.Mvc.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\System.Web.Razor.dll

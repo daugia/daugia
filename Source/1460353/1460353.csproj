@@ -937,6 +937,7 @@
     <Content Include="Views\Nguoidung\Index.cshtml" />
     <Content Include="Views\Yeucau\Index.cshtml" />
     <Content Include="Views\LichSuDau\Index.cshtml" />
+    <Content Include="Views\Yeuthich\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -952,7 +953,6 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Yeuthich\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
