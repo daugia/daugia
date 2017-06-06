@@ -45,5 +45,9 @@ namespace _1460353.Controllers
             }
             return Content("1", "text/plain");
         }
+        public ActionResult xemchitietyeuthich(Models.yeuthich yt)
+        {
+            return View();
+        }
     }
 }
