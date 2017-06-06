@@ -5,7 +5,24 @@
 @model List<_1460353.Models.sanpham>
 <h2>Danh sách sản phẩm yêu thích</h2>
 
-<div class="well row">
+<ul class="pagination">
+    @if (ViewBag.pageTotal != null)
+    {
+        for (var i = 1; i <= ViewBag.pageTotal; i++)
+        {
+            if (i == ViewBag.page)
+            {
+                <li class="active"><a class="page" data-page="@i" href="@Url.Action("Index", "Yeuthich", new { page=@i})">@i</a></li>
+            }
+            else
+            {
+                <li><a class="page" data-page="@i" href="@Url.Action("Index", "Yeuthich", new { page=@i})">@i</a></li>
+            }
+
+        }
+    }
+</ul>
+<div class="well row div">
     @foreach (var sp in Model)
     {
         <table class="table table-striped">
@@ -23,25 +40,63 @@
 </div>
 
 @section js{
-    @*<script type="text/javascript">
+    <script type="text/javascript">
         $().ready(function () {
+
+            @*$('.page').off('click').on('click', function () {
+
+
+                var ul = $(this).parents('ul');
+                ul.children('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+
+                //load page voi ajax
+                var page = $(this).data('page');
+                $.ajax({
+                    type: 'get',
+                    data: { page: page },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("IndexAjax", "Yeuthich")',
+                    success: function (prolist) {
+                        $('.table').remove();
+                        for (var i = 0; i < prolist.length;i++){
+                            $('.div').append(
+                                '<table class="table table-striped">'+
+                                   '<tr data-id="'+prolist[i].id+'">'+
+                                        '<td><img style="width:60px;height:60px;" src="~/Imgs/sp/'+prolist[i].id+'/main_thumbs.jpg" /></td>'+
+                                        '<td><label>Giá khởi điểm :</label>'+prolist[i].giakhoidiem+'</td>'+
+                                       ' <td><label>Giá mua ngay :</label>'+prolist[i].giamuangay+'</td>'+
+                                        '<td><label>Giá hiện tại :</label>'+prolist[i].giahientai+'</td>'+
+                                        '<td><label>Lượt xem:</label>'+prolist[i].luotview+'</td>'+
+                                        '<td><a data-id="'+prolist[i].id+'" class="btn btn-primary yt">Xóa</a></td>'+
+                                  '  </tr>'+
+                              '  </table>');
+
+
+                        }
+                    }
+                });
+
+            });*@
+
             $('.yt').off('click').on('click', function () {
                 var idsanpham = $(this).data('id');
                 var total = parseInt($('#yeuthichtotal').html());
                 //timthang cha va xoa
-              
+                $(this).closest('table').remove();
                 //
-                @*$.ajax({
+                $.ajax({
                     type: 'get',
                     data: { idsanpham: idsanpham },
                     dataType: 'json',
                     contentType: 'application/json',
                     url: '@Url.Action("xoayeuthich","Yeuthich")',
                     success: function () {
-                        $('#yeuthichtotal').html(total-1);
+                        $('#yeuthichtotal').html(total - 1);
                     }
-                });*@
+                });
             });
         });
-    </script>*@
+    </script>
 }

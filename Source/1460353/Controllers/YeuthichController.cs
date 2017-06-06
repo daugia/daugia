@@ -10,11 +10,16 @@ namespace _1460353.Controllers
     public class YeuthichController : Controller
     {
         // GET: Yeuthich
-        public ActionResult Index()
+        public ActionResult Index(int page=2)
         {
+            ViewBag.page = page;
+            ViewBag.pageTotal = Helpers.yeuthich.total() % 4 == 0 ? (Helpers.yeuthich.total() / 4) : (Helpers.yeuthich.total() /4) + 1;
             var listsanpham = Helpers.yeuthich.loaddanhsachsanpham();
+            listsanpham = listsanpham.Skip((page - 1) * 4).Take(4).ToList();
             return View(listsanpham);
         }
+
+        
 
         public ActionResult themyeuthich(int idsanpham)
         {
