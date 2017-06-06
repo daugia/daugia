@@ -7,7 +7,7 @@ using _1460353.Models;
 using _1460353.Helpers;
 namespace _1460353.Controllers
 {
-    //[Filters.Login]
+    //[Filters.LoginUser]
     public class ProductController : Controller
     {
         // GET: Product
@@ -15,7 +15,7 @@ namespace _1460353.Controllers
         {
             return View();
         }
-        [Filters.Login]
+        [Filters.LoginUser]
         public ActionResult New()
         {
             using (var ctx = new daugiaEntities())
@@ -25,7 +25,7 @@ namespace _1460353.Controllers
             }
             return View();
         }
-        [Filters.Login]
+        [Filters.LoginUser]
         [HttpPost]
         public ActionResult New(sanpham sp)
         {
@@ -173,7 +173,7 @@ namespace _1460353.Controllers
                 }
             }
         }
-        [Filters.Login]
+        [Filters.LoginUser]
         [HttpPost]
         public ActionResult Mua(int? proId, decimal? Gia)
         {
@@ -243,7 +243,7 @@ namespace _1460353.Controllers
             }
         }
 
-        [Filters.Login]
+        [Filters.LoginUser]
         [HttpPost]
         public ActionResult MuaNgay(int? proId)
         {
@@ -289,6 +289,18 @@ namespace _1460353.Controllers
         }
 
 
-       
+        //Cua tao
+        [Filters.LoginUser]
+        public ActionResult searchlist(string name)
+        {
+            using (var data=new Models.daugiaEntities())
+            {
+                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name)).ToList();
+                return Json(prolist, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //
+
+
     }
 }

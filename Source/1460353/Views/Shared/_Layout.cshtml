@@ -133,6 +133,28 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 
+    <script type="text/javascript">
+        function keyupsearch(str) {
+            $('#dropdown-menu').show();
+            $('#dropdown-menu').children('li').remove();
+
+            $.ajax({
+                type: 'get',
+                data: { name: str },
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("searchlist","Product")',
+                success: function (prolist) {
+                    for (var i = 0; i < prolist.length;i++){
+                        $('#dropdown-menu').append('<li><a href="#">' + prolist[i].ten + '</a></li>');
+                    }
+                }
+            });
+        }
+        window.onclick = function () {
+            $('#dropdown-menu').hide();
+        };
+    </script>
 
 </body>
 </html>
