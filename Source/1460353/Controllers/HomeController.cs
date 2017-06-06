@@ -12,7 +12,14 @@ namespace _1460353.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+                TempData.Remove("Message");
+            }
+
             return View();
         }
+
 	}
 }

@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("_CarouselPartial")
+
+@if (ViewBag.Message != null)
+    {
+<div class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Success:</span>
+    @ViewBag.Message
+</div>
+    }
 <h2>Index</h2>
 <h2>Index</h2>
 <h2>Index</h2>

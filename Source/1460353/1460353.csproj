@@ -838,6 +838,7 @@
     <Compile Include="Controllers\Admin\YeucauController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LichSuDauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\YeuthichController.cs" />
@@ -935,6 +936,7 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Nguoidung\Index.cshtml" />
     <Content Include="Views\Yeucau\Index.cshtml" />
+    <Content Include="Views\LichSuDau\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
