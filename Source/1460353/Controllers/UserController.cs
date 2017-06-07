@@ -153,6 +153,16 @@ namespace _1460353.Controllers
                 return View(list);
             }
         }
+        [Filters.Login]
+        public ActionResult Danhsachspthang()
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var nguoidung = data.nguoidungs.Find(Session["slogin_id"]);
+                var list = data.sanphams.Where(p => p.id_nguoidunghientai == nguoidung.id && p.tinhtrang == 2);
+                return View(list);
+            }
+        }
 
 
         [Filters.Login]
