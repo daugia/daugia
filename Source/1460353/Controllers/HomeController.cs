@@ -23,7 +23,31 @@ namespace _1460353.Controllers
                 var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();
                 return View(list);
             }
-        }
 
-	}
+        }
+        public PartialViewResult Top5SPGiaCao()
+        {
+            using (var ctx = new Models.daugiaEntities())
+            {
+                var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();
+                return PartialView("_Top05SPNhieuDauGia", list);
+            }
+        }
+        public PartialViewResult Top5SPLuotDauCaoNhat()
+        {
+            using (var ctx = new Models.daugiaEntities())
+            {
+                var list = ctx.lichsudaus.ToList();
+                return PartialView("_SPCoNhieuLuotDaunhat", list);
+            }
+        }
+        public PartialViewResult Top5SPGanKetThuc()
+        {
+            using (var ctx = new Models.daugiaEntities())
+            {
+                var list = ctx.sanphams.OrderByDescending(p => p.ngayketthuc).Take(5).ToList();
+                return PartialView("_Top05SPGanHetHan", list);
+            }
+        }
+    }
 }
