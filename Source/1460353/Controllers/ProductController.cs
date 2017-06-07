@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using _1460353.Models;
 using _1460353.Helpers;
+using System.IO;
+
 namespace _1460353.Controllers
 {
     //[Filters.LoginUser]
@@ -18,18 +20,64 @@ namespace _1460353.Controllers
         [Filters.LoginUser]
         public ActionResult New()
         {
-            using (var ctx = new daugiaEntities())
+            using (var data = new daugiaEntities())
             {
-                var list = ctx.danhmucs.ToList();
+                var list = data.danhmucs.ToList();
                 ViewBag.Danhmuc = list;
             }
             return View();
         }
         [Filters.LoginUser]
         [HttpPost]
-        public ActionResult New(sanpham sp)
+        [ValidateInput(false)]
+        public ActionResult New(sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
         {
-            
+
+            using (var data = new daugiaEntities())
+            {
+                var list = data.danhmucs.ToList();
+                ViewBag.Danhmuc = list;
+                if (Helpers.Login.nguoidung().capphep == 1)
+                {
+                    var idnguoidung = Helpers.Login.nguoidung().id;
+                    sp.id_nguoidung = idnguoidung;
+                    sp.ngaybatdau = DateTime.Now;
+                    sp.ngayketthuc = DateTime.Now.AddDays(15);
+                    sp.tinhtrang = 1;//dang ban
+                    ViewBag.note = 1;
+                    data.sanphams.Add(sp);
+                    data.SaveChanges();
+
+                    //luu hinh anh
+                    //
+
+                    var mapPath = Server.MapPath("~/Source/Images/sp");
+                    var dir = Path.Combine(mapPath, sp.id.ToString());
+                    Directory.CreateDirectory(dir);
+                    var type1 = Path.GetExtension(file1.FileName);
+                    var path1 = Path.Combine(dir, "hinh1" + type1);
+                    file1.SaveAs(path1);
+
+                    if (file2 != null)
+                    {
+                        var type2 = Path.GetExtension(file2.FileName);
+                        var path2 = Path.Combine(dir, "hinh2" + type2);
+                        file2.SaveAs(path2);
+                    }
+                    if (file3 != null)
+                    {
+                        var type3 = Path.GetExtension(file3.FileName);
+                        var path3 = Path.Combine(dir, "hinh3" + type3);
+                        file3.SaveAs(path3);
+                    }
+                }
+                else
+                {
+                    ViewBag.note = 0;
+                }
+            }
+
+
             return View();
         }
         public ActionResult LoadSPTheoDanhMuc(int? id, int page = 1)
@@ -295,7 +343,7 @@ namespace _1460353.Controllers
                 }
                 TempData["Message"] = "Bạn Đã Mua Thành Công Sản Phẩm";
                 daugia.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -304,7 +352,7 @@ namespace _1460353.Controllers
         [Filters.LoginUser]
         public ActionResult searchlist(string name)
         {
-            using (var data=new Models.daugiaEntities())
+            using (var data = new Models.daugiaEntities())
             {
                 var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name)).ToList();
                 return Json(prolist, JsonRequestBehavior.AllowGet);

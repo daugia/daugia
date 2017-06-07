@@ -50,6 +50,7 @@ namespace _1460353.Controllers.Admin
 
         [Filters.LoginUser]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult New(string noidung)
         {
             using (var data = new Models.daugiaEntities())
