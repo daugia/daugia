@@ -1286,7 +1286,11 @@
     <Content Include="Views\Yeucau\Index.cshtml" />
     <Content Include="Views\LichSuDau\Index.cshtml" />
     <Content Include="Views\Yeuthich\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Product\Manage.cshtml" />
+=======
+    <Content Include="Views\Product\QuanLySanPham.cshtml" />
+>>>>>>> origin/master
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

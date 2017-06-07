@@ -29,6 +29,7 @@
                 <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).email</td>
                 <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).diem</td>
                 <td>@yc.ngaytao</td>
+                <td><a href="@Url.Action("Delete", "Yeucau", new { id1 = @yc.id})">Xóa</a></td>
                 <td><a href="@Url.Action("Accept", "Yeucau", new {id=@yc.id })">Duyệt</a></td>
             </tr>
         }

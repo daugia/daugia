@@ -1,4 +1,5 @@
-﻿
+﻿@using _1460353.Models
+@model List<sanpham>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,51 +14,23 @@
     @ViewBag.Message
 </div>
     }
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-<h2>Index</h2>
-
+       <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-sm-6">
+                <div class="thumbnail">
+                    <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" title="Danh sách sản giá cao" />
+                    <div class="caption">
+                        <h4>@p.id</h4>
+                        <h4>Giá : @string.Format("{0:N0}", p.giahientai)</h4>
+                        <h4>Tồn : @p.soluong</h4>
+                        <p> @p.mieutangan)</p>
+                        <p>
+                            <a href="@Url.Action("Detail","Product",new { id = @p.id })" class="btn btn-default" role="button">Chi Tiết</a>
+                            <a href="#" class="btn btn-primary" role="button">Đặt mua</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

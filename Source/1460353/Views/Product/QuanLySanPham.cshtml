@@ -1,0 +1,48 @@
+﻿@using _1460353.Models
+@using _1460353.Helpers
+@model  List<sanpham>
+@{
+    ViewBag.Title = "QuanLySanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Count == 0)
+{
+    <text>Không Có Sản Phẩm</text>
+}
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-3">
+            <div class="thumbnail ">
+                <div class="col-md-12">
+                    <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" alt="@p.ten" class="col-md-9" />
+                </div>
+                <div class="caption">
+                    <h5>@p.ten</h5>
+                    <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
+                    <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
+                    <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
+                    @if (p.tinhtrang == 0)
+                    {
+                        <h5>Tình Trạng : Đang Yêu Cầu Xét duyệt</h5>
+                    }
+                    else if (p.tinhtrang == 1)
+                    {
+                        <h5>Tình Trạng : Đang Đấu Giá</h5>
+                        <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
+                    }
+                    else if (p.tinhtrang == 2)
+                    {
+                        <h5>Tình Trạng : Đã Có Đấu Giá Xong</h5>
+                    }
+                    else if(p.tinhtrang==-1)
+                    {
+                        <h5>Tình Trạng : Đã Hủy</h5>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

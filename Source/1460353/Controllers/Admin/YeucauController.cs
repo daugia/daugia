@@ -46,8 +46,17 @@ namespace _1460353.Controllers.Admin
             }
 
         }
-
-
+        [Filters.LoginAdmin]
+        public ActionResult Delete(int id1)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var nguoidung = data.yeucaus.Find(id1);
+                data.yeucaus.Remove(nguoidung);
+                data.SaveChanges();
+            }
+            return RedirectToAction("Index", "Yeucau");
+        }
         [Filters.LoginUser]
         [HttpPost]
         [ValidateInput(false)]

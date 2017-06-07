@@ -245,8 +245,6 @@ namespace _1460353.Controllers
                                     ls.id_nguoidung = Login.nguoidung().id;
                                     ls.ngaydaugia = DateTime.Now;
                                     daugia.lichsudaus.Add(ls);
-
-
                                     if (model.tang10phut == 1)
                                     {
                                         if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
@@ -359,11 +357,34 @@ namespace _1460353.Controllers
             }
         }
         //
+<<<<<<< HEAD
 
         //Quan ki san pham
         [Filters.LoginUser]
         public ActionResult Manage()
         {
+=======
+        [Filters.LoginUser]
+        public ActionResult QuanLySanPham()
+        {
+            using (var daugia = new daugiaEntities())
+            {
+               int n = Login.nguoidung().id;
+               var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
+               return View(list);
+            }
+        }
+        [Filters.LoginUser]
+        public ActionResult SapxepGiatangdan()
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                int n = Login.nguoidung().id;
+                var list = daugia.sanphams.OrderByDescending(p=>p.giahientai).ToList();
+                return View(list);
+            }
+        }
+>>>>>>> origin/master
 
             using (var data = new Models.daugiaEntities())
             {
