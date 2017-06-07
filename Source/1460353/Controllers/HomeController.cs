@@ -37,7 +37,7 @@ namespace _1460353.Controllers
         {
             using (var ctx = new Models.daugiaEntities())
             {
-               // var list = ctx.lichsudaus.Where(p=> p.id_sanpham.)
+                var list = ctx.lichsudaus.ToList();
                 return PartialView("_SPCoNhieuLuotDaunhat", list);
             }
         }
@@ -48,4 +48,6 @@ namespace _1460353.Controllers
                 var list = ctx.sanphams.OrderByDescending(p => p.ngayketthuc).Take(5).ToList();
                 return PartialView("_Top05SPGanHetHan", list);
             }
+        }
+    }
 }
