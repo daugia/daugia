@@ -356,22 +356,14 @@ namespace _1460353.Controllers
                 return Json(prolist, JsonRequestBehavior.AllowGet);
             }
         }
-        //
-<<<<<<< HEAD
-
-        //Quan ki san pham
-        [Filters.LoginUser]
-        public ActionResult Manage()
-        {
-=======
         [Filters.LoginUser]
         public ActionResult QuanLySanPham()
         {
             using (var daugia = new daugiaEntities())
             {
-               int n = Login.nguoidung().id;
-               var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
-               return View(list);
+                int n = Login.nguoidung().id;
+                var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
+                return View(list);
             }
         }
         [Filters.LoginUser]
@@ -380,11 +372,16 @@ namespace _1460353.Controllers
             using (var daugia = new daugiaEntities())
             {
                 int n = Login.nguoidung().id;
-                var list = daugia.sanphams.OrderByDescending(p=>p.giahientai).ToList();
+                var list = daugia.sanphams.OrderByDescending(p => p.giahientai).ToList();
                 return View(list);
             }
         }
->>>>>>> origin/master
+
+        //
+        //Quan ki san pham
+        [Filters.LoginUser]
+        public ActionResult Manage()
+        {
 
             using (var data = new Models.daugiaEntities())
             {
