@@ -19,7 +19,12 @@ namespace _1460353.Controllers
             return View(listsanpham);
         }
 
-        
+        public ActionResult IndexAjax(int page)
+        {
+            var listsanpham = Helpers.yeuthich.loaddanhsachsanpham();
+            listsanpham = listsanpham.Skip((page - 1) * 4).Take(4).ToList();
+            return Json(listsanpham,JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult themyeuthich(int idsanpham)
         {

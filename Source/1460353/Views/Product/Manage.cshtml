@@ -8,8 +8,8 @@
 
 <h2>Danh sách sản phẩm đang đăng bài đấu giá</h2>
 
-<div class="well">
-    <table class="table table-striped">
+<div  class="well">
+    <table id="tatble" class="table table-striped">
         <tr>
             <td>Hình</td>
             <td>Tên sản phẩm</td>
@@ -81,7 +81,15 @@
 }
 @section js{
     <script type="text/javascript">
-        $('#btnedit').off('click').on('click', function () {
+        $().ready(function () {
+            $('.del').on('click', function () {
+                alert('asdas');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#tatble').off('click').on('click','#btnedit', function () {
             var id = $('#id').val();
             var mieutangan = $('#mieutangan').val();
             var chitiet = $('chitiet').val();
@@ -101,11 +109,14 @@
                 },
             });
         });
+        });
+
     </script>
     <script type="text/javascript">
-        $('.del').off('click').on('click', function () {
+        $().ready(function () {
+            $('#tatble').off('click').on('click','.del', function () {
             var id = $(this).data('id');
-            $(this).closest('tr').remove();
+            $(this).closest('tr');
             $.ajax({
                 type: 'post',
                 data: '{id:' + id + '}',
@@ -113,14 +124,16 @@
                 contentType: 'application/json',
                 url: '@Url.Action("Delete","Product")',
                 success: function (str) {
-                    $(this).closest('tr').remove();
+
                 },
             });
         });
+        });
+
     </script>
     <script type="text/javascript">
         $().ready(function () {
-            $('.edit').off('click').on('click', function () {
+            $('#tatble').off('click').on('click','.edit', function () {
 
                 $('#id').val($(this).data('id'));
                 $('#mieutangan').val($(this).data('mieutangan'));

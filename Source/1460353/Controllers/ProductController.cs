@@ -392,11 +392,27 @@ namespace _1460353.Controllers
                 var idnguoidung = Helpers.Login.nguoidung().id;
                 var datenow = DateTime.Now;
                 var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
+                listsp = listsp.Skip(0).Take(4).ToList();
                 return View(listsp);
             }
 
 
         }
+        public ActionResult ManageAjax(int page=1)
+        {
+
+            using (var data = new Models.daugiaEntities())
+            {
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var datenow = DateTime.Now;
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
+                listsp = listsp.Skip((page-1)*4).Take(4).ToList();
+                return Json(listsp,JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         [Filters.LoginUser]
         [HttpPost]
@@ -405,11 +421,11 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-                var sp = data.sanphams.Find(id);
-                sp.mieutangan = mieutangan;
-                sp.chitiet = chitiet;
-                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                data.SaveChanges();
+                //var sp = data.sanphams.Find(id);
+                //sp.mieutangan = mieutangan;
+                //sp.chitiet = chitiet;
+                //data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                //data.SaveChanges();
 
                 return Json(1, JsonRequestBehavior.DenyGet);
             }
@@ -418,14 +434,15 @@ namespace _1460353.Controllers
 
         [Filters.LoginUser]
         [HttpPost]
-        public ActionResult Delete(int id) {
-            using (var data=new Models.daugiaEntities())
+        public ActionResult Delete(int id)
+        {
+            using (var data = new Models.daugiaEntities())
             {
-                var sp = data.sanphams.Find(id);
-                sp.tinhtrang = -1;
-                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                data.SaveChanges();
-                return Json(1,JsonRequestBehavior.DenyGet);
+                //var sp = data.sanphams.Find(id);
+                //sp.tinhtrang = -1;
+                //data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                //data.SaveChanges();
+                return Json(1, JsonRequestBehavior.DenyGet);
             }
         }
 
