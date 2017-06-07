@@ -57,19 +57,23 @@ namespace _1460353.Controllers
                     var type1 = Path.GetExtension(file1.FileName);
                     var path1 = Path.Combine(dir, "hinh1" + type1);
                     file1.SaveAs(path1);
-
+                    sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh1" + type1;
                     if (file2 != null)
                     {
                         var type2 = Path.GetExtension(file2.FileName);
                         var path2 = Path.Combine(dir, "hinh2" + type2);
                         file2.SaveAs(path2);
+                        sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh2" + type2;
                     }
                     if (file3 != null)
                     {
                         var type3 = Path.GetExtension(file3.FileName);
                         var path3 = Path.Combine(dir, "hinh3" + type3);
                         file3.SaveAs(path3);
+                        sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh3" + type3;
                     }
+                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                    data.SaveChanges();
                 }
                 else
                 {
@@ -393,5 +397,7 @@ namespace _1460353.Controllers
 
            
         }
+
+
     }
 }

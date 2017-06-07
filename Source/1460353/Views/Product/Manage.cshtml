@@ -12,23 +12,73 @@
     <table class="table table-striped">
         <tr>
             <td>Hình</td>
-            <td>Hình</td>
-            <td>Hình</td>
-            <td>Hình</td>
-            <td>Hình</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá khởi điểm</td>
+            <td>Giá hiện tại</td>
+
+            <td>Ngày bắt đầu</td>
+            <td>Ngày kết thúc</td>
+            <td></td>
             <td></td>
         </tr>
         @foreach (var sp in Model)
         {
             <tr>
-                <td><img style="width:60px;height:60px" src=""/></td>
+                <td><img style="width:60px;height:60px" src="" /></td>
                 <td>@sp.ten</td>
                 <td>@sp.giakhoidiem</td>
                 <td>@sp.giahientai</td>
-                <td></td>
-                <td></td>
+
+                <td>@sp.ngaybatdau</td>
+                <td>@sp.ngayketthuc</td>
+                <td><a href="#myedit" data-toggle="modal">Sửa</a></td>
+                <td><a href="#">Hủy</a></td>
             </tr>
         }
     </table>
 </div>
 
+
+<div id="myedit" class="modal fade" role="dialog">
+    <div class="mymodal-content">
+        <div class="pager">
+            <h3 class="text-success">Sửa mô tả</h3>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Mô tả ngắn:</label>
+                <div class="col-md-10">
+                    <input name="mieutangan" id="mieutangan" class="form-control" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Chi tiết:</label>
+                <div class="col-md-10">
+                   @Html.TextArea("chitiet",new { @class="ckeditor"})
+                </div>
+            </div>
+            <div class="pager">
+                <input type="submit" class="btn btn-warning" value="Sửa" />
+            </div>
+        </form>
+    </div>
+</div>
+@section css{
+    <style>
+        .mymodal-content {
+            width: 60%;
+            background-color: aliceblue;
+            border: hidden;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius:8px;
+        }
+    </style>
+
+}
+}
+@section js{
+
+}
