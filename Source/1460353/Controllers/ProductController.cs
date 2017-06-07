@@ -391,13 +391,43 @@ namespace _1460353.Controllers
             {
                 var idnguoidung = Helpers.Login.nguoidung().id;
                 var datenow = DateTime.Now;
-                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 &&sp.ngayketthuc>datenow).ToList();
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
                 return View(listsp);
             }
 
-           
+
         }
 
+        [Filters.LoginUser]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(int id, string mieutangan, string chitiet)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var sp = data.sanphams.Find(id);
+                sp.mieutangan = mieutangan;
+                sp.chitiet = chitiet;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+
+                return Json(1, JsonRequestBehavior.DenyGet);
+            }
+
+        }
+
+        [Filters.LoginUser]
+        [HttpPost]
+        public ActionResult Delete(int id) {
+            using (var data=new Models.daugiaEntities())
+            {
+                var sp = data.sanphams.Find(id);
+                sp.tinhtrang = -1;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+                return Json(1,JsonRequestBehavior.DenyGet);
+            }
+        }
 
     }
 }
