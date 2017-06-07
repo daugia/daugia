@@ -140,8 +140,18 @@ namespace _1460353.Controllers
             {
                 var nguoidung = data.nguoidungs.Find(Session["slogin_id"]);
                 var list = data.yeuthiches.Where(p => p.id_nguoidung == nguoidung.id);
+                return View(list);
             }
-            return View(list);
+        }
+        [Filters.Login]
+        public ActionResult Danhsachspdangdaugia()
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var nguoidung = data.nguoidungs.Find(Session["slogin_id"]);
+                var list = data.sanphams.Where(p => p.id_nguoidunghientai == nguoidung.id && p.tinhtrang == 1);
+                return View(list);
+            }
         }
 
 

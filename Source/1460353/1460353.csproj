@@ -1289,6 +1289,7 @@
     <Content Include="Views\Product\Manage.cshtml" />
     <Content Include="Views\Product\QuanLySanPham.cshtml" />
     <Content Include="Views\User\Danhsachspyeuthich.cshtml" />
+    <Content Include="Views\User\Danhsachspdangdaugia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
