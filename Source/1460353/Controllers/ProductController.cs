@@ -333,6 +333,16 @@ namespace _1460353.Controllers
                return View(list);
             }
         }
+        [Filters.LoginUser]
+        public ActionResult SapxepGiatangdan()
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                int n = Login.nguoidung().id;
+                var list = daugia.sanphams.OrderByDescending(p=>p.giahientai).ToList();
+                return View(list);
+            }
+        }
 
     }
 }
