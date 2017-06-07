@@ -23,7 +23,13 @@ namespace _1460353.Controllers
                 var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();
                 return View(list);
             }
+            using (var ctx = new Models.daugiaEntities())
+            {
+                var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();
+                return View(list);
+            }
         }
+
 
 	}
 }
