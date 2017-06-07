@@ -7,9 +7,15 @@
 @model List<_1460353.Models.sanpham>
 
 <h2>Danh sách sản phẩm đang đăng bài đấu giá</h2>
+<ul class="pagination">
+    @for (var i = 1; i <= ViewBag.pageTotal; i++)
+    {
+        <li><a class="page" data-page="@i" href="#">@i</a></li>
+    }
 
-<div  class="well">
-    <table id="tatble" class="table table-striped">
+</ul>
+<div class="well">
+    <table id="table" class="table table-striped">
         <tr>
             <td>Hình</td>
             <td>Tên sản phẩm</td>
@@ -23,7 +29,7 @@
         </tr>
         @foreach (var sp in Model)
         {
-            <tr>
+            <tr class="tr">
                 <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
                 <td>@sp.ten</td>
                 <td>@sp.giakhoidiem</td>
@@ -81,15 +87,80 @@
 }
 @section js{
     <script type="text/javascript">
-        $().ready(function () {
-            $('.del').on('click', function () {
-                alert('asdas');
+        $('.page').off('click').on('click', function () {
+            var li = $(this).closest('ul').children('li');
+            li.removeClass('active');
+            $(this).parent('li').addClass('active');
+
+
+            var tr = $('.tr');
+            var table = $('#table');
+
+            var page = $(this).data('page');
+
+            function ToJavaScriptDate(value) {
+                var pattern = /Date\(([^)]+)\)/;
+                var results = pattern.exec(value);
+                var dt = new Date(parseFloat(results[1]));
+                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+            };
+
+            $.ajax({
+                type: 'get',
+                data: { page: page },
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("ManageAjax","Product")',
+                success: function (prolist) {
+                    tr.remove();
+                    for (var i = 0; i < prolist.length; i++){
+                        table.append('' +
+                            '<tr class="tr">' +
+                            '<td><img style="width:60px;height:60px" src="' + prolist[i].hinh1 + '" /></td>' +
+                            '<td>' + prolist[i].ten + '</td>' +
+                            '<td>' + prolist[i].giakhoidiem + '</td>' +
+                            '<td>' + prolist[i].giahientai + '</td>' +
+                            '<td>' + ToJavaScriptDate(prolist[i].ngaybatdau) + '</td>' +
+                            '<td>' + ToJavaScriptDate(prolist[i].ngayketthuc) + '</td>' +
+                            '<td><a class="edit" href="#myedit" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" >Sửa</a></td>' +
+                            '<td><a class="del" data-id="' + prolist[i].id + '" href="#">Hủy</a></td>' +
+                            '</tr>');
+                    }
+                   
+
+                },
+                error: function () {
+                    alert('Fail!');
+                }
             });
+
         });
     </script>
     <script type="text/javascript">
         $().ready(function () {
-            $('#tatble').off('click').on('click','#btnedit', function () {
+            //Huy
+            $('#table').on('click', '.del', function () {
+                var id = $(this).data('id');
+                $(this).closest('tr').remove();
+                $.ajax({
+                    type: 'post',
+                    data: '{id:' + id + '}',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("Delete","Product")',
+                    success: function (str) {
+
+                    },
+                });
+            }).on('click', '#btnedit', function () { alert('ok');});
+
+        //Sua
+        });
+    </script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#btnedit').on('click', function () {
+                alert('1');
             var id = $('#id').val();
             var mieutangan = $('#mieutangan').val();
             var chitiet = $('chitiet').val();
@@ -105,6 +176,7 @@
                 contentType: 'application/json',
                 url: '@Url.Action("Edit","Product")',
                 success: function (str) {
+                    alert(str);
                     $('#myedit').removeClass('in');
                 },
             });
@@ -112,28 +184,10 @@
         });
 
     </script>
+
     <script type="text/javascript">
         $().ready(function () {
-            $('#tatble').off('click').on('click','.del', function () {
-            var id = $(this).data('id');
-            $(this).closest('tr');
-            $.ajax({
-                type: 'post',
-                data: '{id:' + id + '}',
-                dataType: 'json',
-                contentType: 'application/json',
-                url: '@Url.Action("Delete","Product")',
-                success: function (str) {
-
-                },
-            });
-        });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $().ready(function () {
-            $('#tatble').off('click').on('click','.edit', function () {
+            $('#table').on('click', '.edit', function () {
 
                 $('#id').val($(this).data('id'));
                 $('#mieutangan').val($(this).data('mieutangan'));

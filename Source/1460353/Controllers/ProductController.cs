@@ -421,11 +421,11 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-                //var sp = data.sanphams.Find(id);
-                //sp.mieutangan = mieutangan;
-                //sp.chitiet = chitiet;
-                //data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                //data.SaveChanges();
+                var sp = data.sanphams.Find(id);
+                sp.mieutangan = mieutangan;
+                sp.chitiet = chitiet;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
 
                 return Json(1, JsonRequestBehavior.DenyGet);
             }
@@ -438,10 +438,10 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-                //var sp = data.sanphams.Find(id);
-                //sp.tinhtrang = -1;
-                //data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                //data.SaveChanges();
+                var sp = data.sanphams.Find(id);
+                sp.tinhtrang = -1;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
                 return Json(1, JsonRequestBehavior.DenyGet);
             }
         }
