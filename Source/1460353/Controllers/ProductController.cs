@@ -211,8 +211,6 @@ namespace _1460353.Controllers
                                     ls.id_nguoidung = Login.nguoidung().id;
                                     ls.ngaydaugia = DateTime.Now;
                                     daugia.lichsudaus.Add(ls);
-
-
                                     if (model.tang10phut == 1)
                                     {
                                         if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
@@ -325,7 +323,16 @@ namespace _1460353.Controllers
             }
         }
         //
-
+        [Filters.LoginUser]
+        public ActionResult QuanLySanPham()
+        {
+            using (var daugia = new daugiaEntities())
+            {
+               int n = Login.nguoidung().id;
+               var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
+               return View(list);
+            }
+        }
 
     }
 }
