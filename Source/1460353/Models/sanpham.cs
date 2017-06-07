@@ -26,7 +26,6 @@ namespace _1460353.Models
         public Nullable<int> id_nguoidunghientai { get; set; }
         public Nullable<System.DateTime> ngaybatdau { get; set; }
         public Nullable<System.DateTime> ngayketthuc { get; set; }
-        public Nullable<int> id_danhgia { get; set; }
         public Nullable<int> tinhtrang { get; set; }
         public Nullable<decimal> giacaonhat { get; set; }
         public Nullable<decimal> giamuangay { get; set; }
@@ -35,7 +34,9 @@ namespace _1460353.Models
         public string mieutangan { get; set; }
         public Nullable<int> luotview { get; set; }
         public Nullable<decimal> giabanmongmuon { get; set; }
-
+        public string hinh1 { get; set; }
+        public string hinh2 { get; set; }
+        public string hinh3 { get; set; }
 
         public bool yt { get; set; }//yeu thich
     }

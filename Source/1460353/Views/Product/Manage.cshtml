@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<_1460353.Models.sanpham>
+
+<h2>Danh sách sản phẩm đang đăng bài đấu giá</h2>
+
+<div class="well">
+    <table class="table table-striped">
+        <tr>
+            <td>Hình</td>
+            <td>Hình</td>
+            <td>Hình</td>
+            <td>Hình</td>
+            <td>Hình</td>
+            <td></td>
+        </tr>
+        @foreach (var sp in Model)
+        {
+            <tr>
+                <td><img style="width:60px;height:60px" src=""/></td>
+                <td>@sp.ten</td>
+                <td>@sp.giakhoidiem</td>
+                <td>@sp.giahientai</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>
+

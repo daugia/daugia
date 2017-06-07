@@ -106,7 +106,6 @@
     <Property Name="id_nguoidunghientai" Type="Int32" />
     <Property Name="ngaybatdau" Type="DateTime" Precision="3" />
     <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
-    <Property Name="id_danhgia" Type="Int32" />
     <Property Name="tinhtrang" Type="Int32" />
     <Property Name="giacaonhat" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="giamuangay" Type="Decimal" Precision="18" Scale="0" />
@@ -115,6 +114,9 @@
     <Property Name="mieutangan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="luotview" Type="Int32" />
     <Property Name="giabanmongmuon" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="hinh1" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="hinh2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="hinh3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>

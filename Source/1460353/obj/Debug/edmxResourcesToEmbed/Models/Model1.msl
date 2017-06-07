@@ -102,6 +102,9 @@
     <EntitySetMapping Name="sanphams">
       <EntityTypeMapping TypeName="daugiaModel.sanpham">
         <MappingFragment StoreEntitySet="sanpham">
+          <ScalarProperty Name="hinh3" ColumnName="hinh3" />
+          <ScalarProperty Name="hinh2" ColumnName="hinh2" />
+          <ScalarProperty Name="hinh1" ColumnName="hinh1" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
@@ -114,7 +117,6 @@
           <ScalarProperty Name="id_nguoidunghientai" ColumnName="id_nguoidunghientai" />
           <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
           <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
-          <ScalarProperty Name="id_danhgia" ColumnName="id_danhgia" />
           <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
           <ScalarProperty Name="giacaonhat" ColumnName="giacaonhat" />
           <ScalarProperty Name="giamuangay" ColumnName="giamuangay" />

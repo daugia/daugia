@@ -360,6 +360,20 @@ namespace _1460353.Controllers
         }
         //
 
+        //Quan ki san pham
+        [Filters.LoginUser]
+        public ActionResult Manage()
+        {
 
+            using (var data = new Models.daugiaEntities())
+            {
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var datenow = DateTime.Now;
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 &&sp.ngayketthuc>datenow).ToList();
+                return View(listsp);
+            }
+
+           
+        }
     }
 }
