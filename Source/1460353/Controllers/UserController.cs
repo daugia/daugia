@@ -133,6 +133,16 @@ namespace _1460353.Controllers
                 return View(data.nguoidungs.Find(Session["slogin_id"]));
             }
         }
+        [Filters.Login]
+        public ActionResult Danhsachspyeuthich()
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var nguoidung = data.nguoidungs.Find(Session["slogin_id"]);
+                var list = data.yeuthiches.Where(p => p.id_nguoidung == nguoidung.id);
+            }
+            return View(list);
+        }
 
 
         [Filters.Login]
