@@ -10,7 +10,7 @@ namespace _1460353.Controllers
     {
         //
         // GET: /Home/
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
             if (TempData["Message"] != null)
             {
