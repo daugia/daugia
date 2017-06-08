@@ -13,5 +13,15 @@ namespace _1460353.Controllers
         {
             return View();
         }
+        public ActionResult list()
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var list = data.thongbaos.Where(tt => tt.id_nguoidung == idnguoidung).ToList();
+                return PartialView("list",list);
+
+            }
+        }
     }
 }
