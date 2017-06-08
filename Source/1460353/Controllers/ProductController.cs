@@ -232,56 +232,64 @@ namespace _1460353.Controllers
                         var ktkich = daugia.kichnguoidungs.Where(knd => knd.id_sanpham == proId && knd.id_nguoidung == n).FirstOrDefault();
                         if (ktkich == null)
                         {
-                            var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
-                            if (nguoidunght.diem >= 80)
+                            var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id==proId).FirstOrDefault();
+                            if (ktndql == null)
                             {
-                                if (nguoidunght.taikhoan >= Gia)
+                                var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                                if (nguoidunght.diem >= 80)
                                 {
-                                    if (Gia > model.giacaonhat)
+                                    if (nguoidunght.taikhoan >= Gia)
                                     {
-                                        if (nguoidungt != null)
+                                        if (Gia > model.giacaonhat)
                                         {
-                                            nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
-                                        }
-                                        model.giahientai = model.giacaonhat + 100000;
-                                        model.giacaonhat = Gia;
-                                        model.id_nguoidunghientai = Login.nguoidung().id;
-                                        nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-                                        lichsudau ls = new lichsudau();
-                                        ls.tiendadau = Gia;
-                                        ls.id_sanpham = proId;
-                                        ls.id_nguoidung = Login.nguoidung().id;
-                                        ls.ngaydaugia = DateTime.Now;
-                                        daugia.lichsudaus.Add(ls);
-                                        if (model.tang10phut == 1)
-                                        {
-                                            if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                            if (nguoidungt != null)
                                             {
-                                                model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
-                                                model.solantang10phut = 1;
+                                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
                                             }
-                                        }
+                                            model.giahientai = model.giacaonhat + 100000;
+                                            model.giacaonhat = Gia;
+                                            model.id_nguoidunghientai = Login.nguoidung().id;
+                                            nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                            lichsudau ls = new lichsudau();
+                                            ls.tiendadau = Gia;
+                                            ls.id_sanpham = proId;
+                                            ls.id_nguoidung = Login.nguoidung().id;
+                                            ls.ngaydaugia = DateTime.Now;
+                                            daugia.lichsudaus.Add(ls);
+                                            if (model.tang10phut == 1)
+                                            {
+                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                {
+                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                    model.solantang10phut = 1;
+                                                }
+                                            }
 
-                                        TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
+                                            TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
+                                        }
+                                        else
+                                        {
+                                            TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                            if (model.tang10phut == 1)
+                                            {
+                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                {
+                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                    model.solantang10phut = 1;
+                                                }
+                                            }
+                                            model.giahientai = Gia;
+                                        }
                                     }
                                     else
                                     {
-                                        TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
-                                        if (model.tang10phut == 1)
-                                        {
-                                            if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
-                                            {
-                                                model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
-                                                model.solantang10phut = 1;
-                                            }
-                                        }
-                                        model.giahientai = Gia;
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
                                     }
                                 }
-                                else
-                                {
-                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
-                                }
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Bạn Không Có Quyền Đấu Giá";
                             }
                         }
                         else
@@ -318,33 +326,43 @@ namespace _1460353.Controllers
                         var ktkich = daugia.kichnguoidungs.Where(knd => knd.id_sanpham == proId && knd.id_nguoidung == n).FirstOrDefault();
                         if (ktkich == null)
                         {
-                            var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
-                            var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
-                            if (nguoidunght.diem >= 80)
+                            var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
+                            if (ktndql == null)
                             {
-                                if (nguoidunght.taikhoan >= model.giamuangay)
+                                var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+
+                                var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                                if (nguoidunght.diem >= 80)
                                 {
-                                    if (nguoidungt != null)
+                                    if (nguoidunght.taikhoan >= model.giamuangay)
                                     {
-                                        nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                        if (nguoidungt != null)
+                                        {
+                                            nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                        }
+                                        model.giahientai = model.giamuangay;
+                                        model.giacaonhat = model.giamuangay;
+                                        model.id_nguoidunghientai = Login.nguoidung().id;
+                                        nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
+                                        model.tinhtrang = 2;
+                                        lichsudau ls = new lichsudau();
+                                        ls.tiendadau = model.giamuangay;
+                                        ls.id_sanpham = proId;
+                                        ls.id_nguoidung = Login.nguoidung().id;
+                                        ls.ngaydaugia = DateTime.Now;
+                                        daugia.lichsudaus.Add(ls);
                                     }
-                                    model.giahientai = model.giamuangay;
-                                    model.giacaonhat = model.giamuangay;
-                                    model.id_nguoidunghientai = Login.nguoidung().id;
-                                    nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
-                                    model.tinhtrang = 2;
-                                    lichsudau ls = new lichsudau();
-                                    ls.tiendadau = model.giamuangay;
-                                    ls.id_sanpham = proId;
-                                    ls.id_nguoidung = Login.nguoidung().id;
-                                    ls.ngaydaugia = DateTime.Now;
-                                    daugia.lichsudaus.Add(ls);
+                                    else
+                                    {
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                        return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                                    }
                                 }
-                                else
-                                {
-                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
-                                    return RedirectToAction("ChiTiet", "Product", new { id = proId });
-                                }
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Bạn Không Có Quyền Đấu Giá";
+                                return RedirectToAction("ChiTiet", "Product", new { id = proId });
                             }
                         }
                         else
@@ -382,12 +400,22 @@ namespace _1460353.Controllers
             }
         }
         [Filters.LoginUser]
-        public ActionResult QuanLySanPham()
+        public ActionResult QuanLySanPham(int page=1)
         {
             using (var daugia = new daugiaEntities())
             {
-                int n = Login.nguoidung().id;
-                var list = daugia.sanphams.Where(s => s.id_nguoidung == n && s.tinhtrang==1).ToList();
+                int nd = Login.nguoidung().id;
+                var n = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang==1).Count();
+                int recordsPerPage = 4;
+                int nPage = n / recordsPerPage;
+                int m = n % recordsPerPage;
+                if (m > 0)
+                {
+                    nPage++;
+                }
+                ViewBag.Pages = nPage;
+                ViewBag.CurPage = page;
+                var list = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang == 1).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
                 return View(list);
             }
         }
