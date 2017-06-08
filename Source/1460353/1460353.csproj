@@ -1188,6 +1188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ThongbaoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\YeuthichController.cs" />
     <Compile Include="Filters\Login.cs" />
@@ -1310,6 +1311,7 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Thongbao\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
