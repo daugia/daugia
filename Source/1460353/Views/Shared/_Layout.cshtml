@@ -192,6 +192,12 @@
                 .on('click', function () {
                     //alert('asds');
                     $('#thongbaototal').html("0");
+
+                    $.ajax({
+                        type: 'get',
+                        url: '@Url.Action("check","Thongbao")',
+                        error: function () { alert("Fail!");}
+                    });
                 });
 
         });
