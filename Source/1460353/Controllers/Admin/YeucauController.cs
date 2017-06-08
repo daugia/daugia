@@ -15,8 +15,8 @@ namespace _1460353.Controllers.Admin
             using (var data = new Models.daugiaEntities())
             {
                 var list = new List<List<Models.yeucau>>();
-                list.Add(data.yeucaus.Where(yc => yc.tinhtrang == 1 && yc.capphep == 1).ToList());
-                list.Add(data.yeucaus.Where(yc => yc.tinhtrang == 1 && yc.capphep == 0).ToList());
+                list.Add(data.yeucaus.Where(yc => yc.tinhtrang == 1 && yc.capphep == 1).OrderByDescending(yc=>yc.ngaytao).ToList());
+                list.Add(data.yeucaus.Where(yc => yc.tinhtrang == 1 && yc.capphep == 0).OrderByDescending(yc => yc.ngaytao).ToList());
                 if(Session["note"]!=null){
                     ViewBag.note = 1;
                     Session.Remove("note");
@@ -25,7 +25,6 @@ namespace _1460353.Controllers.Admin
             }
 
         }
-
 
         [Filters.LoginAdmin]
         public ActionResult Accept(int id)

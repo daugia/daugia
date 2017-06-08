@@ -1197,6 +1197,7 @@
     </Compile>
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
+    <Compile Include="Helpers\thongbao.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="Helpers\yeuthich.cs" />
     <Compile Include="MD5\mahoa.cs" />
@@ -1274,7 +1275,7 @@
     <Content Include="Views\Product\New.cshtml" />
     <Content Include="Views\Product\LoadSPTheoDanhMuc.cshtml" />
     <Content Include="Views\Product\ChiTiet.cshtml" />
-    <Content Include="Views\Product\TimKiem.cshtml" />
+    <Content Include="Views\Shared\TimKiem.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
@@ -1296,6 +1297,7 @@
     <Content Include="Views\Shared\_SPCoNhieuLuotDaunhat.cshtml" />
     <Content Include="Views\Shared\_Top05SPGanHetHan.cshtml" />
     <Content Include="Views\Thongbao\list.cshtml" />
+    <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

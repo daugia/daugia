@@ -10,40 +10,42 @@
             <li><a href="#"><i class="glyphicon glyphicon-tag"><sup><b class="noficon">1</b></sup></i></a></li>
             <li>
                 <div class="mydropdown">
-                    <a href="#" ><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b class="noficon">1</b></sup></i></a>
+                    <a class="thongbao" href="#"><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b id="thongbaototal" class="noficon">@_1460353.Helpers.thongbao.total()</b></sup></i></a>
                     <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
                         <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
                         <li>...............................................</li>
-                        @Html.Action("list","Thongbao")
+                        @Html.Action("list", "Thongbao")
                     </ul>
                 </div>
             </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            @_1460353.Helpers.Login.nguoidung().ten
-                            (@String.Format("{0:N0}", _1460353.Helpers.Login.nguoidung().taikhoan) VNĐ)
-                            <img width="30" height="30" src="@_1460353.Helpers.Login.nguoidung().anhdaidien" />
-                            <span class="caret"></span>
-                        </a>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    @_1460353.Helpers.Login.nguoidung().ten
+                    (@String.Format("{0:N0}", _1460353.Helpers.Login.nguoidung().taikhoan) VNĐ)
+                    <img width="30" height="30" src="@_1460353.Helpers.Login.nguoidung().anhdaidien" />
+                    <span class="caret"></span>
+                </a>
 
-                        <ul class="dropdown-menu">
+                <ul class="dropdown-menu">
 
-                            <li><a href="@Url.Action("Profile","User")">Thông tin</a></li>
-                            <li><a href="@Url.Action("Edit","User")">Cập nhât thông tin</a></li>
-                            <li><a href="@Url.Action("EditPass","User")">Đổi mật khẩu</a></li>
+                    <li><a href="@Url.Action("Profile","User")">Thông tin</a></li>
+                    <li><a href="@Url.Action("Edit","User")">Cập nhât thông tin</a></li>
+                    <li><a href="@Url.Action("EditPass","User")">Đổi mật khẩu</a></li>
 
-                            <li role="separator" class="divider"></li>
-                            <li><a href="@Url.Action("New","Product")">Đăng sản phẩm</a></li>
-                            <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm</a></li>
-                            <li><a href="#">Sản phẩm đã có người mua</a></li>
-                            <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
 
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
-                            <li><a id="logout_l" href="@Url.Action("Logout","User")">Logout</a></li>
-                        </ul>
-                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="@Url.Action("New","Product")">Đăng sản phẩm</a></li>
+                    <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm</a></li>
+                    <li><a href="#">Sản phẩm đã có người mua</a></li>
+                    <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
+                    <li><a href="@Url.Action("QuanLySanPham","Product")">Quản Lý Sản Phẩm</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
+                    <li><a id="logout_l" href="@Url.Action("Logout","User")">Logout</a></li>
+                </ul>
+            </li>
+
         }
         else
         {

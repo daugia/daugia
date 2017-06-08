@@ -134,6 +134,7 @@ namespace _1460353.Controllers
                 var model = daugia.sanphams.Where(s => s.id == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).FirstOrDefault();
                 if (model == null)
                 {
+                    TempData["Error"] = "Sản Phẩm Đã Đấu Giá Xong Hoặc Không Tồn Tại";
                     return RedirectToAction("Index", "Home");
                 }
                 model.luotview++;
@@ -312,7 +313,10 @@ namespace _1460353.Controllers
                         {
                             if (nguoidunght.taikhoan >= model.giamuangay)
                             {
-                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                if (nguoidungt != null)
+                                {
+                                    nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                }
                                 model.giahientai = model.giamuangay;
                                 model.giacaonhat = model.giamuangay;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
@@ -366,7 +370,7 @@ namespace _1460353.Controllers
             using (var daugia = new daugiaEntities())
             {
                 int n = Login.nguoidung().id;
-                var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
+                var list = daugia.sanphams.Where(s => s.id_nguoidung == n && s.tinhtrang==1).ToList();
                 return View(list);
             }
         }
