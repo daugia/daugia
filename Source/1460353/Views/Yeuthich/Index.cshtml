@@ -33,6 +33,9 @@
                 <td><label>Giá hiện tại :</label>@sp.giahientai</td>
                 <td><label>Lượt xem:</label>@sp.luotview</td>
                 <td><a data-id="@sp.id" class="btn btn-primary yt">Xóa</a></td>
+                <td>
+                    <a href="@Url.Action("ChiTiet","Product",new { id = @sp.id })" class="btn btn-default" role="button">Chi Tiết</a>
+                </td>
             </tr>
         </table>
     }
