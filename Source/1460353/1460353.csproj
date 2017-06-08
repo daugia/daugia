@@ -1186,7 +1186,6 @@
     <Compile Include="Controllers\Admin\YeucauController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KichNguoiDungController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ThongbaoController.cs" />
@@ -1290,9 +1289,6 @@
     <Content Include="Views\Yeuthich\Index.cshtml" />
     <Content Include="Views\Product\Manage.cshtml" />
     <Content Include="Views\Product\QuanLySanPham.cshtml" />
-    <Content Include="Views\User\Danhsachspyeuthich.cshtml" />
-    <Content Include="Views\User\Danhsachspdangdaugia.cshtml" />
-    <Content Include="Views\User\Danhsachspthang.cshtml" />
     <Content Include="Views\Shared\_Top05SPNhieuDauGia.cshtml" />
     <Content Include="Views\Shared\_SPCoNhieuLuotDaunhat.cshtml" />
     <Content Include="Views\Shared\_Top05SPGanHetHan.cshtml" />
@@ -1312,7 +1308,6 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\KichNguoiDung\" />
     <Folder Include="Views\Thongbao\" />
   </ItemGroup>
   <ItemGroup>
