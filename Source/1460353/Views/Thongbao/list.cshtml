@@ -1,0 +1,29 @@
+﻿@model List<_1460353.Models.thongbao>
+@foreach (var tt in Model)
+{
+    if (tt.daxem == 0)
+    {
+        <li style="border-color:black;background-color:#e6e6ff;">
+            <a href="#">
+                <h6>@tt.ngaytao</h6>
+                <h6 class="txtover">
+                    @tt.noidung
+                </h6>
+            </a>
+        </li>
+    }
+}
+@foreach (var tt in Model)
+{
+    if (tt.daxem == 1)
+    {
+        <li style="border-color:black;background-color:white;">
+            <a href="#">
+                <h6>@tt.ngaytao</h6>
+                <h6 class="txtover">
+                    @tt.noidung
+                </h6>
+            </a>
+        </li>
+    }
+}

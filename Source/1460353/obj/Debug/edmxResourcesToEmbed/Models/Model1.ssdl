@@ -29,6 +29,7 @@
     <Property Name="noidung" Type="nvarchar" MaxLength="200" />
     <Property Name="id_nguoidanhgia" Type="int" />
     <Property Name="ngaytao" Type="datetime" />
+    <Property Name="mat" Type="int" />
   </EntityType>
   <EntityType Name="danhgia">
     <Key>
@@ -126,6 +127,7 @@
     <Property Name="id_nguoidung" Type="int" />
     <Property Name="noidung" Type="nvarchar" MaxLength="255" />
     <Property Name="ngaytao" Type="datetime" />
+    <Property Name="daxem" Type="int" />
   </EntityType>
   <EntityType Name="yeucau">
     <Key>

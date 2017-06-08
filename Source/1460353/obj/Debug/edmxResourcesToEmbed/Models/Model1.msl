@@ -26,6 +26,7 @@
     <EntitySetMapping Name="chitietdanhgias">
       <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
         <MappingFragment StoreEntitySet="chitietdanhgia">
+          <ScalarProperty Name="mat" ColumnName="mat" />
           <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
@@ -131,6 +132,7 @@
     <EntitySetMapping Name="thongbaos">
       <EntityTypeMapping TypeName="daugiaModel.thongbao">
         <MappingFragment StoreEntitySet="thongbao">
+          <ScalarProperty Name="daxem" ColumnName="daxem" />
           <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />

@@ -149,10 +149,21 @@
                 }
                 else
                 {
+                    
+                    var height = 0.7 * $(window).height();
+                    $('.mydropdown-content').css("max-height", height);
                     $('.mydropdown-content').addClass("mydisplay-block");
                 }
 
             }
+            var setElementHeight = function () {
+                var height = $(window).height();
+                $('.mydropdown-content').css("max-height", 0.7 * height);
+            };
+
+            $(window).on("resize", function () {
+                setElementHeight();
+            }).resize();
         });
         function keyupsearch(str) {
             $('#dropdown-menu').show();

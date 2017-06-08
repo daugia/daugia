@@ -29,6 +29,7 @@
     <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="id_nguoidanhgia" Type="Int32" />
     <Property Name="ngaytao" Type="DateTime" Precision="3" />
+    <Property Name="mat" Type="Int32" />
   </EntityType>
   <EntityType Name="danhgia">
     <Key>
@@ -126,6 +127,7 @@
     <Property Name="id_nguoidung" Type="Int32" />
     <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ngaytao" Type="DateTime" Precision="3" />
+    <Property Name="daxem" Type="Int32" />
   </EntityType>
   <EntityType Name="yeuthich">
     <Key>
