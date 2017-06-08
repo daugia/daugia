@@ -4,46 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_CarouselPartial")
-@*@Html.Partial("_Top05SPNhieuDauGia")*@
-@*@Html.Partial("_Top05SPGanHetHan")*@
-@if (ViewBag.Error != null)
-    {
-<div class="alert alert-danger" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    @ViewBag.Error
-</div>
-    }
-    @if (ViewBag.Message != null)
-    {
-<div class="alert alert-success" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Success:</span>
-    @ViewBag.Message
-</div>
-    }
-<div>
-    index
-</div>
-       @*<div class="row">
-        @foreach (var p in Model)
-        {
-            <div class="col-sm-6">
-                <div class="thumbnail">
-                    <img src="~/Imgs/sp/@p.id/main_thumbs.jpg" title="Danh sách sản giá cao" />
-                    <div class="caption">
-                        <h4>@p.id</h4>
-                        <h4>Giá : @string.Format("{0:N0}", p.giahientai)</h4>
-                        <h4>Tồn : @p.soluong</h4>
-                        <p> @p.mieutangan)</p>
-                        <p>
-                            <a href="@Url.Action("Detail","Product",new { id = @p.id })" class="btn btn-default" role="button">Chi Tiết</a>
-                            <a href="#" class="btn btn-primary" role="button">Đặt mua</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>*@
+@Html.Action("Carousel","Home")
+
+
 

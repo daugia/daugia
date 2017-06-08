@@ -1298,6 +1298,7 @@
     <Content Include="Views\Shared\_Top05SPGanHetHan.cshtml" />
     <Content Include="Views\Thongbao\list.cshtml" />
     <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
+    <Content Include="Views\Home\Carousel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
