@@ -8,10 +8,11 @@ using _1460353.Helpers;
 using _1460353.Filters;
 namespace _1460353.Controllers
 {
+    [Filters.LoginUser]
     public class LichSuDauController : Controller
     {
         // GET: LichSuDau
-        [Filters.LoginUser]
+
         public ActionResult Index(int ?page = 1)
         {
             if (page.HasValue == false)
@@ -37,6 +38,29 @@ namespace _1460353.Controllers
                 var list2 = query2.ToList().Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
                 ViewBag.listsp = list2;
                 return View(list);
+            }
+        }
+
+        public ActionResult LSSanPham(int? id)
+        {
+            if (id.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            int nd = Login.nguoidung().id;
+            using (var daugia = new daugiaEntities())
+            {
+                var ktnd = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.id==id).FirstOrDefault();
+                if (ktnd != null)
+                {
+                    var list = daugia.lichsudaus.Where(ls => ls.id_sanpham == id).ToList();
+
+                    return View(list);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
         }
     }
