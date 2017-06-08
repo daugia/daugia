@@ -7,9 +7,15 @@
 @model List<_1460353.Models.sanpham>
 
 <h2>Danh sách sản phẩm đang đăng bài đấu giá</h2>
+<ul class="pagination">
+    @for (var i = 1; i <= ViewBag.pageTotal; i++)
+    {
+        <li><a class="page" data-page="@i" href="#">@i</a></li>
+    }
 
+</ul>
 <div class="well">
-    <table class="table table-striped">
+    <table id="table" class="table table-striped">
         <tr>
             <td>Hình</td>
             <td>Tên sản phẩm</td>
@@ -23,16 +29,16 @@
         </tr>
         @foreach (var sp in Model)
         {
-            <tr>
-                <td><img style="width:60px;height:60px" src="" /></td>
+            <tr class="tr">
+                <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
                 <td>@sp.ten</td>
                 <td>@sp.giakhoidiem</td>
                 <td>@sp.giahientai</td>
 
                 <td>@sp.ngaybatdau</td>
                 <td>@sp.ngayketthuc</td>
-                <td><a href="#myedit" data-toggle="modal">Sửa</a></td>
-                <td><a href="#">Hủy</a></td>
+                <td><a class="edit" href="#myedit" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" data-chitiet="@sp.chitiet">Sửa</a></td>
+                <td><a class="del" data-id="@sp.id" href="#">Hủy</a></td>
             </tr>
         }
     </table>
@@ -44,23 +50,24 @@
         <div class="pager">
             <h3 class="text-success">Sửa mô tả</h3>
         </div>
-        <form class="form-horizontal">
+        <div class="form-horizontal" id="myformedit">
+            <input type="hidden" name="id" id="id" />
             <div class="form-group">
                 <label class="control-label col-md-2">Mô tả ngắn:</label>
                 <div class="col-md-10">
-                    <input name="mieutangan" id="mieutangan" class="form-control" type="text"/>
+                    <input name="mieutangan" id="mieutangan" class="form-control" type="text" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Chi tiết:</label>
                 <div class="col-md-10">
-                   @Html.TextArea("chitiet",new { @class="ckeditor"})
+                    @Html.TextArea("chitiet", new { @class = "ckeditor" })
                 </div>
             </div>
             <div class="pager">
-                <input type="submit" class="btn btn-warning" value="Sửa" />
+                <input id="btnedit" type="button" class="btn btn-warning" value="Sửa" />
             </div>
-        </form>
+        </div>
     </div>
 </div>
 @section css{
@@ -73,12 +80,139 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border-radius:8px;
+            border-radius: 8px;
         }
     </style>
 
 }
-}
 @section js{
+    <script type="text/javascript">
+        $('.page').off('click').on('click', function () {
+            var li = $(this).closest('ul').children('li');
+            li.removeClass('active');
+            $(this).parent('li').addClass('active');
+
+
+            var tr = $('.tr');
+            var table = $('#table');
+
+            var page = $(this).data('page');
+
+            function ToJavaScriptDate(value) {
+                var pattern = /Date\(([^)]+)\)/;
+                var results = pattern.exec(value);
+                var dt = new Date(parseFloat(results[1]));
+                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+            };
+
+            $.ajax({
+                type: 'get',
+                data: { page: page },
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("ManageAjax","Product")',
+                success: function (prolist) {
+                    tr.remove();
+                    for (var i = 0; i < prolist.length; i++){
+                        table.append('' +
+                            '<tr class="tr">' +
+                            '<td><img style="width:60px;height:60px" src="' + prolist[i].hinh1 + '" /></td>' +
+                            '<td>' + prolist[i].ten + '</td>' +
+                            '<td>' + prolist[i].giakhoidiem + '</td>' +
+                            '<td>' + prolist[i].giahientai + '</td>' +
+                            '<td>' + ToJavaScriptDate(prolist[i].ngaybatdau) + '</td>' +
+                            '<td>' + ToJavaScriptDate(prolist[i].ngayketthuc) + '</td>' +
+                            '<td><a class="edit" href="#myedit" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" >Sửa</a></td>' +
+                            '<td><a class="del" data-id="' + prolist[i].id + '" href="#">Hủy</a></td>' +
+                            '</tr>');
+                    }
+                   
+
+                },
+                error: function () {
+                    alert('Fail!');
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $().ready(function () {
+            //Huy
+            $('#table').on('click', '.del', function () {
+                var id = $(this).data('id');
+                $(this).closest('tr').remove();
+                $.ajax({
+                    type: 'post',
+                    data: '{id:' + id + '}',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("Delete","Product")',
+                    success: function (str) {
+
+                    },
+                });
+            }).on('click', '#btnedit', function () { alert('ok');});
+
+        //Sua
+        });
+    </script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#btnedit').on('click', function () {
+                alert('1');
+            var id = $('#id').val();
+            var mieutangan = $('#mieutangan').val();
+            var chitiet = $('chitiet').val();
+            var data = {
+                id: id,
+                mieutangan: mieutangan,
+                chitiet: chitiet
+            };
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("Edit","Product")',
+                success: function (str) {
+                    alert(str);
+                    $('#myedit').removeClass('in');
+                },
+            });
+        });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#table').on('click', '.edit', function () {
+
+                $('#id').val($(this).data('id'));
+                $('#mieutangan').val($(this).data('mieutangan'));
+                $('#chitiet').val($(this).data('chitiet'));
+            });
+            $('#myformedit').validate({
+                errorClass: 'text-danger',
+                rules: {
+                    mieutangan: {
+                        required: true,
+                    },
+                    chitiet: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    mieutangan: {
+                        required: "Vui lòng không để trống!",
+                    },
+                    chitiet: {
+                        required: "Vui lòng không để trống!",
+                    },
+                },
+            });
+        });
+    </script>
 
 }

@@ -8,23 +8,88 @@
     white-space: nowrap;
     width: 200px;
     text-overflow: ellipsis;
-    overflow:hidden;
+    overflow: hidden;
 }
-.noficon-icon{
-    font-weight:bold;
-    color:#ffd800;
+
+.noficon-icon {
+    font-weight: bold;
+    color: #ffd800;
 }
-.noficon{
-    background-color:red;
-    padding:5px;
-    border-radius:3px;
-    color:white;
-    font-weight:bold;
-    width:10px;
+
+.noficon {
+    background-color: red;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    width: 10px;
 }
-.margin{
-    margin:5px;
+
+.mydropbtn {
+    background-color: transparent;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
+
+.mydropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.mydropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 160px;
+    border-radius: 5px 0 5px 5px;
+    background-color: #e6ffff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .mydropdown-content a, li {
+        color: black;
+        padding: 5px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .mydropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .mydropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+.mydisplay-none {
+    display: none;
+}
+
+.mydisplay-block {
+    display: block;
+}
+/*.dropdown:hover .dropdown-content {
+            display: block;
+        }*/
+
+.mymodal-content {
+    width: 60%;
+    background-color: aliceblue;
+    border: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+}
+.margin {
+    margin: 5px;
+}
+
 .margin-top {
     margin-top: 20px;
 }

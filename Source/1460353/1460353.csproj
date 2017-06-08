@@ -1188,6 +1188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ThongbaoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\YeuthichController.cs" />
     <Compile Include="Filters\Login.cs" />
@@ -1273,7 +1274,7 @@
     <Content Include="Views\Product\New.cshtml" />
     <Content Include="Views\Product\LoadSPTheoDanhMuc.cshtml" />
     <Content Include="Views\Product\ChiTiet.cshtml" />
-    <Content Include="Views\Product\TimKiem.cshtml" />
+    <Content Include="Views\Shared\TimKiem.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
@@ -1294,6 +1295,7 @@
     <Content Include="Views\Shared\_Top05SPNhieuDauGia.cshtml" />
     <Content Include="Views\Shared\_SPCoNhieuLuotDaunhat.cshtml" />
     <Content Include="Views\Shared\_Top05SPGanHetHan.cshtml" />
+    <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1309,6 +1311,7 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Thongbao\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

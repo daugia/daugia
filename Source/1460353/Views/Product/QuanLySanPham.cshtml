@@ -22,23 +22,9 @@
                     <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
                     <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
                     <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
-                    @if (p.tinhtrang == 0)
-                    {
-                        <h5>Tình Trạng : Đang Yêu Cầu Xét duyệt</h5>
-                    }
-                    else if (p.tinhtrang == 1)
-                    {
                         <h5>Tình Trạng : Đang Đấu Giá</h5>
                         <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
-                    }
-                    else if (p.tinhtrang == 2)
-                    {
-                        <h5>Tình Trạng : Đã Có Đấu Giá Xong</h5>
-                    }
-                    else if(p.tinhtrang==-1)
-                    {
-                        <h5>Tình Trạng : Đã Hủy</h5>
-                    }
+                        <a href=@Url.Action("LSSanPham","LichSuDau",new {id=p.id }) class="btn btn-default" role="button">Xem Lịch Sử Đấu</a>
                 </div>
             </div>
         </div>

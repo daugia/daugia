@@ -18,6 +18,12 @@ namespace _1460353.Controllers
                 TempData.Remove("Message");
                 return View();
             }
+            if (TempData["Error"] != null)
+            {
+                ViewBag.Error = TempData["Error"].ToString();
+                TempData.Remove("Error");
+                return View();
+            }
             using (var ctx = new Models.daugiaEntities())
             {
                 var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();

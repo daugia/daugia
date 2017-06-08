@@ -134,6 +134,7 @@ namespace _1460353.Controllers
                 var model = daugia.sanphams.Where(s => s.id == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).FirstOrDefault();
                 if (model == null)
                 {
+                    TempData["Error"] = "Sản Phẩm Đã Đấu Giá Xong Hoặc Không Tồn Tại";
                     return RedirectToAction("Index", "Home");
                 }
                 model.luotview++;
@@ -312,7 +313,10 @@ namespace _1460353.Controllers
                         {
                             if (nguoidunght.taikhoan >= model.giamuangay)
                             {
-                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                if (nguoidungt != null)
+                                {
+                                    nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                }
                                 model.giahientai = model.giamuangay;
                                 model.giacaonhat = model.giamuangay;
                                 model.id_nguoidunghientai = Login.nguoidung().id;
@@ -366,7 +370,7 @@ namespace _1460353.Controllers
             using (var daugia = new daugiaEntities())
             {
                 int n = Login.nguoidung().id;
-                var list = daugia.sanphams.Where(s => s.id_nguoidung == n).ToList();
+                var list = daugia.sanphams.Where(s => s.id_nguoidung == n && s.tinhtrang==1).ToList();
                 return View(list);
             }
         }
@@ -391,13 +395,60 @@ namespace _1460353.Controllers
             {
                 var idnguoidung = Helpers.Login.nguoidung().id;
                 var datenow = DateTime.Now;
-                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 &&sp.ngayketthuc>datenow).ToList();
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
+                listsp = listsp.Skip(0).Take(4).ToList();
                 return View(listsp);
             }
 
-           
+
+        }
+        public ActionResult ManageAjax(int page=1)
+        {
+
+            using (var data = new Models.daugiaEntities())
+            {
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var datenow = DateTime.Now;
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
+                listsp = listsp.Skip((page-1)*4).Take(4).ToList();
+                return Json(listsp,JsonRequestBehavior.AllowGet);
+            }
         }
 
+
+        [Filters.LoginUser]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(int id, string mieutangan, string chitiet)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var sp = data.sanphams.Find(id);
+                sp.mieutangan = mieutangan;
+                sp.chitiet = chitiet;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+
+                return Json(1, JsonRequestBehavior.DenyGet);
+            }
+
+        }
+
+        [Filters.LoginUser]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var sp = data.sanphams.Find(id);
+                sp.tinhtrang = -1;
+                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+                return Json(1, JsonRequestBehavior.DenyGet);
+            }
+        }
 
     }
 }

@@ -5,9 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("_CarouselPartial")
-@Html.Partial("_Top05SPNhieuDauGia")
-@Html.Partial("_Top05SPGanHetHan")
-@if (ViewBag.Message != null)
+@*@Html.Partial("_Top05SPNhieuDauGia")*@
+@*@Html.Partial("_Top05SPGanHetHan")*@
+@if (ViewBag.Error != null)
+    {
+<div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    @ViewBag.Error
+</div>
+    }
+    @if (ViewBag.Message != null)
     {
 <div class="alert alert-success" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -15,7 +23,10 @@
     @ViewBag.Message
 </div>
     }
-       <div class="row">
+<div>
+    index
+</div>
+       @*<div class="row">
         @foreach (var p in Model)
         {
             <div class="col-sm-6">
@@ -34,5 +45,5 @@
                 </div>
             </div>
         }
-    </div>
+    </div>*@
 
