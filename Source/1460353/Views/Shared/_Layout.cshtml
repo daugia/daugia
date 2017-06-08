@@ -133,6 +133,27 @@
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
+        $().ready(function () {
+            window.onclick = function (event) {
+                
+                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn')) {
+
+                    var dropdowns = document.getElementsByClassName("mydropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('mydisplay-block')) {
+                            openDropdown.classList.remove('mydisplay-block');
+                        }
+                    }
+                }
+                else
+                {
+                    $('.mydropdown-content').addClass("mydisplay-block");
+                }
+
+            }
+        });
         function keyupsearch(str) {
             $('#dropdown-menu').show();
             $('#dropdown-menu').children('li').remove();
