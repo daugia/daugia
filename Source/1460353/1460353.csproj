@@ -1186,7 +1186,6 @@
     <Compile Include="Controllers\Admin\YeucauController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KichNguoiDungController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ThongbaoController.cs" />
@@ -1198,6 +1197,7 @@
     </Compile>
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
+    <Compile Include="Helpers\thongbao.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="Helpers\yeuthich.cs" />
     <Compile Include="MD5\mahoa.cs" />
@@ -1296,6 +1296,7 @@
     <Content Include="Views\Shared\_Top05SPNhieuDauGia.cshtml" />
     <Content Include="Views\Shared\_SPCoNhieuLuotDaunhat.cshtml" />
     <Content Include="Views\Shared\_Top05SPGanHetHan.cshtml" />
+    <Content Include="Views\Thongbao\list.cshtml" />
     <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1312,8 +1313,6 @@
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\KichNguoiDung\" />
-    <Folder Include="Views\Thongbao\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -34,6 +34,7 @@
           <Property Name="noidung" Type="nvarchar" MaxLength="200" />
           <Property Name="id_nguoidanhgia" Type="int" />
           <Property Name="ngaytao" Type="datetime" />
+          <Property Name="mat" Type="int" />
         </EntityType>
         <EntityType Name="danhgia">
           <Key>
@@ -131,6 +132,7 @@
           <Property Name="id_nguoidung" Type="int" />
           <Property Name="noidung" Type="nvarchar" MaxLength="255" />
           <Property Name="ngaytao" Type="datetime" />
+          <Property Name="daxem" Type="int" />
         </EntityType>
         <EntityType Name="yeucau">
           <Key>
@@ -200,6 +202,7 @@
           <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="id_nguoidanhgia" Type="Int32" />
           <Property Name="ngaytao" Type="DateTime" Precision="3" />
+          <Property Name="mat" Type="Int32" />
         </EntityType>
         <EntityType Name="danhgia">
           <Key>
@@ -297,6 +300,7 @@
           <Property Name="id_nguoidung" Type="Int32" />
           <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ngaytao" Type="DateTime" Precision="3" />
+          <Property Name="daxem" Type="Int32" />
         </EntityType>
         <EntityType Name="yeuthich">
           <Key>
@@ -364,6 +368,7 @@
           <EntitySetMapping Name="chitietdanhgias">
             <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
               <MappingFragment StoreEntitySet="chitietdanhgia">
+                <ScalarProperty Name="mat" ColumnName="mat" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
@@ -469,6 +474,7 @@
           <EntitySetMapping Name="thongbaos">
             <EntityTypeMapping TypeName="daugiaModel.thongbao">
               <MappingFragment StoreEntitySet="thongbao">
+                <ScalarProperty Name="daxem" ColumnName="daxem" />
                 <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />

@@ -10,26 +10,28 @@
             <li><a href="#"><i class="glyphicon glyphicon-tag"><sup><b class="noficon">1</b></sup></i></a></li>
             <li>
                 <div class="mydropdown">
-                    <a href="#" ><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b class="noficon">1</b></sup></i></a>
-                    <ul class="mydropdown-content">
-                        <li class="li-note"><a href="#" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</a></li>
-                        
+                    <a class="thongbao" href="#"><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b id="thongbaototal" class="noficon">@_1460353.Helpers.thongbao.total()</b></sup></i></a>
+                    <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
+                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
+                        <li>...............................................</li>
+                        @Html.Action("list", "Thongbao")
                     </ul>
                 </div>
             </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            @_1460353.Helpers.Login.nguoidung().ten
-                            (@String.Format("{0:N0}", _1460353.Helpers.Login.nguoidung().taikhoan) VNĐ)
-                            <img width="30" height="30" src="@_1460353.Helpers.Login.nguoidung().anhdaidien" />
-                            <span class="caret"></span>
-                        </a>
 
-                        <ul class="dropdown-menu">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    @_1460353.Helpers.Login.nguoidung().ten
+                    (@String.Format("{0:N0}", _1460353.Helpers.Login.nguoidung().taikhoan) VNĐ)
+                    <img width="30" height="30" src="@_1460353.Helpers.Login.nguoidung().anhdaidien" />
+                    <span class="caret"></span>
+                </a>
 
-                            <li><a href="@Url.Action("Profile","User")">Thông tin</a></li>
-                            <li><a href="@Url.Action("Edit","User")">Cập nhât thông tin</a></li>
-                            <li><a href="@Url.Action("EditPass","User")">Đổi mật khẩu</a></li>
+                <ul class="dropdown-menu">
+
+                    <li><a href="@Url.Action("Profile","User")">Thông tin</a></li>
+                    <li><a href="@Url.Action("Edit","User")">Cập nhât thông tin</a></li>
+                    <li><a href="@Url.Action("EditPass","User")">Đổi mật khẩu</a></li>
 
 
                     <li role="separator" class="divider"></li>

@@ -50,10 +50,11 @@ namespace _1460353.Controllers
             int nd = Login.nguoidung().id;
             using (var daugia = new daugiaEntities())
             {
-                var ktnd = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.id==id && s.tinhtrang==1 && s.ngayketthuc >=DateTime.Now).FirstOrDefault();
+                var ktnd = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.id==id).FirstOrDefault();
                 if (ktnd != null)
                 {
                     var list = daugia.lichsudaus.Where(ls => ls.id_sanpham == id).ToList();
+
                     return View(list);
                 }
                 else

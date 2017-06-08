@@ -229,9 +229,10 @@ namespace _1460353.Controllers
                     {
                         var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
                         int n = Login.nguoidung().id;
-                        var ktkich = daugia.kichnguoidungs.Where(knd => knd.id_sanpham == proId && knd.id_nguoidung == n).FirstOrDefault();
-                        if (ktkich == null)
+                        var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                        if (nguoidunght.diem >= 80)
                         {
+<<<<<<< HEAD
                             var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id==proId).FirstOrDefault();
                             if (ktndql == null)
                             {
@@ -280,21 +281,66 @@ namespace _1460353.Controllers
                                             }
                                             model.giahientai = Gia;
                                         }
-                                    }
-                                    else
+=======
+                            if (nguoidunght.taikhoan >= Gia)
+                            {
+                                if (Gia > model.giacaonhat)
+                                {
+                                    if (nguoidungt != null)
                                     {
-                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                        nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+>>>>>>> origin/master
                                     }
+                                    model.giahientai = model.giacaonhat + 100000;
+                                    model.giacaonhat = Gia;
+                                    model.id_nguoidunghientai = Login.nguoidung().id;
+                                    nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                    lichsudau ls = new lichsudau();
+                                    ls.tiendadau = Gia;
+                                    ls.id_sanpham = proId;
+                                    ls.id_nguoidung = Login.nguoidung().id;
+                                    ls.ngaydaugia = DateTime.Now;
+                                    daugia.lichsudaus.Add(ls);
+                                    if (model.tang10phut == 1)
+                                    {
+<<<<<<< HEAD
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+=======
+                                        if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                        {
+                                            model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                            model.solantang10phut = 1;
+                                        }
+>>>>>>> origin/master
+                                    }
+
+                                    TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                                 }
+<<<<<<< HEAD
                             }
                             else
                             {
                                 TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Bạn Không Có Quyền Đấu Giá";
+=======
+                                else
+                                {
+                                    TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                    if (model.tang10phut == 1)
+                                    {
+                                        if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                        {
+                                            model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                            model.solantang10phut = 1;
+                                        }
+                                    }
+                                    model.giahientai = Gia;
+                                }
+>>>>>>> origin/master
                             }
-                        }
-                        else
-                        {
-                            TempData["Error"] = "Tài Khoản Của Bạn Không Có Quyền Đấu Giá Sản Phẩm Này";
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                            }
                         }
                     }
                     else
@@ -322,10 +368,12 @@ namespace _1460353.Controllers
                 {
                     if (model.tinhtrang == 1)
                     {
+                        var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
                         int n = Login.nguoidung().id;
-                        var ktkich = daugia.kichnguoidungs.Where(knd => knd.id_sanpham == proId && knd.id_nguoidung == n).FirstOrDefault();
-                        if (ktkich == null)
+                        var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                        if (nguoidunght.diem >= 80)
                         {
+<<<<<<< HEAD
                             var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
                             if (ktndql == null)
                             {
@@ -357,7 +405,30 @@ namespace _1460353.Controllers
                                         TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
                                         return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                     }
+=======
+                            if (nguoidunght.taikhoan >= model.giamuangay)
+                            {
+                                if (nguoidungt != null)
+                                {
+                                    nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+>>>>>>> origin/master
                                 }
+                                model.giahientai = model.giamuangay;
+                                model.giacaonhat = model.giamuangay;
+                                model.id_nguoidunghientai = Login.nguoidung().id;
+                                nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
+                                model.tinhtrang = 2;
+                                lichsudau ls = new lichsudau();
+                                ls.tiendadau = model.giamuangay;
+                                ls.id_sanpham = proId;
+                                ls.id_nguoidung = Login.nguoidung().id;
+                                ls.ngaydaugia = DateTime.Now;
+                                daugia.lichsudaus.Add(ls);
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                return RedirectToAction("ChiTiet", "Product", new { id = proId });
                             }
                             else
                             {
@@ -367,14 +438,9 @@ namespace _1460353.Controllers
                         }
                         else
                         {
-                            TempData["Error"] = "Tài Khoản Của Bạn Không Có Quyền Mua Ngay Sản Phẩm";
+                            TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
                             return RedirectToAction("ChiTiet", "Product", new { id = proId });
                         }
-                    }
-                    else
-                    {
-                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
-                        return RedirectToAction("ChiTiet", "Product", new { id = proId });
                     }
                 }
                 else
