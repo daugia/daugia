@@ -229,10 +229,14 @@ namespace _1460353.Controllers
                     {
                         var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
                         int n = Login.nguoidung().id;
-                        var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
-                        if (nguoidunght.diem >= 80)
+                        var knd = daugia.kichnguoidungs.Where(k => k.id_nguoidung == n && k.id_sanpham == proId).FirstOrDefault();
+                        if (knd == null)
                         {
+<<<<<<< HEAD
                             var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id==proId).FirstOrDefault();
+=======
+                            var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                             if (ktndql == null)
                             {
                                 nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
@@ -264,7 +268,6 @@ namespace _1460353.Controllers
                                                     model.solantang10phut = 1;
                                                 }
                                             }
-
                                             TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                                         }
                                         else
@@ -280,6 +283,7 @@ namespace _1460353.Controllers
                                             }
                                             model.giahientai = Gia;
                                         }
+<<<<<<< HEAD
 //=======
                             if (nguoidunght.taikhoan >= Gia)
                             {
@@ -289,19 +293,12 @@ namespace _1460353.Controllers
                                     {
                                         nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
 //>>>>>>> origin/master
+=======
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                                     }
-                                    model.giahientai = model.giacaonhat + 100000;
-                                    model.giacaonhat = Gia;
-                                    model.id_nguoidunghientai = Login.nguoidung().id;
-                                    nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-                                    lichsudau ls = new lichsudau();
-                                    ls.tiendadau = Gia;
-                                    ls.id_sanpham = proId;
-                                    ls.id_nguoidung = Login.nguoidung().id;
-                                    ls.ngaydaugia = DateTime.Now;
-                                    daugia.lichsudaus.Add(ls);
-                                    if (model.tang10phut == 1)
+                                    else
                                     {
+<<<<<<< HEAD
 //<<<<<<< HEAD
                                         TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
 //=======
@@ -311,40 +308,39 @@ namespace _1460353.Controllers
                                             model.solantang10phut = 1;
                                         }
 //>>>>>>> origin/master
+=======
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                                     }
-
-                                    TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                                 }
+<<<<<<< HEAD
 //<<<<<<< HEAD
                             }
                             else
                             {
                                 TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Bạn Không Có Quyền Đấu Giá";
 //=======
+=======
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                                 else
                                 {
-                                    TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
-                                    if (model.tang10phut == 1)
-                                    {
-                                        if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
-                                        {
-                                            model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
-                                            model.solantang10phut = 1;
-                                        }
-                                    }
-                                    model.giahientai = Gia;
+                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
                                 }
+<<<<<<< HEAD
 //>>>>>>> origin/master
+=======
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                             }
+
                             else
                             {
-                                TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
                             }
                         }
-                    }
-                    else
-                    {
-                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                        else
+                        {
+                            TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+                        }
                     }
                 }
                 else
@@ -369,15 +365,19 @@ namespace _1460353.Controllers
                     {
                         var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
                         int n = Login.nguoidung().id;
-                        var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
-                        if (nguoidunght.diem >= 80)
+                        var knd = daugia.kichnguoidungs.Where(k => k.id_nguoidung == n && k.id_sanpham == proId).FirstOrDefault();
+                        if (knd == null)
                         {
                             var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
                             if (ktndql == null)
                             {
+<<<<<<< HEAD
                                 nguoidunght = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
 
                                 nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+=======
+                                var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                                 if (nguoidunght.diem >= 80)
                                 {
                                     if (nguoidunght.taikhoan >= model.giamuangay)
@@ -403,6 +403,7 @@ namespace _1460353.Controllers
                                         TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
                                         return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                     }
+<<<<<<< HEAD
                                     if (nguoidunght.taikhoan >= model.giamuangay)
                                     {
                                         if (nguoidungt != null)
@@ -431,17 +432,31 @@ namespace _1460353.Controllers
                                         TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Bạn Không Có Quyền Đấu Giá";
                                         return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                     }
+=======
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                                 }
                                 else
                                 {
                                     TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
                                     return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                 }
+<<<<<<< HEAD
+=======
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
+                                return RedirectToAction("ChiTiet", "Product", new { id = proId });
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                             }
                         }
                         else
                         {
+<<<<<<< HEAD
                             TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+=======
+                            TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+>>>>>>> ef26e2cb8ab38cdf8d78b224e10d5fd98de54386
                             return RedirectToAction("ChiTiet", "Product", new { id = proId });
                         }
                         TempData["Message"] = "Bạn Đã Mua Thành Công Sản Phẩm";
