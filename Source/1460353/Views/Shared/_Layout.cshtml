@@ -198,11 +198,35 @@
                     //alert('asds');
                     $('#thongbaototal').html("0");
 
+                    $(this).closest('div').children('li').remove();
                     $.ajax({
                         type: 'get',
-                        url: '@Url.Action("check","Thongbao")',
-                        error: function () { alert("Fail!");}
-                    });
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        url: '@Url.Action("listold","Thongbao")',
+                        success: function (listold) {
+                           
+                        },
+                        error: function () { alert('fail!'); }
+                    }).done(function () {
+                        $.ajax({
+                            type: 'get',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            url: '@Url.Action("listnew","Thongbao")',
+                            success: function (listold) {
+                                alert(listold);
+                            },
+                            error: function () { alert('fail!'); }
+                        }).done(function () {
+                                 $.ajax({
+                                        type: 'get',
+                                        url: '@Url.Action("check","Thongbao")',
+                                        });
+                            });
+                        });
+
+
                 });
 
         });
@@ -213,7 +237,7 @@
             function yc_delete_row(e){
                 var row = $(e).closest('.row');
                 row.remove();
-                
+
             }
             $('.yc-accept').off('click').on('click', function () {
                 // alert('accept');
@@ -226,7 +250,7 @@
                     contentType: 'application/json',
                     url: '@Url.Action("AcceptAjax","Yeucau")',
                     success: function (str) {
-                       
+
                     },
                     error: function (str) { },
                 }).done(function () {
