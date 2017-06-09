@@ -216,6 +216,176 @@ namespace _1460353.Controllers
                 }
             }
         }
+        [Filters.LoginUser]
+        [HttpPost]
+        public ActionResult Mua(int? proId, decimal? Gia)
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
+                if (model.ngayketthuc >= DateTime.Now)
+                {
+                    if (model.tinhtrang == 1)
+                    {
+                        var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+                        int n = Login.nguoidung().id;
+                        var knd = daugia.kichnguoidungs.Where(k => k.id_nguoidung == n && k.id_sanpham == proId).FirstOrDefault();
+                        if (knd == null)
+                        {
+                            var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
+                            if (ktndql == null)
+                            {
+                                var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                                if (nguoidunght.diem >= 80)
+                                {
+                                    if (nguoidunght.taikhoan >= Gia)
+                                    {
+                                        if (Gia > model.giacaonhat)
+                                        {
+                                            if (nguoidungt != null)
+                                            {
+                                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                            }
+                                            model.giahientai = model.giacaonhat + 100000;
+                                            model.giacaonhat = Gia;
+                                            model.id_nguoidunghientai = Login.nguoidung().id;
+                                            nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                            lichsudau ls = new lichsudau();
+                                            ls.tiendadau = Gia;
+                                            ls.id_sanpham = proId;
+                                            ls.id_nguoidung = Login.nguoidung().id;
+                                            ls.ngaydaugia = DateTime.Now;
+                                            daugia.lichsudaus.Add(ls);
+                                            if (model.tang10phut == 1)
+                                            {
+                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                {
+                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                    model.solantang10phut = 1;
+                                                }
+                                            }
+                                            TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
+                                        }
+                                        else
+                                        {
+                                            TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                            if (model.tang10phut == 1)
+                                            {
+                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                {
+                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                    model.solantang10phut = 1;
+                                                }
+                                            }
+                                            model.giahientai = Gia;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                    }
+                                }
+                                else
+                                {
+                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                                }
+                            }
+
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
+                            }
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+                        }
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                }
+                daugia.SaveChanges();
+                return RedirectToAction("ChiTiet", "Product", new { id = proId });
+            }
+        }
+
+        [Filters.LoginUser]
+        [HttpPost]
+        public ActionResult MuaNgay(int? proId)
+        {
+            using (var daugia = new daugiaEntities())
+            {
+                var model = daugia.sanphams.Where(s => s.id == proId).FirstOrDefault();
+                if (model.ngayketthuc >= DateTime.Now)
+                {
+                    if (model.tinhtrang == 1)
+                    {
+                        var nguoidungt = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidunghientai).FirstOrDefault();
+                        int n = Login.nguoidung().id;
+                        var knd = daugia.kichnguoidungs.Where(k => k.id_nguoidung == n && k.id_sanpham == proId).FirstOrDefault();
+                        if (knd == null)
+                        {
+                            var ktndql = daugia.sanphams.Where(sp => sp.id_nguoidung == n && sp.id == proId).FirstOrDefault();
+                            if (ktndql == null)
+                            {
+                                var nguoidunght = daugia.nguoidungs.Where(nd => nd.id == n).FirstOrDefault();
+                                if (nguoidunght.diem >= 80)
+                                {
+                                    if (nguoidunght.taikhoan >= model.giamuangay)
+                                    {
+                                        if (nguoidungt != null)
+                                        {
+                                            nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                        }
+                                        model.giahientai = model.giamuangay;
+                                        model.giacaonhat = model.giamuangay;
+                                        model.id_nguoidunghientai = Login.nguoidung().id;
+                                        nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
+                                        model.tinhtrang = 2;
+                                        lichsudau ls = new lichsudau();
+                                        ls.tiendadau = model.giamuangay;
+                                        ls.id_sanpham = proId;
+                                        ls.id_nguoidung = Login.nguoidung().id;
+                                        ls.ngaydaugia = DateTime.Now;
+                                        daugia.lichsudaus.Add(ls);
+                                    }
+                                    else
+                                    {
+                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                        return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                                    }
+                                }
+                                else
+                                {
+                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                                    return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                                }
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
+                                return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                            }
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+                            return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                        }
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                    return RedirectToAction("ChiTiet", "Product", new { id = proId });
+                }
+                TempData["Message"] = "Bạn Đã Mua Thành Công Sản Phẩm";
+                daugia.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
 
         //Cua tao
