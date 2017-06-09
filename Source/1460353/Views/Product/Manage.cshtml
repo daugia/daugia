@@ -160,7 +160,7 @@
     <script type="text/javascript">
         $().ready(function () {
             $('#btnedit').on('click', function () {
-                alert('1');
+              
             var id = $('#id').val();
             var mieutangan = $('#mieutangan').val();
             var chitiet = $('chitiet').val();
@@ -176,7 +176,7 @@
                 contentType: 'application/json',
                 url: '@Url.Action("Edit","Product")',
                 success: function (str) {
-                    alert(str);
+                    
                     $('#myedit').removeClass('in');
                 },
             });
