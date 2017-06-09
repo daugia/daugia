@@ -27,7 +27,10 @@ else
                     <p>
                         <a href=@Url.Action("ChiTiet", "Product", new { id = Model[i].id_sanpham }) class="btn btn-default" role="button">Chi Tiết</a>    
                     </p>
-
+                    @if(Model[i].tinhtrang==1)
+                    {
+                        <p></p>
+                    }
                 </div>
             </div>
         </div>

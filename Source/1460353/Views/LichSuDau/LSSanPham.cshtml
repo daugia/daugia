@@ -17,10 +17,21 @@ else
             <h5>Tên : @Model[i].id_nguoidung</h5>
             <h5>Giá Đã đấu: @string.Format("{0:N0}", @Model[i].tiendadau)</h5>
             <h5>Ngày Đấu Giá : @Model[i].ngaydaugia</h5>
+                <form class="form-horizontal" method="post" action="@Url.Action("Index", "KichNguoiDung")">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input type="hidden" name="idsp" value="@Model[i].id_sanpham" />
+                            <input type="hidden" name="idnd" class="form-control" value="@Model[i].id_nguoidung" />
+                        </div>
+                    </div>
+                    <div class="form-group pager">
+                            <input type="submit" class="btn btn-danger " value="KICH" />
+                    </div>
+                </form>
         </div>
     }
     <div class="caption">
-        <h5>Tên : @Model[Model.Count].id_nguoidung</h5>
-        <h5>Ngày Đấu Giá : @Model[Model.Count].ngaydaugia</h5>
+        <h5>Tên : @Model[Model.Count-1].id_nguoidung</h5>
+        <h5>Ngày Đấu Giá : @Model[Model.Count-1].ngaydaugia</h5>
     </div>
 }

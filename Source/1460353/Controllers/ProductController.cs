@@ -255,6 +255,7 @@ namespace _1460353.Controllers
                                             ls.id_sanpham = proId;
                                             ls.id_nguoidung = Login.nguoidung().id;
                                             ls.ngaydaugia = DateTime.Now;
+                                            ls.tinhtrang = 0;
                                             daugia.lichsudaus.Add(ls);
                                             if (model.tang10phut == 1)
                                             {
@@ -349,6 +350,7 @@ namespace _1460353.Controllers
                                         ls.id_sanpham = proId;
                                         ls.id_nguoidung = Login.nguoidung().id;
                                         ls.ngaydaugia = DateTime.Now;
+                                        ls.tinhtrang = 0;
                                         daugia.lichsudaus.Add(ls);
                                     }
                                     else
