@@ -72,7 +72,7 @@ namespace _1460353.Controllers.Admin
                 var id = Helpers.Login.nguoidung().id;
                 var kiemtrayeucau = data.yeucaus.Where(yc => yc.tinhtrang == 1 && yc.id_nguoidung == id).FirstOrDefault();
 
-                if (kiemtrayeucau == null)
+                if (kiemtrayeucau == null)//chua co thi them
                 {
                     var yeucau = new Models.yeucau()
                     {
@@ -88,7 +88,7 @@ namespace _1460353.Controllers.Admin
                     //them thong bao sua thanh cong
                     Helpers.thongbao.create("Bạn đã yêu cầu bán hàng trong 7 ngày!");
                 }
-                else
+                else//co roi thi cap nhat lai
                 {
                     kiemtrayeucau.noidung = noidung;
                     kiemtrayeucau.ngaytao = DateTime.Now;
@@ -114,5 +114,37 @@ namespace _1460353.Controllers.Admin
                
         }
 
+        [Filters.LoginAdmin]
+        public ActionResult AcceptAjax(int id)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var yeucau = data.yeucaus.Find(id);
+                yeucau.capphep = 1;
+                yeucau.ngayduocban = DateTime.Now;
+                yeucau.ngayketthuc = DateTime.Now.AddDays(7);
+                data.Entry(yeucau).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+
+                //them thong bao thanh cong
+                var nguoidung = Helpers.nguoidung.find((int)yeucau.id_nguoidung);
+                Helpers.thongbao.create("Bạn đã cho phép :"+nguoidung.ten+" bán hàng trong 7 ngày!");
+                return Json(1,JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Filters.LoginAdmin]
+        public ActionResult DeleteAjax(int id)
+        {
+            using (var data=new Models.daugiaEntities())
+            {
+                var yeucau = data.yeucaus.Find(id);
+                yeucau.tinhtrang = 0;
+               
+                data.Entry(yeucau).State = System.Data.Entity.EntityState.Modified;
+                data.SaveChanges();
+                return Json(1,JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

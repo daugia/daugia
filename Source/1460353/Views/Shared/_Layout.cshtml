@@ -137,7 +137,7 @@
         $().ready(function () {
             window.onclick = function (event) {
 
-                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn')) {
+                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn') ) {
 
                     closedropdown();
                 }
@@ -205,6 +205,63 @@
                     });
                 });
 
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            function yc_delete_row(e){
+                var row = $(e).closest('.row');
+                row.remove();
+                
+            }
+            $('.yc-accept').off('click').on('click', function () {
+                // alert('accept');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("AcceptAjax","Yeucau")',
+                    success: function (str) {
+                       
+                    },
+                    error: function (str) { },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+
+                    });
+            });
+            $('.yc-deny').off('click').on('click', function () {
+               // alert('deny');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("DeleteAjax","Yeucau")',
+                    success: function (str) {
+                      //  alert(str);
+                    },
+                    error: function (str) {
+                      //  alert('Fail!');
+                    },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+                });
+            });
         });
     </script>
     <script src="~/Scripts/Site.js"></script>
