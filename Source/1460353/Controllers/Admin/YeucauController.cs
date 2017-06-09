@@ -103,6 +103,16 @@ namespace _1460353.Controllers.Admin
             return RedirectToAction("Index", "Home");
         }
        
+        [Filters.LoginAdmin]
+        public ActionResult list()
+        {
+            using (var data=new Models.daugiaEntities())
+            {
+                var listyeucau = data.yeucaus.Where(yc=>yc.tinhtrang==1 && yc.capphep==0).ToList();
+                return PartialView("list",listyeucau);
+            }
+               
+        }
 
     }
 }

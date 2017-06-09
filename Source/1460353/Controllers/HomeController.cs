@@ -19,7 +19,8 @@ namespace _1460353.Controllers
                 // list san pham co luot ra gia cao top 5
                 var luotraggia = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderByDescending(sp => sp.luotragia).Take(5).ToList();
                 // list  5 san pham gan ket thuc han dau gia
-                var ketthuc = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderByDescending(sp => sp.ngayketthuc).Take(5).ToList();
+                
+                var ketthuc = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderBy(sp => sp.ngayketthuc).Take(5).ToList();
 
                 list.Add(luotraggia);
                 list.Add(ketthuc);
