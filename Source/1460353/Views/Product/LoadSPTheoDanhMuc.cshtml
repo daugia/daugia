@@ -125,6 +125,11 @@ else
                         success: function (str) { }
                     });
 
+
+                    //them thong bao da yeu thich 1 san pham
+                    var thongbaototal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(thongbaototal+1);
+
                 }
                 else {
                     $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
@@ -138,6 +143,10 @@ else
                         url: '@Url.Action("xoayeuthich","Yeuthich")',
                         success: function (str) { }
                     });
+
+                    //them thong bao da  xoa yeu thich 1 san pham
+                    var thongbaototal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(thongbaototal + 1);
                 }
             });
         });

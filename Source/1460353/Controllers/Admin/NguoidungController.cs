@@ -33,6 +33,9 @@ namespace _1460353.Controllers.Admin
                 ndold.tinhtrang = 0;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã xóa người dùng:" +ndold.ten);
                 return RedirectToAction("Index","Nguoidung");
             }
         }
@@ -45,6 +48,9 @@ namespace _1460353.Controllers.Admin
                 ndold.tinhtrang = 1;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã phục hồi người dùng:" + ndold.ten);
                 return RedirectToAction("Index", "Nguoidung");
             }
         }
@@ -58,6 +64,9 @@ namespace _1460353.Controllers.Admin
                 data.Entry(ndold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã reset mật khẩu cho người dùng:" + ndold.ten);
                 return RedirectToAction("Index", "Nguoidung");
             }
         }

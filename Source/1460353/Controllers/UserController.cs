@@ -208,11 +208,16 @@ namespace _1460353.Controllers
                     data.SaveChanges();
                     ViewBag.q = "1";
 
+                    //them thong bao sua thanh cong
+                    Helpers.thongbao.create("Bạn đã cập nhật thông tin thành công!");
+
                     return View(nguoidung);
                 }
                 else
                 {
                     ViewBag.q = "0";
+                    //them thong bao sua thanh cong
+                    Helpers.thongbao.create("Bạn đã cập nhật thông tin thất bại!");
                     return View(data.nguoidungs.Find(u.id));
                 }
 
@@ -243,11 +248,16 @@ namespace _1460353.Controllers
                         data.Entry(q).State = System.Data.Entity.EntityState.Modified;
                         data.SaveChanges();
                         ViewBag.q = "1";
+
+                        //them thong bao
+                        Helpers.thongbao.create("Bạn đã cập nhật mật khẩu thành công!");
                         return View();
                     }
                     else
                     {
                         ViewBag.q = "0";
+                        //them thong bao
+                        Helpers.thongbao.create("Bạn đã cập nhật mật khẩu thất bại!");
                         return View();
                     }
 
