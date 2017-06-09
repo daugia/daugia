@@ -7,13 +7,33 @@ namespace _1460353.Helpers
 {
     public class thongbao
     {
-        public static int total()
+        public static void create(string noidung)
         {
-            if(Helpers.Login.IsLogin()){
-                using (var data=new Models.daugiaEntities())
+            if (Helpers.Login.IsLogin())
+            {
+                using (var data = new Models.daugiaEntities())
                 {
                     var idnguoidung = Helpers.Login.nguoidung().id;
-                    var total = data.thongbaos.Where(tt => tt.id_nguoidung == idnguoidung && tt.daxem==0).Count();
+                    var thongbao = new Models.thongbao()
+                    {
+                        id_nguoidung = idnguoidung,
+                        ngaytao = DateTime.Now,
+                        noidung = noidung,
+                    };
+                    data.thongbaos.Add(thongbao);
+                    data.SaveChanges();
+
+                }
+            }
+        }
+        public static int total()
+        {
+            if (Helpers.Login.IsLogin())
+            {
+                using (var data = new Models.daugiaEntities())
+                {
+                    var idnguoidung = Helpers.Login.nguoidung().id;
+                    var total = data.thongbaos.Where(tt => tt.id_nguoidung == idnguoidung && tt.daxem == 0).Count();
                     return total;
                 }
             }
