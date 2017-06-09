@@ -38,8 +38,8 @@ namespace _1460353.Controllers
                 data.SaveChanges();
 
                 //them cai thong bao
-                var sanpham = Helpers.sanpham.get(idsanpham);
-                Helpers.thongbao.create("Bạn đã thêm yêu thích san phẩm :"+sanpham.ten);
+               // var sanpham = Helpers.sanpham.get(idsanpham);
+               // Helpers.thongbao.create("Bạn đã thêm yêu thích san phẩm :"+sanpham.ten);
 
             }
             return Content("1", "text/plain");
@@ -54,8 +54,8 @@ namespace _1460353.Controllers
                 data.SaveChanges();
 
                 //them cai thong bao
-                var sanpham = Helpers.sanpham.get(idsanpham);
-                Helpers.thongbao.create("Bạn đã xóa yêu thích san phẩm :" + sanpham.ten);
+               // var sanpham = Helpers.sanpham.get(idsanpham);
+               // Helpers.thongbao.create("Bạn đã xóa yêu thích san phẩm :" + sanpham.ten);
             }
             return Content("1", "text/plain");
         }
