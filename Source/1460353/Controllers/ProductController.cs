@@ -30,7 +30,7 @@ namespace _1460353.Controllers
         [Filters.LoginUser]
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult New(sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
+        public ActionResult New(Models.sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
         {
 
             using (var data = new daugiaEntities())

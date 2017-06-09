@@ -36,6 +36,11 @@ namespace _1460353.Controllers
                 };
                 data.yeuthiches.Add(yeuthich);
                 data.SaveChanges();
+
+                //them cai thong bao
+                var sanpham = data.sanphams.Find(idsanpham);
+                Helpers.thongbao.create("Bạn đã thêm yêu thích san phẩm :"+sanpham.ten);
+
             }
             return Content("1", "text/plain");
         }
@@ -47,6 +52,10 @@ namespace _1460353.Controllers
                 var yeuthich = data.yeuthiches.Where(yt => yt.id_sanpham == idsanpham && yt.id_nguoidung == idnguoidung).FirstOrDefault();
                 data.yeuthiches.Remove(yeuthich);
                 data.SaveChanges();
+
+                //them cai thong bao
+                var sanpham = data.sanphams.Find(idsanpham);
+                Helpers.thongbao.create("Bạn đã xóa yêu thích san phẩm :" + sanpham.ten);
             }
             return Content("1", "text/plain");
         }

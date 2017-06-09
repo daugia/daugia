@@ -7,16 +7,17 @@
     <h2>Đăng nhập</h2>
 </div>
 @if (ViewBag.q == "1")
-{
-    <div class="alert-success">
+{  <div id="snackbar" style="background-color:forestgreen;">
         <h4>Đăng nhập thành công!</h4>
     </div>
+
 }
 @if (ViewBag.q == "0")
 {
-    <div class="alert-danger">
+    <div id="snackbar" style="background-color:red;">
         <h4>Đăng nhập thất bại!</h4>
     </div>
+
 }
 <form id="myform" class="form-horizontal" method="post">
     <div class=" form-group">

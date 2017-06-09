@@ -41,6 +41,10 @@ namespace _1460353.Controllers.Admin
                 nguoidung.capphep = 1;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao 
+                Helpers.thongbao.create("Bạn đã cho phép "+nguoidung.ten+ " bán hang trong 7 ngày!");
+
                 return RedirectToAction("Index","Yeucau");
             }
 
@@ -53,6 +57,7 @@ namespace _1460353.Controllers.Admin
                 var nguoidung = data.yeucaus.Find(id1);
                 data.yeucaus.Remove(nguoidung);
                 data.SaveChanges();
+
             }
             return RedirectToAction("Index", "Yeucau");
         }
@@ -78,6 +83,9 @@ namespace _1460353.Controllers.Admin
                     };
                     data.yeucaus.Add(yeucau);
                     data.SaveChanges();
+
+                    //them thong bao sua thanh cong
+                    Helpers.thongbao.create("Bạn đã yêu cầu bán hàng trong 7 ngày!");
                 }
                 else
                 {
@@ -85,6 +93,9 @@ namespace _1460353.Controllers.Admin
                     kiemtrayeucau.ngaytao = DateTime.Now;
                     data.Entry(kiemtrayeucau).State = System.Data.Entity.EntityState.Modified;
                     data.SaveChanges();
+
+                    //them thong bao sua thanh cong
+                    Helpers.thongbao.create("Bạn đã yêu cầu bán hàng trong 7 ngày!");
                 }
 
             }

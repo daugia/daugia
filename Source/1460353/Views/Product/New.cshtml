@@ -16,13 +16,13 @@
 }
 @if (ViewBag.note == 1)
 {
-    <div class="alert alert-success">
+    <div id="snackbar" style="background-color:forestgreen;">
         Sản phẩm đã được đăng lên sàn đấu! @ViewBag.type
     </div>
 }
 else if (ViewBag.note == 0)
 {
-    <div class="alert alert-danger">
+    <div id="snackbar" style="background-color:red;">
         Bạn chưa được cấp phép .Vui lòng yêu cầu admin cấp phép để được đăng sản phẩm!
     </div>
 }
