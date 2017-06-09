@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace _1460353.Controllers
 {
-    [Filters.LoginUser]
+    [Filters.Login]
     public class ThongbaoController : Controller
     {
         // GET: Thongbao
