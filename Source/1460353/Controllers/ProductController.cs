@@ -155,7 +155,66 @@ namespace _1460353.Controllers
 
         public ActionResult TimKiem(String TuKhoa, int? page, int? iddm, int? chon)
         {
-            return View();
+            if (TuKhoa == null || page.HasValue == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            using (var daugia = new daugiaEntities())
+            {
+                var listdm = daugia.danhmucs.ToList();
+                ViewBag.listdm = listdm;
+                if (iddm.HasValue == false)
+                {
+                    int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).Count();
+                    int recordsPerPage = 4;
+                    int nPage = n / recordsPerPage;
+                    int m = n % recordsPerPage;
+                    if (m > 0)
+                    {
+                        nPage++;
+                    }
+                    ViewBag.TuKhoa = TuKhoa;
+                    ViewBag.Pages = nPage;
+                    ViewBag.CurPage = page;
+                    ViewBag.Chon = chon;
+                    if (chon == 1)
+                    {
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(list);
+                    }
+                    else
+                    {
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(list);
+                    }
+                }
+                else
+                {
+                    int n = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).Count();
+                    int recordsPerPage = 4;
+                    int nPage = n / recordsPerPage;
+                    int m = n % recordsPerPage;
+                    if (m > 0)
+                    {
+                        nPage++;
+                    }
+                    ViewBag.TuKhoa = TuKhoa;
+                    ViewBag.Pages = nPage;
+                    ViewBag.CurPage = page;
+                    ViewBag.iddm = iddm;
+                    ViewBag.Chon = chon;
+                    if (chon == 1)
+                    {
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(list);
+                    }
+                    else
+                    {
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(list);
+                    }
+                }
+            }
         }
         [Filters.LoginUser]
         [HttpPost]
