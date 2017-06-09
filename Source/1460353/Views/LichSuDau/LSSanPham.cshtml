@@ -33,5 +33,16 @@ else
     <div class="caption">
         <h5>Tên : @Model[Model.Count-1].id_nguoidung</h5>
         <h5>Ngày Đấu Giá : @Model[Model.Count-1].ngaydaugia</h5>
+        <form class="form-horizontal" method="post" action="@Url.Action("Index", "KichNguoiDung")">
+            <div class="form-group">
+                <div class="form-group">
+                    <input type="hidden" name="idsp" value="@Model[Model.Count-1].id_sanpham" />
+                    <input type="hidden" name="idnd" class="form-control" value="@Model[Model.Count-1].id_nguoidung" />
+                </div>
+            </div>
+            <div class="form-group pager">
+                <input type="submit" class="btn btn-danger " value="KICH" />
+            </div>
+        </form>
     </div>
 }
