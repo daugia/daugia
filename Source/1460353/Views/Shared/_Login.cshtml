@@ -96,7 +96,22 @@
     @RenderSection("js", false)
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('.thongbao').off('click')
+                .on('click', function () {
+                    //alert('asds');
+                    $('#thongbaototal').html("0");
 
+                    $.ajax({
+                        type: 'get',
+                        url: '@Url.Action("check","Thongbao")',
+                        error: function () { alert("Fail!");}
+                    });
+                });
+
+        });
+    </script>
 
 </body>
 </html>
