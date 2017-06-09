@@ -240,45 +240,48 @@ namespace _1460353.Controllers
                                 {
                                     if (nguoidunght.taikhoan >= Gia)
                                     {
-                                        if (Gia > model.giacaonhat)
+                                        if (Gia > model.giahientai)
                                         {
-                                            if (nguoidungt != null)
+                                            if (Gia > model.giacaonhat)
                                             {
-                                                nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
-                                            }
-                                            model.giahientai = model.giacaonhat + 100000;
-                                            model.giacaonhat = Gia;
-                                            model.id_nguoidunghientai = Login.nguoidung().id;
-                                            nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
-                                            lichsudau ls = new lichsudau();
-                                            ls.tiendadau = Gia;
-                                            ls.id_sanpham = proId;
-                                            ls.id_nguoidung = Login.nguoidung().id;
-                                            ls.ngaydaugia = DateTime.Now;
-                                            ls.tinhtrang = 0;
-                                            daugia.lichsudaus.Add(ls);
-                                            if (model.tang10phut == 1)
-                                            {
-                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                if (nguoidungt != null)
                                                 {
-                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
-                                                    model.solantang10phut = 1;
+                                                    nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
                                                 }
-                                            }
-                                            TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
-                                        }
-                                        else
-                                        {
-                                            TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
-                                            if (model.tang10phut == 1)
-                                            {
-                                                if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                model.giahientai = model.giacaonhat + 100000;
+                                                model.giacaonhat = Gia;
+                                                model.id_nguoidunghientai = Login.nguoidung().id;
+                                                nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                                lichsudau ls = new lichsudau();
+                                                ls.tiendadau = Gia;
+                                                ls.id_sanpham = proId;
+                                                ls.id_nguoidung = Login.nguoidung().id;
+                                                ls.ngaydaugia = DateTime.Now;
+                                                ls.tinhtrang = 0;
+                                                daugia.lichsudaus.Add(ls);
+                                                if (model.tang10phut == 1)
                                                 {
-                                                    model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
-                                                    model.solantang10phut = 1;
+                                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                    {
+                                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                        model.solantang10phut = 1;
+                                                    }
                                                 }
+                                                TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
                                             }
-                                            model.giahientai = Gia;
+                                            else
+                                            {
+                                                TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                                if (model.tang10phut == 1)
+                                                {
+                                                    if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
+                                                    {
+                                                        model.ngayketthuc = model.ngayketthuc.Value.AddMinutes(10);
+                                                        model.solantang10phut = 1;
+                                                    }
+                                                }
+                                                model.giahientai = Gia;
+                                            }
                                         }
                                     }
                                     else
@@ -406,7 +409,7 @@ namespace _1460353.Controllers
             using (var daugia = new daugiaEntities())
             {
                 int nd = Login.nguoidung().id;
-                var n = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang==1).Count();
+                var n = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang==1 && s.ngayketthuc >= DateTime.Now).Count();
                 int recordsPerPage = 4;
                 int nPage = n / recordsPerPage;
                 int m = n % recordsPerPage;
@@ -416,7 +419,7 @@ namespace _1460353.Controllers
                 }
                 ViewBag.Pages = nPage;
                 ViewBag.CurPage = page;
-                var list = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang == 1).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                var list = daugia.sanphams.Where(s => s.id_nguoidung == nd && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
                 return View(list);
             }
         }
