@@ -68,6 +68,7 @@
     <Property Name="id_sanpham" Type="int" />
     <Property Name="tiendadau" Type="decimal" Precision="18" Scale="0" />
     <Property Name="ngaydaugia" Type="datetime" />
+    <Property Name="tinhtrang" Type="int" />
   </EntityType>
   <EntityType Name="nguoidung">
     <Key>
@@ -118,6 +119,7 @@
     <Property Name="hinh1" Type="nchar" MaxLength="200" />
     <Property Name="hinh2" Type="nchar" MaxLength="200" />
     <Property Name="hinh3" Type="nchar" MaxLength="200" />
+    <Property Name="luotragia" Type="int" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>

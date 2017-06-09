@@ -69,6 +69,7 @@
     <EntitySetMapping Name="lichsudaus">
       <EntityTypeMapping TypeName="daugiaModel.lichsudau">
         <MappingFragment StoreEntitySet="lichsudau">
+          <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
           <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
@@ -103,6 +104,7 @@
     <EntitySetMapping Name="sanphams">
       <EntityTypeMapping TypeName="daugiaModel.sanpham">
         <MappingFragment StoreEntitySet="sanpham">
+          <ScalarProperty Name="luotragia" ColumnName="luotragia" />
           <ScalarProperty Name="hinh3" ColumnName="hinh3" />
           <ScalarProperty Name="hinh2" ColumnName="hinh2" />
           <ScalarProperty Name="hinh1" ColumnName="hinh1" />

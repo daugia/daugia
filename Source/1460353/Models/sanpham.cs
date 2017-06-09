@@ -38,5 +38,7 @@ namespace _1460353.Models
         public string hinh2 { get; set; }
         public string hinh3 { get; set; }
         public Nullable<int> luotragia { get; set; }
+
+        public bool yt { get; set; }//yeu thich
     }
 }

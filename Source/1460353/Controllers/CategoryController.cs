@@ -43,13 +43,15 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-
-                var dmold = data.danhmucs.Find(dm.id);
-                dmold.ten = dm.ten;
+                
+                var dmold = data.danhmucs.Find(dm.id); var thongbao = "Bạn đã cập nhật danh mục :" + dmold.ten;
+                 dmold.ten = dm.ten;
                 dmold.ngaycapnhat = DateTime.Now;
                 data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
                 Session["note"] = 1;
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create(thongbao +" thành:"+dm.ten);
                 return RedirectToAction("Index", "Category");
             }
         }
@@ -64,6 +66,9 @@ namespace _1460353.Controllers
                 data.danhmucs.Add(dm);
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã thêm danh mục:"+ dm.ten);
                 return RedirectToAction("Index", "Category");
             }
         }
@@ -78,6 +83,9 @@ namespace _1460353.Controllers
                 data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã xóa danh mục:" + dmold.ten);
                 return RedirectToAction("Index", "Category");
             }
         }
@@ -92,6 +100,9 @@ namespace _1460353.Controllers
                 data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
                 Session["note"] = 1;
+
+                //them thong bao sua thanh cong
+                Helpers.thongbao.create("Bạn đã phục hồi danh mục:" + dmold.ten);
                 return RedirectToAction("Index", "Category");
             }
         }
