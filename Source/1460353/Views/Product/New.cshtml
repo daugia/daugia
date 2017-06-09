@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css{
-    <link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" />
-    <link href="~/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+   
+ 
     <style type="text/css">
         label {
             font-weight: normal !important;
@@ -29,7 +29,7 @@ else if (ViewBag.note == 0)
 
 <div class="text-success">
     <h2>Đăng sản phẩm đấu giá</h2>
-    <form class="form-horizontal" method="post" id="myform" enctype="multipart/form-data">
+    <form class="form-horizontal" method="post" id="myformnew" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="txtProName" class="col-sm-2 control-label">Tên sản phẩm :</label>
@@ -70,7 +70,7 @@ else if (ViewBag.note == 0)
                 <input type="text" class="form-control" id="giamuangay" name="giamuangay" />
             </div>
         </div>
-        
+
         <div class="form-group">
             <label for="txtmota" class="col-sm-2 control-label"> Ảnh 1:</label>
             <div class="col-sm-4">
@@ -92,10 +92,10 @@ else if (ViewBag.note == 0)
             </div>
             <label for="txtmota" class="col-sm-2 control-label">Tự động gia hạn:</label>
             <div class="col-sm-4">
-               <select class="form-control" id="tang10phut" name="tang10phut">
-                   <option selected value="1">Có</option>
-                   <option value="0">Không</option>
-               </select>
+                <select class="form-control" id="tang10phut" name="tang10phut">
+                    <option selected value="1">Có</option>
+                    <option value="0">Không</option>
+                </select>
             </div>
         </div>
 
@@ -105,11 +105,11 @@ else if (ViewBag.note == 0)
         </div>
         <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-              @Html.TextArea("chitiet",new {@class="ckeditor" })
+                @Html.TextArea("chitiet", new { @class = "ckeditor" })
             </div>
         </div>
 
-       
+
 
         <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
@@ -123,12 +123,11 @@ else if (ViewBag.note == 0)
             <div style="color: Red">@ViewBag.Message</div>
         </div>
     </form>
+
     @section js{
-        <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
-        <script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-   
+  
         <script type="text/javascript">
-            $("#myform").validate({
+            $("#myformnew").validate({
                 errorClass: 'text-danger',
                 rules: {
                     giakhoidiem: {
@@ -156,7 +155,7 @@ else if (ViewBag.note == 0)
                         required: true,
                     },
                 },
-            
+
                 messages: {
                     giakhoidiem: {
                         required: "Vui lòng không bỏ trống giá khởi điểm!",
@@ -185,28 +184,8 @@ else if (ViewBag.note == 0)
                 }
             });
         </script>
-        <script>
-            $('.selectpicker').selectpicker();
-            tinymce.init({
-                selector: 'textarea',
-                height: 150,
-                theme: 'modern',
-                plugins: [
-                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
-                ],
-                toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
-                image_advtab: true,
-            });
-        </script>
-        <script type="text/javascript">
-            $('.datepicker').datepicker({
-                format: 'd/m/yyyy',
-            });
-        </script>
+       
+        
         <script type="text/javascript">
             function fileone() {
                 var file = document.getElementById('file1').files[0];

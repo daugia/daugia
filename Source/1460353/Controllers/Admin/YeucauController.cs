@@ -36,10 +36,11 @@ namespace _1460353.Controllers.Admin
                 yeucau.ngayduocban = DateTime.Now;
                 yeucau.ngayketthuc = DateTime.Now.AddDays(7);
                 data.Entry(yeucau).State = System.Data.Entity.EntityState.Modified;
-
-                var nguoidung = data.nguoidungs.Find(Helpers.Login.nguoidung().id);
+                var nguoidung = data.nguoidungs.Find(yeucau.id_nguoidung);
                 nguoidung.capphep = 1;
                 data.SaveChanges();
+
+                
                 Session["note"] = 1;
 
                 //them thong bao 

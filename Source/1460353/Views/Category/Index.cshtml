@@ -44,7 +44,7 @@
             document.getElementById('id').value = id;
             document.getElementById('ten').value = name;
         }
-        $("#myform").validate({
+        $("#myformedit").validate({
 
 
             errorClass: "glyphicon glyphicon-remove text-danger"
@@ -73,7 +73,7 @@
                 <h4 class="modal-title text-success"><b>Cập nhật tên</b></h4>
             </div>
             <div class="modal-body" style="padding:40px 50px;">
-                <form id="myform" class="form-horizontal" method="post" action="@Url.Action("Edit","Category")">
+                <form id="myformedit" class="form-horizontal" method="post" action="@Url.Action("Edit","Category")">
                     <input type="hidden" name="id" id="id" />
                     <div class="form-group">
                         <label class="control-label col-md-4">Tên danh mục :</label>

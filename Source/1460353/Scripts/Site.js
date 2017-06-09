@@ -21,15 +21,3 @@ var x = document.getElementById("snackbar")
 x.className = "show";
 setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 
-// Activate Carousel
-$("#myCarousel").carousel();
-
-// Enable Carousel Indicators
-$(".item").click(function () {
-    $("#myCarousel").carousel(1);
-});
-
-// Enable Carousel Controls
-$(".left").click(function () {
-    $("#myCarousel").carousel("prev");
-});
