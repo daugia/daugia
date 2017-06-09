@@ -12,8 +12,19 @@ namespace _1460353.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
+            var list = new List<List<Models.sanpham>> ();
+            using (var data=new Models.daugiaEntities())
+            {
+                var date = DateTime.Now;
+                // list san pham co luot ra gia cao top 5
+                var luotraggia = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderByDescending(sp => sp.luotragia).Take(5).ToList();
+                // list  5 san pham gan ket thuc han dau gia
+                var ketthuc = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderByDescending(sp => sp.ngayketthuc).Take(5).ToList();
 
-            return View();
+                list.Add(luotraggia);
+                list.Add(ketthuc);
+            }
+                return View( list);
         }
         public ActionResult Carousel()//top 5 san pham co gia cao nhat
         {
@@ -26,29 +37,7 @@ namespace _1460353.Controllers
             }
                
         }
-        public PartialViewResult Top5SPGiaCao()
-        {
-            using (var ctx = new Models.daugiaEntities())
-            {
-                var list = ctx.sanphams.OrderByDescending(p => p.giahientai).Take(5).ToList();
-                return PartialView("_Top05SPNhieuDauGia", list);
-            }
-        }
-        public PartialViewResult Top5SPLuotDauCaoNhat()
-        {
-            using (var ctx = new Models.daugiaEntities())
-            {
-                var list = ctx.lichsudaus.ToList();
-                return PartialView("_SPCoNhieuLuotDaunhat", list);
-            }
-        }
-        public PartialViewResult Top5SPGanKetThuc()
-        {
-            using (var ctx = new Models.daugiaEntities())
-            {
-                var list = ctx.sanphams.OrderByDescending(p => p.ngayketthuc).Take(5).ToList();
-                return PartialView("_Top05SPGanHetHan", list);
-            }
-        }
+       
+       
     }
 }

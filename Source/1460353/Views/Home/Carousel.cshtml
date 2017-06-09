@@ -15,7 +15,7 @@
     <div class="carousel-inner" role="listbox">
         <div class="item active">
             <div class="col-md-4 col-md-offset-2">
-                <img src="@Model[0].hinh1" height="200" width="200" />
+                <a href="@Url.Action("Chitiet","Product",new {id=Model[0].id })"> <img class="img" src="@Model[0].hinh1" height="200" width="200" /></a>
             </div>
             <div class="col-md-4 ">
                 <h3>@Model[0].ten</h3>
@@ -30,7 +30,7 @@
         {
             <div class="item ">
                 <div class="col-md-4 col-md-offset-2">
-                    <img src="@Model[i].hinh1" height="200" width="200" />
+                    <a href="@Url.Action("Chitiet","Product",new {id=Model[i].id })">  <img class="img" src="@Model[i].hinh1" height="200" width="200" /></a>
                 </div>
                 <div class="col-md-4 ">
                     <h3>@Model[i].ten</h3>
