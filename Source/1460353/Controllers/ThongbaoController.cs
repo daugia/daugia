@@ -38,11 +38,8 @@ namespace _1460353.Controllers
                    
                 }
                 data.SaveChanges();
-
-
                 return Content("11");
-            }
-                
+            }    
         }
 
     }
