@@ -16,9 +16,11 @@ namespace _1460353.Helpers
                     var idnguoidung = Helpers.Login.nguoidung().id;
                     var thongbao = new Models.thongbao()
                     {
+                        id=0,
                         id_nguoidung = idnguoidung,
                         ngaytao = DateTime.Now,
                         noidung = noidung,
+                        daxem=0
                     };
                     data.thongbaos.Add(thongbao);
                     data.SaveChanges();
