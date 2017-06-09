@@ -15,6 +15,12 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For IE and Firefox
 }
 
+
+
+var x = document.getElementById("snackbar")
+x.className = "show";
+setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
 // Activate Carousel
 $("#myCarousel").carousel();
 
@@ -27,4 +33,3 @@ $(".item").click(function () {
 $(".left").click(function () {
     $("#myCarousel").carousel("prev");
 });
-

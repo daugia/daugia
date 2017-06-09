@@ -14,16 +14,17 @@
     <h2>Đổi mật khẩu</h2>
 </div>
 @if (ViewBag.q == "1")
-{
-    <div class="alert-success">
+{  <div id="snackbar" style="background-color:forestgreen;">
         <h4>Đổi mật khẩu thành công!</h4>
     </div>
+
 }
 @if (ViewBag.q == "0")
 {
-    <div class="alert-danger">
+    <div id="snackbar" style="background-color:red;">
         <h4>Đổi mật khẩu thất bại!</h4>
     </div>
+   
 }
 <form id="myform" class="form-horizontal" method="post">
     <div class="form-group">
@@ -49,7 +50,7 @@
         <div class="col-md-4">
             @{ var exampleCaptcha = new MvcCaptcha("ExampleCaptcha"); exampleCaptcha.Reset(); }
             @Html.Captcha(exampleCaptcha)
-            @Html.TextBox("CaptchaCode", null, new { @class = "form-control",@placeholder="captcha" })
+            @Html.TextBox("CaptchaCode", null, new { @class = "form-control", @placeholder = "captcha" })
 
         </div>
     </div>
@@ -89,7 +90,7 @@
                 },
                 passc: {
                     required: "Vui lòng điền vào trường này!",
-                    equalsTo: "Mật khẩu không khớp!",
+                    equalTo: "Mật khẩu không khớp!",
 
                 }
             }
