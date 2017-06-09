@@ -17,5 +17,14 @@ namespace _1460353.Helpers
                 return true;
             }    
         }
+
+        public static int total()
+        {
+            using (var data=new Models.daugiaEntities())
+            {
+                var total = data.yeucaus.Where(yc=>yc.tinhtrang==1 && yc.capphep==0).Count();
+                return total;
+            }
+        }
     }
 }

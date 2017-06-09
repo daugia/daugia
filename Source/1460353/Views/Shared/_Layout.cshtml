@@ -131,7 +131,7 @@
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-  
+
 
     <script type="text/javascript">
         $().ready(function () {
@@ -139,23 +139,20 @@
 
                 if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn')) {
 
-                    var dropdowns = document.getElementsByClassName("mydropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('mydisplay-block')) {
-                            openDropdown.classList.remove('mydisplay-block');
-                        }
+                    closedropdown();
+                }
+
+
+            }
+            function closedropdown() {
+                var dropdowns = document.getElementsByClassName("mydropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('mydisplay-block')) {
+                        openDropdown.classList.remove('mydisplay-block');
                     }
                 }
-                else
-                {
-
-                    var height = 0.7 * $(window).height();
-                    $('.mydropdown-content').css("max-height", height);
-                    $('.mydropdown-content').addClass("mydisplay-block");
-                }
-
             }
             var setElementHeight = function () {
                 var height = $(window).height();
@@ -165,6 +162,13 @@
             $(window).on("resize", function () {
                 setElementHeight();
             }).resize();
+
+            $('.mydropdown').on('click', function () {
+                closedropdown();
+                 var height = 0.7 * $(window).height();
+                    $(this).children('.mydropdown-content').css("max-height", height);
+                    $(this).children('.mydropdown-content').addClass("mydisplay-block");
+            });
         });
         function keyupsearch(str) {
             $('#dropdown-menu').show();

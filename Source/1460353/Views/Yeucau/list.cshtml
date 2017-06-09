@@ -1,0 +1,24 @@
+﻿@model List<_1460353.Models.yeucau>
+
+@foreach (var yc in Model)
+{
+    <li style="border-color:black;background-color:#e6e6ff;">
+        <div class="row">
+            <div class="col-md-2">
+                <img class="img" style="height:60px;width:60px;" src="@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).anhdaidien" />
+            </div>
+
+            <div class="col-md-4">
+                <h6>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).ten</h6>
+                <h6>@yc.ngaytao</h6>
+            </div>
+
+            
+                <a class="col-md-3" href="#">Chấp nhận</a>
+            
+                <a class="col-md-2" href="#">Xóa</a>
+            
+
+        </div>
+    </li>
+}
