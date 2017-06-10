@@ -1292,9 +1292,6 @@
     <Content Include="Views\Yeuthich\Index.cshtml" />
     <Content Include="Views\Product\Manage.cshtml" />
     <Content Include="Views\Product\QuanLySanPham.cshtml" />
-    <Content Include="Views\User\Danhsachspyeuthich.cshtml" />
-    <Content Include="Views\User\Danhsachspdangdaugia.cshtml" />
-    <Content Include="Views\User\Danhsachspthang.cshtml" />
     <Content Include="Views\Thongbao\list.cshtml" />
     <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
     <Content Include="Views\Home\Carousel.cshtml" />

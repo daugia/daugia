@@ -261,23 +261,23 @@ namespace _1460353.Controllers
                         q.pass = mahoa.Encrypt(pass + q.id.ToString());
                         data.Entry(q).State = System.Data.Entity.EntityState.Modified;
                         data.SaveChanges();
-                        ViewBag.q = "1";
+                        ViewBag.Info = "1";
 
                         //them thong bao
-                        Helpers.thongbao.create("Bạn đã cập nhật mật khẩu thành công!");
+                        Helpers.thongbao.create("Cập nhật mật khẩu thành công");
                         return View();
                     }
                     else
                     {
-                        ViewBag.q = "0";
+                        ViewBag.Info = "0";
                         //them thong bao
-                        Helpers.thongbao.create("Bạn đã cập nhật mật khẩu thất bại!");
+                        Helpers.thongbao.create("Cập nhật mật khẩu thất bại");
                         return View();
                     }
 
                 }
             }
-            ViewBag.q = "0";
+            ViewBag.Info = "0";
             return View();
         }
     }
