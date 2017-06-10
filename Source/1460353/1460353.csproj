@@ -1185,6 +1185,7 @@
     <Compile Include="Controllers\Admin\NguoidungController.cs" />
     <Compile Include="Controllers\Admin\YeucauController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KichNguoiDungController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
@@ -1298,6 +1299,8 @@
     <Content Include="Views\LichSuDau\LSSanPham.cshtml" />
     <Content Include="Views\Home\Carousel.cshtml" />
     <Content Include="Views\Yeucau\list.cshtml" />
+    <Content Include="Views\DanhGia\NguoiMua.cshtml" />
+    <Content Include="Views\DanhGia\NguoiBan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1329,11 +1332,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63997</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65000/</IISUrl>
+          <IISUrl>http://localhost:64000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
