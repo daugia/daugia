@@ -28,6 +28,28 @@ namespace _1460353.Helpers
                 }
             }
         }
+
+        public static void create_with_id(string noidung,int idnguoidung)
+        {
+            if (Helpers.Login.IsLogin())
+            {
+                using (var data = new Models.daugiaEntities())
+                {
+                   
+                    var thongbao = new Models.thongbao()
+                    {
+                        id = 0,
+                        id_nguoidung = idnguoidung,
+                        ngaytao = DateTime.Now,
+                        noidung = noidung,
+                        daxem = 0
+                    };
+                    data.thongbaos.Add(thongbao);
+                    data.SaveChanges();
+
+                }
+            }
+        }
         public static int total()
         {
             if (Helpers.Login.IsLogin())

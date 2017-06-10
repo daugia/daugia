@@ -45,7 +45,7 @@ namespace _1460353.Controllers.Admin
 
                 //them thong bao 
                 Helpers.thongbao.create("Bạn đã cho phép "+nguoidung.ten+ " bán hang trong 7 ngày!");
-
+                Helpers.thongbao.create_with_id("Admin cho đã duyệt yêu cầu bán hàng của bạn",nguoidung.id);
                 return RedirectToAction("Index","Yeucau");
             }
 
@@ -131,6 +131,7 @@ namespace _1460353.Controllers.Admin
                 //them thong bao thanh cong
              
                 Helpers.thongbao.create("Bạn đã cho phép :"+nguoidung.ten+" bán hàng trong 7 ngày!");
+                Helpers.thongbao.create_with_id("Admin cho đã duyệt yêu cầu bán hàng của bạn", nguoidung.id);
                 return Json(1,JsonRequestBehavior.AllowGet);
             }
         }
@@ -144,7 +145,14 @@ namespace _1460353.Controllers.Admin
                 yeucau.tinhtrang = 0;
                
                 data.Entry(yeucau).State = System.Data.Entity.EntityState.Modified;
+                var nguoidung = data.nguoidungs.Find(yeucau.id_nguoidung);
                 data.SaveChanges();
+
+
+                //them thong bao thanh cong
+
+                Helpers.thongbao.create("Bạn đã hủy đơn yêu cầu của :" + nguoidung.ten + " xin bán hàng trong 7 ngày!");
+                Helpers.thongbao.create_with_id("Yêu cầu của bạn không được duyệt!", nguoidung.id);
                 return Json(1,JsonRequestBehavior.AllowGet);
             }
         }
