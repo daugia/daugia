@@ -38,6 +38,8 @@
     <EntitySetMapping Name="danhgias">
       <EntityTypeMapping TypeName="daugiaModel.danhgia">
         <MappingFragment StoreEntitySet="danhgia">
+          <ScalarProperty Name="id_nguoidanhgia" ColumnName="id_nguoidanhgia" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tot" ColumnName="tot" />
           <ScalarProperty Name="xau" ColumnName="xau" />

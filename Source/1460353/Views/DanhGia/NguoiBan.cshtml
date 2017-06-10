@@ -5,30 +5,45 @@
     ViewBag.Title = "NguoiBan";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@if (Model.Count == 0)
+@section css
 {
-    <text>Không Có Sản Phẩm Đấu Giá</text>
+    <link href="~/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 }
-else
+@section js
 {
-    <div class="row">
-        @foreach (var p in Model)
-        {
-            <div class="col-md-3">
-                <div class="thumbnail ">
-                    <div class="col-md-12">
-                        <img src="@p.hinh1" style="height:150px;" alt="@p.ten" class="col-md-9 img" />
-                        <div class="col-md-3">
-                        </div>
-                    </div>
-                    <div class="caption">
-                        <h5>@p.ten</h5>
-                        <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
-                     
-                    </div>
-                </div>
-            </div>
+    <script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+}
+<div class="well">
+    <table id="table" class="table table-striped">
+        <tr>
+            <td>Hình</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá hiện tại</td>
+            <td>Tên Người Mua</td>
+            <td>Đánh Giá</td>
+        </tr>
+        @foreach (var sp in Model)
+            {
+            <tr class="tr">
+                <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
+                <td>@sp.ten</td>
+                <td>@sp.giahientai</td>
+                <td>@sp.id_nguoidunghientai</td>
+                <td>
+                    <form class="navbar-form navbar-left" method="post" action=@Url.Action("NguoiBan", "DanhGia")>
+                        <input type="text" class="form-control" placeholder="Xin Nhap Noi Dung Danh Gia" name="noidung">
+                        <input type="hidden" class="form-control" name="idnd" value="@sp.id_nguoidunghientai">
+                        <input type="hidden" class="form-control" name="idndg" value="@sp.id_nguoidung">
+                        <select class="form-group selectpicker" name="chon">
+                            <option value="1">Tốt</option>
+                            <option value="2">Xấu</option>
+                        </select>
+                        <button type="submit" class="btn btn-default">
+                            <i class="glyphicon glyphicon-send"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
         }
-    </div>
-}
+    </table>
+</div>

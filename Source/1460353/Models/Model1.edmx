@@ -44,6 +44,8 @@
           <Property Name="tot" Type="int" />
           <Property Name="xau" Type="int" />
           <Property Name="id_nguoidung" Type="int" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="200" />
+          <Property Name="id_nguoidanhgia" Type="int" />
         </EntityType>
         <EntityType Name="danhmuc">
           <Key>
@@ -214,6 +216,8 @@
           <Property Name="tot" Type="Int32" />
           <Property Name="xau" Type="Int32" />
           <Property Name="id_nguoidung" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="id_nguoidanhgia" Type="Int32" />
         </EntityType>
         <EntityType Name="danhmuc">
           <Key>
@@ -384,6 +388,8 @@
           <EntitySetMapping Name="danhgias">
             <EntityTypeMapping TypeName="daugiaModel.danhgia">
               <MappingFragment StoreEntitySet="danhgia">
+                <ScalarProperty Name="id_nguoidanhgia" ColumnName="id_nguoidanhgia" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tot" ColumnName="tot" />
                 <ScalarProperty Name="xau" ColumnName="xau" />

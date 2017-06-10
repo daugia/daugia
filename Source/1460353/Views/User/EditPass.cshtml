@@ -14,16 +14,16 @@
     <h2>Đổi mật khẩu</h2>
 </div>
 
-@if (ViewBag.q == "1")
+@if (ViewBag.Info == "1")
 {  <div id="snackbar" style="background-color:forestgreen;">
-        <h4>Đổi mật khẩu thành công!</h4>
+        <h4>Đổi mật khẩu thành công</h4>
     </div>
 
 }
-@if (ViewBag.q == "0")
+@if (ViewBag.Info == "0")
 {
     <div id="snackbar" style="background-color:red;">
-        <h4>Đổi mật khẩu thất bại!</h4>
+        <h4>Đổi mật khẩu thất bại</h4>
     </div>
    
 }
@@ -31,31 +31,22 @@
 <form id="myformedit" class="form-horizontal" method="post">
     <div class="form-group">
         <label class="control-label col-md-2">Mật khẩu cũ</label>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <input type="password" name="passo" id="passo" class="form-control" placeholder="Mật khẩu cũ" />
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-2">Mật khẩu mới</label>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <input type="password" name="pass" id="pass" class="form-control" placeholder="Mật khẩu mới" />
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-2">Nhập lại mật khẩu</label>
-        <div class="col-md-6">
-            <input type="password" name="passc" id="passc" class="form-control" placeholder="Nhập lại mật khẩus" />
+        <div class="col-md-5">
+            <input type="password" name="passc" id="passc" class="form-control" placeholder="Nhập lại mật khẩu" />
         </div>
     </div>
-    @*<div class="form-group">
-        <div class="control-label col-md-2"> Captcha</div>
-        <div class="col-md-4">
-            @{ var exampleCaptcha = new MvcCaptcha("ExampleCaptcha"); exampleCaptcha.Reset(); }
-            @Html.Captcha(exampleCaptcha)
-            @Html.TextBox("CaptchaCode", null, new { @class = "form-control", @placeholder = "captcha" })
-
-        </div>
-    </div>*@
     <div class="form-group">
         <label class="col-md-2 control-label"> </label>
         <div class="col-md-6">
@@ -84,15 +75,16 @@
                 }
             },
             messages: {
-                passo: "Vui lòng điền vào trường này!",
-                pass: {
-                    required: "Vui lòng điền vào trường này!",
-                    minlength: "Mật khẩu tối thiểu 8 ký tự!"
+                passo: "Vui lòng điền vào trường này",
 
+                pass: {
+                    required: "Vui lòng điền vào trường này",
+                    minlength: "Mật khẩu tối thiểu 8 ký tự"
                 },
+
                 passc: {
-                    required: "Vui lòng điền vào trường này!",
-                    equalTo: "Mật khẩu không khớp!",
+                    required: "Vui lòng điền vào trường này",
+                    equalTo: "Mật khẩu không khớp",
 
                 }
             }
