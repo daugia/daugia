@@ -124,10 +124,12 @@ namespace _1460353.Controllers.Admin
                 yeucau.ngayduocban = DateTime.Now;
                 yeucau.ngayketthuc = DateTime.Now.AddDays(7);
                 data.Entry(yeucau).State = System.Data.Entity.EntityState.Modified;
+                var nguoidung = data.nguoidungs.Find(yeucau.id_nguoidung);
+                nguoidung.capphep = 1;
                 data.SaveChanges();
 
                 //them thong bao thanh cong
-                var nguoidung = Helpers.nguoidung.find((int)yeucau.id_nguoidung);
+             
                 Helpers.thongbao.create("Bạn đã cho phép :"+nguoidung.ten+" bán hàng trong 7 ngày!");
                 return Json(1,JsonRequestBehavior.AllowGet);
             }

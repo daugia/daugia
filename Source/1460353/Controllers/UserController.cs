@@ -88,7 +88,8 @@ namespace _1460353.Controllers
                         u.pass = mahoa.Encrypt(u.pass);
                         u.ngaytao = DateTime.Now;
                         u.quyen = 0;
-                        u.diem = 5;
+                        u.diem = 80;
+                        u.capphep = 0;
                         u.taikhoan = (decimal)1000000;
                         u.anhdaidien = "/Source/Images/Users/default/default.jpg";
                         u.tinhtrang = 1;
