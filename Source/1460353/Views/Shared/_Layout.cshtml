@@ -16,7 +16,9 @@
 <body>
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+    <div class="navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#naba">
@@ -47,7 +49,7 @@
 
         </div>
     </div>
-
+    <div class="top-loading navbar-fixed-top"> </div>
     <div class="modal fade bd-outline" id="yeucau" role="dialog">
 
         <div class="modal-dialog ">
@@ -78,50 +80,63 @@
         </div>
 
     </div>
-    <div class="container margin-top">
+    <div id="body" class="container">
+        <div class="row">
+            <div id="dashboard" class="margin-top display-none col-md-2">
+                <ul class="dashboard db col-md-12">
+                    <li style="font-size:150%;font-weight:bold" class="text-primary pager">Danh Mục</li>
+                   @Html.Action("LoadPartial", "Category")
+                    
+                </ul>
+            </div>
+            <div id="container" class=" margin-top">
 
-        @Html.Partial("_SearchPartial")
+                @Html.Partial("_SearchPartial")
+                <button class="icon-danhmuc"><i id="icon-danhmuc" class="glyphicon glyphicon-chevron-right"></i></button>
 
+                @RenderBody()
 
-        @RenderBody()
+                <footer>
+                    <div class="footerUp">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Đấu Giá</h4>
+                                </div>
+                                <div class="col-md-offset-1 col-md-4">
+                                    <h4>Thông Tin</h4>
+                                    <ul class="list-unstyled latestPosts"></ul>
+                                </div>
+                                <div class="col-md-offset-1 col-md-3">
+                                    <h4>Liên Hệ</h4>
+                                    <ul class="list-unstyled">
+                                        <li>Đại học KHTN HCM</li>
+                                        <li>14CK2</li>
+                                        <li>Bùi Ngọc Hoàng :</li>
+                                        <li>Phùng Quân Lạc :</li>
+                                        <li>Bạch Thị Thu Hiền :</li>
+                                        <li>Phạm Văn Tín Thành :</li>
 
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footerDown">
+                        <div class="container">
+                            <p>@DateTime.Today.Year.ToString() &copy; All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
     </div>
+
 
 
     <hr />
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
-    <footer>
-        <div class="footerUp">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h4>Đấu Giá</h4>
-                    </div>
-                    <div class="col-md-offset-1 col-md-4">
-                        <h4>Thông Tin</h4>
-                        <ul class="list-unstyled latestPosts"></ul>
-                    </div>
-                    <div class="col-md-offset-1 col-md-3">
-                        <h4>Liên Hệ</h4>
-                        <ul class="list-unstyled">
-                            <li>Đại học KHTN HCM</li>
-                            <li>14CK2</li>
-                            <li>Bùi Ngọc Hoàng :</li>
-                            <li>Phùng Quân Lạc :</li>
-                            <li>Bạch Thị Thu Hiền :</li>
-                            <li>Phạm Văn Tín Thành :</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footerDown">
-            <div class="container">
-                <p>@DateTime.Today.Year.ToString() &copy; All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
+  
 
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
@@ -192,6 +207,7 @@
         };
     </script>
     <script type="text/javascript">
+
         $().ready(function () {
             $('.thongbao').off('click')
                 .on('click', function () {
@@ -353,7 +369,7 @@
     </div>
     <script>
         $(function () {
-            $('.mydropdown-content').off('click').on('click','.thongbao-link', function () {
+            $('.mydropdown-content').off('click').on('click', '.thongbao-link', function () {
                 var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
             });
         });
