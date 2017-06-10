@@ -32,8 +32,61 @@ namespace _1460353.Controllers
         [ValidateInput(false)]
         public ActionResult New(Models.sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
         {
-
             using (var data = new daugiaEntities())
+            {
+                var fileName = Path.GetFileName(file1.FileName);
+                var duongdan = Server.MapPath("~/Source/Images/sp");
+                var path = Path.Combine(duongdan, sp.id.ToString());
+                if (System.IO.File.Exists(path))
+                {
+                    //ViewBag.ThongBao = "Hình ảnh đã tồn tại";
+                    ViewBag.note = 1;
+                }
+                else
+                {
+                    file1.SaveAs(path);
+                }
+                var fileName2 = Path.GetFileName(file2.FileName);
+                var duongdan2 = Server.MapPath("~/Source/Images/sp");
+                var path2 = Path.Combine(duongdan, sp.id.ToString());
+                if (System.IO.File.Exists(path2))
+                {
+                    ViewBag.ThongBao = "Hình ảnh đã tồn tại";
+                    ViewBag.note = 0;
+                }
+                else
+                {
+                    file1.SaveAs(path);
+                }
+                var fileName3 = Path.GetFileName(file2.FileName);
+                var duongdan3 = Server.MapPath("~/Source/Images/sp");
+                var path3 = Path.Combine(duongdan, sp.id.ToString());
+                if (System.IO.File.Exists(path3))
+                {
+                    ViewBag.ThongBao = "Hình ảnh đã tồn tại";
+                    ViewBag.note = 0;
+                }
+                else
+                {
+                    file1.SaveAs(path);
+                }
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                    sp.id_nguoidung = idnguoidung;
+                    sp.ngaybatdau = DateTime.Now;
+                    sp.ngayketthuc = DateTime.Now.AddDays(15);
+                    sp.giahientai = sp.giakhoidiem;
+                    sp.giacaonhat = sp.giakhoidiem;
+                    sp.luotragia = 0;
+                    if (sp.giabanmongmuon == null || sp.giabanmongmuon <sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
+                    if (sp.giamuangay == null || sp.giamuangay <sp.giakhoidiem) { sp.giamuangay = 0; }
+                    sp.tinhtrang = 1;//dang ban
+                    ViewBag.note = 1;
+                    data.sanphams.Add(sp);
+                    data.SaveChanges();
+            }
+                
+            return View();
+            /*using (var data = new daugiaEntities())
             {
                 var list = data.danhmucs.ToList();
                 ViewBag.Danhmuc = list;
@@ -94,7 +147,7 @@ namespace _1460353.Controllers
             }
 
 
-            return View();
+            return View();*/
         }
         public ActionResult LoadSPTheoDanhMuc(int? id, int page = 1)
         {
