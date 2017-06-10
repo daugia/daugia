@@ -39,6 +39,8 @@
     <Property Name="tot" Type="int" />
     <Property Name="xau" Type="int" />
     <Property Name="id_nguoidung" Type="int" />
+    <Property Name="noidung" Type="nvarchar" MaxLength="200" />
+    <Property Name="id_nguoidanhgia" Type="int" />
   </EntityType>
   <EntityType Name="danhmuc">
     <Key>
