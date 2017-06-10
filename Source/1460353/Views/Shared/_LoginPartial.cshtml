@@ -39,7 +39,7 @@
                     <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm</a></li>
                     <li><a href="#">Sản phẩm đã có người mua</a></li>
                     <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
-                    <li><a href="@Url.Action("QuanLySanPham","Product")">Quản Lý Sản Phẩm</a></li>
+                    @*<li><a href="@Url.Action("QuanLySanPham","Product")">Quản Lý Sản Phẩm</a></li>*@
                     <li role="separator" class="divider"></li>
                     <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
                     <li><a id="logout_l" href="@Url.Action("Logout","User")">Logout</a></li>
@@ -53,7 +53,7 @@
                 <div class="mydropdown">
                     <a class="yeucau" href="#"><i class="mydropbtn glyphicon glyphicon-user" style="color:#0026ff;font-weight:bold;"><sup><b id="yeucautotal" class="noficon">@_1460353.Helpers.yeucaubanhang.total()</b></sup></i></a>
                     <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
-                        <li  class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Yêu cầu</li>
+                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Yêu cầu</li>
                         <li>...............................................</li>
                         @Html.Action("list", "Yeucau")
                     </ul>
@@ -63,7 +63,7 @@
                 <div class="mydropdown">
                     <a class="thongbao" href="#"><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b id="thongbaototal" class="noficon">@_1460353.Helpers.thongbao.total()</b></sup></i></a>
                     <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
-                        <li  class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
+                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
                         <li>...............................................</li>
                         @Html.Action("list", "Thongbao")
                     </ul>

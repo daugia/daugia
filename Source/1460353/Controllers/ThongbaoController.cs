@@ -42,5 +42,25 @@ namespace _1460353.Controllers
             }    
         }
 
+        public ActionResult listold()
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var listnew = data.thongbaos.Where(tt => tt.daxem == 1 &&tt.id_nguoidung==idnguoidung).OrderByDescending(tt=>tt.ngaytao).ToList();
+
+                return Json(listnew, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult listnew()
+        {
+            using(var data=new Models.daugiaEntities()){
+                var idnguoidung = Helpers.Login.nguoidung().id;
+                var listnew = data.thongbaos.Where(tt => tt.daxem == 0 && tt.id_nguoidung == idnguoidung).OrderByDescending(tt=>tt.ngaytao).ToList();
+
+                return Json(listnew,JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

@@ -88,7 +88,8 @@ namespace _1460353.Controllers
                         u.pass = mahoa.Encrypt(u.pass);
                         u.ngaytao = DateTime.Now;
                         u.quyen = 0;
-                        u.diem = 5;
+                        u.diem = 80;
+                        u.capphep = 0;
                         u.taikhoan = (decimal)1000000;
                         u.anhdaidien = "/Source/Images/Users/default/default.jpg";
                         u.tinhtrang = 1;
@@ -174,8 +175,7 @@ namespace _1460353.Controllers
             }
         }
         [HttpPost]
-        [AllowAnonymous]
-        [CaptchaValidation("CaptchaCode", "ExampleCaptcha", "ERROR: CAPTCHA không đúng!")]
+       
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Edit(_1460353.Models.nguoidung u, HttpPostedFileBase file)//Sửa thong tin
@@ -192,7 +192,21 @@ namespace _1460353.Controllers
                     nguoidung.ngaycapnhat = DateTime.Now;
                     nguoidung.ngaysinh = u.ngaysinh;
 
-
+                    if (nguoidung.email!=u.email)//xet trung email khong
+                    {
+                        var checkemail = data.nguoidungs.Where(nd => nd.email == u.email).Count();
+                        if (checkemail==0)
+                        {
+                            nguoidung.email = u.email;
+                        }
+                        else//co email trung
+                        {
+                            ViewBag.q = "2";
+                            //them thong bao sua thanh cong
+                            Helpers.thongbao.create("Bạn đã cập nhật thông tin thất bại!");
+                            return View(data.nguoidungs.Find(u.id));
+                        }
+                    }
 
                     //copy ảnh đại diện
                     if (file != null)

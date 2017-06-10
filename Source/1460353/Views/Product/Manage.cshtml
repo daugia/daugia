@@ -26,6 +26,7 @@
             <td>Ngày kết thúc</td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         @foreach (var sp in Model)
         {
@@ -37,8 +38,9 @@
 
                 <td>@sp.ngaybatdau</td>
                 <td>@sp.ngayketthuc</td>
-                <td><a class="edit" href="#myedit" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" data-chitiet="@sp.chitiet">Sửa</a></td>
-                <td><a class="del" data-id="@sp.id" href="#">Hủy</a></td>
+                <td><a class="btn btn-warning" href="@Url.Action("LSSanPham", "LichSuDau", new { id=sp.id} )">Lịch sử đấu</a></td>
+                <td><a class="edit btn btn-primary" href="#myedit" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" data-chitiet="@sp.chitiet">Sửa</a></td>
+                <td><a class="del btn btn-danger" data-id="@sp.id" href="#">Hủy</a></td>
             </tr>
         }
     </table>

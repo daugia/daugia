@@ -137,7 +137,7 @@
         $().ready(function () {
             window.onclick = function (event) {
 
-                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn')) {
+                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn') ) {
 
                     closedropdown();
                 }
@@ -198,15 +198,165 @@
                     //alert('asds');
                     $('#thongbaototal').html("0");
 
+                    $(this).closest('.mydropdown').find('li').remove();
+                    var ul = $(this).closest('.mydropdown').children('ul');
+                    ul.append(''+
+                       ' <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>'+
+                        '<li>...............................................</li>');
+
                     $.ajax({
                         type: 'get',
-                        url: '@Url.Action("check","Thongbao")',
-                        error: function () { alert("Fail!");}
-                    });
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        url: '@Url.Action("listnew","Thongbao")',
+                        success: function (listnew) {
+                           //append danh sach da xem
+                            for (var i = 0; i < listnew.length; i++) {
+
+                                ul.append(
+                                    '<li style="border-color:black;background-color:#e6e6ff;">'+
+                                    '<a data-noidung="' + listnew[i].noidung +'"  class="thongbao-link" href="#thongbao-show" data-toggle="modal">'+
+                                    '<div>' + ToJavaScriptDate(listnew[i].ngaytao)+'<h6 style="float:right;">Mới</h6></div>'+
+                                            '<p class="txtover">'+
+                                    '' + listnew[i].noidung+''+
+                                            '</p>'+
+                                       ' </a>'+
+                                    '</li>');
+
+                            }
+
+                        },
+                        error: function () { alert('fail!'); }
+                    }).done(function () {
+                        $.ajax({
+                            type: 'get',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            url: '@Url.Action("listold","Thongbao")',
+                            success: function (listold) {
+                                //danh sach chua xem
+                                for (var i = 0; i < listold.length; i++) {
+                                    ul.append(
+                                        '<li style="border-color:black;background-color:white;">' +
+                                        '<a data-noidung="' + listold[i].noidung+'" class="thongbao-link" href="#thongbao-show" data-toggle="modal">' +
+                                        '<div>' + ToJavaScriptDate(listold[i].ngaytao) + '<h6 style="float:right;">Đã xem</h6></div>' +
+                                        '<p class="txtover">' +
+                                        '' + listold[i].noidung + '' +
+                                        '</p>' +
+                                        ' </a>' +
+                                        '</li>');
+                                }
+                            },
+                            error: function () { alert('fail!'); }
+                        }).done(function () {
+                            $.ajax({
+                                     //check all da xem
+                                        type: 'get',
+                                        url: '@Url.Action("check","Thongbao")',
+                                        });
+                            });
+                        });
+
+
                 });
 
         });
     </script>
+
+    <script type="text/javascript">
+        $(function () {
+            function yc_delete_row(e){
+                var row = $(e).closest('.row');
+                row.remove();
+
+            }
+            $('.yc-accept').off('click').on('click', function () {
+                // alert('accept');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("AcceptAjax","Yeucau")',
+                    success: function (str) {
+
+                    },
+                    error: function (str) { },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+
+                    });
+            });
+            $('.yc-deny').off('click').on('click', function () {
+               // alert('deny');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("DeleteAjax","Yeucau")',
+                    success: function (str) {
+                      //  alert(str);
+                    },
+                    error: function (str) {
+                      //  alert('Fail!');
+                    },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+                });
+            });
+        });
+    </script>
     <script src="~/Scripts/Site.js"></script>
+    <script>
+        function ToJavaScriptDate(value) {
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        };
+    </script>
+
+    <div class="modal fade bd-outline" id="thongbao-show" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Thông báo</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <div class="form-horizontal">
+
+                        <label class="form-group">Nội dung:</label>
+                        <div class="form-group">
+                            <p id="thongbao-noidung"></p>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.mydropdown-content').off('click').on('click','.thongbao-link', function () {
+                var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
+            });
+        });
+    </script>
 </body>
 </html>

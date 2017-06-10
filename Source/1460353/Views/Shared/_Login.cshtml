@@ -4,10 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 1460353</title>
+
     <link rel="shortcut icon" href="~/Imgs/site.ico" type="image/x-icon" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Scripts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
     @RenderSection("css", required: false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
@@ -28,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img id="logo" width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Thông Tin", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Liên Hệ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -47,8 +48,38 @@
         </div>
     </div>
 
+    <div class="modal fade bd-outline" id="yeucau" role="dialog">
 
-    <div class="container" style="margin-top:40px">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Yêu cầu được bán hàng</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form id="myform" class="form-horizontal" method="post" action="@Url.Action("New","Yeucau")">
+                        <label class="form-group">Nội dung:</label>
+                        <div class="form-group">
+                            @Html.TextArea("noidung", new { @class = "ckeditor" })
+                        </div>
+                        <div class="form-group ">
+
+                            <button type="submit" class="btn btn-success btn-default">Gửi</button>
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+    <div class="container margin-top">
+
 
         @RenderBody()
 
@@ -58,7 +89,7 @@
     <hr />
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
     <footer>
-        <div style="margin-top:80px" class="footerUp">
+        <div class="footerUp">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -71,7 +102,7 @@
                     <div class="col-md-offset-1 col-md-3">
                         <h4>Liên Hệ</h4>
                         <ul class="list-unstyled">
-                            <li>DHKHTN</li>
+                            <li>Đại học KHTN HCM</li>
                             <li>14CK2</li>
                             <li>Bùi Ngọc Hoàng :</li>
                             <li>Phùng Quân Lạc :</li>
@@ -90,12 +121,74 @@
         </div>
     </footer>
 
-    <script src="~/Scripts/Site.js"></script>
+
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     @RenderSection("js", false)
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+
+    <script type="text/javascript">
+        $().ready(function () {
+            window.onclick = function (event) {
+
+                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn') ) {
+
+                    closedropdown();
+                }
+
+
+            }
+            function closedropdown() {
+                var dropdowns = document.getElementsByClassName("mydropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('mydisplay-block')) {
+                        openDropdown.classList.remove('mydisplay-block');
+                    }
+                }
+            }
+            var setElementHeight = function () {
+                var height = $(window).height();
+                $('.mydropdown-content').css("max-height", 0.7 * height);
+            };
+
+            $(window).on("resize", function () {
+                setElementHeight();
+            }).resize();
+
+            $('.mydropdown').on('click', function () {
+                closedropdown();
+                 var height = 0.7 * $(window).height();
+                    $(this).children('.mydropdown-content').css("max-height", height);
+                    $(this).children('.mydropdown-content').addClass("mydisplay-block");
+            });
+        });
+        function keyupsearch(str) {
+            $('#dropdown-menu').show();
+            $('#dropdown-menu').children('li').remove();
+
+            $.ajax({
+                type: 'get',
+                data: { name: str },
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("searchlist","Product")',
+                success: function (prolist) {
+                    for (var i = 0; i < prolist.length;i++){
+                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten +'&page=1&chon=1">' + prolist[i].ten + '</a></li>');
+                    }
+                }
+            });
+        }
+        window.onclick = function () {
+            $('#dropdown-menu').hide();
+        };
+    </script>
     <script type="text/javascript">
         $().ready(function () {
             $('.thongbao').off('click')
@@ -103,14 +196,165 @@
                     //alert('asds');
                     $('#thongbaototal').html("0");
 
+                    $(this).closest('.mydropdown').find('li').remove();
+                    var ul = $(this).closest('.mydropdown').children('ul');
+                    ul.append(''+
+                       ' <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>'+
+                        '<li>...............................................</li>');
+
                     $.ajax({
                         type: 'get',
-                        url: '@Url.Action("check","Thongbao")',
-                        error: function () { alert("Fail!");}
-                    });
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        url: '@Url.Action("listnew","Thongbao")',
+                        success: function (listnew) {
+                           //append danh sach da xem
+                            for (var i = 0; i < listnew.length; i++) {
+
+                                ul.append(
+                                    '<li style="border-color:black;background-color:#e6e6ff;">'+
+                                    '<a data-noidung="' + listnew[i].noidung +'"  class="thongbao-link" href="#thongbao-show" data-toggle="modal">'+
+                                    '<div>' + ToJavaScriptDate(listnew[i].ngaytao)+'<h6 style="float:right;">Mới</h6></div>'+
+                                            '<p class="txtover">'+
+                                    '' + listnew[i].noidung+''+
+                                            '</p>'+
+                                       ' </a>'+
+                                    '</li>');
+
+                            }
+
+                        },
+                        error: function () { alert('fail!'); }
+                    }).done(function () {
+                        $.ajax({
+                            type: 'get',
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            url: '@Url.Action("listold","Thongbao")',
+                            success: function (listold) {
+                                //danh sach chua xem
+                                for (var i = 0; i < listold.length; i++) {
+                                    ul.append(
+                                        '<li style="border-color:black;background-color:white;">' +
+                                        '<a data-noidung="' + listold[i].noidung+'" class="thongbao-link" href="#thongbao-show" data-toggle="modal">' +
+                                        '<div>' + ToJavaScriptDate(listold[i].ngaytao) + '<h6 style="float:right;">Đã xem</h6></div>' +
+                                        '<p class="txtover">' +
+                                        '' + listold[i].noidung + '' +
+                                        '</p>' +
+                                        ' </a>' +
+                                        '</li>');
+                                }
+                            },
+                            error: function () { alert('fail!'); }
+                        }).done(function () {
+                            $.ajax({
+                                     //check all da xem
+                                        type: 'get',
+                                        url: '@Url.Action("check","Thongbao")',
+                                        });
+                            });
+                        });
+
+
                 });
+
         });
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            function yc_delete_row(e){
+                var row = $(e).closest('.row');
+                row.remove();
+
+            }
+            $('.yc-accept').off('click').on('click', function () {
+                // alert('accept');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("AcceptAjax","Yeucau")',
+                    success: function (str) {
+
+                    },
+                    error: function (str) { },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+
+                    });
+            });
+            $('.yc-deny').off('click').on('click', function () {
+               // alert('deny');
+                yc_delete_row(this);
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'get',
+                    data: { id: id },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("DeleteAjax","Yeucau")',
+                    success: function (str) {
+                      //  alert(str);
+                    },
+                    error: function (str) {
+                      //  alert('Fail!');
+                    },
+                }).done(function () {
+                    var yctotal = parseInt($('#yeucautotal').html());
+                    $('#yeucautotal').html(yctotal - 1);
+
+                    var tttotal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(tttotal + 1);
+                });
+            });
+        });
+    </script>
+    <script src="~/Scripts/Site.js"></script>
+    <script>
+        function ToJavaScriptDate(value) {
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        };
+    </script>
+
+    <div class="modal fade bd-outline" id="thongbao-show" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Thông báo</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <div class="form-horizontal">
+
+                        <label class="form-group">Nội dung:</label>
+                        <div class="form-group">
+                            <p id="thongbao-noidung"></p>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.mydropdown-content').off('click').on('click','.thongbao-link', function () {
+                var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
+            });
+        });
+    </script>
 </body>
 </html>
