@@ -43,10 +43,15 @@ namespace _1460353.Controllers
                     sp.id_nguoidung = idnguoidung;
                     sp.ngaybatdau = DateTime.Now;
                     sp.ngayketthuc = DateTime.Now.AddDays(15);
+                    sp.giahientai = sp.giakhoidiem;
+                    sp.giacaonhat = sp.giakhoidiem;
                     sp.tinhtrang = 1;//dang ban
                     ViewBag.note = 1;
                     data.sanphams.Add(sp);
                     data.SaveChanges();
+
+                    //them thong bao
+                    Helpers.thongbao.create("Bạn đã thêm sản phẩm :"+sp.ten+"thành công!");
 
                     //luu hinh anh
                     //
@@ -77,7 +82,11 @@ namespace _1460353.Controllers
                 }
                 else
                 {
+
                     ViewBag.note = 0;
+
+                    //them thong bao
+                    Helpers.thongbao.create("Bạn đã thêm sản phẩm :" + sp.ten+" thất bại!");
                 }
             }
 
