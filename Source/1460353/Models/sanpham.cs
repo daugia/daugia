@@ -33,12 +33,11 @@ namespace _1460353.Models
         public Nullable<int> solantang10phut { get; set; }
         public string mieutangan { get; set; }
         public Nullable<int> luotview { get; set; }
+        public bool yt { get; set; }
         public Nullable<decimal> giabanmongmuon { get; set; }
         public string hinh1 { get; set; }
         public string hinh2 { get; set; }
         public string hinh3 { get; set; }
         public Nullable<int> luotragia { get; set; }
-
-        public bool yt { get; set; }//yeu thich
     }
 }
