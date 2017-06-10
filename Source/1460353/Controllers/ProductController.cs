@@ -45,6 +45,8 @@ namespace _1460353.Controllers
                     sp.ngayketthuc = DateTime.Now.AddDays(15);
                     sp.giahientai = sp.giakhoidiem;
                     sp.giacaonhat = sp.giakhoidiem;
+                    sp.luotragia = 0;
+                    if (sp.giabanmongmuon == null || sp.giabanmongmuon <sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
                     sp.tinhtrang = 1;//dang ban
                     ViewBag.note = 1;
                     data.sanphams.Add(sp);
