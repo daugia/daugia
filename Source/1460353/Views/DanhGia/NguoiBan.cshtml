@@ -1,0 +1,34 @@
+﻿@using _1460353.Models
+@using _1460353.Helpers
+@model  List<sanpham>
+@{
+    ViewBag.Title = "NguoiBan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+    <text>Không Có Sản Phẩm Đấu Giá</text>
+}
+else
+{
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3">
+                <div class="thumbnail ">
+                    <div class="col-md-12">
+                        <img src="@p.hinh1" style="height:150px;" alt="@p.ten" class="col-md-9 img" />
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                    <div class="caption">
+                        <h5>@p.ten</h5>
+                        <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
+                     
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
