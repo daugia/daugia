@@ -65,7 +65,7 @@ else
             {
                 <div class="col-md-3">
                     <div class="thumbnail ">
-                        <img src="@p.hinh1" alt="@p.ten">
+                       <a href="@Url.Action("ChiTiet","Product",new {id=p.id })"> <img class="img" src="@p.hinh1" alt="@p.ten"></a>
                         <div class="caption">
                             <h5>@p.ten</h5>
                             <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
@@ -75,13 +75,7 @@ else
                             <p class="txtover">@p.mieutangan</p>
                             <p>
                                 <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
-                                @*@if (Login.IsLogged() == true)
-                                    {
-                                        <a href="javascript:;" class="btn btn-success addItem" role="button" data-id="@p.ProID">
-                                            <i class="fa fa-cart-plus"></i>
-                                            Đặt Mua
-                                        </a>
-                                    }*@
+                               
                             </p>
                         </div>
                     </div>

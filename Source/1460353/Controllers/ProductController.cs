@@ -103,14 +103,14 @@ namespace _1460353.Controllers
                         var type2 = Path.GetExtension(file2.FileName);
                         var path2 = Path.Combine(dir, "hinh2" + type2);
                         file2.SaveAs(path2);
-                        sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh2" + type2;
+                        sp.hinh2 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh2" + type2;
                     }
                     if (file3 != null)
                     {
                         var type3 = Path.GetExtension(file3.FileName);
                         var path3 = Path.Combine(dir, "hinh3" + type3);
                         file3.SaveAs(path3);
-                        sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh3" + type3;
+                        sp.hinh3 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh3" + type3;
                     }
                     data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
                     data.SaveChanges();
@@ -147,7 +147,7 @@ namespace _1460353.Controllers
                 ViewBag.Pages = nPage;
                 ViewBag.CurPage = page;
                 ViewBag.iddm = id;
-                var list = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                var list = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderByDescending(sp=>sp.ngaybatdau).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
 
                 return View(loadyeuthich(list));
             }

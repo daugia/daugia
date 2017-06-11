@@ -1199,6 +1199,7 @@
     </Compile>
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
+    <Compile Include="Helpers\sanphamhp.cs" />
     <Compile Include="Helpers\thongbao.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="Helpers\yeuthich.cs" />
