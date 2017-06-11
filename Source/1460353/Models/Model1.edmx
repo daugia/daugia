@@ -127,6 +127,9 @@
           <Property Name="hinh2" Type="nchar" MaxLength="200" />
           <Property Name="hinh3" Type="nchar" MaxLength="200" />
           <Property Name="luotragia" Type="int" />
+          <Property Name="nguoimuadanhgia" Type="int" />
+          <Property Name="nguoibandanhgia" Type="int" />
+          <Property Name="guimail" Type="int" />
         </EntityType>
         <EntityType Name="thongbao">
           <Key>
@@ -299,6 +302,9 @@
           <Property Name="hinh2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="hinh3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="luotragia" Type="Int32" />
+          <Property Name="nguoimuadanhgia" Type="Int32" />
+          <Property Name="nguoibandanhgia" Type="Int32" />
+          <Property Name="guimail" Type="Int32" />
         </EntityType>
         <EntityType Name="thongbao">
           <Key>
@@ -456,6 +462,9 @@
           <EntitySetMapping Name="sanphams">
             <EntityTypeMapping TypeName="daugiaModel.sanpham">
               <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="guimail" ColumnName="guimail" />
+                <ScalarProperty Name="nguoibandanhgia" ColumnName="nguoibandanhgia" />
+                <ScalarProperty Name="nguoimuadanhgia" ColumnName="nguoimuadanhgia" />
                 <ScalarProperty Name="luotragia" ColumnName="luotragia" />
                 <ScalarProperty Name="hinh3" ColumnName="hinh3" />
                 <ScalarProperty Name="hinh2" ColumnName="hinh2" />

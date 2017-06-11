@@ -26,7 +26,17 @@ namespace _1460353.Controllers
                 list.Add(luotraggia);
                 list.Add(ketthuc);
             }
-                return View( list);
+            if (TempData["Error"] != null)
+            {
+                ViewBag.Error = TempData["Error"].ToString();
+                TempData.Remove("Error");
+            }
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+                TempData.Remove("Message");
+            }
+            return View( list);
         }
         public ActionResult Carousel()//top 5 san pham co gia cao nhat
         {

@@ -81,6 +81,8 @@ namespace _1460353.Controllers
                     if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
                     if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
                     sp.tinhtrang = 1;//dang ban
+                    sp.nguoibandanhgia = 0;
+                    sp.nguoimuadanhgia = 0;
                     ViewBag.note = 1;
                     data.sanphams.Add(sp);
                     data.SaveChanges();
@@ -296,6 +298,7 @@ namespace _1460353.Controllers
                                                 model.giacaonhat = Gia;
                                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                                model.luotragia++;
                                                 lichsudau ls = new lichsudau();
                                                 ls.tiendadau = Gia;
                                                 ls.id_sanpham = proId;
@@ -325,6 +328,7 @@ namespace _1460353.Controllers
                                                     }
                                                 }
                                                 model.giahientai = Gia;
+                                                model.luotragia++;
                                             }
                                         }
                                     }
