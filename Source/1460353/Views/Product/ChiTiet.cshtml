@@ -103,10 +103,10 @@ else
                    </div>
 
                    <div class="col-md-12">
-                       <label>Người Có Giá Cao Nhất:</label><h5> @Model.id_nguoidunghientai</h5>
-                   </div>
+                       <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })"><h5> @Model.id_nguoidunghientai</h5></a>
+</div>
                    <div class="col-md-12">
-                       <label>Người Giữ Sản Phẩm :</label><h5>  @Model.id_nguoidung</h5>
+                       <label>Người Giữ Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @Model.id_nguoidung</h5></a>
                    </div>
                    <div class="col-md-12">
                        <label>Lượt Xem :</label><h5>  @Model.luotview</h5>

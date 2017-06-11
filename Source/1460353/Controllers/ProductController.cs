@@ -81,6 +81,8 @@ namespace _1460353.Controllers
                     if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
                     if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
                     sp.tinhtrang = 1;//dang ban
+                    sp.nguoibandanhgia = 0;
+                    sp.nguoimuadanhgia = 0;
                     ViewBag.note = 1;
                     data.sanphams.Add(sp);
                     data.SaveChanges();

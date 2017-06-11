@@ -13,6 +13,12 @@
 {
     <script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 }
+@if (Model.Count == 0)
+{
+    <text>Chưa Có Sản Phẩm Đế Đánh Giá</text>
+}
+else
+{
 <div class="well">
     <table id="table" class="table table-striped">
         <tr>
@@ -23,7 +29,7 @@
             <td>Đánh Giá</td>
         </tr>
         @foreach (var sp in Model)
-            {
+        {
             <tr class="tr">
                 <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
                 <td>@sp.ten</td>
@@ -48,3 +54,4 @@
         }
     </table>
 </div>
+}
