@@ -1297,6 +1297,7 @@
     <Content Include="Views\Yeucau\list.cshtml" />
     <Content Include="Views\DanhGia\NguoiMua.cshtml" />
     <Content Include="Views\DanhGia\NguoiBan.cshtml" />
+    <Content Include="Views\DanhGia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
