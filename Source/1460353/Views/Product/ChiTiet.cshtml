@@ -5,11 +5,7 @@
     ViewBag.Title = "Chi Tiết Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section css
-{
-    <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
-}
 @section js
 {<script src="~/Scripts/elevatezoom/jquery.elevatezoom.js"></script>
     <script>
@@ -30,6 +26,13 @@
                 document.getElementById("hengio").innerHTML = "Đã hết hạn";
             }
         }, 1000);
+
+
+        $(function () {
+            $('.img').off('click').on('click', function () {
+                document.getElementById('img-lg-show').src = $(this).data('img');
+            });
+        });
     </script>
     <script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
     <script type="text/javascript">
@@ -71,13 +74,13 @@ else
     <div class="well row">
         <div class="col-md-4">
             <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh1" id="zoom_02" data-zoom-image="~/Imgs/sp/@Model.id/main.jpg" alt="@Model.ten">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh1" class="img" style="height:150px;" src="@Model.hinh1" alt="@Model.ten"></a>
+                            </div>
+            <div class="col-md-12">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh2"  class="img" style="height:150px;" src="@Model.hinh2" alt="@Model.ten"></a>
             </div>
             <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh2" alt="@Model.ten">
-            </div>
-            <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh3" alt="@Model.ten">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh3"  class="img" style="height:150px;" src="@Model.hinh3" alt="@Model.ten"></a>
             </div>
         </div>
         
@@ -103,10 +106,10 @@ else
                    </div>
 
                    <div class="col-md-12">
-                       <label>Người Có Giá Cao Nhất:</label><h5> @Model.id_nguoidunghientai</h5>
-                   </div>
+                       <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })"><h5> @Model.id_nguoidunghientai</h5></a>
+</div>
                    <div class="col-md-12">
-                       <label>Người Giữ Sản Phẩm :</label><h5>  @Model.id_nguoidung</h5>
+                       <label>Người Giữ Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @Model.id_nguoidung</h5></a>
                    </div>
                    <div class="col-md-12">
                        <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
@@ -160,4 +163,16 @@ else
 
     </div>
 
+}
+
+<div id="img-lg" class="modal fade " role="dialog">
+    <div class="modal-dialog">
+       <img style="width:100%;height:100%" id="img-lg-show" />
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+   
 }

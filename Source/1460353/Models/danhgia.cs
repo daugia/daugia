@@ -15,10 +15,10 @@ namespace _1460353.Models
     public partial class danhgia
     {
         public int id { get; set; }
-        public Nullable<int> tot { get; set; }
-        public Nullable<int> xau { get; set; }
+        public Nullable<int> mat { get; set; }
+        public Nullable<int> id_nguoidanhgia { get; set; }
         public Nullable<int> id_nguoidung { get; set; }
         public string noidung { get; set; }
-        public Nullable<int> id_nguoidanhgia { get; set; }
+        public Nullable<System.DateTime> ngaytao { get; set; }
     }
 }

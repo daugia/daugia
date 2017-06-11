@@ -1057,6 +1057,7 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Source\Images\Logo\logo.ico" />
+    <Content Include="Source\Images\new-product.png" />
     <Content Include="Source\Images\sp\10\main.jpg" />
     <Content Include="Source\Images\sp\10\main_thumbs.jpg" />
     <Content Include="Source\Images\sp\11\1.jpg" />
@@ -1199,6 +1200,7 @@
     </Compile>
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
+    <Compile Include="Helpers\sanphamhp.cs" />
     <Compile Include="Helpers\thongbao.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="Helpers\yeuthich.cs" />
@@ -1207,9 +1209,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\chinhsuachitietsp.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\chitietdanhgia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\danhgia.cs">
@@ -1298,6 +1297,7 @@
     <Content Include="Views\Yeucau\list.cshtml" />
     <Content Include="Views\DanhGia\NguoiMua.cshtml" />
     <Content Include="Views\DanhGia\NguoiBan.cshtml" />
+    <Content Include="Views\DanhGia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

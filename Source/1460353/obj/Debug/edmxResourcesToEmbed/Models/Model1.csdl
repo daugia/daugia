@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="daugiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="daugiaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="binhluans" EntityType="daugiaModel.binhluan" />
+    <EntitySet Name="chinhsuachitietsps" EntityType="daugiaModel.chinhsuachitietsp" />
+    <EntitySet Name="danhgias" EntityType="daugiaModel.danhgia" />
+    <EntitySet Name="danhmucs" EntityType="daugiaModel.danhmuc" />
+    <EntitySet Name="kichnguoidungs" EntityType="daugiaModel.kichnguoidung" />
+    <EntitySet Name="lichsudaus" EntityType="daugiaModel.lichsudau" />
+    <EntitySet Name="nguoidungs" EntityType="daugiaModel.nguoidung" />
+    <EntitySet Name="sanphams" EntityType="daugiaModel.sanpham" />
+    <EntitySet Name="thongbaos" EntityType="daugiaModel.thongbao" />
+    <EntitySet Name="yeucaus" EntityType="daugiaModel.yeucau" />
+    <EntitySet Name="yeuthiches" EntityType="daugiaModel.yeuthich" />
+  </EntityContainer>
   <EntityType Name="binhluan">
     <Key>
       <PropertyRef Name="id" />
@@ -20,27 +33,16 @@
     <Property Name="noidungchinhsua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="thoigian" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="chitietdanhgia">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_nguoidung" Type="Int32" />
-    <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="id_nguoidanhgia" Type="Int32" />
-    <Property Name="ngaytao" Type="DateTime" Precision="3" />
-    <Property Name="mat" Type="Int32" />
-  </EntityType>
   <EntityType Name="danhgia">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="tot" Type="Int32" />
-    <Property Name="xau" Type="Int32" />
-    <Property Name="id_nguoidung" Type="Int32" />
-    <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="mat" Type="Int32" />
     <Property Name="id_nguoidanhgia" Type="Int32" />
+    <Property Name="id_nguoidung" Type="Int32" />
+    <Property Name="noidung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ngaytao" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="danhmuc">
     <Key>
@@ -89,7 +91,7 @@
     <Property Name="ngaytao" Type="DateTime" Precision="3" />
     <Property Name="ngaycapnhat" Type="DateTime" Precision="3" />
     <Property Name="taikhoan" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="diem" Type="Int32" />
+    <Property Name="diem" Type="Double" />
     <Property Name="quyen" Type="Int32" />
     <Property Name="tinhtrang" Type="Int32" />
     <Property Name="capphep" Type="Int32" />
@@ -122,6 +124,9 @@
     <Property Name="hinh2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="hinh3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="luotragia" Type="Int32" />
+    <Property Name="nguoibandanhgia_" Type="Int32" />
+    <Property Name="nguoimuadanhgia_" Type="Int32" />
+    <Property Name="guimail_" Type="Int32" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>
@@ -133,28 +138,6 @@
     <Property Name="ngaytao" Type="DateTime" Precision="3" />
     <Property Name="daxem" Type="Int32" />
   </EntityType>
-  <EntityType Name="yeuthich">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_nguoidung" Type="Int32" />
-    <Property Name="id_sanpham" Type="Int32" />
-  </EntityType>
-  <EntityContainer Name="daugiaEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="binhluans" EntityType="Self.binhluan" />
-    <EntitySet Name="chinhsuachitietsps" EntityType="Self.chinhsuachitietsp" />
-    <EntitySet Name="chitietdanhgias" EntityType="Self.chitietdanhgia" />
-    <EntitySet Name="danhgias" EntityType="Self.danhgia" />
-    <EntitySet Name="danhmucs" EntityType="Self.danhmuc" />
-    <EntitySet Name="kichnguoidungs" EntityType="Self.kichnguoidung" />
-    <EntitySet Name="lichsudaus" EntityType="Self.lichsudau" />
-    <EntitySet Name="nguoidungs" EntityType="Self.nguoidung" />
-    <EntitySet Name="sanphams" EntityType="Self.sanpham" />
-    <EntitySet Name="thongbaos" EntityType="Self.thongbao" />
-    <EntitySet Name="yeuthiches" EntityType="Self.yeuthich" />
-    <EntitySet Name="yeucaus" EntityType="daugiaModel.yeucau" />
-  </EntityContainer>
   <EntityType Name="yeucau">
     <Key>
       <PropertyRef Name="id" />
@@ -167,5 +150,13 @@
     <Property Name="ngayketthuc" Type="DateTime" Precision="3" />
     <Property Name="tinhtrang" Type="Int32" />
     <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="yeuthich">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_nguoidung" Type="Int32" />
+    <Property Name="id_sanpham" Type="Int32" />
   </EntityType>
 </Schema>

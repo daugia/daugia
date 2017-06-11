@@ -27,159 +27,109 @@ namespace _1460353.Controllers
             }
             return View();
         }
-        [Filters.LoginUser]
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult New(sanpham sp , HttpPostedFileBase productfile)
-        {
-            using (var data = new daugiaEntities())
-            {
-                var filename = Path.GetFileName(productfile.FileName);
-                var duongdan = data.sanphams.Select(p => p.id).FirstOrDefault();
-                var path = Path.Combine(Server.MapPath("~/Source/Images/sp"), filename);
-                if (System.IO.File.Exists(path))
-                {
-                    ViewBag.note = 0;
-                }
-                else
-                {
-                    productfile.SaveAs(path);
-                }
-                var idnguoidung = Helpers.Login.nguoidung().id;
-                sp.id_nguoidung = idnguoidung;
-                sp.ngaybatdau = DateTime.Now;
-                sp.ngayketthuc = DateTime.Now.AddDays(15);
-                sp.giahientai = sp.giakhoidiem;
-                sp.giacaonhat = sp.giakhoidiem;
-                sp.luotragia = 0;
-                if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
-                if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
-                sp.tinhtrang = 1;//dang ban
-                ViewBag.note = 1;
-                data.sanphams.Add(sp);
-                data.SaveChanges();
-            }
-            return View();
-        }
-        //public ActionResult New(Models.sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
+
+        //public ActionResult New(sanpham sp , HttpPostedFileBase productfile)
         //{
         //    using (var data = new daugiaEntities())
         //    {
-        //        var fileName = Path.GetFileName(file1.FileName);
-        //        var duongdan = Server.MapPath("~/Source/Images/sp");
-        //        var path = Path.Combine(duongdan, sp.id.ToString());
+        //        var filename = Path.GetFileName(productfile.FileName);
+        //        var duongdan = data.sanphams.Select(p => p.id).FirstOrDefault();
+        //        var path = Path.Combine(Server.MapPath("~/Source/Images/sp"), filename);
         //        if (System.IO.File.Exists(path))
         //        {
-        //            //ViewBag.ThongBao = "Hình ảnh đã tồn tại";
         //            ViewBag.note = 0;
         //        }
         //        else
         //        {
-        //            file1.SaveAs(path);
-        //        }
-        //        var fileName2 = Path.GetFileName(file2.FileName);
-        //        var duongdan2 = Server.MapPath("~/Source/Images/sp");
-        //        var path2 = Path.Combine(duongdan, sp.id.ToString());
-        //        if (System.IO.File.Exists(path2))
-        //        {
-        //            //ViewBag.ThongBao = "Hình ảnh đã tồn tại";
-        //            ViewBag.note = 0;
-        //        }
-        //        else
-        //        {
-        //            file1.SaveAs(path);
-        //        }
-        //        var fileName3 = Path.GetFileName(file2.FileName);
-        //        var duongdan3 = Server.MapPath("~/Source/Images/sp");
-        //        var path3 = Path.Combine(duongdan, sp.id.ToString());
-        //        if (System.IO.File.Exists(path3))
-        //        {
-        //            ViewBag.ThongBao = "Hình ảnh đã tồn tại";
-        //            ViewBag.note = 0;
-        //        }
-        //        else
-        //        {
-        //            file1.SaveAs(path);
+        //            productfile.SaveAs(path);
         //        }
         //        var idnguoidung = Helpers.Login.nguoidung().id;
-        //            sp.id_nguoidung = idnguoidung;
-        //            sp.ngaybatdau = DateTime.Now;
-        //            sp.ngayketthuc = DateTime.Now.AddDays(15);
-        //            sp.giahientai = sp.giakhoidiem;
-        //            sp.giacaonhat = sp.giakhoidiem;
-        //            sp.luotragia = 0;
-        //            if (sp.giabanmongmuon == null || sp.giabanmongmuon <sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
-        //            if (sp.giamuangay == null || sp.giamuangay <sp.giakhoidiem) { sp.giamuangay = 0; }
-        //            sp.tinhtrang = 1;//dang ban
-        //            ViewBag.note = 1;
-        //            data.sanphams.Add(sp);
-        //            data.SaveChanges();
+        //        sp.id_nguoidung = idnguoidung;
+        //        sp.ngaybatdau = DateTime.Now;
+        //        sp.ngayketthuc = DateTime.Now.AddDays(15);
+        //        sp.giahientai = sp.giakhoidiem;
+        //        sp.giacaonhat = sp.giakhoidiem;
+        //        sp.luotragia = 0;
+        //        if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
+        //        if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
+        //        sp.tinhtrang = 1;//dang ban
+        //        ViewBag.note = 1;
+        //        data.sanphams.Add(sp);
+        //        data.SaveChanges();
         //    }
-                
         //    return View();
-        //    /*using (var data = new daugiaEntities())
-        //    {
-        //        var list = data.danhmucs.ToList();
-        //        ViewBag.Danhmuc = list;
-        //        if (Helpers.Login.nguoidung().capphep == 1)
-        //        {
-        //            var idnguoidung = Helpers.Login.nguoidung().id;
-        //            sp.id_nguoidung = idnguoidung;
-        //            sp.ngaybatdau = DateTime.Now;
-        //            sp.ngayketthuc = DateTime.Now.AddDays(15);
-        //            sp.giahientai = sp.giakhoidiem;
-        //            sp.giacaonhat = sp.giakhoidiem;
-        //            sp.luotragia = 0;
-        //            if (sp.giabanmongmuon == null || sp.giabanmongmuon <sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
-        //            if (sp.giamuangay == null || sp.giamuangay <sp.giakhoidiem) { sp.giamuangay = 0; }
-        //            sp.tinhtrang = 1;//dang ban
-        //            ViewBag.note = 1;
-        //            data.sanphams.Add(sp);
-        //            data.SaveChanges();
-
-        //            //them thong bao
-        //            Helpers.thongbao.create("Bạn đã thêm sản phẩm :"+sp.ten+"thành công!");
-
-        //            //luu hinh anh
-        //            //
-
-        //            var mapPath = Server.MapPath("~/Source/Images/sp");
-        //            var dir = Path.Combine(mapPath, sp.id.ToString());
-        //            Directory.CreateDirectory(dir);
-        //            var type1 = Path.GetExtension(file1.FileName);
-        //            var path1 = Path.Combine(dir, "hinh1" + type1);
-        //            file1.SaveAs(path1);
-        //            sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh1" + type1;
-        //            if (file2 != null)
-        //            {
-        //                var type2 = Path.GetExtension(file2.FileName);
-        //                var path2 = Path.Combine(dir, "hinh2" + type2);
-        //                file2.SaveAs(path2);
-        //                sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh2" + type2;
-        //            }
-        //            if (file3 != null)
-        //            {
-        //                var type3 = Path.GetExtension(file3.FileName);
-        //                var path3 = Path.Combine(dir, "hinh3" + type3);
-        //                file3.SaveAs(path3);
-        //                sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh3" + type3;
-        //            }
-        //            data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-        //            data.SaveChanges();
-        //        }
-        //        else
-        //        {
-
-        //            ViewBag.note = 0;
-
-        //            //them thong bao
-        //            Helpers.thongbao.create("Bạn đã thêm sản phẩm :" + sp.ten+" thất bại!");
-        //        }
-        //    }
-
-
-        //    return View();*/
         //}
+        [Filters.LoginUser]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult New(Models.sanpham sp, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3)
+        {
+
+            using (var data = new daugiaEntities())
+            {
+                var list = data.danhmucs.ToList();
+                ViewBag.Danhmuc = list;
+                if (Helpers.Login.nguoidung().capphep == 1)
+                {
+                    var idnguoidung = Helpers.Login.nguoidung().id;
+                    sp.id_nguoidung = idnguoidung;
+                    sp.ngaybatdau = DateTime.Now;
+                    sp.ngayketthuc = DateTime.Now.AddDays(15);
+                    sp.giahientai = sp.giakhoidiem;
+                    sp.giacaonhat = sp.giakhoidiem;
+                    sp.luotragia = 0;
+                    if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
+                    if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
+                    sp.tinhtrang = 1;//dang ban
+                    sp.nguoibandanhgia_ = 0;
+                    sp.nguoimuadanhgia_ = 0;
+                    ViewBag.note = 1;
+                    data.sanphams.Add(sp);
+                    data.SaveChanges();
+
+                    //them thong bao
+                    Helpers.thongbao.create("Bạn đã thêm sản phẩm :" + sp.ten + "thành công!");
+
+                   // luu hinh anh
+
+
+                    var mapPath = Server.MapPath("~/Source/Images/sp");
+                    var dir = Path.Combine(mapPath, sp.id.ToString());
+                    Directory.CreateDirectory(dir);
+                    var type1 = Path.GetExtension(file1.FileName);
+                    var path1 = Path.Combine(dir, "hinh1" + type1);
+                    file1.SaveAs(path1);
+                    sp.hinh1 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh1" + type1;
+                    if (file2 != null)
+                    {
+                        var type2 = Path.GetExtension(file2.FileName);
+                        var path2 = Path.Combine(dir, "hinh2" + type2);
+                        file2.SaveAs(path2);
+                        sp.hinh2 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh2" + type2;
+                    }
+                    if (file3 != null)
+                    {
+                        var type3 = Path.GetExtension(file3.FileName);
+                        var path3 = Path.Combine(dir, "hinh3" + type3);
+                        file3.SaveAs(path3);
+                        sp.hinh3 = "/Source/Images/sp/" + sp.id.ToString() + "/hinh3" + type3;
+                    }
+                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                    data.SaveChanges();
+                }
+                else
+                {
+
+                    ViewBag.note = 0;
+
+                   // them thong bao
+                    Helpers.thongbao.create("Bạn đã thêm sản phẩm :" + sp.ten + " thất bại!");
+                }
+            }
+
+
+            return View();
+        }
         public ActionResult LoadSPTheoDanhMuc(int? id, int page = 1)
         {
             if (id.HasValue == false)
@@ -199,7 +149,7 @@ namespace _1460353.Controllers
                 ViewBag.Pages = nPage;
                 ViewBag.CurPage = page;
                 ViewBag.iddm = id;
-                var list = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.id).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                var list = daugia.sanphams.Where(s => s.id_danhmuc == id && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderByDescending(sp=>sp.ngaybatdau).Skip((page - 1) * recordsPerPage).Take(recordsPerPage).ToList();
 
                 return View(loadyeuthich(list));
             }
@@ -275,13 +225,13 @@ namespace _1460353.Controllers
                     ViewBag.Chon = chon;
                     if (chon == 1)
                     {
-                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderByDescending(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
                 else
@@ -302,12 +252,12 @@ namespace _1460353.Controllers
                     if (chon == 1)
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
             }
@@ -348,6 +298,7 @@ namespace _1460353.Controllers
                                                 model.giacaonhat = Gia;
                                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                                model.luotragia++;
                                                 lichsudau ls = new lichsudau();
                                                 ls.tiendadau = Gia;
                                                 ls.id_sanpham = proId;
@@ -377,6 +328,7 @@ namespace _1460353.Controllers
                                                     }
                                                 }
                                                 model.giahientai = Gia;
+                                                model.luotragia++;
                                             }
                                         }
                                     }
