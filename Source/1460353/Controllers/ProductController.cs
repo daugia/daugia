@@ -225,8 +225,8 @@ namespace _1460353.Controllers
                     ViewBag.Chon = chon;
                     if (chon == 1)
                     {
-                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(loadyeuthich(list.OrderByDescending(sp=>sp.ngaybatdau).ToList()));
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderByDescending(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
