@@ -34,13 +34,14 @@ namespace _1460353.Models
         public string mieutangan { get; set; }
         public Nullable<int> luotview { get; set; }
         public Nullable<decimal> giabanmongmuon { get; set; }
-        public bool yt { get; set; }
         public string hinh1 { get; set; }
         public string hinh2 { get; set; }
         public string hinh3 { get; set; }
         public Nullable<int> luotragia { get; set; }
-        public Nullable<int> nguoimuadanhgia { get; set; }
-        public Nullable<int> nguoibandanhgia { get; set; }
-        public Nullable<int> guimail { get; set; }
+        public Nullable<int> nguoibandanhgia_ { get; set; }
+        public Nullable<int> nguoimuadanhgia_ { get; set; }
+        public Nullable<int> guimail_ { get; set; }
+
+        public bool yt { get; set; }//yeu thich
     }
 }

@@ -27,7 +27,7 @@ namespace _1460353.Models
         public Nullable<System.DateTime> ngaytao { get; set; }
         public Nullable<System.DateTime> ngaycapnhat { get; set; }
         public Nullable<decimal> taikhoan { get; set; }
-        public Nullable<int> diem { get; set; }
+        public Nullable<double> diem { get; set; }
         public Nullable<int> quyen { get; set; }
         public Nullable<int> tinhtrang { get; set; }
         public Nullable<int> capphep { get; set; }

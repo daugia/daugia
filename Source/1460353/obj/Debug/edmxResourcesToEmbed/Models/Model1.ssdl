@@ -20,27 +20,16 @@
     <Property Name="noidungchinhsua" Type="ntext" />
     <Property Name="thoigian" Type="datetime" />
   </EntityType>
-  <EntityType Name="chitietdanhgia">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_nguoidung" Type="int" />
-    <Property Name="noidung" Type="nvarchar" MaxLength="200" />
-    <Property Name="id_nguoidanhgia" Type="int" />
-    <Property Name="ngaytao" Type="datetime" />
-    <Property Name="mat" Type="int" />
-  </EntityType>
   <EntityType Name="danhgia">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tot" Type="int" />
-    <Property Name="xau" Type="int" />
-    <Property Name="id_nguoidung" Type="int" />
-    <Property Name="noidung" Type="nvarchar" MaxLength="200" />
+    <Property Name="mat" Type="int" />
     <Property Name="id_nguoidanhgia" Type="int" />
+    <Property Name="id_nguoidung" Type="int" />
+    <Property Name="noidung" Type="nvarchar" MaxLength="255" />
+    <Property Name="ngaytao" Type="datetime" />
   </EntityType>
   <EntityType Name="danhmuc">
     <Key>
@@ -89,7 +78,7 @@
     <Property Name="ngaytao" Type="datetime" />
     <Property Name="ngaycapnhat" Type="datetime" />
     <Property Name="taikhoan" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="diem" Type="int" />
+    <Property Name="diem" Type="float" />
     <Property Name="quyen" Type="int" />
     <Property Name="tinhtrang" Type="int" />
     <Property Name="capphep" Type="int" />
@@ -122,9 +111,9 @@
     <Property Name="hinh2" Type="nchar" MaxLength="200" />
     <Property Name="hinh3" Type="nchar" MaxLength="200" />
     <Property Name="luotragia" Type="int" />
-    <Property Name="nguoimuadanhgia" Type="int" />
-    <Property Name="nguoibandanhgia" Type="int" />
-    <Property Name="guimail" Type="int" />
+    <Property Name="nguoibandanhgia " Type="int" />
+    <Property Name="nguoimuadanhgia " Type="int" />
+    <Property Name="guimail " Type="int" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>
@@ -160,7 +149,6 @@
   <EntityContainer Name="daugiaModelStoreContainer">
     <EntitySet Name="binhluan" EntityType="Self.binhluan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="chinhsuachitietsp" EntityType="Self.chinhsuachitietsp" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="chitietdanhgia" EntityType="Self.chitietdanhgia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="danhgia" EntityType="Self.danhgia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="danhmuc" EntityType="Self.danhmuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="kichnguoidung" EntityType="Self.kichnguoidung" Schema="dbo" store:Type="Tables" />

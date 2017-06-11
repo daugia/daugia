@@ -4,46 +4,34 @@
     <EntitySetMapping Name="binhluans">
       <EntityTypeMapping TypeName="daugiaModel.binhluan">
         <MappingFragment StoreEntitySet="binhluan">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="noidung" ColumnName="noidung" />
-          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
           <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="chinhsuachitietsps">
       <EntityTypeMapping TypeName="daugiaModel.chinhsuachitietsp">
         <MappingFragment StoreEntitySet="chinhsuachitietsp">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
-          <ScalarProperty Name="noidungchinhsua" ColumnName="noidungchinhsua" />
           <ScalarProperty Name="thoigian" ColumnName="thoigian" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="chitietdanhgias">
-      <EntityTypeMapping TypeName="daugiaModel.chitietdanhgia">
-        <MappingFragment StoreEntitySet="chitietdanhgia">
-          <ScalarProperty Name="mat" ColumnName="mat" />
-          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="noidungchinhsua" ColumnName="noidungchinhsua" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="noidung" ColumnName="noidung" />
-          <ScalarProperty Name="id_nguoidanhgia" ColumnName="id_nguoidanhgia" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="danhgias">
       <EntityTypeMapping TypeName="daugiaModel.danhgia">
         <MappingFragment StoreEntitySet="danhgia">
-          <ScalarProperty Name="id_nguoidanhgia" ColumnName="id_nguoidanhgia" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
           <ScalarProperty Name="noidung" ColumnName="noidung" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tot" ColumnName="tot" />
-          <ScalarProperty Name="xau" ColumnName="xau" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id_nguoidanhgia" ColumnName="id_nguoidanhgia" />
+          <ScalarProperty Name="mat" ColumnName="mat" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,19 +40,19 @@
         <MappingFragment StoreEntitySet="danhmuc">
           <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
           <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="ten" ColumnName="ten" />
           <ScalarProperty Name="trinhtrang" ColumnName="trinhtrang" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="kichnguoidungs">
       <EntityTypeMapping TypeName="daugiaModel.kichnguoidung">
         <MappingFragment StoreEntitySet="kichnguoidung">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
           <ScalarProperty Name="id_nguoidungquanlysp" ColumnName="id_nguoidungquanlysp" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -72,11 +60,11 @@
       <EntityTypeMapping TypeName="daugiaModel.lichsudau">
         <MappingFragment StoreEntitySet="lichsudau">
           <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
-          <ScalarProperty Name="tiendadau" ColumnName="tiendadau" />
           <ScalarProperty Name="ngaydaugia" ColumnName="ngaydaugia" />
+          <ScalarProperty Name="tiendadau" ColumnName="tiendadau" />
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -84,55 +72,55 @@
       <EntityTypeMapping TypeName="daugiaModel.nguoidung">
         <MappingFragment StoreEntitySet="nguoidung">
           <ScalarProperty Name="capphep" ColumnName="capphep" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="ten" ColumnName="ten" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-          <ScalarProperty Name="diachi" ColumnName="diachi" />
-          <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
-          <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
-          <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
-          <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
-          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
-          <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-          <ScalarProperty Name="diem" ColumnName="diem" />
-          <ScalarProperty Name="quyen" ColumnName="quyen" />
           <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+          <ScalarProperty Name="quyen" ColumnName="quyen" />
+          <ScalarProperty Name="diem" ColumnName="diem" />
+          <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+          <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="anhdaidien" ColumnName="anhdaidien" />
+          <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+          <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+          <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sanphams">
       <EntityTypeMapping TypeName="daugiaModel.sanpham">
         <MappingFragment StoreEntitySet="sanpham">
-          <ScalarProperty Name="guimail" ColumnName="guimail" />
-          <ScalarProperty Name="nguoibandanhgia" ColumnName="nguoibandanhgia" />
-          <ScalarProperty Name="nguoimuadanhgia" ColumnName="nguoimuadanhgia" />
+          <ScalarProperty Name="guimail_" ColumnName="guimail " />
+          <ScalarProperty Name="nguoimuadanhgia_" ColumnName="nguoimuadanhgia " />
+          <ScalarProperty Name="nguoibandanhgia_" ColumnName="nguoibandanhgia " />
           <ScalarProperty Name="luotragia" ColumnName="luotragia" />
           <ScalarProperty Name="hinh3" ColumnName="hinh3" />
           <ScalarProperty Name="hinh2" ColumnName="hinh2" />
           <ScalarProperty Name="hinh1" ColumnName="hinh1" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="ten" ColumnName="ten" />
-          <ScalarProperty Name="soluong" ColumnName="soluong" />
-          <ScalarProperty Name="chitiet" ColumnName="chitiet" />
-          <ScalarProperty Name="giakhoidiem" ColumnName="giakhoidiem" />
-          <ScalarProperty Name="giahientai" ColumnName="giahientai" />
-          <ScalarProperty Name="diemduocdau" ColumnName="diemduocdau" />
-          <ScalarProperty Name="id_nguoidunghientai" ColumnName="id_nguoidunghientai" />
-          <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
-          <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
-          <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
-          <ScalarProperty Name="giacaonhat" ColumnName="giacaonhat" />
-          <ScalarProperty Name="giamuangay" ColumnName="giamuangay" />
-          <ScalarProperty Name="tang10phut" ColumnName="tang10phut" />
-          <ScalarProperty Name="solantang10phut" ColumnName="solantang10phut" />
-          <ScalarProperty Name="mieutangan" ColumnName="mieutangan" />
-          <ScalarProperty Name="luotview" ColumnName="luotview" />
           <ScalarProperty Name="giabanmongmuon" ColumnName="giabanmongmuon" />
+          <ScalarProperty Name="luotview" ColumnName="luotview" />
+          <ScalarProperty Name="mieutangan" ColumnName="mieutangan" />
+          <ScalarProperty Name="solantang10phut" ColumnName="solantang10phut" />
+          <ScalarProperty Name="tang10phut" ColumnName="tang10phut" />
+          <ScalarProperty Name="giamuangay" ColumnName="giamuangay" />
+          <ScalarProperty Name="giacaonhat" ColumnName="giacaonhat" />
+          <ScalarProperty Name="tinhtrang" ColumnName="tinhtrang" />
+          <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+          <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+          <ScalarProperty Name="id_nguoidunghientai" ColumnName="id_nguoidunghientai" />
+          <ScalarProperty Name="diemduocdau" ColumnName="diemduocdau" />
+          <ScalarProperty Name="giahientai" ColumnName="giahientai" />
+          <ScalarProperty Name="giakhoidiem" ColumnName="giakhoidiem" />
+          <ScalarProperty Name="chitiet" ColumnName="chitiet" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id_danhmuc" ColumnName="id_danhmuc" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -141,18 +129,9 @@
         <MappingFragment StoreEntitySet="thongbao">
           <ScalarProperty Name="daxem" ColumnName="daxem" />
           <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
           <ScalarProperty Name="noidung" ColumnName="noidung" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="yeuthiches">
-      <EntityTypeMapping TypeName="daugiaModel.yeuthich">
-        <MappingFragment StoreEntitySet="yeuthich">
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -165,6 +144,15 @@
           <ScalarProperty Name="ngayduocban" ColumnName="ngayduocban" />
           <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
           <ScalarProperty Name="capphep" ColumnName="capphep" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yeuthiches">
+      <EntityTypeMapping TypeName="daugiaModel.yeuthich">
+        <MappingFragment StoreEntitySet="yeuthich">
+          <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
           <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
