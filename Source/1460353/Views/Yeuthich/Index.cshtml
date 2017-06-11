@@ -47,7 +47,9 @@
         $().ready(function () {
 
             $('.page').off('click').on('click', function () {
-
+                var top = $('.top-loading');
+                top.addClass('top-loading-show');
+                setTimeout(function () { top.removeClass('top-loading-show'); }, 1500);
 
                 var ul = $(this).parents('ul');
                 ul.children('li').removeClass('active');

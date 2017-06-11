@@ -90,6 +90,11 @@
 @section js{
     <script type="text/javascript">
         $('.page').off('click').on('click', function () {
+
+            var top = $('.top-loading');
+            top.addClass('top-loading-show');
+            setTimeout(function () { top.removeClass('top-loading-show'); },1500);
+
             var li = $(this).closest('ul').children('li');
             li.removeClass('active');
             $(this).parent('li').addClass('active');
@@ -124,11 +129,12 @@
                             '<td>' + prolist[i].giahientai + '</td>' +
                             '<td>' + ToJavaScriptDate(prolist[i].ngaybatdau) + '</td>' +
                             '<td>' + ToJavaScriptDate(prolist[i].ngayketthuc) + '</td>' +
-                            '<td><a class="edit" href="#myedit" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" >Sửa</a></td>' +
-                            '<td><a class="del" data-id="' + prolist[i].id + '" href="#">Hủy</a></td>' +
+                           '<td><a class="btn btn-warning" href="/LichSuDau/LSSanpham/'+prolist[i].id+'">Lịch sử đấu</a></td>'+
+                            '<td><a class="edit btn btn-primary" href="#myedit" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" >Sửa</a></td>' +
+                            '<td><a class="del btn btn-danger" data-id="' + prolist[i].id + '" href="#">Hủy</a></td>' +
                             '</tr>');
                     }
-                   
+
 
                 },
                 error: function () {
