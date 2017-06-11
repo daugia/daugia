@@ -22,8 +22,8 @@ else
             <td>Tên</td>
             <td>Tên Người Đã Đánh Giá</td>
             <td>Nội Dụng</td>
-            <td>Tốt</td>
-            <td>Xấu</td>
+            <td>Ngày Tạo</td>
+            <td>Đánh Giá</td>
         </tr>
         @foreach (var dg in Model)
         {
@@ -31,8 +31,15 @@ else
                 <td>@dg.id_nguoidung</td>
                 <td>@dg.id_nguoidanhgia</td>
                 <td>@dg.noidung</td>
-                <td>@dg.tot</td>
-                <td>@dg.xau</td>
+                <td>@dg.ngaytao</td>
+                @if(dg.mat==1)
+                {
+                    <td>Tốt</td>
+                }
+                else
+                {
+                   <td>Xấu</td>
+                }
             </tr>
         }
     </table>
