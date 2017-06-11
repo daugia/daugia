@@ -296,6 +296,7 @@ namespace _1460353.Controllers
                                                 model.giacaonhat = Gia;
                                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
+                                                model.luotragia++;
                                                 lichsudau ls = new lichsudau();
                                                 ls.tiendadau = Gia;
                                                 ls.id_sanpham = proId;
@@ -325,6 +326,7 @@ namespace _1460353.Controllers
                                                     }
                                                 }
                                                 model.giahientai = Gia;
+                                                model.luotragia++;
                                             }
                                         }
                                     }
