@@ -6,7 +6,7 @@
 
 @model List<_1460353.Models.sanpham>
 
-<h2>Danh sách sản phẩm đang đăng bài đấu giá</h2>
+<h2>Danh sách sản phẩm đang được đăng đấu giá</h2>
 <ul class="pagination">
     @for (var i = 1; i <= ViewBag.pageTotal; i++)
     {
@@ -17,7 +17,7 @@
 <div class="well">
     <table id="table" class="table table-striped">
         <tr>
-            <td>Hình</td>
+            <td>Hình ảnh</td>
             <td>Tên sản phẩm</td>
             <td>Giá khởi điểm</td>
             <td>Giá hiện tại</td>
@@ -38,7 +38,7 @@
 
                 <td>@sp.ngaybatdau</td>
                 <td>@sp.ngayketthuc</td>
-                <td><a class="btn btn-warning" href="@Url.Action("LSSanPham", "LichSuDau", new { id=sp.id} )">Lịch sử đấu</a></td>
+                <td><a class="btn btn-warning" href="@Url.Action("LSSanPham", "LichSuDau", new { id=sp.id} )">Lịch sử đấu giá</a></td>
                 <td><a class="edit btn btn-primary" href="#myedit" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" data-chitiet="@sp.chitiet">Sửa</a></td>
                 <td><a class="del btn btn-danger" data-id="@sp.id" href="#">Hủy</a></td>
             </tr>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2">Chi tiết:</label>
+                <label class="control-label col-md-2">Chi tiết sản phẩm :</label>
                 <div class="col-md-10">
                     @Html.TextArea("chitiet", new { @class = "ckeditor" })
                 </div>
