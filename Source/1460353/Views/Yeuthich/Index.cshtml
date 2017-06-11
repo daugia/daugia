@@ -27,7 +27,7 @@
     {
         <table class="table table-striped">
             <tr data-id="@sp.id">
-                <td><img style="width:60px;height:60px;" src="/Imgs/sp/@sp.id/main_thumbs.jpg" /></td>
+                <td><img style="width:60px;height:60px;" src="@sp.hinh1" /></td>
                 <td><label>Giá khởi điểm :</label>@sp.giakhoidiem</td>
                 <td><label>Giá mua ngay :</label>@sp.giamuangay</td>
                 <td><label>Giá hiện tại :</label>@sp.giahientai</td>
@@ -66,11 +66,11 @@
                     success: function (prolist) {
                         $('.table').remove();
                         for (var i = 0; i < prolist.length; i++) {
-                            var src = "/Imgs/sp/"+prolist[i].id+"/main_thumbs.jpg";
+                            
                             $('.div').append(
                                 '<table class="table table-striped">'+
                                    '<tr data-id="'+prolist[i].id+'">'+
-                                        '<td><img style="width:60px;height:60px;" src="'+src+'" /></td>'+
+                                '<td><img style="width:60px;height:60px;" src="' + prolist[i].hinh1+'" /></td>'+
                                         '<td><label>Giá khởi điểm :</label>'+prolist[i].giakhoidiem+'</td>'+
                                        ' <td><label>Giá mua ngay :</label>'+prolist[i].giamuangay+'</td>'+
                                         '<td><label>Giá hiện tại :</label>'+prolist[i].giahientai+'</td>'+

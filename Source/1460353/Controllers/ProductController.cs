@@ -226,12 +226,12 @@ namespace _1460353.Controllers
                     if (chon == 1)
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list.OrderByDescending(sp=>sp.ngaybatdau).ToList()));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
                 else
@@ -252,12 +252,12 @@ namespace _1460353.Controllers
                     if (chon == 1)
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
             }

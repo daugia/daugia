@@ -1,24 +1,21 @@
 ﻿@using _1460353.Models
 @using _1460353.Helpers
 @model  List<sanpham>
-@{ 
+@{
     ViewBag.Title = "Tim Kiem San Pham";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css
 {
-<link href="~/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
 }
-@section js
-{
-<script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-}
+
 @if (Model.Count == 0)
 {
     <div id="snackbar" style="background-color:red;">
         <text>Không Có Sản Phẩm</text>
     </div>
-   
+
 }
 else
 {
@@ -33,24 +30,24 @@ else
                     {
                         if (dm.id == ViewBag.iddm)
                         {
-                            <option value="@dm.id" selected>@dm.ten</option>
+                    <option value="@dm.id" selected>@dm.ten</option>
                         }
                         else
                         {
-                            <option value="@dm.id">@dm.ten</option>
+                    <option value="@dm.id">@dm.ten</option>
                         }
                     }
                 </select>
                 <select class="form-group selectpicker" name="chon">
                     @if (ViewBag.Chon == 1)
                     {
-                        <option value="1" selected>Sắp Xếp Theo Thời Gian</option>
-                        <option value="2">Sắp Xếp Theo Giá</option>
+                    <option value="1" selected>Sắp Xếp Theo Thời Gian</option>
+                    <option value="2">Sắp Xếp Theo Giá</option>
                     }
                     else
                     {
-                        <option value="1">Sắp Xếp Theo Thời Gian</option>
-                        <option value="2" selected>Sắp Xếp Theo Giá</option>
+                    <option value="1">Sắp Xếp Theo Thời Gian</option>
+                    <option value="2" selected>Sắp Xếp Theo Giá</option>
                     }
                 </select>
                 <button type="submit" class="btn btn-default">
@@ -59,30 +56,64 @@ else
             </div>
         </form>
     </div>
- 
-        <div class="row">
-            @foreach (var p in Model)
-            {
-                <div class="col-md-3">
-                    <div class="thumbnail ">
-                       <a href="@Url.Action("ChiTiet","Product",new {id=p.id })"> <img class="img" src="@p.hinh1" alt="@p.ten"></a>
-                        <div class="caption">
-                            <h5>@p.ten</h5>
-                            <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
-                            <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
-                            <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
-                            <h5>Miêu Tả Ngắn Sản Phẩm </h5>
-                            <p class="txtover">@p.mieutangan</p>
-                            <p>
-                                <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
-                               
-                            </p>
+
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3">
+                <div class="thumbnail ">
+                    <div class="col-md-12">
+
+                        <div class="col-md-9 img-container">
+
+
+                            <img src="@p.hinh1" style="height:150px;width:150px;" alt="@p.ten" class=" img2" />
+                            @if (_1460353.Helpers.sanphamhp.getTimein((DateTime)p.ngaybatdau))
+                            {
+                                <img src="~/Source/Images/new-product.png" style="height:50px;width:50px;" alt="New" class=" img2" />
+                            }
+                            <div class="middle">
+                                <div class="img-text"><a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a></div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            @if (_1460353.Helpers.Login.IsLogin())
+                            {
+                                if (_1460353.Helpers.Login.nguoidung().quyen == 0)
+                                {
+                                    if (p.yt == false)
+                                    {
+                                        <a style="font-size:30px;color:#ffff00;" href="#"><i class="yt glyphicon glyphicon-star-empty" data-idsanpham="@p.id"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a style="font-size:30px;color:#ffff00;" href="#"><i class="yt glyphicon glyphicon-star" data-idsanpham="@p.id"></i></a>
+                                    }
+                                }
+                            }
                         </div>
                     </div>
+                    <div class="caption">
+                        <h5>@p.ten</h5>
+                        <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
+                        <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
+                        <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
+                        <p>Miêu Tả Ngắn Sản Phẩm:  </p>
+                        <p class="txtover">@p.mieutangan</p>
+                        <p>
+                            <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
+
+                        </p>
+
+                    </div>
                 </div>
-            }
-        </div>
-    
+            </div>
+        }
+    </div>
+
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>
@@ -94,19 +125,68 @@ else
                 {
                     if (ViewBag.CurPage == i)
                     {
-                    <li class="active"><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
+            <li class="active"><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
                 }
                 else
                 {
-                    <li><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
+            <li><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
                 }
             }
             <li>
 
-                    <a href="@Url.Action("TimKiem","Product",new {TuKhoa=ViewBag.TuKhoa,page=((ViewBag.CurPage<ViewBag.Pages)?ViewBag.CurPage+1 : ViewBag.Pages),iddm=ViewBag.iddm,chon=ViewBag.Chon})" aria-label="Previous">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                <a href="@Url.Action("TimKiem","Product",new {TuKhoa=ViewBag.TuKhoa,page=((ViewBag.CurPage<ViewBag.Pages)?ViewBag.CurPage+1 : ViewBag.Pages),iddm=ViewBag.iddm,chon=ViewBag.Chon})" aria-label="Previous">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
             </li>
         </ul>
     </nav>
+}
+
+@section js
+{
+    <script src="~/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('.yt').off('click').on('click', function () {
+                var total = parseInt($('#yeuthichtotal').html());//tong san pham yeu thich
+                var idsanpham = $(this).data('idsanpham');
+                if ($(this).hasClass('glyphicon-star-empty')) {
+                    $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+                    //code ajax them yeu thich san pham nay vao
+
+                    $('#yeuthichtotal').html(total + 1);
+                    //them yeu thich
+                    $.ajax({
+                        type: 'get',
+                        data: { idsanpham: idsanpham },
+                        url: '@Url.Action("themyeuthich","Yeuthich")',
+                        success: function (str) { }
+                    });
+
+
+                    //them thong bao da yeu thich 1 san pham
+                    var thongbaototal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(thongbaototal+1);
+
+                }
+                else {
+                    $(this).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+                    //code ajax xoa yeu thich san pham nay
+                    $('#yeuthichtotal').html(total - 1);
+
+                    //Xoa yeu thich
+                    $.ajax({
+                        type: 'get',
+                        data: { idsanpham: idsanpham },
+                        url: '@Url.Action("xoayeuthich","Yeuthich")',
+                        success: function (str) { }
+                    });
+
+                    //them thong bao da  xoa yeu thich 1 san pham
+                    var thongbaototal = parseInt($('#thongbaototal').html());
+                    $('#thongbaototal').html(thongbaototal + 1);
+                }
+            });
+        });
+    </script>
 }
