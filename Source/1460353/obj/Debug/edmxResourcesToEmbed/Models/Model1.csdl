@@ -122,6 +122,9 @@
     <Property Name="hinh2" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="hinh3" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="luotragia" Type="Int32" />
+    <Property Name="nguoimuadanhgia" Type="Int32" />
+    <Property Name="nguoibandanhgia" Type="Int32" />
+    <Property Name="guimail" Type="Int32" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>
