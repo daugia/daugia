@@ -37,13 +37,13 @@ else
                     <div class="col-md-12">
 
                         <div class="col-md-9 img-container">
+                           
+
+                            <img src="@p.hinh1" style="height:150px;width:150px;" alt="@p.ten" class=" img2" />
                             @if (_1460353.Helpers.sanphamhp.getTimein((DateTime)p.ngaybatdau))
                             {
                                 <img src="~/Source/Images/new-product.png" style="height:50px;width:50px;" alt="New" class=" img2" />
                             }
-
-                            <img src="@p.hinh1" style="height:150px;width:150px;" alt="@p.ten" class=" img2" />
-
                             <div class="middle">
                                 <div class="img-text"><a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a></div>
                             </div>
