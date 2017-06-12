@@ -1,62 +1,48 @@
-﻿<nav class="navbar navbar-default">
+﻿<nav class=" navbar-inverse">
     <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="@Url.Action("Index","Home")">Trang chủ</a>
+        <div class=" navbar-header col-md-2">
+            <a href="#" class="icon-danhmuc  navbar-brand ">Danh mục<i class="icon-danhmuc-icon glyphicon glyphicon-chevron-right"></i></a>
         </div>
+      
+        <form class="form-search col-md-10" method="get" action=@Url.Action("TimKiem", "Product") autocomplete="off">
+
+            <div class="dropdown">
+                <input onkeyup="keyupsearch(this.value)" type="text" class="mysearch-1 dropdown-toggle" placeholder="Tìm kiếm" name="TuKhoa">
+                <ul class="dropdown-menu" id="dropdown-menu"></ul>
+            </div>
+            <input type="hidden" name="page" value="1" />
+            <input type="hidden" name="chon" value="1" />
 
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Mới <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Top</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Danh mục <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        @Html.Action("LoadPartial", "Category")
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left col-md-5" method="get" action=@Url.Action("TimKiem", "Product")>
-                <div class="form-group">
-                    <div class="dropdown form-group">
-                        <input onkeyup="keyupsearch(this.value)" type="text" class="form-control dropdown-toggle" placeholder="Search" name="TuKhoa">
-                        <ul class="dropdown-menu" id="dropdown-menu">
-                           
-                        </ul>
-                    </div>
-                    @*<input onkeyup="keyupsearch(this.value)" type="text" class="form-control" placeholder="Search" name="TuKhoa">*@
-
-                    <input type="hidden" name="page" value="1" />
-                    <input type="hidden" name="chon" value="1" />
-                    <button type="submit" class="btn btn-default">
-                        <i class="glyphicon glyphicon-search"></i>
-
-                    </button>
-                </div>
-
-            </form>
-
-            @*<ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>*@
-        </div>
+        </form>
     </div>
 </nav>
+<style>
+   
+    .form-search {
+        max-width: 100%;
+    }
 
+        .form-search .mysearch-1 {
+            margin: 0.5%;
+        }
+
+    .mysearch-1 {
+        max-width: 100%;
+        width: 200px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 5px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+        .mysearch-1:focus {
+            width: 100%;
+        }
+</style>

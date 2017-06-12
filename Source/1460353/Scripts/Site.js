@@ -25,17 +25,21 @@ $(function () {
         var height = $(window).height();
 
         var body = $('#body');
-        var dashboard = $('#dashboard');
+        var dashboard = $('#dashboard'); 
         var container = $('#container');
-        if (dashboard.hasClass('display-none')){
+        var icon = $('.icon-danhmuc-icon');
+        if (dashboard.hasClass('display-none')) {
+            dashboard.slideDown(750);
             dashboard.removeClass('display-none').addClass('display-block');
             $('.dashboard').css("height", 0.85 * height);
-            $('#icon-danhmuc').removeClass('glyphicon glyphicon-chevron-right').addClass('glyphicon glyphicon-chevron-left');
+            icon.removeClass('glyphicon glyphicon-chevron-right').addClass('glyphicon glyphicon-chevron-left');
             container.addClass('col-md-10 col-md-offset-2');
             body.removeClass('container').addClass('container-fluid');
+
         }
         else if (dashboard.hasClass('display-block')) {
-            $('#icon-danhmuc').removeClass('glyphicon glyphicon-chevron-left').addClass('glyphicon glyphicon-chevron-right');
+            dashboard.fadeOut(-1);
+            icon.removeClass('glyphicon glyphicon-chevron-left').addClass('glyphicon glyphicon-chevron-right');
             dashboard.removeClass('display-block').addClass('display-none');
             container.removeClass('col-md-10 col-md-offset-2');
             body.removeClass('container-fluid').addClass('container');
