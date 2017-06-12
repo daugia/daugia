@@ -447,7 +447,8 @@ namespace _1460353.Controllers
         {
             using (var data = new Models.daugiaEntities())
             {
-                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name)).ToList();
+                var datenow = DateTime.Now;
+                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name) && sp.tinhtrang==1 && sp.ngayketthuc>=datenow).ToList();
                 return Json(prolist, JsonRequestBehavior.AllowGet);
             }
         }
