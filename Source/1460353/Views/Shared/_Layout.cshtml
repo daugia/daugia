@@ -33,8 +33,8 @@
                 </button>
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Thông Tin", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Liên Hệ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
             <div id="naba" class="navbar-collapse collapse">
@@ -85,14 +85,15 @@
             <div id="dashboard" class="margin-top display-none col-md-2">
                 <ul class="dashboard db col-md-12">
                     <li style="font-size:150%;font-weight:bold" class="text-primary pager">Danh Mục</li>
-                   @Html.Action("LoadPartial", "Category")
-                    
+                    @Html.Action("LoadPartial", "Category")
+
                 </ul>
             </div>
             <div id="container" class=" margin-top">
 
                 @Html.Partial("_SearchPartial")
-                <button class="icon-danhmuc"><i id="icon-danhmuc" class="glyphicon glyphicon-chevron-right"></i></button>
+                <br/>
+                <button class="icon-danhmuc  icon-danhmuc-fixed"><i class="icon-danhmuc-icon glyphicon glyphicon-chevron-right"></i></button>
 
                 @RenderBody()
 
@@ -136,7 +137,7 @@
 
     <hr />
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
-  
+
 
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
@@ -186,21 +187,39 @@
             });
         });
         function keyupsearch(str) {
-            $('#dropdown-menu').show();
+
             $('#dropdown-menu').children('li').remove();
 
-            $.ajax({
-                type: 'get',
-                data: { name: str },
-                dataType: 'json',
-                contentType: 'application/json',
-                url: '@Url.Action("searchlist","Product")',
-                success: function (prolist) {
-                    for (var i = 0; i < prolist.length;i++){
-                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten +'&page=1&chon=1">' + prolist[i].ten + '</a></li>');
+            if (str.length != 0) {
+                $('#dropdown-menu').show();
+
+                $.ajax({
+                    type: 'get',
+                    data: { name: str },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("searchlist","Product")',
+                    success: function (prolist) {
+                        if (prolist.length!=0){
+                            for (var i = 0; i < prolist.length; i++) {
+                                $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten + '&page=1&chon=1">' + prolist[i].ten + '</a></li>');
+                            }
+                        } else {
+                            $('#dropdown-menu').children('li').remove();
+                            $('#dropdown-menu').hide();
+                        }
+                       
+
                     }
-                }
-            });
+                }).done(function () {
+
+                    });
+
+            } else {
+                $('#dropdown-menu').children('li').remove();
+                $('#dropdown-menu').hide();
+            }
+
         }
         window.onclick = function () {
             $('#dropdown-menu').hide();
