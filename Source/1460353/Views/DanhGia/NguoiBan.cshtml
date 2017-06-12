@@ -15,18 +15,18 @@
 }
 @if (Model.Count == 0)
 {
-    <text>Chưa Có Sản Phẩm Đế Đánh Giá</text>
+    <text>Chưa có sản phẩm nào để đánh giá</text>
 }
 else
 {
 <div class="well">
     <table id="table" class="table table-striped">
         <tr>
-            <td>Hình</td>
+            <td>Hình ảnh</td>
             <td>Tên sản phẩm</td>
             <td>Giá hiện tại</td>
-            <td>Tên Người Mua</td>
-            <td>Đánh Giá</td>
+            <td>Tên người mua</td>
+            <td>Đánh giá của người mua</td>
         </tr>
         @foreach (var sp in Model)
         {
@@ -42,8 +42,8 @@ else
                         <input type="hidden" class="form-control" name="idndg" value="@sp.id_nguoidung">
                         <input type="hidden" class="form-control" name="idsp" value="@sp.id">
                         <select class="form-group selectpicker" name="chon">
-                            <option value="1">Tốt</option>
-                            <option value="0">Xấu</option>
+                            <option value="1">Chất lượng</option>
+                            <option value="0">Kém chất lượng</option>
                         </select>
                         <button type="submit" class="btn btn-default">
                             <i class="glyphicon glyphicon-send"></i>
