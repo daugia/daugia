@@ -186,6 +186,7 @@
 }
 
 body {
+    min-width:1200px;
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url("../Imgs/bg.png");
