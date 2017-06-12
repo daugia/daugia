@@ -187,7 +187,7 @@
             });
         });
         function keyupsearch(str) {
-
+            
             $('#dropdown-menu').children('li').remove();
 
             if (str.length != 0) {
@@ -200,7 +200,8 @@
                     contentType: 'application/json',
                     url: '@Url.Action("searchlist","Product")',
                     success: function (prolist) {
-                        if (prolist.length!=0){
+                        if (prolist.length != 0) {
+                            
                             for (var i = 0; i < prolist.length; i++) {
                                 $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten + '&page=1&chon=1">' + prolist[i].ten + '</a></li>');
                             }
@@ -210,7 +211,7 @@
                         }
                        
 
-                    }
+                    }, error: function () { alert('Fail!');}
                 }).done(function () {
 
                     });

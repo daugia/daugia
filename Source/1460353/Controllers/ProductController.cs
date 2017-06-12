@@ -442,13 +442,13 @@ namespace _1460353.Controllers
 
 
         //Cua tao
-        [Filters.LoginUser]
+        
         public ActionResult searchlist(string name)
         {
             using (var data = new Models.daugiaEntities())
             {
-                var datenow = DateTime.Now;
-                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name) && sp.tinhtrang==1 && sp.ngayketthuc>=datenow).ToList();
+                
+                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name) && sp.tinhtrang==1 && sp.ngayketthuc>=DateTime.Now).ToList();
                 return Json(prolist, JsonRequestBehavior.AllowGet);
             }
         }
