@@ -7,7 +7,7 @@
 }
 @if (Model.Count == 0)
 {
-    <text>Không Có Sản Phẩm Đấu Giá</text>
+    <text>Không có sản phẩm đấu giá</text>
 }
 else
 {
@@ -21,8 +21,8 @@ else
                 </div>
                 <div class="caption">
                     <h5>@ViewBag.listsp[i].ten</h5>
-                    <h5>Lịch Sử Ra Giá : @string.Format("{0:N0}", Model[i].tiendadau)</h5>
-                    <p>Ngày Đấu Giá  </p>
+                    <h5>Lịch sử ra giá : @string.Format("{0:N0}", Model[i].tiendadau)</h5>
+                    <p>Ngày đấu giá : </p>
                     <p >@Model[i].ngaydaugia</p>
                     <p>
                         <a href=@Url.Action("ChiTiet", "Product", new { id = Model[i].id_sanpham }) class="btn btn-default" role="button">Chi Tiết</a>    
@@ -33,7 +33,7 @@ else
                     }
                     else
                     {
-                        <h4>Bạn Đã Bị Kich Khỏi Đấu Giá Sản Phẩm</h4>
+                        <h4>Bạn đã bị kích ra khỏi vùng đấu giá. Bạn không có quyền đấu giá sản phẩm nầy</h4>
                     }
                 </div>
             </div>
