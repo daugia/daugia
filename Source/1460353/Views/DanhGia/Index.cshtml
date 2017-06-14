@@ -7,23 +7,23 @@
 }
 @if (Model.Count == 0)
 {
-    <text>Chưa Có Lượt Đánh Giá Nào</text>
+    <text>Chưa có lượt đấu giá nào</text>
 }
 else
 {
 <div class="well">
     <div class="row">
         <h4>Tốt : @ViewBag.Tot</h4>
-        <h4>Xấu : @ViewBag.Xau</h4>
-        <h4>Tổng :  @ViewBag.Tong</h4>
+        <h4>Kém : @ViewBag.Xau</h4>
+        <h4>Tổng số :  @ViewBag.Tong</h4>
     </div>
     <table id="table" class="table table-striped">
         <tr>
             <td>Tên</td>
-            <td>Tên Người Đã Đánh Giá</td>
-            <td>Nội Dụng</td>
-            <td>Ngày Tạo</td>
-            <td>Đánh Giá</td>
+            <td>Người đánh giá</td>
+            <td>Nội dung</td>
+            <td>Ngày tạo</td>
+            <td>Đánh giá</td>
         </tr>
         @foreach (var dg in Model)
         {
@@ -38,7 +38,7 @@ else
                 }
                 else
                 {
-                   <td>Xấu</td>
+                   <td>Kém</td>
                 }
             </tr>
         }
