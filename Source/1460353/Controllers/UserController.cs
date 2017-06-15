@@ -280,5 +280,12 @@ namespace _1460353.Controllers
             ViewBag.Info = "0";
             return View();
         }
+
+        [Filters.LoginUser]
+        public ActionResult listsell()//Lấy danh sách sản phẩm người dùng đăng đáu giá!
+        {
+            var list=Helpers.Login.listsell();
+            return Json(list,JsonRequestBehavior.AllowGet);
+        }
     }
 }
