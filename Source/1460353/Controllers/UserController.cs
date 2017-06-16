@@ -90,7 +90,7 @@ namespace _1460353.Controllers
                         u.quyen = 0;
                         u.diem = 80;
                         u.capphep = 0;
-                        u.taikhoan = (decimal)1000000;
+                        u.taikhoan = (decimal)10000000;
                         u.anhdaidien = "/Source/Images/Users/default/default.jpg";
                         u.tinhtrang = 1;
                         data.nguoidungs.Add(u);
@@ -279,6 +279,13 @@ namespace _1460353.Controllers
             }
             ViewBag.Info = "0";
             return View();
+        }
+
+        [Filters.LoginUser]
+        public ActionResult listsell()//Lấy danh sách sản phẩm người dùng đăng đáu giá!
+        {
+            var list=Helpers.Login.listsell();
+            return Json(list,JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿.img-container {
+﻿
+.img-container {
     position: relative;
-   height:160px;
+    height: 160px;
 }
 
 
@@ -29,44 +30,49 @@
     padding: 8px 5px;
 }
 
-.icon-danhmuc {
-    outline: none;
-    background-color: transparent;
+.icon-danhmuc-fixed {
     color: red;
-    position: fixed;
+    border: 3px solid;
     border-color: rosybrown;
-    border-radius: 4px;
+    position: fixed;
     z-index: 1;
-    margin-left:-30px;
-    margin-top:-15px;
+    margin-left: -30px;
+    margin-top: -15px;
+    border-radius: 50%;
+    background-color: #0e0e0e;
+    outline: none;
 }
-#dashboard {
-position:fixed;
 
+#dashboard {
+    position: fixed;
 }
+
     #dashboard li {
-        padding: 5px;
-        border-top:1px solid;
-        border-bottom:1px solid;
-    }
-    #dashboard li:hover {
-        background-color:black;
-        border-top: 2px solid;
-        border-bottom: 2px solid;
-        cursor:pointer;
-    }
-    #dashboard a {
-        
         padding: 5px;
         border-top: 1px solid;
         border-bottom: 1px solid;
     }
+
+        #dashboard li:hover {
+            background-color: black;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+            cursor: pointer;
+        }
+
+    #dashboard a {
+        padding: 5px;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+    }
+
 .dashboard {
     list-style: none;
     margin: 0;
     align-items: center;
     background-color: #222;
 }
+
 .db {
     list-style: none;
     margin: 0;
@@ -180,6 +186,7 @@ position:fixed;
 }
 
 body {
+    min-width:1200px;
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url("../Imgs/bg.png");
@@ -219,17 +226,16 @@ body {
     }
 
 .img2 {
-   
     padding: 5px; /* Some padding */
     width: auto; /* Set a small width */
-    position:absolute;
+    position: absolute;
 }
 
     /* Add a hover effect (blue shadow) */
     .img2:hover {
         box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
         cursor: pointer;
-        z-index:-1;
+        z-index: -1;
     }
 
 .txtover-sm {

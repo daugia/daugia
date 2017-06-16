@@ -21,8 +21,8 @@ namespace _1460353.Controllers
                     Session.Remove("note");
               
                 }
-                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 1).ToList());
-                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 0).ToList());
+                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 1).OrderByDescending(dm=>dm.id).ToList());
+                list.Add(data.danhmucs.Where(dm => dm.trinhtrang == 0).OrderByDescending(dm => dm.id).ToList());
                 return View(list);
             }
 

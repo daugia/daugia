@@ -225,13 +225,13 @@ namespace _1460353.Controllers
                     ViewBag.Chon = chon;
                     if (chon == 1)
                     {
-                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderByDescending(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
                 else
@@ -252,12 +252,12 @@ namespace _1460353.Controllers
                     if (chon == 1)
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.ngayketthuc).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                     else
                     {
                         var list = daugia.sanphams.Where(s => s.ten.ToLower().Contains(TuKhoa.ToLower()) && s.id_danhmuc == iddm && s.tinhtrang == 1 && s.ngayketthuc >= DateTime.Now).OrderBy(s => s.giahientai).Skip((page.Value - 1) * recordsPerPage).Take(recordsPerPage).ToList();
-                        return View(list);
+                        return View(loadyeuthich(list));
                     }
                 }
             }
@@ -442,12 +442,13 @@ namespace _1460353.Controllers
 
 
         //Cua tao
-        [Filters.LoginUser]
+        
         public ActionResult searchlist(string name)
         {
             using (var data = new Models.daugiaEntities())
             {
-                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name)).ToList();
+                
+                var prolist = data.sanphams.Where(sp => sp.ten.ToLower().Contains(name) && sp.tinhtrang==1 && sp.ngayketthuc>=DateTime.Now).ToList();
                 return Json(prolist, JsonRequestBehavior.AllowGet);
             }
         }

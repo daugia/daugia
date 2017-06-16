@@ -5,47 +5,7 @@
     ViewBag.Title = "Chi Tiết Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section css
-{
-    <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
 
-}
-@section js
-{<script src="~/Scripts/elevatezoom/jquery.elevatezoom.js"></script>
-    <script>
-        var countDownDate = new Date("@Model.ngayketthuc").getTime();
-        var x = setInterval(function() {
-
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("hengio").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("hengio").innerHTML = "Đã hết hạn";
-            }
-        }, 1000);
-    </script>
-    <script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
-    <script type="text/javascript">
-        $('#txtG').TouchSpin({
-            min: @Model.giahientai+100000,
-            step: 100000,
-            max:@decimal.MaxValue,
-            postfix: 'VNĐ',
-            verticalbuttons: true,
-
-        });
-
-
-        $("#zoom_02").elevateZoom({tint:true, tintColour:'#F90', tintOpacity:0.5});
-    </script>
-}
 @if (Model == null)
 {
     <text> Sản Phẩm Không Tồn Tại</text>
@@ -71,93 +31,176 @@ else
     <div class="well row">
         <div class="col-md-4">
             <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh1" id="zoom_02" data-zoom-image="~/Imgs/sp/@Model.id/main.jpg" alt="@Model.ten">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh1" class="img" style="height:150px;" src="@Model.hinh1" alt="@Model.ten"></a>
             </div>
             <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh2" alt="@Model.ten">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh2" class="img" style="height:150px;" src="@Model.hinh2" alt="@Model.ten"></a>
             </div>
             <div class="col-md-12">
-                <img class="img" style="height:150px;" src="@Model.hinh3" alt="@Model.ten">
+                <a href="#img-lg" data-toggle="modal"><img data-img="@Model.hinh3" class="img" style="height:150px;" src="@Model.hinh3" alt="@Model.ten"></a>
             </div>
         </div>
-        
+
         <div class="col-md-8">
-            
+
             <div class="col-md-12 pager">
                 <h2>@Model.ten</h2>
             </div>
 
-           <div class="col-md-12">
-               <div class="col-md-6">
-                   <div class="col-md-12">
-                       <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
-                   </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
+                    </div>
 
-                   <div class="col-md-12">
-                       <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })"><h5> @Model.id_nguoidunghientai</h5></a>
-</div>
-                   <div class="col-md-12">
-                       <label>Người Giữ Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @Model.id_nguoidung</h5></a>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
-                   </div>
-                   <div class="col-md-12">
-                       <label>Thời Gian Còn Lại</label>
-                       <label id="hengio"></label>
-                   </div>
-                   @if (Login.IsLogin() == true)
-                   {
-                       <form class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
-                           <div class="form-group">
-                               <div class="form-group">
-                                   <input type="hidden" id="txtP" name="proId" value="@Model.id" />
-                                   <div class="input-group com" style="margin-left:24px;">
-                                       <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="form-group pager">
-                               <input type="submit" class="btn btn-primary " value="Đặt" />
-                           </div>
-                       </form>
-                    <form class="form-horizontal" method="post" action="@Url.Action("MuaNgay","Product")">
-                        <div class="form-group">
+                    <div class="col-md-12">
+                        <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })"><h5> @Model.id_nguoidunghientai</h5></a>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Người Giữ Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @Model.id_nguoidung</h5></a>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Thời Gian Còn Lại</label>
+                        <label id="hengio"></label>
+                    </div>
+                    @if (Login.IsLogin() == true)
+                    {
+                        <form id="form-dat" class="form-horizontal" method="post" action="@Url.Action("Mua","Product")">
                             <div class="form-group">
-                                <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                                <div class="form-group">
+                                    <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                                    <div class="input-group com" style="margin-left:24px;">
+                                        <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group pager">
-                            <input type="submit" class="btn btn-primary " value="Mua Ngay" />
-                        </div>
-                    </form>
-                   }
-               </div>
-               <div class="col-md-6">
-                   <div class="col-md-12">
-                       <label>Miêu Tả Sản Phẩm:</label><h5> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
-                   </div>
-               </div>
-           </div>
+                            <div class="form-group pager">
+                                <a data-toggle="modal" href="#confirm" class="confirm btn btn-primary " data-id="form-dat">Đặt</a>
+                            </div>
+                        </form>
+                        <form id="form-muangay" class="form-horizontal" method="post" action="@Url.Action("MuaNgay","Product")">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <input type="hidden" id="txtP" name="proId" value="@Model.id" />
+                                </div>
+                            </div>
+                            <div class="form-group pager">
+                                <a data-toggle="modal" href="#confirm" class="confirm btn btn-primary " data-id="form-muangay">Mua Ngay</a>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label>Miêu Tả Sản Phẩm:</label><h5> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
+                    </div>
+                </div>
+            </div>
 
         </div>
-       
+
 
     </div>
 
+}
+
+<div id="img-lg" class="modal fade " role="dialog">
+    <div class="modal-dialog">
+        <img style="width:100%;height:100%" id="img-lg-show" />
+    </div>
+</div>
+
+<div class="modal fade" id="confirm" role="dialog">
+    <div class="dialog">
+        <div class="pager well">
+           <p>Xác nhận</p>
+            <input type="hidden" id="id-form"/>
+            <button class="confirm-yes btn btn-success">Yes</button>
+            <button class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+   <style>
+       .dialog{
+           width:150px;
+           margin:auto;
+       }
+    </style>
+}
+
+@section js
+{
+    <script src="~/Scripts/elevatezoom/jquery.elevatezoom.js"></script>
+    <script>
+        var countDownDate = new Date("@Model.ngayketthuc").getTime();
+        var x = setInterval(function() {
+
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("hengio").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("hengio").innerHTML = "Đã hết hạn";
+            }
+        }, 1000);
+
+
+        $(function () {
+            $('.img').off('click').on('click', function () {
+                document.getElementById('img-lg-show').src = $(this).data('img');
+            });
+        });
+    </script>
+    <script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script type="text/javascript">
+        $('#txtG').TouchSpin({
+            min: @Model.giahientai+100000,
+            step: 100000,
+            max:@decimal.MaxValue,
+            postfix: 'VNĐ',
+            verticalbuttons: true,
+
+        });
+
+
+        $("#zoom_02").elevateZoom({ tint: true, tintColour: '#F90', tintOpacity: 0.5 });
+
+        $('.confirm').on('click', function(){
+            var id_form=$(this).data('id');
+            $('#id-form').val(id_form);
+        });
+        $('.confirm-yes').on('click', function () {
+            var id = $('#id-form').val();
+            $(document.getElementById(id)).submit();
+            
+        });
+    </script>
 }

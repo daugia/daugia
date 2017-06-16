@@ -1,4 +1,45 @@
-﻿// When the user scrolls down 20px from the top of the document, show the button
+﻿
+//list san pham dang tren san dau
+$('.listsell').on('click', function () {
+    var mydropdown = $(this).parent();
+    var ul = mydropdown.children('ul');
+    ul.children().remove();
+    ul.append(
+        '<li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Danh sách sản phẩm trên sàn đấu</li>' +
+        '<li>...............................................</li>');
+
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'User/listsell',
+        success: function (listpro) {
+            //alert(listpro.length);
+            for (var i = 0; i < listpro.length; i++) {
+                ul.append(
+                    '<li style="border-color:black;background-color:#e6e6ff;"> <div class="row">' +
+                    '<a  href= "Product/Chitiet/' + listpro[i].id + '" ><div class="col-md-3">' +
+                    ' <img class="img" style="width:60px;height:60px" src="' + listpro[i].hinh1 + '" /> ' +
+                    '</div>' +
+
+                    '<div class="col-md-9">' +
+                    '<p>' + listpro[i].ten + '</p>' +
+                    '<p>' + listpro[i].giahientai + '</p>' +
+                    '</div>' +
+
+                    '</div></a > </li > ');
+            }
+        },
+        error: function () { }
+    }).done(function () { })
+        .fail(function () { });
+
+
+});
+
+
+
+// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
@@ -27,15 +68,19 @@ $(function () {
         var body = $('#body');
         var dashboard = $('#dashboard');
         var container = $('#container');
-        if (dashboard.hasClass('display-none')){
+        var icon = $('.icon-danhmuc-icon');
+        if (dashboard.hasClass('display-none')) {
+            dashboard.slideDown(750);
             dashboard.removeClass('display-none').addClass('display-block');
             $('.dashboard').css("height", 0.85 * height);
-            $('#icon-danhmuc').removeClass('glyphicon glyphicon-chevron-right').addClass('glyphicon glyphicon-chevron-left');
+            icon.removeClass('glyphicon glyphicon-chevron-right').addClass('glyphicon glyphicon-chevron-left');
             container.addClass('col-md-10 col-md-offset-2');
             body.removeClass('container').addClass('container-fluid');
+
         }
         else if (dashboard.hasClass('display-block')) {
-            $('#icon-danhmuc').removeClass('glyphicon glyphicon-chevron-left').addClass('glyphicon glyphicon-chevron-right');
+            dashboard.fadeOut(-1);
+            icon.removeClass('glyphicon glyphicon-chevron-left').addClass('glyphicon glyphicon-chevron-right');
             dashboard.removeClass('display-block').addClass('display-none');
             container.removeClass('col-md-10 col-md-offset-2');
             body.removeClass('container-fluid').addClass('container');
