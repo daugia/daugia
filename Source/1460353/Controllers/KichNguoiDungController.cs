@@ -32,6 +32,8 @@ namespace _1460353.Controllers
                 if (nsp != null)
                 {
                     var lsds = daugia.lichsudaus.Where(ls => ls.id_sanpham == idsp && ls.tinhtrang == 0).OrderByDescending(ls=>ls.id).FirstOrDefault();
+                    var ndt = daugia.nguoidungs.Where(nd => nd.id == idnd).FirstOrDefault();
+                    ndt.taikhoan = ndt.taikhoan + nsp.giacaonhat;
                     if (lsds == null)
                     {
                         nsp.giahientai = nsp.giakhoidiem;
@@ -40,8 +42,6 @@ namespace _1460353.Controllers
                     }
                     else
                     {
-                        var ndt = daugia.nguoidungs.Where(nd => nd.id == idnd).FirstOrDefault();
-                        ndt.taikhoan = ndt.taikhoan + nsp.giacaonhat;
                         nsp.giahientai = lsds.tiendadau;
                         nsp.giacaonhat = lsds.tiendadau;
                         nsp.id_nguoidunghientai = lsds.id_nguoidung;
