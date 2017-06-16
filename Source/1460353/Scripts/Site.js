@@ -1,4 +1,45 @@
-﻿// When the user scrolls down 20px from the top of the document, show the button
+﻿
+//list san pham dang tren san dau
+$('.listsell').on('click', function () {
+    var mydropdown = $(this).parent();
+    var ul = mydropdown.children('ul');
+    ul.children().remove();
+    ul.append(
+        '<li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Danh sách sản phẩm trên sàn đấu</li>' +
+        '<li>...............................................</li>');
+
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'User/listsell',
+        success: function (listpro) {
+            //alert(listpro.length);
+            for (var i = 0; i < listpro.length; i++) {
+                ul.append(
+                    '<li style="border-color:black;background-color:#e6e6ff;"> <div class="row">' +
+                    '<a  href= "Product/Chitiet/' + listpro[i].id + '" ><div class="col-md-3">' +
+                    ' <img class="img" style="width:60px;height:60px" src="' + listpro[i].hinh1 + '" /> ' +
+                    '</div>' +
+
+                    '<div class="col-md-9">' +
+                    '<p>' + listpro[i].ten + '</p>' +
+                    '<p>' + listpro[i].giahientai + '</p>' +
+                    '</div>' +
+
+                    '</div></a > </li > ');
+            }
+        },
+        error: function () { }
+    }).done(function () { })
+        .fail(function () { });
+
+
+});
+
+
+
+// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
@@ -25,7 +66,7 @@ $(function () {
         var height = $(window).height();
 
         var body = $('#body');
-        var dashboard = $('#dashboard'); 
+        var dashboard = $('#dashboard');
         var container = $('#container');
         var icon = $('.icon-danhmuc-icon');
         if (dashboard.hasClass('display-none')) {

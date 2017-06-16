@@ -6,15 +6,30 @@
     {
         if (_1460353.Helpers.Login.nguoidung().quyen == 0)
         {
+
+
             <li><a href="@Url.Action("Index","Yeuthich")"><i class="glyphicon glyphicon-star noficon-icon"><sup><b class="noficon" id="yeuthichtotal">@_1460353.Helpers.yeuthich.total()</b></sup></i></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-tag"><sup><b class="noficon">1</b></sup></i></a></li>
+
+
+            <li>
+                <div class="mydropdown">
+                    <a class="listsell" href="#"><i style="color:forestgreen" class="mydropbtn glyphicon glyphicon-tag"><sup><b class="noficon">@_1460353.Helpers.Login.listsell().Count</b></sup></i></a>
+                    <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
+                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
+                        <li>...............................................</li>
+                        @*@Html.Action("list", "Thongbao")*@
+                    </ul>
+                </div>
+            </li>
+
+
             <li>
                 <div class="mydropdown">
                     <a class="thongbao" href="#"><i class="mydropbtn glyphicon glyphicon-globe" style="color:#0026ff;font-weight:bold;"><sup><b id="thongbaototal" class="noficon">@_1460353.Helpers.thongbao.total()</b></sup></i></a>
                     <ul class="mydropdown-content" style="border-color:aqua;background-color:#737373;">
-                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>
+                        <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Danh sách sản phẩm trên sàn đấu</li>
                         <li>...............................................</li>
-                        @Html.Action("list", "Thongbao")
+                        @*@Html.Action("list", "Thongbao")*@
                     </ul>
                 </div>
             </li>
@@ -45,8 +60,16 @@
 
 
                     <li role="separator" class="divider"></li>
-                    <li><a href="@Url.Action("New","Product")">Đăng sản phẩm</a></li>
-                    <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm</a></li>
+                    <li>
+                        <a href="@Url.Action("New","Product")">
+                            Đăng sản phẩm
+                            @if (_1460353.Helpers.Login.nguoidung().capphep == 1)
+                            { <i style="color:forestgreen" class="glyphicon glyphicon-check"></i> }
+                            else
+                            { <i style="color:red" class="glyphicon glyphicon-minus-sign"></i> }
+                        </a>
+                    </li>
+                    <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm<sup><b class="noficon">@_1460353.Helpers.Login.listsell().Count</b></sup></a></li>
                     <li><a href="#">Sản phẩm đã có người mua</a></li>
                     <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
                     <li><a href="@Url.Action("NguoiMua","DanhGia")">Đánh Giá Khi Bạn Mua Thành Công Sản Phẩm</a></li>
@@ -54,7 +77,7 @@
                     @*<li><a href="@Url.Action("QuanLySanPham","Product")">Quản Lý Sản Phẩm</a></li>*@
                     <li role="separator" class="divider"></li>
                     <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
-                    <li><a id="logout_l" href="@Url.Action("Logout","User")">Logout</a></li>
+                    <li><a id="logout_l" href="@Url.Action("Logout","User")"><i style="color:forestgreen" class="glyphicon glyphicon-log-out"></i>--Đăng xuất</a></li>
                 </ul>
             </li>
 
@@ -84,7 +107,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     @_1460353.Helpers.Login.nguoidung().ten
-                   
+
                     <img width="30" height="30" src="@_1460353.Helpers.Login.nguoidung().anhdaidien" />
                     <span class="caret"></span>
                 </a>
@@ -96,7 +119,7 @@
                     <li><a href="@Url.Action("Index","Nguoidung")">Quản lí người dùng</a></li>
                     <li><a href="@Url.Action("Index","Yeucau")">Quản lí yêu cầu </a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a id="logout_l" href="@Url.Action("Logout","User")">Logout</a></li>
+                    <li><a id="logout_l" href="@Url.Action("Logout","User")"><i style="color:forestgreen" class="glyphicon glyphicon-log-out"></i>--Đăng xuất</a></li>
                 </ul>
             </li>
         }
@@ -105,8 +128,8 @@
     }
     else
     {
-        <li><a href="@Url.Action("signup","User")"><span class="glyphicon glyphicon-user"></span> Đăng kí</a></li>
-        <li><a href="@Url.Action("login","User")"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+        <li><a href="@Url.Action("signup","User")"><span style="color:forestgreen" class="glyphicon glyphicon-user"></span> Đăng kí</a></li>
+        <li><a href="@Url.Action("login","User")"><span style="color:forestgreen" class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
     }
 
 
