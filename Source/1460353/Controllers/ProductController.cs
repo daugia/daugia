@@ -74,7 +74,7 @@ namespace _1460353.Controllers
                     var idnguoidung = Helpers.Login.nguoidung().id;
                     sp.id_nguoidung = idnguoidung;
                     sp.ngaybatdau = DateTime.Now;
-                    sp.ngayketthuc = DateTime.Now.AddDays(15);
+                    sp.ngayketthuc = DateTime.Now.AddDays(7);
                     sp.giahientai = sp.giakhoidiem;
                     sp.giacaonhat = sp.giakhoidiem;
                     sp.luotragia = 0;
@@ -83,6 +83,7 @@ namespace _1460353.Controllers
                     sp.tinhtrang = 1;//dang ban
                     sp.nguoibandanhgia_ = 0;
                     sp.nguoimuadanhgia_ = 0;
+                    sp.guimail_ = 0;
                     ViewBag.note = 1;
                     data.sanphams.Add(sp);
                     data.SaveChanges();
