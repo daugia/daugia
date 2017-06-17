@@ -28,18 +28,21 @@ namespace _1460353.Controllers
             using (var data=new Models.daugiaEntities())
             {
                 var sanpham = data.sanphams.Find(idsp);
-                if (sanpham.giakhoidiem==sanpham.giahientai)//san pham khong co nguoi dau gia
+                if(sanpham.ngaybatdau < sanpham.ngayketthuc)
                 {
-                    //gui 1mail cho nguoi ban
-                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Xin lổi sản phẩm của bạn không có ai đấu giá!");
-                   
-                }
-                else//san pham co nguoi dau gia 
-                {
-                    //maail nguoi ban
-                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Sản phẩm đã có người thắng cuộc!");
-                    //maail nguoi mua
-                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Chúc mừng bạn đã thắng sản phẩm này!");
+                    if (sanpham.giakhoidiem == sanpham.giahientai)//san pham khong co nguoi dau gia
+                    {
+                        //gui 1mail cho nguoi ban
+                        Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Rất tiếc sản phẩm của bạn không có ai đấu giá");
+
+                    }
+                    else//san pham co nguoi dau gia 
+                    {
+                        //maail nguoi ban
+                        Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Sản phẩm đã của bạn đã có người đấu giá thành công");
+                        //maail nguoi mua
+                        Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Chúc mừng bạn đã đấu giá thành công sản phẩm");
+                    }
                 }
 
                 sanpham.guimail_ = 1;
