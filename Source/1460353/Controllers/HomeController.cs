@@ -36,6 +36,7 @@ namespace _1460353.Controllers
                 ViewBag.Message = TempData["Message"].ToString();
                 TempData.Remove("Message");
             }
+           
             return View( list);
         }
         public ActionResult Carousel()//top 5 san pham co gia cao nhat

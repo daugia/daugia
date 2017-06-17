@@ -844,6 +844,7 @@
     <Content Include="Scripts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Scripts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Scripts\sendMail.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1190,6 +1191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KichNguoiDungController.cs" />
     <Compile Include="Controllers\LichSuDauController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ThongbaoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1201,6 +1203,7 @@
     <Compile Include="Helpers\Login.cs" />
     <Compile Include="Helpers\nguoidung.cs" />
     <Compile Include="Helpers\sanphamhp.cs" />
+    <Compile Include="Helpers\sendMail.cs" />
     <Compile Include="Helpers\thongbao.cs" />
     <Compile Include="Helpers\yeucaubanhang.cs" />
     <Compile Include="Helpers\yeuthich.cs" />
@@ -1314,6 +1317,7 @@
     <Folder Include="Source\Images\Users\3\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\KichNguoiDung\" />
+    <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
