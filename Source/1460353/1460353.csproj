@@ -290,6 +290,7 @@
     <Content Include="bootstrap-select\js\i18n\defaults-zh_CN.js" />
     <Content Include="bootstrap-select\js\i18n\defaults-zh_TW.js" />
     <Content Include="bootstrap-select\test.html" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
