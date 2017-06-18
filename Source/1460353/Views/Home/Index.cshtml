@@ -4,24 +4,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- @if (ViewBag.Error != null)
- {
+@if (ViewBag.Error != null)
+{
     <div id="snackbar" style="background-color:red;">
-      <h4> @ViewBag.Error</h4>
+        <h4> @ViewBag.Error</h4>
     </div>
- }
-   @if (ViewBag.Message != null)
-    {
+}
+@if (ViewBag.Message != null)
+{
     <div id="snackbar" style="background-color:forestgreen;">
         <h4>@ViewBag.Message</h4>
     </div>
-    }
-<div class="margin-top pager">
-    <h3>Top 5 sản phẩm có giá cao nhất</h3>
+}
+<div class="margin-top ">
+    <h3 class="run-head-animation-rl">Top 5 sản phẩm có giá cao nhất</h3>
 </div>
 @Html.Action("Carousel", "Home")
-<div class="margin-top pager">
-    <h3 >Top 5 sản phẩm có lượt ra giá nhiều nhất</h3>
+<div class=" margin-top ">
+    <h3 class="run-head-animation-rl">Top 5 sản phẩm có lượt ra giá nhiều nhất</h3>
 </div>
 <div class="row">
     <div class="col-md-1">
@@ -31,10 +31,10 @@
         <div class="col-sm-6 col-md-2">
             <div class="thumbnail">
                 <a href="@Url.Action("Chitiet","Product",new {id=sp.id })"><img class="img" style="height:150px;" src="@sp.hinh1"></a>
-                
+
                 <div class="caption">
                     <h3 class="txtover-sm">@sp.ten</h3>
-                  
+
                     <p>Giá : @String.Format("{0:0,0}", sp.giahientai)</p>
                     <p>Số lượt ra giá : @sp.luotragia</p>
                     <p>Ngày kết thúc : @sp.ngayketthuc</p>
@@ -42,10 +42,10 @@
             </div>
         </div>
     }
-   
+
 </div>
 
-<h3 class="pager">Top 5 sản phẩm gần hết hạn</h3>
+<h3 class="run-head-animation-rl">Top 5 sản phẩm gần hết hạn</h3>
 <div class="row">
     <div class="col-md-1">
     </div>
@@ -64,25 +64,23 @@
             </div>
         </div>
     }
-    
+
 </div>
 
 
-
 @section js{
-<script>
-    // Activate Carousel
-    $("#myCarousel").carousel();
+    <script>
+        // Activate Carousel
+        $("#myCarousel").carousel();
 
-    // Enable Carousel Indicators
-    $(".item").click(function () {
-        $("#myCarousel").carousel(1);
-    });
+        // Enable Carousel Indicators
+        $(".item").click(function () {
+            $("#myCarousel").carousel(1);
+        });
 
-    // Enable Carousel Controls
-    $(".left").click(function () {
-        $("#myCarousel").carousel("prev");
-    });
+        // Enable Carousel Controls
+        $(".left").click(function () {
+            $("#myCarousel").carousel("prev");
+        });
     </script>
-       
 }
