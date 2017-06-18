@@ -562,9 +562,17 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 var sp = data.sanphams.Find(id);
-                sp.tinhtrang = -1;
-                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                data.SaveChanges();
+                if (sp.ngayketthuc >= DateTime.Now && sp.tinhtrang == 1)
+                {
+                    var nddg = data.nguoidungs.Where(nd=>nd.id==sp.id_nguoidunghientai).FirstOrDefault();
+                    if (nddg != null)
+                    {
+                        nddg.taikhoan = sp.giacaonhat + nddg.taikhoan;
+                    }
+                    sp.tinhtrang = -1;
+                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                    data.SaveChanges();
+                }
                 return Json(1, JsonRequestBehavior.DenyGet);
             }
         }
