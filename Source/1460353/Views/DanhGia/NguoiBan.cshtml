@@ -15,7 +15,7 @@
 }
 @if (Model.Count == 0)
 {
-    <text>Chưa có sản phẩm nào để đánh giá</text>
+    <text>Chưa có sản phẩm nào để đánh giá !</text>
 }
 else
 {
@@ -28,6 +28,7 @@ else
             <td>Tên người mua</td>
             <td>Đánh giá của người mua</td>
         </tr>
+
         @foreach (var sp in Model)
         {
             <tr class="tr">
@@ -52,6 +53,7 @@ else
                 </td>
             </tr>
         }
+
     </table>
 </div>
 }

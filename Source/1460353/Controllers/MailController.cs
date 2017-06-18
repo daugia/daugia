@@ -28,6 +28,9 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 var sanpham = data.sanphams.Find(idsp);
+<<<<<<< HEAD
+                if (sanpham.ngaybatdau < sanpham.ngayketthuc)
+=======
 
                 if (sanpham.giakhoidiem == sanpham.giahientai)//san pham khong co nguoi dau gia
                 {
@@ -36,6 +39,7 @@ namespace _1460353.Controllers
 
                 }
                 else//san pham co nguoi dau gia 
+>>>>>>> 85a26a86c1c7e376031655c10a3a91ca7b8ef3e7
                 {
                     //maail nguoi ban
                     Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Sản phẩm đã của bạn đã có người đấu giá thành công");
