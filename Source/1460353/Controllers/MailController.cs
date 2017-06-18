@@ -25,10 +25,10 @@ namespace _1460353.Controllers
 
         public ActionResult send(int idsp)
         {
-            using (var data=new Models.daugiaEntities())
+            using (var data = new Models.daugiaEntities())
             {
                 var sanpham = data.sanphams.Find(idsp);
-                if(sanpham.ngaybatdau < sanpham.ngayketthuc)
+                if (sanpham.ngaybatdau < sanpham.ngayketthuc)
                 {
                     if (sanpham.giakhoidiem == sanpham.giahientai)//san pham khong co nguoi dau gia
                     {
@@ -49,8 +49,8 @@ namespace _1460353.Controllers
                 data.Entry(sanpham).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
             }
-               
-            return Content("","text/plain");
+
+            return Content("", "text/plain");
         }
     }
 }
