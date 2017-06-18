@@ -13,5 +13,16 @@ namespace _1460353.Helpers
                 return data.nguoidungs.Find(id);
             }
         }
+        public static string mahoa(int id){
+               var nguoidung= find(id);
+            if(nguoidung.username.Length>=4){
+                return nguoidung.username.Substring(0, 4) + "********";
+            }
+            else
+            {
+                return nguoidung.username.Substring(0, nguoidung.username.Length) + "********";
+            }
+               
+        }
     }
 }

@@ -2,46 +2,58 @@
 @using _1460353.Helpers
 @model  List<danhgia>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Đánh giá người dùng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @if (Model.Count == 0)
 {
-    <text>Chưa có lượt đấu giá nào</text>
+    <div id="snackbar" style="background-color:red">
+        Không có đánh giá
+    </div>
 }
 else
 {
-<div class="well">
-    <div class="row">
-        <h4>Tốt : @ViewBag.Tot</h4>
-        <h4>Kém : @ViewBag.Xau</h4>
-        <h4>Tổng số :  @ViewBag.Tong</h4>
-    </div>
-    <table id="table" class="table table-striped">
-        <tr>
-            <td>Tên</td>
-            <td>Người đánh giá</td>
-            <td>Nội dung</td>
-            <td>Ngày tạo</td>
-            <td>Đánh giá</td>
-        </tr>
-        @foreach (var dg in Model)
-        {
-            <tr class="tr">
-                <td>@dg.id_nguoidung</td>
-                <td>@dg.id_nguoidanhgia</td>
-                <td>@dg.noidung</td>
-                <td>@dg.ngaytao</td>
-                @if(dg.mat==1)
+    <div class="well">
+        <h3>Đánh giá người dùng</h3>
+        <div class="pager">
+            <h2>@_1460353.Helpers.nguoidung.find((int)ViewBag.id).ten</h2>
+            <h4 class="text-success">Tốt : @ViewBag.Tot</h4>
+            <h4 class="text-danger">Kém : @ViewBag.Xau</h4>
+            <h4 class="text-primary">Tổng số :  @ViewBag.Tong</h4>
+        </div>
+        <table id="table" class="table table-striped">
+            <tr>
+
+                <td>Người đánh giá</td>
+                <td>Nội dung</td>
+                <td>Ngày tạo</td>
+                <td>Đánh giá</td>
+            </tr>
+            @foreach (var dg in Model)
+            {
+
+
+
+                if(dg.mat == 1)
                 {
-                    <td>Tốt</td>
+                    <tr class="alert alert-success">
+                        <td>@_1460353.Helpers.nguoidung.find((int)dg.id_nguoidanhgia).ten</td>
+                        <td>@dg.noidung</td>
+                        <td>@dg.ngaytao</td>
+                        <td>Tốt</td>
+                    </tr>
                 }
                 else
                 {
-                   <td>Kém</td>
+                    <tr class="alert alert-danger">
+                        <td>@_1460353.Helpers.nguoidung.find((int)dg.id_nguoidanhgia).ten</td>
+                        <td>@dg.noidung</td>
+                        <td>@dg.ngaytao</td>
+                        <td>Kém</td>
+                    </tr>
                 }
-            </tr>
-        }
-    </table>
-</div>
+
+            }
+        </table>
+    </div>
 }

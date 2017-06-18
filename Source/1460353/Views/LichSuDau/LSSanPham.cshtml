@@ -7,42 +7,44 @@
 }
 @if (Model.Count == 0)
 {
-    <text>Chưa Có Ai Đấu Giá</text>
+    <div id="snackbar" style="background-color:red">
+        Chưa có ai đấu giá hoặc đã kết thúc đấu giá
+    </div>
 }
 else
 {
-    for (int i = 0; i < Model.Count - 1; i++)
-    {
-        <div class="caption">
-            <h5>Tên : @Model[i].id_nguoidung</h5>
-            <h5>Giá Đã đấu: @string.Format("{0:N0}", @Model[i].tiendadau)</h5>
-            <h5>Ngày Đấu Giá : @Model[i].ngaydaugia</h5>
-                <form class="form-horizontal" method="post" action="@Url.Action("Index", "KichNguoiDung")">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <input type="hidden" name="idsp" value="@Model[i].id_sanpham" />
-                            <input type="hidden" name="idnd" class="form-control" value="@Model[i].id_nguoidung" />
-                        </div>
-                    </div>
-                    <div class="form-group pager">
-                            <input type="submit" class="btn btn-danger " value="KICH" />
-                    </div>
-                </form>
+    <div class="well row">
+        <div class="pager">
+            <h2>Lịch sử đấu sản phẩm @_1460353.Helpers.sanphamhp.find((int)Model[0].id_sanpham).ten</h2>
+            <img class="img" src="@_1460353.Helpers.sanphamhp.find((int)Model[0].id_sanpham).hinh1" />
+         </div>
+        <div class="col-lg-6 col-lg-offset-3">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Ngày ra giá</td>
+                    <td>Tiền đấu </td>
+                    <td>Người đấu </td>
+                    <td></td>
+                </tr>
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].ngaydaugia</td>
+                        <td>@Model[i].tiendadau</td>
+                        <td>@_1460353.Helpers.nguoidung.mahoa((int)Model[i].id_nguoidung)</td>
+                        <td>
+                            <form method="post" action="@Url.Action("Index", "KichNguoiDung")">
+                                <input type="hidden" name="idsp" value="@Model[i].id_sanpham" />
+                                <input type="hidden" name="idnd" class="form-control" value="@Model[i].id_nguoidung" />
+                                <button type="submit" class="btn btn-sm btn-danger "><i class="glyphicon glyphicon-remove-circle"></i>kích</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
-    }
-    <div class="caption">
-        <h5>Tên : @Model[Model.Count-1].id_nguoidung</h5>
-        <h5>Ngày Đấu Giá : @Model[Model.Count-1].ngaydaugia</h5>
-        <form class="form-horizontal" method="post" action="@Url.Action("Index", "KichNguoiDung")">
-            <div class="form-group">
-                <div class="form-group">
-                    <input type="hidden" name="idsp" value="@Model[Model.Count-1].id_sanpham" />
-                    <input type="hidden" name="idnd" class="form-control" value="@Model[Model.Count-1].id_nguoidung" />
-                </div>
-            </div>
-            <div class="form-group pager">
-                <input type="submit" class="btn btn-danger " value="KICH" />
-            </div>
-        </form>
     </div>
+
 }

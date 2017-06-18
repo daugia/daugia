@@ -18,7 +18,7 @@ $('.listsell').on('click', function () {
             for (var i = 0; i < listpro.length; i++) {
                 ul.append(
                     '<li style="border-color:black;background-color:#e6e6ff;"> <div class="row">' +
-                    '<a  href= "Product/Chitiet/' + listpro[i].id + '" ><div class="col-md-3">' +
+                    '<a  href= "/Product/Chitiet/' + listpro[i].id + '" ><div class="col-md-3">' +
                     ' <img class="img" style="width:60px;height:60px" src="' + listpro[i].hinh1 + '" /> ' +
                     '</div>' +
 

@@ -63,10 +63,14 @@ else
                     </div>
 
                     <div class="col-md-12">
-                        <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })"><h5> @Model.id_nguoidunghientai</h5></a>
+                        <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })">
+                        @if(Model.id_nguoidunghientai!=null){
+                            <h5>@_1460353.Helpers.nguoidung.find((int)Model.id_nguoidunghientai).ten</h5>
+                        }
+                        </a>
                     </div>
                     <div class="col-md-12">
-                        <label>Người Giữ Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @Model.id_nguoidung</h5></a>
+                        <label>Người đăng Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @_1460353.Helpers.nguoidung.find((int)Model.id_nguoidung).ten</h5></a>
                     </div>
                     <div class="col-md-12">
                         <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
@@ -131,8 +135,8 @@ else
 <div class="modal fade" id="confirm" role="dialog">
     <div class="dialog">
         <div class="pager well">
-           <p>Xác nhận</p>
-            <input type="hidden" id="id-form"/>
+            <p>Xác nhận</p>
+            <input type="hidden" id="id-form" />
             <button class="confirm-yes btn btn-success">Yes</button>
             <button class="btn btn-danger" data-dismiss="modal">No</button>
         </div>
@@ -142,11 +146,11 @@ else
 @section css
 {
     <link href="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
-   <style>
-       .dialog{
-           width:150px;
-           margin:auto;
-       }
+    <style>
+        .dialog {
+            width: 150px;
+            margin: auto;
+        }
     </style>
 }
 
@@ -200,7 +204,7 @@ else
         $('.confirm-yes').on('click', function () {
             var id = $('#id-form').val();
             $(document.getElementById(id)).submit();
-            
+
         });
     </script>
 }

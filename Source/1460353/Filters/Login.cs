@@ -26,7 +26,7 @@ namespace _1460353.Filters
             if (!Helpers.Login.IsLogin())//new chua dang nhap khong cho vao 
             {
                 filterContext.Result = new RedirectResult("~/User/login");
-            }
+            }else
             if (Helpers.Login.nguoidung().quyen == 0)
             {
                 base.OnActionExecuting(filterContext);
@@ -44,7 +44,7 @@ namespace _1460353.Filters
             if (!Helpers.Login.IsLogin())//new chua dang nhap khong cho vao 
             {
                 filterContext.Result = new RedirectResult("~/User/login");
-            }
+            }else
             if(Helpers.Login.nguoidung().quyen==1){
                 base.OnActionExecuting(filterContext);
             }
