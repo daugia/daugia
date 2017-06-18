@@ -57,6 +57,7 @@ function topFunction() {
 }
 
 $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
     var x = $('.top-loading');
     x.addClass('top-loading-show');
     setTimeout(function () { x.removeClass('top-loading-show'); }, 1500);

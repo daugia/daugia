@@ -200,7 +200,7 @@ namespace _1460353.Controllers
             }
         }
 
-        public ActionResult TimKiem(String TuKhoa, int? page, int? iddm, int? chon)
+        public ActionResult TimKiem(string TuKhoa, int? page, int? iddm, int? chon)
         {
             if (TuKhoa == null || page.HasValue == false)
             {
