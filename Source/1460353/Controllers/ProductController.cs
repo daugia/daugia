@@ -117,6 +117,16 @@ namespace _1460353.Controllers
                     }
                     data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
                     data.SaveChanges();
+
+                    //them chi tiet
+                    var chitietsp = new Models.chinhsuachitietsp()
+                    {
+                        id_sanpham = sp.id,
+                        thoigian = DateTime.Now,
+                        noidungchinhsua = sp.chitiet
+                    };
+                    data.chinhsuachitietsps.Add(chitietsp);
+                    data.SaveChanges();
                 }
                 else
                 {
@@ -514,7 +524,7 @@ namespace _1460353.Controllers
             {
                 var idnguoidung = Helpers.Login.nguoidung().id;
                 var datenow = DateTime.Now;
-                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).OrderByDescending(sp => sp.ngaybatdau).ToList();
                 ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
                 listsp = listsp.Skip(0).Take(4).ToList();
                 return View(listsp);
@@ -529,7 +539,7 @@ namespace _1460353.Controllers
             {
                 var idnguoidung = Helpers.Login.nguoidung().id;
                 var datenow = DateTime.Now;
-                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).ToList();
+                var listsp = data.sanphams.Where(sp => sp.id_nguoidung == idnguoidung && sp.tinhtrang == 1 && sp.ngayketthuc > datenow).OrderByDescending(sp => sp.ngaybatdau).ToList();
                 ViewBag.pageTotal = (listsp.Count % 4) == 0 ? (listsp.Count / 4) : (listsp.Count / 4) + 1;
                 listsp = listsp.Skip((page-1)*4).Take(4).ToList();
                 return Json(listsp,JsonRequestBehavior.AllowGet);
@@ -545,12 +555,24 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 var sp = data.sanphams.Find(id);
+              
                 sp.mieutangan = mieutangan;
                 sp.chitiet = chitiet;
+
+                
                 data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+
+                var chitietsp = new Models.chinhsuachitietsp()
+                {
+                    id_sanpham = id,
+                    thoigian = DateTime.Now,
+                    noidungchinhsua = chitiet
+                };
+                data.chinhsuachitietsps.Add(chitietsp);
                 data.SaveChanges();
 
-                return Json(1, JsonRequestBehavior.DenyGet);
+                ViewBag.note = 1;
+                return RedirectToAction("manage","product");
             }
 
         }

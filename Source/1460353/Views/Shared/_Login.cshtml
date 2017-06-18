@@ -130,7 +130,7 @@
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
-    @RenderSection("js", false)
+
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 
@@ -139,13 +139,20 @@
 
     <script type="text/javascript">
         $().ready(function () {
+
+            $(window).on('load', function () {
+                setTimeout(function () {
+                    $('body').addClass('loaded');
+                }, 200);
+            });
+
             window.onclick = function (event) {
 
                 if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn') ) {
 
                     closedropdown();
                 }
-
+            
 
             }
             function closedropdown() {
@@ -361,14 +368,12 @@
                 var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
             });
 
-            $(window).on('load', function () {
-                setTimeout(function () {
-                  $('body').addClass('loaded');
-                }, 2000);
-            });
+           
         });
 
     </script>
+    @RenderSection("js", false)
     @*<script src="~/Scripts/sendMail.js"></script>*@
+   
 </body>
 </html>
