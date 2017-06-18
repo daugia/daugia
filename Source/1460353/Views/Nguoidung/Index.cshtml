@@ -35,8 +35,9 @@
                 <td>@nd.sodienthoai</td>
                 <td>@nd.diem</td>
                 <td>@nd.taikhoan</td>
-                <td><a href="#nd_reset" title="@nd.id" name="@nd.email" onclick="document.getElementById('ten').innerText=this.name;document.getElementById('id').value=this.title" data-toggle="modal">Reset mật khẩu</a></td>
-                <td><a href="@Url.Action("Delete", "Nguoidung", new { id = @nd.id })">Xóa</a></td>
+                <td>
+                <a href="#nd_reset" title="@nd.id" name="@nd.email" onclick="document.getElementById('ten').innerText=this.name;document.getElementById('id').value=this.title" data-toggle="modal"><i data-toggle="tooltip" title="Reset pass" class="glyphicon glyphicon-cog"></i></a>
+                <a href="@Url.Action("Delete", "Nguoidung", new { id = @nd.id })"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a></td>
             </tr>
         }
     </table>
@@ -72,7 +73,7 @@
     </script>
 
 }
-
+@section modal{
 <div class="modal fade bd-outline" id="nd_reset" role="dialog">
 
     <div class="modal-dialog ">
@@ -112,7 +113,7 @@
     </div>
 
 </div>
-
+    }
 <div class="well">
     <div class="well well-sm">
         <strong>Danh  sách người dùng cấm hoạt động</strong>

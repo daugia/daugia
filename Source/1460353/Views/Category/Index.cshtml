@@ -4,9 +4,10 @@
 }
 @model List<List<_1460353.Models.danhmuc>>
 
-<h2>Quản lí danh mục</h2>
+<h2 >Quản lí danh mục</h2>
 <a class="btn btn-primary" href="#dm_add" data-toggle="modal">Tạo mới danh mục</a>
-@if(ViewBag.note!=null){
+@if (ViewBag.note != null)
+{
     <div id="snackbar" style="background-color:forestgreen">
         <p>Thành công</p>
     </div>
@@ -14,7 +15,7 @@
 
 <div class="well">
     <div class="well well-sm">
-       <strong>Danh mục hoạt động</strong>
+        <strong>Danh mục hoạt động</strong>
     </div>
     <table class="table table-striped">
         <tr>
@@ -30,17 +31,44 @@
                 <td>@dm.ten</td>
                 <td>@dm.ngaytao</td>
                 <td>@dm.ngaycapnhat</td>
-                <td><a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal">Sửa</a></td>
-                <td><a href="@Url.Action("Delete", "Category", new {id=dm.id} )">Xóa</a></td>
+                <td>
+
+                    <a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal"><i data-toggle="tooltip" title="Sửa" class="glyphicon glyphicon-pencil"></i></a>
+                    <a  href="@Url.Action("Delete", "Category", new {id=dm.id} )"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
+                </td>
+
             </tr>
         }
     </table>
 </div>
 
+<div class="well">
+    <div class="well well-sm">
+        <strong>Danh mục không hoạt động</strong>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <td>Tên danh mục</td>
+            <td>Ngày tạo</td>
+            <td>Ngày cập nhật</td>
+            <td></td>
+        
+        </tr>
+        @foreach (var dm in Model[1])
+        {
+            <tr>
+                <td>@dm.ten</td>
+                <td>@dm.ngaytao</td>
+                <td>@dm.ngaycapnhat</td>
+                <td><a href="@Url.Action("Restore", "Category", new {id=dm.id} )">Phục hồi</a></td>
+            </tr>
+        }
+    </table>
+</div>
 
 @section js{
     <script>
-        function a_edit(id,name) {
+        function a_edit(id, name) {
             document.getElementById('id').value = id;
             document.getElementById('ten').value = name;
         }
@@ -51,12 +79,12 @@
            ,
             rules: {
                 ten: "required",
-               
+
 
             },
             messages: {
                 ten: "ERROR :Không được bỏ trống!",
-               
+
             },
 
 
@@ -81,95 +109,76 @@
     </script>
 
 }
-<div class="modal fade bd-outline" id="dm_edit" role="dialog">
 
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header ">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
-                <h4 class="modal-title text-success"><b>Cập nhật tên</b></h4>
-            </div>
-            <div class="modal-body" style="padding:40px 50px;">
-                <form id="myformedit" class="form-horizontal" method="post" action="@Url.Action("Edit","Category")">
-                    <input type="hidden" name="id" id="id" />
-                    <div class="form-group">
-                        <label class="control-label col-md-4">Tên danh mục :</label>
-                        <div class="col-md-5">
-                            <input class="form-control" type="text" name="ten" id="ten" />
+@section modal{
+    <div class="modal fade bd-outline" id="dm_edit" role="dialog">
+
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Cập nhật tên</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form id="myformedit" class="form-horizontal" method="post" action="@Url.Action("Edit","Category")">
+                        <input type="hidden" name="id" id="id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Tên danh mục :</label>
+                            <div class="col-md-5">
+                                <input class="form-control" type="text" name="ten" id="ten" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group ">
+                        <div class="form-group ">
 
-                        <button type="submit" class="btn btn-success btn-default">Sửa</button>
-                        <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button type="submit" class="btn btn-success btn-default">Sửa</button>
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
+
+
+
+
         </div>
 
-
-
-
     </div>
 
-</div>
+    <div class="modal fade bd-outline" id="dm_add" role="dialog">
 
-<div class="modal fade bd-outline" id="dm_add" role="dialog">
-
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header ">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
-                <h4 class="modal-title text-success"><b>Tạo mới danh mục</b></h4>
-            </div>
-            <div class="modal-body" style="padding:40px 50px;">
-                <form id="myformadd" class="form-horizontal" method="post" action="@Url.Action("Add","Category")">
-                    <input type="hidden" name="id" id="id" />
-                    <div class="form-group">
-                        <label class="control-label col-md-4">Tên danh mục :</label>
-                        <div class="col-md-5">
-                            <input class="form-control" type="text" name="ten" id="ten" />
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Tạo mới danh mục</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form id="myformadd" class="form-horizontal" method="post" action="@Url.Action("Add","Category")">
+                        <input type="hidden" name="id" id="id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Tên danh mục :</label>
+                            <div class="col-md-5">
+                                <input class="form-control" type="text" name="ten" id="ten" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group ">
+                        <div class="form-group ">
 
-                        <button type="submit" class="btn btn-success btn-default">Thêm</button>
-                        <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button type="submit" class="btn btn-success btn-default">Thêm</button>
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
+
+
+
+
         </div>
 
-
-
-
     </div>
 
-</div>
+}
 
 
-<div class="well">
-    <div class="well well-sm">
-        <strong>Danh mục không hoạt động</strong>
-    </div>
-    <table class="table table-striped">
-        <tr>
-            <td>Tên danh mục</td>
-            <td>Ngày tạo</td>
-            <td>Ngày cập nhật</td>
-            <td></td>
-            <td></td>
-        </tr>
-        @foreach (var dm in Model[1])
-        {
-            <tr>
-                <td>@dm.ten</td>
-                <td>@dm.ngaytao</td>
-                <td>@dm.ngaycapnhat</td>
-                <td><a href="@Url.Action("Restore", "Category", new {id=dm.id} )">Phục hồi</a></td>
-            </tr>
-        }
-    </table>
-</div>

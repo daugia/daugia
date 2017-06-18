@@ -30,8 +30,8 @@
                 <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).email</td>
                 <td>@_1460353.Helpers.nguoidung.find((int)yc.id_nguoidung).diem</td>
                 <td>@yc.ngaytao</td>
-                <td><a href="@Url.Action("Delete", "Yeucau", new { id1 = @yc.id})">Xóa</a></td>
-                <td><a href="@Url.Action("Accept", "Yeucau", new {id=@yc.id })">Duyệt</a></td>
+                <td><a href="@Url.Action("Delete", "Yeucau", new { id1 = @yc.id})"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
+                <a href="@Url.Action("Accept", "Yeucau", new {id=@yc.id })"><i data-toggle="tooltip" title="Chấp nhận" class="glyphicon glyphicon-check text-success"></i></a></td>
             </tr>
         }
     </table>
