@@ -23,6 +23,8 @@ namespace _1460353.Controllers
                 k.id_nguoidungquanlysp = Login.nguoidung().id;
                 daugia.kichnguoidungs.Add(k);
                 Helpers.sendMail.send(idsp,idnd, "Bạn Đã Bị Kich Khỏi Sản Phẩm !");
+                var sp = daugia.sanphams.Where(s => s.id == idsp).FirstOrDefault();
+                Helpers.thongbao.create_with_id("Bạn Bị Kích Khỏi Sản Phẩm" + sp.ten + " ! ", idnd);
                 var lsd = daugia.lichsudaus.Where(ls => ls.id_sanpham == idsp && ls.id_nguoidung == idnd).ToList();
                 foreach (var l in lsd)
                 {
@@ -48,6 +50,7 @@ namespace _1460353.Controllers
                         nsp.id_nguoidunghientai = lsds.id_nguoidung;
                         var ndht = daugia.nguoidungs.Where(nd => nd.id == lsds.id_nguoidung).FirstOrDefault();
                         ndht.taikhoan = ndht.taikhoan - lsds.tiendadau;
+                        Helpers.thongbao.create_with_id("Bây Là Người Giữ Giá Cao Nhất Sản Phẩm Của " + sp.ten + " ! ", ndht.id);
                     }
                 }
                 daugia.SaveChanges();

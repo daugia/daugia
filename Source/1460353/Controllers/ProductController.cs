@@ -294,12 +294,23 @@ namespace _1460353.Controllers
                                                 if (nguoidungt != null)
                                                 {
                                                     nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
+                                                    Helpers.sendMail.send(proId.Value, nguoidungt.id, "Sản Phảm Này Đã Có Người Trả Giá Hơn !");
+                                                    Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Mà Bạn Đấu Giá Đã Có Giá Cao Hơn", nguoidungt.id);
                                                 }
                                                 model.giahientai = model.giacaonhat + 100000;
                                                 model.giacaonhat = Gia;
                                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
                                                 model.luotragia++;
+
+                                                Helpers.sendMail.send(proId.Value, nguoidunght.id, "Bạn Là Người Giứ Giá Cao Nhất Của Sản Phẩm !");
+                                                Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Mà Bạn Là Người Giữ Giá Cao Nhất ", nguoidunght.id);
+
+                                                var ndql = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidung).FirstOrDefault();
+                                                Helpers.sendMail.send(proId.Value, ndql.id, "Sản Phảm Của Bạn Đã Có Giá Cao Hơn !");
+                                                Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + "Của Bạn Có Giá Cao Hơn ", ndql.id);
+
+
                                                 lichsudau ls = new lichsudau();
                                                 ls.tiendadau = Gia;
                                                 ls.id_sanpham = proId;
@@ -397,6 +408,15 @@ namespace _1460353.Controllers
                                         model.id_nguoidunghientai = Login.nguoidung().id;
                                         nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
                                         model.tinhtrang = 2;
+
+                                        Helpers.sendMail.send(proId.Value, nguoidunght.id, "Bạn Đã Mua Ngay Thành Công Sản Phẩm !");
+                                        Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Đã Được Bạn Mua Ngay Vui Lòng Kiểm Tra Mail ", nguoidunght.id);
+
+                                        var ndql = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidung).FirstOrDefault();
+                                        Helpers.sendMail.send(proId.Value, ndql.id, "Sản Phẩm Đã Có Người Mua Ngay !");
+                                        Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + "Đã Có Người Mua Ngay ! ", ndql.id);
+
+
                                         lichsudau ls = new lichsudau();
                                         ls.tiendadau = model.giamuangay;
                                         ls.id_sanpham = proId;
@@ -542,9 +562,17 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 var sp = data.sanphams.Find(id);
-                sp.tinhtrang = -1;
-                data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                data.SaveChanges();
+                if (sp.ngayketthuc >= DateTime.Now && sp.tinhtrang == 1)
+                {
+                    var nddg = data.nguoidungs.Where(nd=>nd.id==sp.id_nguoidunghientai).FirstOrDefault();
+                    if (nddg != null)
+                    {
+                        nddg.taikhoan = sp.giacaonhat + nddg.taikhoan;
+                    }
+                    sp.tinhtrang = -1;
+                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                    data.SaveChanges();
+                }
                 return Json(1, JsonRequestBehavior.DenyGet);
             }
         }
