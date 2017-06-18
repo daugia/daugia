@@ -9,13 +9,18 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="~/Content/Loading.css" rel="stylesheet" />
     @RenderSection("css", required: false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
 </head>
-<body >
+<body  >
 
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left" ></div>
+        <div class="loader-section section-right"></div>
+    </div>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -355,7 +360,14 @@
             $('.mydropdown-content').off('click').on('click','.thongbao-link', function () {
                 var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
             });
+
+            $(window).on('load', function () {
+                setTimeout(function () {
+                  $('body').addClass('loaded');
+                }, 2000);
+            });
         });
+
     </script>
     @*<script src="~/Scripts/sendMail.js"></script>*@
 </body>
