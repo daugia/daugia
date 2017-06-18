@@ -13,5 +13,11 @@ namespace _1460353.Helpers
             var q = datenow - date;
             return q.TotalMinutes <= 60 ? true : false;
         }
+        public static Models.sanpham find(int id)
+        {
+            using(var data=new Models.daugiaEntities()){
+                return data.sanphams.Find(id);
+            }
+        }
     }
 }

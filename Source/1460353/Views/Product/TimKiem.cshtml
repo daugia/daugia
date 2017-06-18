@@ -30,24 +30,24 @@ else
                     {
                         if (dm.id == ViewBag.iddm)
                         {
-                    <option value="@dm.id" selected>@dm.ten</option>
+                            <option value="@dm.id" selected>@dm.ten</option>
                         }
                         else
                         {
-                    <option value="@dm.id">@dm.ten</option>
+                            <option value="@dm.id">@dm.ten</option>
                         }
                     }
                 </select>
                 <select class="form-group selectpicker" name="chon">
                     @if (ViewBag.Chon == 1)
                     {
-                    <option value="1" selected>Sắp Xếp Theo Thời Gian</option>
-                    <option value="2">Sắp Xếp Theo Giá</option>
+                        <option value="1" selected>Sắp Xếp Theo Thời Gian</option>
+                        <option value="2">Sắp Xếp Theo Giá</option>
                     }
                     else
                     {
-                    <option value="1">Sắp Xếp Theo Thời Gian</option>
-                    <option value="2" selected>Sắp Xếp Theo Giá</option>
+                        <option value="1">Sắp Xếp Theo Thời Gian</option>
+                        <option value="2" selected>Sắp Xếp Theo Giá</option>
                     }
                 </select>
                 <button type="submit" class="btn btn-default">
@@ -98,11 +98,21 @@ else
                     </div>
                     <div class="caption">
                         <h5>@p.ten</h5>
-                        <h5>Giá Khởi Điểm : @string.Format("{0:N0}", p.giakhoidiem)</h5>
+
                         <h5>Giá Hiện Tại : @string.Format("{0:N0}", p.giahientai)</h5>
+                        @if (p.id_nguoidunghientai != null)
+                        { <h5>Người giữ giá :@_1460353.Helpers.nguoidung.mahoa((int)p.id_nguoidunghientai) </h5>}
+                        else
+                        {
+                            <h5>Người giữ giá : không có</h5>
+                        }
                         <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
-                        <p>Miêu Tả Ngắn Sản Phẩm:  </p>
-                        <p class="txtover">@p.mieutangan</p>
+                        <h5>Lượt ra giá :@p.luotragia</h5>
+                        @{
+                            var date = (DateTime)p.ngayketthuc - DateTime.Now;
+                            <h5>Thời gian còn lại : @date.Days d @date.Hours h @date.Minutes m @date.Seconds s</h5>
+                        }
+
                         <p>
                             <a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a>
 
@@ -122,14 +132,14 @@ else
                 </a>
             </li>
             @for (int i = 1; i <= ViewBag.Pages; i++)
+            {
+                if (ViewBag.CurPage == i)
                 {
-                    if (ViewBag.CurPage == i)
-                    {
-            <li class="active"><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
+                    <li class="active"><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
                 }
                 else
                 {
-            <li><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
+                    <li><a href="@Url.Action("TimKiem","Product",new { TuKhoa = ViewBag.TuKhoa, page = i ,iddm=ViewBag.iddm,chon=ViewBag.Chon})">@i</a></li>
                 }
             }
             <li>
@@ -166,7 +176,7 @@ else
 
                     //them thong bao da yeu thich 1 san pham
                     var thongbaototal = parseInt($('#thongbaototal').html());
-                    $('#thongbaototal').html(thongbaototal+1);
+                    $('#thongbaototal').html(thongbaototal + 1);
 
                 }
                 else {

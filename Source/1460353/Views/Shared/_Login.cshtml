@@ -7,13 +7,14 @@
 
     <link rel="shortcut icon" href="~/Imgs/site.ico" type="image/x-icon" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     @RenderSection("css", required: false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
 </head>
-<body>
+<body >
 
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,8 +32,8 @@
                 </button>
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
 
             <div id="naba" class="navbar-collapse collapse">
@@ -78,7 +79,7 @@
         </div>
 
     </div>
-    <div class="container margin-top">
+    <div class="container margin-top animated bounceInDown">
 
 
         @RenderBody()
@@ -107,7 +108,7 @@
                             <li>Bùi Ngọc Hoàng :</li>
                             <li>Phùng Quân Lạc :</li>
                             <li>Bạch Thị Thu Hiền :</li>
-                            <li>Phạm Văn Tín Thành :</li>
+                        
 
                         </ul>
                     </div>
@@ -356,6 +357,6 @@
             });
         });
     </script>
-    <script src="~/Scripts/sendMail.js"></script>
+    @*<script src="~/Scripts/sendMail.js"></script>*@
 </body>
 </html>

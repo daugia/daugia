@@ -1,4 +1,36 @@
-﻿
+﻿ .run-head-animation-lr {
+            animation: head-run-lr 20s infinite;
+            width:100%;
+        }
+
+        @keyframes head-run-lr {
+            from {
+           
+                margin-right:100%;
+            }
+
+            to {
+               margin-left:100%;
+            
+            }
+        }
+
+        .run-head-animation-rl {
+            animation: head-run-rl 20s infinite;
+            width:100%;
+        }
+
+        @keyframes head-run-rl {
+            from {
+                margin-left: 100%;
+            }
+
+            to {
+                margin-right: 100%;
+            }
+        }
+
+
 .img-container {
     position: relative;
     height: 160px;
@@ -12,7 +44,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
+    -ms-transform: translate(-50%, -50%);
 }
 
 .img-container:hover .img2 {
@@ -83,7 +115,7 @@
 
 
 .display-none {
-    display: none
+    display: none;
 }
 
 .display-block {
@@ -107,11 +139,11 @@
 
 @keyframes top-loading-fadein {
     from {
-        width: 0
+        width: 0;
     }
 
     to {
-        width: 100%
+        width: 100%;
     }
 }
 
@@ -186,7 +218,7 @@
 }
 
 body {
-    min-width:1200px;
+    min-width: 1200px;
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url("../Imgs/bg.png");
@@ -307,7 +339,7 @@ body {
     .mydropdown-content li {
         margin: 1px 5px 1px 5px;
         padding: 0;
-        list-style-type: none
+        list-style-type: none;
     }
 
     .mydropdown-content a:hover {

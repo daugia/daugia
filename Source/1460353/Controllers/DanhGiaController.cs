@@ -38,6 +38,7 @@ namespace _1460353.Controllers
                 ViewBag.Tot = tot;
                 ViewBag.Xau = xau;
                 ViewBag.Tong = tong;
+                ViewBag.id = id;
                 return View(list);
             }
         }
