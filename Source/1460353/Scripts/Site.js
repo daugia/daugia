@@ -12,7 +12,7 @@ $('.listsell').on('click', function () {
         type: 'get',
         dataType: 'json',
         contentType: 'application/json',
-        url: 'User/listsell',
+        url: '/User/listsell',
         success: function (listpro) {
             //alert(listpro.length);
             for (var i = 0; i < listpro.length; i++) {

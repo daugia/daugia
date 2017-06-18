@@ -33,8 +33,8 @@
                 </button>
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
 
             <div id="naba" class="navbar-collapse collapse">
@@ -116,7 +116,7 @@
                                         <li>Bùi Ngọc Hoàng :</li>
                                         <li>Phùng Quân Lạc :</li>
                                         <li>Bạch Thị Thu Hiền :</li>
-                                        <li>Phạm Văn Tín Thành :</li>
+                                       
 
                                     </ul>
                                 </div>
@@ -395,6 +395,7 @@
         });
     </script>
 
-    <script src="~/Scripts/sendMail.js"></script>
+    @*<script src="~/Scripts/sendMail.js"></script>*@
+   
 </body>
 </html>
