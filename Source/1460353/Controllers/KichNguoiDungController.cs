@@ -13,7 +13,7 @@ namespace _1460353.Controllers
         // GET: KichNguoiDung
         [Filters.LoginUser]
         [HttpPost]
-        public ActionResult Index(int? idsp, int? idnd)
+        public ActionResult Index(int idsp, int idnd)
         {
             using (var daugia = new daugiaEntities())
             {
@@ -22,6 +22,7 @@ namespace _1460353.Controllers
                 k.id_sanpham = idsp;
                 k.id_nguoidungquanlysp = Login.nguoidung().id;
                 daugia.kichnguoidungs.Add(k);
+                Helpers.sendMail.send(idsp,idnd, "Bạn Đã Bị Kich Khỏi Sản Phẩm !");
                 var lsd = daugia.lichsudaus.Where(ls => ls.id_sanpham == idsp && ls.id_nguoidung == idnd).ToList();
                 foreach (var l in lsd)
                 {
@@ -45,6 +46,8 @@ namespace _1460353.Controllers
                         nsp.giahientai = lsds.tiendadau;
                         nsp.giacaonhat = lsds.tiendadau;
                         nsp.id_nguoidunghientai = lsds.id_nguoidung;
+                        var ndht = daugia.nguoidungs.Where(nd => nd.id == lsds.id_nguoidung).FirstOrDefault();
+                        ndht.taikhoan = ndht.taikhoan - lsds.tiendadau;
                     }
                 }
                 daugia.SaveChanges();
