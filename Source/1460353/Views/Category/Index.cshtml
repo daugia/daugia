@@ -34,7 +34,7 @@
                 <td>
 
                     <a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal"><i data-toggle="tooltip" title="Sửa" class="glyphicon glyphicon-pencil"></i></a>
-                    <a  href="@Url.Action("Delete", "Category", new {id=dm.id} )"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
+                    <a href="@Url.Action("Delete", "Category", new {id=dm.id} )"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
                 </td>
 
             </tr>
@@ -52,7 +52,7 @@
             <td>Ngày tạo</td>
             <td>Ngày cập nhật</td>
             <td></td>
-        
+
         </tr>
         @foreach (var dm in Model[1])
         {
@@ -76,7 +76,7 @@
 
 
             errorClass: "glyphicon glyphicon-remove text-danger"
-           ,
+            ,
             rules: {
                 ten: "required",
 

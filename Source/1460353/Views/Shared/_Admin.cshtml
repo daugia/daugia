@@ -6,24 +6,26 @@
     <title>@ViewBag.Title - 1460353</title>
 
     <link rel="shortcut icon" href="~/Imgs/site.ico" type="image/x-icon" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Loading.css" rel="stylesheet" />
+
     @RenderSection("css", required: false)
+    <link href="~/Content/admin.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link href="~/Content/admin.css" rel="stylesheet" />
+    <link href="~/Content/Loading.css" rel="stylesheet" />
 </head>
 <body>
-
     <div id="loader-wrapper">
         <div id="loader"></div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
     </div>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+    <div class="navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#naba">
@@ -38,8 +40,7 @@
                 </button>
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @*@Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
             </div>
 
             <div id="naba" class="navbar-collapse collapse">
@@ -55,103 +56,26 @@
         </div>
     </div>
     <div class="top-loading navbar-fixed-top"> </div>
-    <div class="modal fade bd-outline" id="yeucau" role="dialog">
 
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
-                    <h4 class="modal-title text-success"><b>Yêu cầu được bán hàng</b></h4>
-                </div>
-                <div class="modal-body" style="padding:40px 50px;">
-                    <form id="myform" class="form-horizontal" method="post" action="@Url.Action("New","Yeucau")">
-                        <label class="form-group">Nội dung:</label>
-                        <div class="form-group">
-                            @Html.TextArea("noidung", new { @class = "ckeditor" })
-                        </div>
-                        <div class="form-group ">
-
-                            <button type="submit" class="btn btn-success btn-default">Gửi</button>
-                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-
-
+    <div class="row">
+        <div  class="col-md-2">
+           
+                @Html.Partial("_Admin_Dashboard")
+           
         </div>
-
-    </div>
-
-    @if(_1460353.Helpers.Login.IsLogin())
-    {
-        if (_1460353.Helpers.Login.nguoidung().quyen==0)
-        {
-            <div class="container margin-top animated bounceInDown">
+        <div class=" col-md-10 animated bounceInDown">
+            <div class=" margin-top container-fluid">
                 @RenderBody()
             </div>
-        }
-        else
-        {
-            <div class="row">
-                <div class="col-md-2">
-                    @Html.Partial("_Admin_Dashboard")
-                </div>
-                <div class=" col-md-10 animated bounceInDown">
-                    <div class=" margin-top container-fluid">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="container margin-top animated bounceInDown">
-            @RenderBody()
         </div>
-    }
+    </div>
 
 
-    
+
 
     <hr />
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
-    <footer>
-        <div class="footerUp">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h4>Đấu Giá</h4>
-                    </div>
-                    <div class="col-md-offset-1 col-md-4">
-                        <h4>Thông Tin</h4>
-                        <ul class="list-unstyled latestPosts"></ul>
-                    </div>
-                    <div class="col-md-offset-1 col-md-3">
-                        <h4>Liên Hệ</h4>
-                        <ul class="list-unstyled">
-                            <li>Đại học KHTN HCM</li>
-                            <li>14CK2</li>
-                            <li>Bùi Ngọc Hoàng :</li>
-                            <li>Phùng Quân Lạc :</li>
-                            <li>Bạch Thị Thu Hiền :</li>
 
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footerDown">
-            <div class="container">
-                <p>@DateTime.Today.Year.ToString() &copy; All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
 
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
@@ -161,12 +85,10 @@
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-
     <script src="~/Scripts/admin.js"></script>
+
     <script type="text/javascript">
-
         $().ready(function () {
-
             $(window).on('load', function () {
                 setTimeout(function () {
                     $('body').addClass('loaded');
@@ -178,6 +100,7 @@
                     $('body').addClass('loaded');
                 }
             }, 500);
+
 
             window.onclick = function (event) {
 
@@ -215,27 +138,47 @@
             });
         });
         function keyupsearch(str) {
-            $('#dropdown-menu').show();
+
             $('#dropdown-menu').children('li').remove();
 
-            $.ajax({
-                type: 'get',
-                data: { name: str },
-                dataType: 'json',
-                contentType: 'application/json',
-                url: '@Url.Action("searchlist","Product")',
-                success: function (prolist) {
-                    for (var i = 0; i < prolist.length; i++) {
-                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten + '&page=1&chon=1">' + prolist[i].ten + '</a></li>');
-                    }
-                }
-            });
+            if (str.length != 0) {
+                $('#dropdown-menu').show();
+
+                $.ajax({
+                    type: 'get',
+                    data: { name: str },
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '@Url.Action("searchlist","Product")',
+                    success: function (prolist) {
+                        if (prolist.length != 0) {
+
+                            for (var i = 0; i < prolist.length; i++) {
+                                $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten + '&page=1&chon=1">' + prolist[i].ten + '</a></li>');
+                            }
+                        } else {
+                            $('#dropdown-menu').children('li').remove();
+                            $('#dropdown-menu').hide();
+                        }
+
+
+                    }, error: function () { }
+                }).done(function () {
+
+                });
+
+            } else {
+                $('#dropdown-menu').children('li').remove();
+                $('#dropdown-menu').hide();
+            }
+
         }
         window.onclick = function () {
             $('#dropdown-menu').hide();
         };
     </script>
     <script type="text/javascript">
+
         $().ready(function () {
             $('.thongbao').off('click')
                 .on('click', function () {
@@ -373,6 +316,49 @@
         };
     </script>
 
+
+    <script>
+        $(function () {
+            $('.mydropdown-content').off('click').on('click', '.thongbao-link', function () {
+                var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
+            });
+        });
+    </script>
+
+    @*<script src="~/Scripts/sendMail.js"></script>*@
+
+
+    <div class="modal fade bd-outline" id="yeucau" role="dialog">
+
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><strong>&times;</strong></span></button>
+                    <h4 class="modal-title text-success"><b>Yêu cầu được bán hàng</b></h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form id="myform" class="form-horizontal" method="post" action="@Url.Action("New","Yeucau")">
+                        <label class="form-group">Nội dung:</label>
+                        <div class="form-group">
+                            @Html.TextArea("noidung", new { @class = "ckeditor" })
+                        </div>
+                        <div class="form-group ">
+
+                            <button type="submit" class="btn btn-success btn-default">Gửi</button>
+                            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
     <div class="modal fade bd-outline" id="thongbao-show" role="dialog">
         <div class="modal-dialog ">
             <div class="modal-content">
@@ -395,18 +381,8 @@
             </div>
         </div>
     </div>
-    <script>
-        $(function () {
-            $('.mydropdown-content').off('click').on('click', '.thongbao-link', function () {
-                var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
-            });
 
-
-        });
-
-    </script>
+    @RenderSection("modal", false)
     @RenderSection("js", false)
-    @*<script src="~/Scripts/sendMail.js"></script>*@
-
 </body>
 </html>

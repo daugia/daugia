@@ -290,6 +290,7 @@
     <Content Include="bootstrap-select\js\i18n\defaults-zh_CN.js" />
     <Content Include="bootstrap-select\js\i18n\defaults-zh_TW.js" />
     <Content Include="bootstrap-select\test.html" />
+    <Content Include="Content\admin.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -385,6 +386,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-touchspin-master\.gitignore" />
@@ -1303,6 +1305,8 @@
     <Content Include="Views\DanhGia\NguoiMua.cshtml" />
     <Content Include="Views\DanhGia\NguoiBan.cshtml" />
     <Content Include="Views\DanhGia\Index.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Shared\_Admin_Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1317,6 +1321,7 @@
     <Folder Include="Source\Images\Users\0\" />
     <Folder Include="Source\Images\Users\1\" />
     <Folder Include="Source\Images\Users\3\" />
+    <Folder Include="Source\Images\Users\6\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\KichNguoiDung\" />
     <Folder Include="Views\Mail\" />

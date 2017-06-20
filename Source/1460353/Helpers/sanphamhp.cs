@@ -19,5 +19,10 @@ namespace _1460353.Helpers
                 return data.sanphams.Find(id);
             }
         }
+        public static List<Models.chinhsuachitietsp> list_edit(int id){
+            using(var data=new Models.daugiaEntities()){
+                return data.chinhsuachitietsps.Where(ct => ct.id_sanpham == id).OrderByDescending(ct => ct.thoigian).ToList();
+            }
+        }
     }
 }

@@ -6,6 +6,14 @@
 @model List<_1460353.Models.sanpham>
 
 <h2>Danh sách sản phẩm đang được đăng đấu giá</h2>
+
+
+@if(ViewBag.note!=null){
+    <div id="snackbar" style="background-color:forestgreen">
+        Thành công
+    </div>
+}
+
 <ul class="pagination">
     @for (var i = 1; i <= ViewBag.pageTotal; i++)
     {
@@ -30,7 +38,7 @@
         @foreach (var sp in Model)
         {
             <tr class="tr">
-                <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
+                <td><a href="@Url.Action("chitiet","product",new{id=sp.id})"><img style="width:60px;height:60px" src="@sp.hinh1" /></a></td>
                 <td>@sp.ten</td>
                 <td>@sp.giakhoidiem</td>
                 <td>@sp.giahientai</td>
@@ -39,7 +47,7 @@
                 <td>@sp.ngayketthuc</td>
                 <td>
                     <a href="@Url.Action("LSSanPham", "LichSuDau", new { id=sp.id} )"><i data-toggle="tooltip" title="Lịch sử" class="glyphicon glyphicon-list"></i></a>
-                    <a class="edit"  href="#myeditm" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" data-chitiet="@sp.chitiet"><i data-toggle="tooltip" title="Sửa mô tả" class="glyphicon glyphicon-pencil"></i></a>
+                    <a class="edit"  href="#myeditm" data-toggle="modal" data-id="@sp.id" data-mieutangan="@sp.mieutangan" ><i data-toggle="tooltip" title="Sửa mô tả" class="glyphicon glyphicon-pencil"></i></a>
                     <a class="del" data-id="@sp.id" href="#"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
                 </td>
             </tr>
@@ -48,35 +56,6 @@
 </div>
 
 
-@section modal{
-    <div id="myeditm" class="modal fade" role="dialog">
-
-        <div class="mymodal-content">
-            <div class="pager">
-                <h3 class="text-success">Sửa mô tả</h3>
-            </div>
-            <div class="form-horizontal" id="myformedit">
-                <input type="hidden" name="id" id="id" />
-                <div class="form-group">
-                    <label class="control-label col-md-2">Mô tả ngắn:</label>
-                    <div class="col-md-10">
-                        <input name="mieutangan" id="mieutangan" class="form-control" type="text" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Chi tiết sản phẩm :</label>
-                    <div class="col-md-10">
-                        @Html.TextArea("chitiet", new { @class = "ckeditor" })
-                    </div>
-                </div>
-                <div class="pager">
-                    <input id="btnedit" type="button" class="btn btn-warning" value="Sửa" />
-                </div>
-            </div>
-        </div>
-
-    </div>
-}
 @section css{
     <style>
         .mymodal-content {
@@ -129,14 +108,14 @@
                     for (var i = 0; i < prolist.length; i++) {
                         table.append('' +
                             '<tr class="tr">' +
-                            '<td><img style="width:60px;height:60px" src="' + prolist[i].hinh1 + '" /></td>' +
+                            '<td><a href="/product/chitiet/'+prolist[i].id+'"><img style="width:60px;height:60px" src="' + prolist[i].hinh1 + '" /></a></td>' +
                             '<td>' + prolist[i].ten + '</td>' +
                             '<td>' + prolist[i].giakhoidiem + '</td>' +
                             '<td>' + prolist[i].giahientai + '</td>' +
                             '<td>' + ToJavaScriptDate(prolist[i].ngaybatdau) + '</td>' +
                             '<td>' + ToJavaScriptDate(prolist[i].ngayketthuc) + '</td>' +
                            '<td><a  href="/LichSuDau/LSSanpham/' + prolist[i].id + '"><i data-toggle="tooltip" title="Lịch sử" class="glyphicon glyphicon-list"></i></a>' +
-                            '<a class="edit" href="#myedit" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" ><i data-toggle="tooltip" title="Sửa mô tả" class="glyphicon glyphicon-pencil"></i></a>' +
+                            '<a class="edit" href="#myeditm" data-toggle="modal" data-id="' + prolist[i].id + '" data-mieutangan="' + prolist[i].mieutangan + '" ><i data-toggle="tooltip" title="Sửa mô tả" class="glyphicon glyphicon-pencil"></i></a>' +
                             '<a class="del" data-id="' + prolist[i].id + '" href="#"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a></td>' +
                             '</tr>');
                     }
@@ -154,6 +133,7 @@
         $().ready(function () {
             //Huy
             $('#table').on('click', '.del', function () {
+                
                 var id = $(this).data('id');
                 $(this).closest('tr').remove();
                 $.ajax({
@@ -174,7 +154,7 @@
     <script type="text/javascript">
         $().ready(function () {
             $('#btnedit').on('click', function () {
-
+                
                 var id = $('#id').val();
                 var mieutangan = $('#mieutangan').val();
                 var chitiet = $('chitiet').val();
@@ -183,17 +163,22 @@
                     mieutangan: mieutangan,
                     chitiet: chitiet
                 };
-                $.ajax({
+                alert(chitiet);
+                alert(mieutangan);
+                @*$.ajax({
                     type: 'post',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     contentType: 'application/json',
                     url: '@Url.Action("Edit","Product")',
                     success: function (str) {
-
-                        $('#myedit').removeClass('in');
+                       
+                        $('#myeditm').removeClass('in');
+                        
                     },
-                });
+                    error: function () { }
+                });*@
+
             });
         });
 
@@ -207,7 +192,7 @@
                 $('#mieutangan').val($(this).data('mieutangan'));
                 $('#chitiet').val($(this).data('chitiet'));
             });
-            $('#myformedit').validate({
+            $('#myform-edit').validate({
                 errorClass: 'text-danger',
                 rules: {
                     mieutangan: {
@@ -228,5 +213,38 @@
             });
         });
     </script>
+
+}
+
+
+@section modal{
+    <div id="myeditm" class="modal fade" role="dialog">
+
+        <div class="mymodal-content">
+            <div class="pager">
+                <h3 class="text-success">Sửa mô tả</h3>
+            </div>
+            <form class="form-horizontal" id="myform-edit" method="post" action="@Url.Action("Edit", "Product")">
+                <input type="hidden" name="id" id="id" />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Mô tả ngắn:</label>
+                    <div class="col-md-10">
+                        <input name="mieutangan" id="mieutangan" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Chi tiết sản phẩm :</label>
+                    <div class="col-md-10">
+                        @Html.TextArea("chitiet", new { @class = "ckeditor" })
+                    </div>
+                </div>
+                <div class="pager">
+                    <input  type="submit" class="btn btn-warning" value="Sửa" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
 
 }

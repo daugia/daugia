@@ -1,0 +1,12 @@
+﻿
+<ul id="ad-dashboard">
+    <li class="ad-head" style="text-align:center"><img src="~/Source/Images/Logo/logo.ico" /></li>
+    <li><a href="#">Thông tin</a></li>
+    <li><a href="@Url.Action("Edit","User")"><i class="glyphicon glyphicon-pencil text-success"></i>Cập nhât thông tin</a></li>
+    <li><a href="@Url.Action("EditPass","User")"><i class="glyphicon glyphicon-cog text-primary"></i>Đổi mật khẩu</a></li>
+    <li><a href="@Url.Action("Index","Category")"><i class="glyphicon glyphicon-list-alt text-warning"></i>Quản lí danh mục</a></li>
+    <li><a href="@Url.Action("Index","Nguoidung")"><i class="glyphicon glyphicon-user text-primary"></i>Quản lí người dùng</a></li>
+    <li><a href="@Url.Action("Index","Yeucau")"><i class="glyphicon glyphicon-comment text-primary"></i>Quản lí yêu cầu </a></li>
+    <li role="separator" class="divider"></li>
+    <li><a id="logout_l" href="@Url.Action("Logout","User")"><i class="glyphicon glyphicon-off text-danger"></i>--Đăng xuất</a></li>
+</ul>
