@@ -49,3 +49,4 @@ E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\System.W
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\bin\System.Web.Mvc.xml
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\obj\Debug\1460353.dll
 E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\obj\Debug\1460353.pdb
+E:\HocTap\Web 2 ASP.NET MVC 5\doannhom\daugia\daugia\Source\1460353\obj\Debug\1460353.csprojResolveAssemblyReference.cache

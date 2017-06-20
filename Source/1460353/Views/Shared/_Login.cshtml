@@ -13,12 +13,13 @@
     @RenderSection("css", required: false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
 </head>
-<body  >
+<body>
 
     <div id="loader-wrapper">
         <div id="loader"></div>
-        <div class="loader-section section-left" ></div>
+        <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
     </div>
 
@@ -38,7 +39,7 @@
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img width="20" height="20" src="~/Source/Images/Logo/logo.ico" /></a>
                 @Html.ActionLink("Trang Chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @*@Html.ActionLink("Top", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("New", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
 
             <div id="naba" class="navbar-collapse collapse">
@@ -84,13 +85,38 @@
         </div>
 
     </div>
-    <div class="container margin-top animated bounceInDown">
+
+    @if(_1460353.Helpers.Login.IsLogin())
+    {
+        if (_1460353.Helpers.Login.nguoidung().quyen==0)
+        {
+            <div class="container margin-top animated bounceInDown">
+                @RenderBody()
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.Partial("_Admin_Dashboard")
+                </div>
+                <div class=" col-md-10 animated bounceInDown">
+                    <div class=" margin-top container-fluid">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="container margin-top animated bounceInDown">
+            @RenderBody()
+        </div>
+    }
 
 
-        @RenderBody()
-
-    </div>
-
+    
 
     <hr />
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
@@ -113,7 +139,7 @@
                             <li>Bùi Ngọc Hoàng :</li>
                             <li>Phùng Quân Lạc :</li>
                             <li>Bạch Thị Thu Hiền :</li>
-                        
+
 
                         </ul>
                     </div>
@@ -136,11 +162,11 @@
 
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-
+    <script src="~/Scripts/admin.js"></script>
     <script type="text/javascript">
 
         $().ready(function () {
-            
+
             $(window).on('load', function () {
                 setTimeout(function () {
                     $('body').addClass('loaded');
@@ -155,11 +181,11 @@
 
             window.onclick = function (event) {
 
-                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn') ) {
+                if (!event.target.matches('.mydropbtn') && !event.target.closest('.mydropbtn')) {
 
                     closedropdown();
                 }
-            
+
 
             }
             function closedropdown() {
@@ -183,9 +209,9 @@
 
             $('.mydropdown').on('click', function () {
                 closedropdown();
-                 var height = 0.7 * $(window).height();
-                    $(this).children('.mydropdown-content').css("max-height", height);
-                    $(this).children('.mydropdown-content').addClass("mydisplay-block");
+                var height = 0.7 * $(window).height();
+                $(this).children('.mydropdown-content').css("max-height", height);
+                $(this).children('.mydropdown-content').addClass("mydisplay-block");
             });
         });
         function keyupsearch(str) {
@@ -199,8 +225,8 @@
                 contentType: 'application/json',
                 url: '@Url.Action("searchlist","Product")',
                 success: function (prolist) {
-                    for (var i = 0; i < prolist.length;i++){
-                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten +'&page=1&chon=1">' + prolist[i].ten + '</a></li>');
+                    for (var i = 0; i < prolist.length; i++) {
+                        $('#dropdown-menu').append('<li><a href="/Product/TimKiem?TuKhoa=' + prolist[i].ten + '&page=1&chon=1">' + prolist[i].ten + '</a></li>');
                     }
                 }
             });
@@ -218,8 +244,8 @@
 
                     $(this).closest('.mydropdown').find('li').remove();
                     var ul = $(this).closest('.mydropdown').children('ul');
-                    ul.append(''+
-                       ' <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>'+
+                    ul.append('' +
+                       ' <li class="li-note" style="font-size:150%;font-weight:bold;color:aqua;">Thông báo</li>' +
                         '<li>...............................................</li>');
 
                     $.ajax({
@@ -228,17 +254,17 @@
                         contentType: 'application/json',
                         url: '@Url.Action("listnew","Thongbao")',
                         success: function (listnew) {
-                           //append danh sach da xem
+                            //append danh sach da xem
                             for (var i = 0; i < listnew.length; i++) {
 
                                 ul.append(
-                                    '<li style="border-color:black;background-color:#e6e6ff;">'+
-                                    '<a data-noidung="' + listnew[i].noidung +'"  class="thongbao-link" href="#thongbao-show" data-toggle="modal">'+
-                                    '<div>' + ToJavaScriptDate(listnew[i].ngaytao)+'<h6 style="float:right;">Mới</h6></div>'+
-                                            '<p class="txtover">'+
-                                    '' + listnew[i].noidung+''+
-                                            '</p>'+
-                                       ' </a>'+
+                                    '<li style="border-color:black;background-color:#e6e6ff;">' +
+                                    '<a data-noidung="' + listnew[i].noidung + '"  class="thongbao-link" href="#thongbao-show" data-toggle="modal">' +
+                                    '<div>' + ToJavaScriptDate(listnew[i].ngaytao) + '<h6 style="float:right;">Mới</h6></div>' +
+                                            '<p class="txtover">' +
+                                    '' + listnew[i].noidung + '' +
+                                            '</p>' +
+                                       ' </a>' +
                                     '</li>');
 
                             }
@@ -256,7 +282,7 @@
                                 for (var i = 0; i < listold.length; i++) {
                                     ul.append(
                                         '<li style="border-color:black;background-color:white;">' +
-                                        '<a data-noidung="' + listold[i].noidung+'" class="thongbao-link" href="#thongbao-show" data-toggle="modal">' +
+                                        '<a data-noidung="' + listold[i].noidung + '" class="thongbao-link" href="#thongbao-show" data-toggle="modal">' +
                                         '<div>' + ToJavaScriptDate(listold[i].ngaytao) + '<h6 style="float:right;">Đã xem</h6></div>' +
                                         '<p class="txtover">' +
                                         '' + listold[i].noidung + '' +
@@ -268,12 +294,12 @@
                             error: function () { alert('fail!'); }
                         }).done(function () {
                             $.ajax({
-                                     //check all da xem
-                                        type: 'get',
-                                        url: '@Url.Action("check","Thongbao")',
-                                        });
+                                //check all da xem
+                                type: 'get',
+                                url: '@Url.Action("check","Thongbao")',
                             });
                         });
+                    });
 
 
                 });
@@ -283,7 +309,7 @@
 
     <script type="text/javascript">
         $(function () {
-            function yc_delete_row(e){
+            function yc_delete_row(e) {
                 var row = $(e).closest('.row');
                 row.remove();
 
@@ -309,10 +335,10 @@
                     var tttotal = parseInt($('#thongbaototal').html());
                     $('#thongbaototal').html(tttotal + 1);
 
-                    });
+                });
             });
             $('.yc-deny').off('click').on('click', function () {
-               // alert('deny');
+                // alert('deny');
                 yc_delete_row(this);
                 var id = $(this).data('id');
                 $.ajax({
@@ -322,10 +348,10 @@
                     contentType: 'application/json',
                     url: '@Url.Action("DeleteAjax","Yeucau")',
                     success: function (str) {
-                      //  alert(str);
+                        //  alert(str);
                     },
                     error: function (str) {
-                      //  alert('Fail!');
+                        //  alert('Fail!');
                     },
                 }).done(function () {
                     var yctotal = parseInt($('#yeucautotal').html());
@@ -371,16 +397,16 @@
     </div>
     <script>
         $(function () {
-            $('.mydropdown-content').off('click').on('click','.thongbao-link', function () {
+            $('.mydropdown-content').off('click').on('click', '.thongbao-link', function () {
                 var noidung = $('#thongbao-noidung').html($(this).data('noidung'));
             });
 
-           
+
         });
 
     </script>
     @RenderSection("js", false)
     @*<script src="~/Scripts/sendMail.js"></script>*@
-   
+
 </body>
 </html>
