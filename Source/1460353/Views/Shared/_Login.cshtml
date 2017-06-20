@@ -138,13 +138,20 @@
 
 
     <script type="text/javascript">
-        $().ready(function () {
 
+        $().ready(function () {
+            
             $(window).on('load', function () {
                 setTimeout(function () {
                     $('body').addClass('loaded');
                 }, 200);
             });
+
+            setTimeout(function () {
+                if (!$('body').hasClass('loaded')) {
+                    $('body').addClass('loaded');
+                }
+            }, 500);
 
             window.onclick = function (event) {
 
