@@ -15,9 +15,9 @@ namespace _1460353.Controllers
             var list = new List<List<Models.sanpham>> ();
             using (var data=new Models.daugiaEntities())
             {
-                //list sản paahme có lượt ra nhiều nhất
+                //list sản phẩm có lượt ra nhiều nhất
                 var date = DateTime.Now;
-                // list san pham co luot ra gia cao top 5
+  
                 var luotraggia = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.ngayketthuc > date).OrderByDescending(sp => sp.luotragia).Take(5).ToList();
                 // list  5 san pham gan ket thuc han dau gia
                 
