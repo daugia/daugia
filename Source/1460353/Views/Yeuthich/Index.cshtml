@@ -27,15 +27,12 @@
     {
         <table class="table table-striped">
             <tr data-id="@sp.id">
-                <td><img style="width:60px;height:60px;" src="@sp.hinh1" /></td>
+                <td><a href="@Url.Action("ChiTiet","Product",new{id=@sp.id})"><img class="img" style="width:60px;height:60px;" src="@sp.hinh1" /></a></td>
                 <td><label>Giá khởi điểm :</label>@sp.giakhoidiem</td>
                 <td><label>Giá mua ngay :</label>@sp.giamuangay</td>
                 <td><label>Giá hiện tại :</label>@sp.giahientai</td>
                 <td><label>Lượt xem:</label>@sp.luotview</td>
-                <td><a data-id="@sp.id" class="btn btn-primary yt">Xóa</a></td>
-                <td>
-                    <a href="@Url.Action("ChiTiet","Product",new { id = @sp.id })" class="btn btn-default" role="button">Chi Tiết</a>
-                </td>
+                <td><a data-id="@sp.id" href="#" class="yt"><i class="glyphicon glyphicon-remove-circle text text-danger"></i></a></td>
             </tr>
         </table>
     }
@@ -44,41 +41,39 @@
 
 @section js{
     <script type="text/javascript">
-        $().ready(function () {
+    $().ready(function () {
 
-            $('.page').off('click').on('click', function () {
-                var top = $('.top-loading');
-                top.addClass('top-loading-show');
-                setTimeout(function () { top.removeClass('top-loading-show'); }, 1500);
+        $('.page').off('click').on('click', function () {
+            var top = $('.top-loading');
+            top.addClass('top-loading-show');
+            setTimeout(function () { top.removeClass('top-loading-show'); }, 1500);
 
-                var ul = $(this).parents('ul');
-                ul.children('li').removeClass('active');
-                $(this).parent('li').addClass('active');
+            var ul = $(this).parents('ul');
+            ul.children('li').removeClass('active');
+            $(this).parent('li').addClass('active');
 
-                //load page voi ajax
-                var page = $(this).data('page');
-                $.ajax({
-                    type: 'get',
-                    data: { page: page },
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    url: '@Url.Action("IndexAjax", "Yeuthich")',
+            //load page voi ajax
+            var page = $(this).data('page');
+            $.ajax({
+                type: 'get',
+                data: { page: page },
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '@Url.Action("IndexAjax", "Yeuthich")',
                     success: function (prolist) {
                         $('.table').remove();
                         for (var i = 0; i < prolist.length; i++) {
-                            
+
                             $('.div').append(
-                                '<table class="table table-striped">'+
-                                   '<tr data-id="'+prolist[i].id+'">'+
-                                '<td><img style="width:60px;height:60px;" src="' + prolist[i].hinh1+'" /></td>'+
-                                        '<td><label>Giá khởi điểm :</label>'+prolist[i].giakhoidiem+'</td>'+
-                                       ' <td><label>Giá mua ngay :</label>'+prolist[i].giamuangay+'</td>'+
-                                        '<td><label>Giá hiện tại :</label>'+prolist[i].giahientai+'</td>'+
-                                        '<td><label>Lượt xem:</label>'+prolist[i].luotview+'</td>'+
-                                        '<td><a data-id="'+prolist[i].id+'" class="btn btn-primary yt">Xóa</a></td>'+
-                                         '<td>'+
-                                            '<a href="Product/Chitiet/'+prolist[0].id+'" class="btn btn-default" role="button">Chi Tiết</a>'+
-                                        '</td>'+
+                                '<table class="table table-striped">' +
+                                   '<tr data-id="' + prolist[i].id + '">' +
+                                '<td><a href="/Product/ChiTiet/'+prolist[i].id+'"> <img class="img" style="width:60px;height:60px;" src="' + prolist[i].hinh1 + '" /></a> </td>' +
+                                        '<td><label>Giá khởi điểm :</label>' + prolist[i].giakhoidiem + '</td>' +
+                                       ' <td><label>Giá mua ngay :</label>' + prolist[i].giamuangay + '</td>' +
+                                        '<td><label>Giá hiện tại :</label>' + prolist[i].giahientai + '</td>' +
+                                        '<td><label>Lượt xem:</label>' + prolist[i].luotview + '</td>' +
+                                        '<td><a  href="#" data-id="' + prolist[i].id + '" class="yt"><i class="glyphicon glyphicon-remove-circle text text-danger"></i></a></td>' +
+
                                 '  </tr>' +
                               '  </table>');
 
@@ -89,7 +84,7 @@
 
             });
 
-            $('#container').off('click').on('click','.yt', function () {
+            $('#container').off('click').on('click', '.yt', function () {
                 var idsanpham = $(this).data('id');
                 var total = parseInt($('#yeuthichtotal').html());
                 //timthang cha va xoa
@@ -101,11 +96,11 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     url: '@Url.Action("xoayeuthich","Yeuthich")',
-                    success: function () {
-                        $('#yeuthichtotal').html(total - 1);
-                    }
-                });
+                success: function () {
+                    $('#yeuthichtotal').html(total - 1);
+                }
             });
         });
+    });
     </script>
 }
