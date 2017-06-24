@@ -33,19 +33,21 @@ namespace _1460353
             {
                 var list_sanpham_hethandaugia = data.sanphams.Where(sp => sp.ngayketthuc < DateTime.Now && sp.tinhtrang == 1 && sp.guimail_==0).ToList();
                 foreach(var sp in list_sanpham_hethandaugia){
-                    if(sp.giahientai==sp.giakhoidiem)//gui mail cho chu san pham khi khong co ai dau gia
+                    sp.guimail_ = 1;
+                    sp.tinhtrang = 2;
+                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                    data.SaveChanges();
+
+                    if (sp.giahientai == sp.giakhoidiem)//gui mail cho chu san pham khi khong co ai dau gia
                     {
-                        Helpers.sendMail.send(sp.id,(int)sp.id_nguoidung, "Xin lỗi sản phẩm của bạn không có ai tham giá đấu giá!");
+                        Helpers.sendMail.send(sp.id, (int)sp.id_nguoidung, "Xin lỗi sản phẩm của bạn không có ai tham giá đấu giá!");
                     }
                     else //san phan co nguoi thang cuoc
                     {
                         Helpers.sendMail.send(sp.id, (int)sp.id_nguoidung, "Chúc mừng bạn sản phẩm đã cõ người đấu giá thành công!");
                         Helpers.sendMail.send(sp.id, (int)sp.id_nguoidunghientai, "Chúc mừng bạn đã đấu giá thành công sản phẩm này!");
                     }
-                    sp.guimail_ = 1;
-                    sp.tinhtrang = 2;
-                    data.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                    data.SaveChanges();
+                   
                 }
             }
             //check han yeu cau
