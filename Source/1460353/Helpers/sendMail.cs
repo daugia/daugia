@@ -99,7 +99,7 @@ namespace _1460353.Helpers
                 tMailMessage.From = new MailAddress("nguyenthithanhlap1971@gmail.com");
                 tMailMessage.To.Add(new MailAddress(nguoidung.email));
                 tMailMessage.Subject = "Thông báo đấu giá";
-                tMailMessage.Body = body(data.sanphams.Find(id_sp).ten,noidung,null);
+                tMailMessage.Body = body(data.sanphams.Find(id_sp).ten, noidung, null);
                 tMailMessage.IsBodyHtml = true;
                 tMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
                 tMailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -109,7 +109,7 @@ namespace _1460353.Helpers
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Credentials = new NetworkCredential("", "");
+                client.Credentials = new NetworkCredential("nguyenthithanhlap1971@gmail.com", "");
                 client.Send(tMailMessage);
             }
         }
