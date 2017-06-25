@@ -46,7 +46,9 @@ namespace _1460353.Controllers
                     sp.giahientai = sp.giakhoidiem;
                     sp.giacaonhat = sp.giakhoidiem;
                     sp.luotragia = 0;
-                    if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = 10*sp.giakhoidiem; }
+                    sp.tang10phut = sp.tang10phut;
+                    sp.solantang10phut = 0;
+                    if (sp.giabanmongmuon == null || sp.giabanmongmuon < sp.giakhoidiem) { sp.giabanmongmuon = sp.giakhoidiem; }
                     if (sp.giamuangay == null || sp.giamuangay < sp.giakhoidiem) { sp.giamuangay = 0; }
                     sp.tinhtrang = 1;//dang ban
                     sp.nguoibandanhgia_ = 0;
