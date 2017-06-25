@@ -22,7 +22,7 @@ else
  <div class="well">
         <table id="table" class="table table-striped">
             <tr>
-                <td>Hình</td>
+                <td>Hình ảnh</td>
                 <td>Tên sản phẩm</td>
                 <td>Giá hiện tại</td>
                 <td>Tên người bán</td>
@@ -35,7 +35,7 @@ else
                     <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
                     <td>@sp.ten</td>
                     <td>@sp.giahientai</td>
-                    <td>@_1460353.Helpers.nguoidung.find((int)sp.id_nguoidung).ten</td>
+                    <td>@sp.id_nguoidung</td>
                     <td>
                         <form class="navbar-form navbar-left" method="post" action=@Url.Action("NguoiMua", "DanhGia")>
                             <input type="text" class="form-control" placeholder="Xin Nhap Noi Dung Danh Gia" name="noidung">
@@ -43,8 +43,8 @@ else
                             <input type="hidden" class="form-control" name="idndg" value="@sp.id_nguoidunghientai">
                             <input type="hidden" class="form-control" name="idsp" value="@sp.id">
                             <select class="form-group selectpicker" name="chon">
-                                <option value="1">Chất lượng</option>
-                                <option value="0">Kém chất lượng</option>
+                                <option value="1">Tốt</option>
+                                <option value="0">Xấu</option>
                             </select>
                             <button type="submit" class="btn btn-default">
                                 <i class="glyphicon glyphicon-send"></i>
