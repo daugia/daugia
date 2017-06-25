@@ -8,7 +8,7 @@
 
 @if (Model == null)
 {
-    <text> Sản Phẩm Không Tồn Tại</text>
+    <div class="caption-lg-red"> Sản phẩm này không tồn tại</div>
 }
 else
 {
@@ -16,7 +16,7 @@ else
     {
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
+            <span class="sr-only">Error : </span>
             @ViewBag.Error
         </div>
     }
@@ -24,7 +24,7 @@ else
     {
         <div class="alert alert-success" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Success:</span>
+            <span class="sr-only">Success : </span>
             @ViewBag.Message
         </div>
     }
@@ -46,46 +46,48 @@ else
 
         <div class="col-md-8">
 
-            <div class="col-md-12 pager">
-                <h2>@Model.ten</h2>
+            <div class="col-md-12 pager caption-title ">
+                @Model.ten
             </div>
 
             <div class="col-md-12">
                 <div class="col-md-6">
                     <div class="col-md-12">
-                        <label>Giá Khởi Điểm :</label><h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
+                        <label>Giá khởi điểm : </label>
+                        <h5> @string.Format("{0:N0}", Model.giakhoidiem)</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Giá Hiện Tại :</label><h5> @string.Format("{0:N0}", Model.giahientai)</h5>
+                        <label>Giá hiện tại : </label>
+                        <h5> @string.Format("{0:N0}", Model.giahientai)</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Giá Mua Ngay:</label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
+                        <label>Giá mua ngay cho sản phẩm : </label><h5>  @string.Format("{0:N0}", Model.giamuangay)</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Số Lượng Sản Phẩm :</label><h5>  @Model.soluong</h5>
+                        <label>Số lượng : </label><h5>  @Model.soluong</h5>
                     </div>
 
                     <div class="col-md-12">
-                        <label>Người Có Giá Cao Nhất:</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })">
+                        <label>Người đang giữ cao nhất : </label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidunghientai })">
                         @if(Model.id_nguoidunghientai!=null){
                             <h5>@_1460353.Helpers.nguoidung.find((int)Model.id_nguoidunghientai).ten</h5>
                         }
                         </a>
                     </div>
                     <div class="col-md-12">
-                        <label>Người đăng Sản Phẩm :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @_1460353.Helpers.nguoidung.find((int)Model.id_nguoidung).ten</h5></a>
+                        <label>Người đăng sản phẩm bán :</label><a href="@Url.Action("Index","DanhGia",new {id=Model.id_nguoidung })"><h5>  @_1460353.Helpers.nguoidung.find((int)Model.id_nguoidung).ten</h5></a>
                     </div>
                     <div class="col-md-12">
-                        <label>Lượt Xem :</label><h5>  @Model.luotview</h5>
+                        <label>Lượt xem :</label><h5>  @Model.luotview</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Thời Gian Bắt Đầu :</label><h5>  @Model.ngaybatdau</h5>
+                        <label>Thời gian bắt đầu : </label><h5>  @Model.ngaybatdau</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Thời Gian Kết Thúc : </label><h5> @Model.ngayketthuc</h5>
+                        <label>Thời gian kết thúc : </label><h5> @Model.ngayketthuc</h5>
                     </div>
                     <div class="col-md-12">
-                        <label>Thời Gian Còn Lại</label>
+                        <label>Thời gian còn lại : </label>
                         <label id="hengio"></label>
                     </div>
                     @if (Login.IsLogin() == true)
@@ -117,7 +119,7 @@ else
                 </div>
                 <div class="col-md-6">
                    
-                        <label>Miêu Tả Sản Phẩm:</label><h5 class="txtover"> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
+                        <label>Miêu tả sản phẩm : </label><h5 class="txtover"> @Html.Raw(HttpUtility.HtmlDecode(Model.chitiet))</h5>
                    
                 
                 </div>
@@ -160,7 +162,9 @@ else
                 {
                     <tr>
                         <td>@ct.thoigian</td>
-                        <td><p>@Html.Raw(ct.noidungchinhsua)</p> </td>
+                        <td>
+                            <p>@Html.Raw(ct.noidungchinhsua)</p> 
+                        </td>
                     </tr>
                 }
             </table>
@@ -176,6 +180,19 @@ else
         .dialog {
             width: 150px;
             margin: auto;
+        }
+        .caption-title {
+            font-weight: bold;
+            font-size: 15pt;
+            color: red;
+        }
+        .caption-lg-red {
+            font-weight: bold;
+            font-size: 15pt;
+            color: red;
+        }
+         .padding{
+            padding-top: 10px
         }
     </style>
 }
@@ -198,7 +215,7 @@ else
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("hengio").innerHTML = "Đã hết hạn";
+                document.getElementById("hengio").innerHTML = "Hết hạn";
             }
         }, 1000);
 

@@ -66,6 +66,50 @@
     </table>
 </div>
 
+@section js{
+    <script>
+        function a_edit(id, name) {
+            document.getElementById('id').value = id;
+            document.getElementById('ten').value = name;
+        }
+        $("#myformedit").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+            ,
+            rules: {
+                ten: "required",
+
+
+            },
+            messages: {
+                ten: "ERROR :Không được bỏ trống!",
+
+            },
+
+
+        });
+        $("#myformadd").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+            ,
+            rules: {
+                ten: "required",
+
+
+            },
+            messages: {
+                ten: "ERROR :Không được bỏ trống!",
+
+            },
+
+
+        });
+    </script>
+
+}
+
 @section modal{
     <div class="modal fade bd-outline" id="dm_edit" role="dialog">
 
@@ -128,51 +172,12 @@
                 </div>
             </div>
 
+
+
+
         </div>
 
     </div>
-    }
-@section js{
-    <script>
-        function a_edit(id, name) {
-            document.getElementById('id').value = id;
-            document.getElementById('ten').value = name;
-        }
-        $("#myformedit").validate({
-
-
-            errorClass: "glyphicon glyphicon-remove text-danger"
-            ,
-            rules: {
-                ten: "required",
-
-
-            },
-            messages: {
-                ten: "ERROR :Không được bỏ trống!",
-
-            },
-
-
-        });
-        $("#myformadd").validate({
-
-
-            errorClass: "glyphicon glyphicon-remove text-danger"
-            ,
-            rules: {
-                ten: "required",
-
-
-            },
-            messages: {
-                ten: "ERROR :Không được bỏ trống!",
-
-            },
-
-
-        });
-    </script>
 
 }
 
