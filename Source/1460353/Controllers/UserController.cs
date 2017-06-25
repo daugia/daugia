@@ -192,10 +192,10 @@ namespace _1460353.Controllers
                     nguoidung.ngaycapnhat = DateTime.Now;
                     nguoidung.ngaysinh = u.ngaysinh;
 
-                    if (nguoidung.email!=u.email)//xet trung email khong
+                    if (nguoidung.email != u.email)//xet trung email khong
                     {
                         var checkemail = data.nguoidungs.Where(nd => nd.email == u.email).Count();
-                        if (checkemail==0)
+                        if (checkemail == 0)
                         {
                             nguoidung.email = u.email;
                         }
