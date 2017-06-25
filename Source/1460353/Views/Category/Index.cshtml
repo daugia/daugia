@@ -25,16 +25,16 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (var dm in Model[0])
+        @foreach (var danhmuc in Model[0])
         {
             <tr>
-                <td>@dm.ten</td>
-                <td>@dm.ngaytao</td>
-                <td>@dm.ngaycapnhat</td>
+                <td>@danhmuc.ten</td>
+                <td>@danhmuc.ngaytao</td>
+                <td>@danhmuc.ngaycapnhat</td>
                 <td>
 
-                    <a tabindex="@dm.id" name="@dm.id" title="@dm.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal"><i data-toggle="tooltip" title="Sửa" class="glyphicon glyphicon-pencil"></i></a>
-                    <a href="@Url.Action("Delete", "Category", new {id=dm.id} )"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
+                    <a tabindex="@danhmuc.id" name="@danhmuc.id" title="@danhmuc.ten" onclick="a_edit(this.name,this.title)" href="#dm_edit" data-toggle="modal"><i data-toggle="tooltip" title="Sửa" class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="@Url.Action("Delete", "Category", new {id=danhmuc.id} )"><i data-toggle="tooltip" title="Xóa" class="glyphicon glyphicon-remove-circle text-danger"></i></a>
                 </td>
 
             </tr>
@@ -65,50 +65,6 @@
         }
     </table>
 </div>
-
-@section js{
-    <script>
-        function a_edit(id, name) {
-            document.getElementById('id').value = id;
-            document.getElementById('ten').value = name;
-        }
-        $("#myformedit").validate({
-
-
-            errorClass: "glyphicon glyphicon-remove text-danger"
-            ,
-            rules: {
-                ten: "required",
-
-
-            },
-            messages: {
-                ten: "ERROR :Không được bỏ trống!",
-
-            },
-
-
-        });
-        $("#myformadd").validate({
-
-
-            errorClass: "glyphicon glyphicon-remove text-danger"
-            ,
-            rules: {
-                ten: "required",
-
-
-            },
-            messages: {
-                ten: "ERROR :Không được bỏ trống!",
-
-            },
-
-
-        });
-    </script>
-
-}
 
 @section modal{
     <div class="modal fade bd-outline" id="dm_edit" role="dialog">
@@ -172,12 +128,51 @@
                 </div>
             </div>
 
-
-
-
         </div>
 
     </div>
+    }
+@section js{
+    <script>
+        function a_edit(id, name) {
+            document.getElementById('id').value = id;
+            document.getElementById('ten').value = name;
+        }
+        $("#myformedit").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+            ,
+            rules: {
+                ten: "required",
+
+
+            },
+            messages: {
+                ten: "ERROR :Không được bỏ trống!",
+
+            },
+
+
+        });
+        $("#myformadd").validate({
+
+
+            errorClass: "glyphicon glyphicon-remove text-danger"
+            ,
+            rules: {
+                ten: "required",
+
+
+            },
+            messages: {
+                ten: "ERROR :Không được bỏ trống!",
+
+            },
+
+
+        });
+    </script>
 
 }
 
