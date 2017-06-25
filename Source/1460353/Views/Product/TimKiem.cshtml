@@ -67,10 +67,10 @@ else
                         <div class="col-md-9 img-container">
 
 
-                            <img src="@p.hinh1" style="height:140px;width:140px;margin:10px;" alt="@p.ten" class=" img2" />
+                            <img src="@p.hinh1" style="height:140px;width:140px;margin:10px;" alt="@p.ten" class="img2" />
                             @if (_1460353.Helpers.sanphamhp.getTimein((DateTime)p.ngaybatdau))
                             {
-                                <img src="~/Source/Images/new-product.png" style="height:50px;width:50px;" alt="New" class=" img2" />
+                                <img src="~/Source/Images/new-product.png" style="height:50px;width:50px;" alt="New" class="img2" />
                             }
                             <div class="middle">
                                 <div class="img-text"><a href=@Url.Action("ChiTiet","Product",new {id=p.id }) class="btn btn-default" role="button">Chi Tiết</a></div>
@@ -106,7 +106,14 @@ else
                         {
                             <h5>Người giữ giá : không có</h5>
                         }
+                        @if (p.giamuangay != null)
+                        {
                         <h5>Giá Mua Ngay : @string.Format("{0:N0}", p.giamuangay)</h5>
+                        }
+                        else
+                        {
+                             <h5>Giá Mua Ngay : không có </h5>
+                        }
                         <h5>Lượt ra giá :@p.luotragia</h5>
                         @{
                             var date = (DateTime)p.ngayketthuc - DateTime.Now;
