@@ -270,7 +270,7 @@ namespace _1460353.Controllers
                                     {
                                         if (Gia > model.giahientai)
                                         {
-                                            if (Gia > model.giacaonhat)
+                                            if (Gia > (model.giacaonhat+model.buocgia))
                                             {
                                                 if (nguoidungt != null)
                                                 {
@@ -278,7 +278,7 @@ namespace _1460353.Controllers
                                                     Helpers.sendMail.send(proId.Value, nguoidungt.id, "Sản Phảm Này Đã Có Người Trả Giá Hơn !");
                                                     Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Mà Bạn Đấu Giá Đã Có Giá Cao Hơn", nguoidungt.id);
                                                 }
-                                                model.giahientai = model.giacaonhat + 100000;
+                                                model.giahientai = model.giacaonhat + model.buocgia;
                                                 model.giacaonhat = Gia;
                                                 model.id_nguoidunghientai = Login.nguoidung().id;
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
@@ -311,7 +311,7 @@ namespace _1460353.Controllers
                                             }
                                             else
                                             {
-                                                TempData["Error"] = "Có Giá Cao Hơn Giá Bạn Đặt";
+                                                TempData["Error"] = "Có Giá Cao Nhất + Bước Giá Cao Hơn Giá Bạn Đặt";
                                                 if (model.tang10phut == 1)
                                                 {
                                                     if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
@@ -323,6 +323,10 @@ namespace _1460353.Controllers
                                                 model.giahientai = Gia;
                                                 model.luotragia++;
                                             }
+                                        }
+                                        else
+                                        {
+                                            TempData["Error"] = "Giá Bạn Đặt Hiện Giờ Nhỏ Hơn Giá Hiện Tại";
                                         }
                                     }
                                     else

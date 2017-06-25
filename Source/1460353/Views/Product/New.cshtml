@@ -89,7 +89,7 @@ else if (ViewBag.note == 0)
 
             <label  class="col-sm-2 control-label"> Bước giá:</label>
             <div class="col-sm-4">
-                <input class="form-control" name="buocgia" value="100000" />
+                <input class="form-control" name="buocgia" value="20000" />
             </div>
 
             <label for="txtmota" class="col-sm-2 control-label"> Ảnh 1:</label>
@@ -178,7 +178,7 @@ else if (ViewBag.note == 0)
                     },
                     buocgia: {
                         required: true,
-                        min: 100000,
+                        min: 20000,
                         number:true
                     },
                     
@@ -220,7 +220,7 @@ else if (ViewBag.note == 0)
                     },
                     buocgia: {
                         required: "Vui lòng không bỏ trống bước giá!",
-                        min: "Giá tối thiểu 100,000 vnd!",
+                        min: "Bước Giá tối thiểu 20,000 vnd!",
                         number:"Giá là một số!",
                     },
                 }
