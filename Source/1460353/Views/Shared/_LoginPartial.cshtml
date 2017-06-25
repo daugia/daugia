@@ -70,11 +70,10 @@
                         </a>
                     </li>
                     <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm<sup><b class="noficon">@_1460353.Helpers.Login.listsell().Count</b></sup></a></li>
-                    <li><a href="#">Sản phẩm đã có người mua</a></li>
+                    <li><a href="@Url.Action("Index","DanhGia",new {id=_1460353.Helpers.Login.nguoidung().id})">Điểm Hiện Tại :  @_1460353.Helpers.Login.nguoidung().diem - Xem Đánh Giá Bản Thân</a></li>
                     <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
                     <li><a href="@Url.Action("NguoiMua","DanhGia")">Đánh Giá Khi Bạn Mua Thành Công Sản Phẩm</a></li>
                     <li><a href="@Url.Action("NguoiBan","DanhGia")">Đánh Giá Khi Bạn Bán Thành Công Sản Phẩm</a></li>
-                    @*<li><a href="@Url.Action("QuanLySanPham","Product")">Quản Lý Sản Phẩm</a></li>*@
                     <li role="separator" class="divider"></li>
                     <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
                     <li><a id="logout_l" href="@Url.Action("Logout","User")"><i  class="glyphicon glyphicon-off text-danger"></i>--Đăng xuất</a></li>

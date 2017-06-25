@@ -94,6 +94,7 @@
     <EntitySetMapping Name="sanphams">
       <EntityTypeMapping TypeName="daugiaModel.sanpham">
         <MappingFragment StoreEntitySet="sanpham">
+          <ScalarProperty Name="buocgia" ColumnName="buocgia" />
           <ScalarProperty Name="guimail_" ColumnName="guimail " />
           <ScalarProperty Name="nguoimuadanhgia_" ColumnName="nguoimuadanhgia " />
           <ScalarProperty Name="nguoibandanhgia_" ColumnName="nguoibandanhgia " />

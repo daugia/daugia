@@ -34,6 +34,9 @@ namespace _1460353.Controllers.Admin
                 data.SaveChanges();
                 Session["note"] = 1;
 
+                //Kiem tra nguoi dung co tham gia dau gia san pham nao khong 
+
+
                 //them thong bao sua thanh cong
                 Helpers.thongbao.create("Bạn đã xóa người dùng:" +ndold.ten);
                 return RedirectToAction("Index","Nguoidung");

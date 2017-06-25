@@ -41,7 +41,7 @@ namespace _1460353.Models
         public Nullable<int> nguoibandanhgia_ { get; set; }
         public Nullable<int> nguoimuadanhgia_ { get; set; }
         public Nullable<int> guimail_ { get; set; }
-
-        public bool yt { get; set; }//yeu thich
+        public Nullable<decimal> buocgia { get; set; }
+        public bool yt { get; set; }
     }
 }

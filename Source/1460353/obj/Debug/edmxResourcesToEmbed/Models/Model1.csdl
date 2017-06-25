@@ -127,6 +127,7 @@
     <Property Name="nguoibandanhgia_" Type="Int32" />
     <Property Name="nguoimuadanhgia_" Type="Int32" />
     <Property Name="guimail_" Type="Int32" />
+    <Property Name="buocgia" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="thongbao">
     <Key>

@@ -96,7 +96,7 @@ namespace _1460353.Helpers
                 var nguoidung = data.nguoidungs.Find(id_nguoidung);
 
                 var tMailMessage = new MailMessage();
-                tMailMessage.From = new MailAddress("chuoikyu98@gmail.com");
+                tMailMessage.From = new MailAddress("nguyenthithanhlap1971@gmail.com");
                 tMailMessage.To.Add(new MailAddress(nguoidung.email));
                 tMailMessage.Subject = "Thông báo đấu giá";
                 tMailMessage.Body = body(data.sanphams.Find(id_sp).ten,noidung,null);
@@ -109,7 +109,7 @@ namespace _1460353.Helpers
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Credentials = new NetworkCredential("chuoikyu98@gmail.com", "H212903561019");
+                client.Credentials = new NetworkCredential("", "");
                 client.Send(tMailMessage);
             }
         }

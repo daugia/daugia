@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css{
-   
- 
+
+
     <style type="text/css">
         label {
             font-weight: normal !important;
@@ -71,7 +71,7 @@ else if (ViewBag.note == 0)
             </div>
         </div>
 
-        <div class="form-group"> 
+        <div class="form-group">
             <label for="txtmota" class="col-sm-2 control-label">Tự động gia hạn:</label>
             <div class="col-sm-4">
                 <select class="form-control" id="tang10phut" name="tang10phut">
@@ -86,25 +86,32 @@ else if (ViewBag.note == 0)
         </div>
 
         <div class="form-group">
+
+            <label  class="col-sm-2 control-label"> Bước giá:</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="buocgia" value="100000" />
+            </div>
+
             <label for="txtmota" class="col-sm-2 control-label"> Ảnh 1:</label>
             <div class="col-sm-4">
                 <input class="btn btn-success" type="file" accept="image/*" name="file1" id="file1" onchange="fileone()" />
                 <img style="height:100px;width:100px;" src="" id="img1" />
             </div>
+
+        </div>
+
+        <div class="form-group">
             <label for="txtmota" class="col-sm-2 control-label">Ảnh 2:</label>
             <div class="col-sm-4">
                 <input class="btn btn-success" type="file" accept="image/*" name="file2" id="file2" onchange="filetwo()" />
                 <img style="height:100px;width:100px;" src="" id="img2" />
             </div>
-        </div>
-
-        <div class="form-group">
             <label for="txtmota" class="col-sm-2 control-label">Ảnh 3:</label>
             <div class="col-sm-4">
                 <input class="btn btn-success" type="file" accept="image/*" name="file3" id="file3" onchange="filethree()" />
                 <img style="height:100px;width:100px;" src="" id="img3" />
             </div>
-            
+
         </div>
 
 
@@ -124,14 +131,14 @@ else if (ViewBag.note == 0)
                 <button type="submit" class="btn btn-success">
                     <i class="fa fa-check"></i>&nbsp;Lưu
                 </button>
-               
+
             </div>
             <div style="color: Red">@ViewBag.Message</div>
         </div>
     </form>
 
     @section js{
-  
+
         <script type="text/javascript">
             $("#myformnew").validate({
                 errorClass: 'text-danger',
@@ -169,6 +176,12 @@ else if (ViewBag.note == 0)
                     giamongmuon: {
                         number: true,
                     },
+                    buocgia: {
+                        required: true,
+                        min: 100000,
+                        number:true
+                    },
+                    
                 },
 
                 messages: {
@@ -205,11 +218,16 @@ else if (ViewBag.note == 0)
                     giamongmuon: {
                         number: "Giá là một số",
                     },
+                    buocgia: {
+                        required: "Vui lòng không bỏ trống bước giá!",
+                        min: "Giá tối thiểu 100,000 vnd!",
+                        number:"Giá là một số!",
+                    },
                 }
             });
         </script>
-       
-        
+
+
         <script type="text/javascript">
             function fileone() {
                 var file = document.getElementById('file1').files[0];
