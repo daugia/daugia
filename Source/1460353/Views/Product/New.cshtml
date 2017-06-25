@@ -86,6 +86,15 @@ else if (ViewBag.note == 0)
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
+=======
+
+            <label  class="col-sm-2 control-label"> Bước giá:</label>
+            <div class="col-sm-4">
+                <input class="form-control" name="buocgia" value="20000" />
+            </div>
+
+>>>>>>> 25fe6bcad23dded0c1a04ebd31bc5251c83afb0e
             <label for="txtmota" class="col-sm-2 control-label"> Ảnh 1:</label>
             <div class="col-sm-4">
                 <input class="btn btn-success" type="file" accept="image/*" name="file1" id="file1" onchange="fileone()" />
@@ -169,6 +178,15 @@ else if (ViewBag.note == 0)
                     giamongmuon: {
                         number: true,
                     },
+<<<<<<< HEAD
+=======
+                    buocgia: {
+                        required: true,
+                        min: 20000,
+                        number:true
+                    },
+                    
+>>>>>>> 25fe6bcad23dded0c1a04ebd31bc5251c83afb0e
                 },
 
                 messages: {
@@ -205,6 +223,14 @@ else if (ViewBag.note == 0)
                     giamongmuon: {
                         number: "Giá là một số",
                     },
+<<<<<<< HEAD
+=======
+                    buocgia: {
+                        required: "Vui lòng không bỏ trống bước giá!",
+                        min: "Bước Giá tối thiểu 20,000 vnd!",
+                        number:"Giá là một số!",
+                    },
+>>>>>>> 25fe6bcad23dded0c1a04ebd31bc5251c83afb0e
                 }
             });
         </script>

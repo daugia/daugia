@@ -32,19 +32,29 @@ namespace _1460353.Controllers
                 {
                     //gui 1mail cho nguoi ban
                     Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Rất tiếc sản phẩm của bạn không có ai đấu giá");
+                    sanpham.tinhtrang = 0;
+                }
+                else if (sanpham.giahientai <= sanpham.giabanmongmuon && sanpham.id_nguoidunghientai !=null)
+                {
+                    var nguoidunght = data.nguoidungs.Where(nd => nd.id == sanpham.id_nguoidunghientai).FirstOrDefault();
+                    nguoidunght.taikhoan = nguoidunght.taikhoan + sanpham.giacaonhat;
+                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Rất tiếc giá sản phẩm của bạn thấp hơn giá bán mong muốn");
 
+                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidunghientai, "Rất tiếc giá bạn đấu giá sản phẩm của bạn thấp hơn giá bán mong muốn");
+                    sanpham.tinhtrang = 0;
                 }
                 else //san pham co nguoi dau gia 
                 {
+                    var nguoidunght = data.nguoidungs.Where(nd => nd.id == sanpham.id_nguoidunghientai).FirstOrDefault();
+                    nguoidunght.taikhoan = nguoidunght.taikhoan + sanpham.giacaonhat - sanpham.giahientai;
                     //maail nguoi ban
                     Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Sản phẩm đã của bạn đã có người đấu giá thành công");
                     //maail nguoi mua
-                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidung, "Chúc mừng bạn đã đấu giá thành công sản phẩm");
+                    Helpers.sendMail.send(idsp, (int)sanpham.id_nguoidunghientai, "Chúc mừng bạn đã đấu giá thành công sản phẩm");
+                    sanpham.tinhtrang = 2;
                 }
 
-
                 sanpham.guimail_ = 1;
-                sanpham.tinhtrang = 2;
                 data.Entry(sanpham).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
             }

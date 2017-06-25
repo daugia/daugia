@@ -95,7 +95,7 @@ else
                                 <div class="form-group">
                                     <input type="hidden" id="txtP" name="proId" value="@Model.id" />
                                     <div class="input-group com" style="margin-left:24px;">
-                                        <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+100000)" />
+                                        <input id="txtG" type="text" name="Gia" class="form-control" value="@(Model.giahientai+Model.buocgia)" />
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +212,8 @@ else
     <script src="~/Scripts/bootstrap-touchspin-master/dist/jquery.bootstrap-touchspin.min.js"></script>
     <script type="text/javascript">
         $('#txtG').TouchSpin({
-            min: @Model.giahientai+100000,
-            step: 100000,
+            min: @(Model.giahientai+Model.buocgia),
+            step: @Model.buocgia,
             max:@decimal.MaxValue,
             postfix: 'VNĐ',
             verticalbuttons: true,
