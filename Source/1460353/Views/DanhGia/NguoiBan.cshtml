@@ -35,7 +35,7 @@ else
                 <td><img style="width:60px;height:60px" src="@sp.hinh1" /></td>
                 <td>@sp.ten</td>
                 <td>@sp.giahientai</td>
-                <td>@sp.id_nguoidunghientai</td>
+                <td>@_1460353.Helpers.nguoidung.find((int)sp.id_nguoidunghientai).ten</td>
                 <td>
                     <form class="navbar-form navbar-left" method="post" action=@Url.Action("NguoiBan", "DanhGia")>
                         <input type="text" class="form-control" placeholder="Xin Nhap Noi Dung Danh Gia" name="noidung">
