@@ -275,8 +275,8 @@ namespace _1460353.Controllers
                                                 if (nguoidungt != null)
                                                 {
                                                     nguoidungt.taikhoan = nguoidungt.taikhoan + model.giacaonhat;
-                                                    Helpers.sendMail.send(proId.Value, nguoidungt.id, "Sản Phảm Này Đã Có Người Trả Giá Hơn !");
-                                                    Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Mà Bạn Đấu Giá Đã Có Giá Cao Hơn", nguoidungt.id);
+                                                    Helpers.sendMail.send(proId.Value, nguoidungt.id, "Sản phẩm này hiện đang có người giữ giá cao hơn");
+                                                    Helpers.thongbao.create_with_id("Sản phẩm " + model.ten+  " mà bạn đấu giá đã có người trả giá cao hơn", nguoidungt.id);
                                                 }
                                                 model.giahientai = model.giacaonhat + model.buocgia;
                                                 model.giacaonhat = Gia;
@@ -284,12 +284,12 @@ namespace _1460353.Controllers
                                                 nguoidunght.taikhoan = nguoidunght.taikhoan - Gia;
                                                 model.luotragia++;
 
-                                                Helpers.sendMail.send(proId.Value, nguoidunght.id, "Bạn Là Người Giứ Giá Cao Nhất Của Sản Phẩm !");
-                                                Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Mà Bạn Là Người Giữ Giá Cao Nhất ", nguoidunght.id);
+                                                Helpers.sendMail.send(proId.Value, nguoidunght.id, "Bạn là người giữ giá sản phẩm cao nhất hiện nay");
+                                                Helpers.thongbao.create_with_id ("Bạn hiện đã là người giữ giá cao nhất của sản phẩm " + model.ten, nguoidunght.id);
 
                                                 var ndql = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidung).FirstOrDefault();
-                                                Helpers.sendMail.send(proId.Value, ndql.id, "Sản Phảm Của Bạn Đã Có Giá Cao Hơn !");
-                                                Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + "Của Bạn Có Giá Cao Hơn ", ndql.id);
+                                                Helpers.sendMail.send(proId.Value, ndql.id, "Sản phẩm của bạn đã có giá cao hơn");
+                                                Helpers.thongbao.create_with_id("Sản phẩm " + model.ten + " của bạn có giá cao hơn ", ndql.id);
 
 
                                                 lichsudau ls = new lichsudau();
@@ -307,11 +307,12 @@ namespace _1460353.Controllers
                                                         model.solantang10phut = 1;
                                                     }
                                                 }
-                                                TempData["Message"] = "Chúc Mừng Bạn Đã Ra Giá Thành Công";
+                                                TempData["Message"] = "Chúc mừng bạn đã ra giá thành công cho sản phẩm";
                                             }
                                             else
                                             {
-                                                TempData["Error"] = "Có Giá Cao Nhất + Bước Giá Cao Hơn Giá Bạn Đặt";
+
+                                                TempData["Error"] = "Có giá cao nhất + Bước giá cáo hơn giá hiện tại";
                                                 if (model.tang10phut == 1)
                                                 {
                                                     if ((DateTime.Now - model.ngayketthuc.Value).TotalMinutes <= 5 && model.solantang10phut == 0)
@@ -326,34 +327,34 @@ namespace _1460353.Controllers
                                         }
                                         else
                                         {
-                                            TempData["Error"] = "Giá Bạn Đặt Hiện Giờ Nhỏ Hơn Giá Hiện Tại";
+                                            TempData["Error"] = "Giá của bạn đặt ra thấp hơn giá hiện tại của sản phẩm";
                                         }
                                     }
                                     else
                                     {
-                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                        TempData["Error"] = "Xin lỗi. Tài khoản của bạn không đủ để đặt giá cho sản phẩm này";
                                     }
                                 }
                                 else
                                 {
-                                    TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                                    TempData["Error"] = "Tài khoản điểm của bạn không đủ để đấu giá";
                                 }
                             }
 
                             else
                             {
-                                TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
+                                TempData["Error"] = "Bạn là người giữ sản phẩm nên bạn không có quyền đấu giá cho sản phẩm";
                             }
                         }
                         else
                         {
-                            TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+                            TempData["Error"] = "Tài khoản của bạn không đấu giá cho sản phẩm này. Rất tiếc";
                         }
                     }
                 }
                 else
                 {
-                    TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                    TempData["Error"] = "Hết hạn đấu giá";
                 }
                 daugia.SaveChanges();
                 return RedirectToAction("ChiTiet", "Product", new { id = proId });
@@ -396,12 +397,12 @@ namespace _1460353.Controllers
                                             nguoidunght.taikhoan = nguoidunght.taikhoan - model.giamuangay;
                                             model.tinhtrang = 2;
 
-                                            Helpers.sendMail.send(proId.Value, nguoidunght.id, "Bạn Đã Mua Ngay Thành Công Sản Phẩm !");
-                                            Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + " Đã Được Bạn Mua Ngay Vui Lòng Kiểm Tra Mail ", nguoidunght.id);
+                                            Helpers.sendMail.send(proId.Value, nguoidunght.id, "Chúc mừng. Bạn đã mua thành công sản phẩm");
+                                            Helpers.thongbao.create_with_id("Bạn đã mua thành công sản phẩm " + model.ten + " với giá "+ model.giahientai, nguoidunght.id);
 
                                             var ndql = daugia.nguoidungs.Where(nd => nd.id == model.id_nguoidung).FirstOrDefault();
-                                            Helpers.sendMail.send(proId.Value, ndql.id, "Sản Phẩm Đã Có Người Mua Ngay !");
-                                            Helpers.thongbao.create_with_id("Sản Phẩm " + model.ten + "Đã Có Người Mua Ngay ! ", ndql.id);
+                                            Helpers.sendMail.send(proId.Value, ndql.id, "Sản phẩm của bạn đã có người mua ngay");
+                                            Helpers.thongbao.create_with_id("Sản phẩm " + model.ten + " của bạn đã có người mua ngay ", ndql.id);
 
 
                                             lichsudau ls = new lichsudau();
@@ -414,41 +415,41 @@ namespace _1460353.Controllers
                                         }
                                         else
                                         {
-                                            TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Tiền Để Đấu Giá";
+                                            TempData["Error"] ="Rất tiếc. Tài khoản của bạn không đủ tiền để tham gia đấu giá"
                                             return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                         }
                                     }
                                     else
                                     {
-                                        TempData["Error"] = "Tài Khoản Của Bạn Không Đủ Điểm Để Đấu Giá";
+                                        TempData["Error"] = "Tài khoản của bạn không đủ điểm đấu giá";
                                         return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                     }
                                 }
                                 else
                                 {
-                                    TempData["Error"] = "Tài Khoản Của Bạn Là Người Giữ Sản Phẩm Không Có Quyền Đấu Giá";
+                                    TempData["Error"] = "Bạn là người hiện đang giữ sản phẩm nên bạn không có quyền đấu giá cho sản phẩm";
                                     return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                 }
                             }
                             else
                             {
-                                TempData["Error"] = "Tài Khoản Của Bạn  Không Có Quyền Đấu Giá";
+                                TempData["Error"] = "Rất tiếc. Tài khoản ủa bạn không có quyền ra giá cho sản phẩm này";
                                 return RedirectToAction("ChiTiet", "Product", new { id = proId });
                             }
                         }
                     }
                     else
                     {
-                        TempData["Error"] = "Sản Phẩm Này Đã Hết Hạn Đấu Giá";
+                        TempData["Error"] = "Sản phẩm đã hết thời hạn đấu giá";
                         return RedirectToAction("ChiTiet", "Product", new { id = proId });
                     }
                 }
                 else
                 {
-                    TempData["Error"] = "Sản Phẩm Này Không Có Mua Ngay";
+                    TempData["Error"] = "Sản phẩm không được mua ngay";
                     return RedirectToAction("ChiTiet", "Product", new { id = proId });
                 }
-                TempData["Message"] = "Bạn Đã Mua Thành Công Sản Phẩm";
+                TempData["Message"] = "Bạn đã đặt thành công cho sản phẩm này";
                 daugia.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }

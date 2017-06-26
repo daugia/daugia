@@ -1,5 +1,7 @@
 ﻿@model List<_1460353.Models.danhmuc>
-@foreach (var d in Model) {
-    <li><a href="@Url.Action("LoadSPTheoDanhMuc","Product",new {id=d.id })">@d.ten</a></li>
-}
+
+    @foreach (var c in Model)
+    {
+       <a href="@Url.Action("LoadSPTheoDanhMuc","Product", new { id = @c.id })" class="list-group-item">@c.ten</a>
+    }
 
