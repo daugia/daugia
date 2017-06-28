@@ -44,12 +44,15 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 
-                var dmold = data.danhmucs.Find(dm.id); var thongbao = "Bạn đã cập nhật danh mục :" + dmold.ten;
-                 dmold.ten = dm.ten;
+                var dmold = data.danhmucs.Find(dm.id);
+                var thongbao = "Bạn đã cập nhật thành công danh mục :" + dmold.ten;
+                dmold.ten = dm.ten;
                 dmold.ngaycapnhat = DateTime.Now;
+                dmold.trinhtrang = dm.trinhtrang;
                 data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
                 data.SaveChanges();
                 Session["note"] = 1;
+
                 //them thong bao sua thanh cong
                 Helpers.thongbao.create(thongbao +" thành:"+dm.ten);
                 return RedirectToAction("Index", "Category");
@@ -62,12 +65,13 @@ namespace _1460353.Controllers
             using (var data = new Models.daugiaEntities())
             {
                 dm.ngaytao = DateTime.Now;
+                dm.ngaycapnhat = DateTime.Now;
                 dm.trinhtrang = 1;
                 data.danhmucs.Add(dm);
                 data.SaveChanges();
                 Session["note"] = 1;
 
-                //them thong bao sua thanh cong
+                //them thong bao thêm thành công
                 Helpers.thongbao.create("Bạn đã thêm danh mục:"+ dm.ten);
                 return RedirectToAction("Index", "Category");
             }
@@ -91,18 +95,18 @@ namespace _1460353.Controllers
         }
 
         [Filters.LoginAdmin]
-        public ActionResult Restore(int id)
+        public ActionResult Restore(int idphuchoi)
         {
-            using (var data = new Models.daugiaEntities())
+            using (var p = new Models.daugiaEntities())
             {
-                var dmold = data.danhmucs.Find(id);
-                dmold.trinhtrang = 1;
-                data.Entry(dmold).State = System.Data.Entity.EntityState.Modified;
-                data.SaveChanges();
+                var dmcu = p.danhmucs.Find(idphuchoi);
+                dmcu.trinhtrang = 1;
+                p.Entry(dmcu).State = System.Data.Entity.EntityState.Modified;
+                p.SaveChanges();
                 Session["note"] = 1;
 
-                //them thong bao sua thanh cong
-                Helpers.thongbao.create("Bạn đã phục hồi danh mục:" + dmold.ten);
+                //Them thong báo phục hồi thàng công
+                Helpers.thongbao.create("Chúc mừng bạn đã phục hồi thành công:" + dmcu.ten);
                 return RedirectToAction("Index", "Category");
             }
         }
