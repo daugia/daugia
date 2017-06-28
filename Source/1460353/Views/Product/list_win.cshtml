@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách sản phẩm đã thắng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@model  List<_1460353.Models.sanpham>
+
+<div class="pager">
+    <h2 class="animated bounceInDown" style="color:#ff00dc">Danh sách sản phẩm đã thắng</h2>
+</div>
+
+<ul class="pagination">
+    @if (ViewBag.page > 1)
+    {
+        <li><a href="@Url.Action("list_dau","product",new {page=ViewBag.page-1 })"></a></li>}
+
+    @for (var i = 1; i <= ViewBag.pageTotal; i++)
+    {
+        if (i == ViewBag.page)
+        {
+            <li class="active"><a href="@Url.Action("list_dau","product",new {page=i })">@i</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("list_dau","product",new {page=i })">@i</a></li>
+        }
+    }
+    @if (ViewBag.page < ViewBag.pageTotal)
+    {
+        <li><a href="@Url.Action("list_dau","product",new {page=ViewBag.page+1 })"></a></li>}
+</ul>
+
+<div class="well">
+    <table id="table" class="table table-striped">
+        <tr>
+            <td>Hình ảnh</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá khởi điểm</td>
+            <td>Giá hiện tại</td>
+            <td>Ngày bắt đầu</td>
+            <td>Ngày kết thúc</td>
+            <td>Người bán</td>
+            <td></td>
+        </tr>
+        @foreach (var sp in Model)
+        {
+            <tr class="tr">
+                <td><a href="@Url.Action("chitiet","product",new{id=sp.id})"><img class="img" style="width:60px;height:60px" src="@sp.hinh1" /></a></td>
+                <td>@sp.ten</td>
+                <td>@sp.giakhoidiem</td>
+                <td>@sp.giahientai</td>
+                <td>@sp.ngaybatdau</td>
+                <td>@sp.ngayketthuc</td>
+                <td><a href="@Url.Action("index","danhgia",new { id=sp.id_nguoidung })">@_1460353.Helpers.nguoidung.find((int)sp.id_nguoidung).ten<sup class="noficon">@_1460353.Helpers.nguoidung.find((int)sp.id_nguoidung).diem</sup></a></td>
+                <td>
+                    <a data-id="@sp.id_nguoidung" data-idsp="@sp.id" class="danhgia_tranfer" href="#formdanhgia" data-target="#formdanhgia" data-toggle="modal"><i class="glyphicon glyphicon-user text text-primary" data-toggle="tooltip" title="Đánh giá người bán"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section modal{
+    <div class="modal fade" role="dialog" id="formdanhgia">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="pager">Đánh giá người bán</div>
+                <form class="form-horizontal" method="post" action="@Url.Action("sp_win", "danhgia")">
+                    <input name="id" id="id" type="hidden" value="0" />
+                    <input name="idsp" id="idsp" type="hidden" value="0" />
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Mặt :</label>
+                        <div class="col-md-10">
+                            <select name="mat" class="form-control">
+                                <option value="1">Tốt</option>
+                                <option value="0">Không tốt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Nội dung :</label>
+                        <div class="col-md-10">
+                            @Html.TextArea("noidung_", new { @class = "ckeditor" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pager">
+                        <button type="submit" class=" btn btn-success"><i class="glyphicon glyphicon-check text text-success"></i>Gửi</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section js{
+    <script>
+        $(function () {
+            $('.danhgia_tranfer').on('click', function(){
+                var id = $(this).data('id');
+                var idsp = $(this).data('idsp');
+
+                $('#id').val(id);
+                $('#idsp').val(idsp);
+               
+            });
+
+
+        });
+    </script>
+}

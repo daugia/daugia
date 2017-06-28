@@ -415,7 +415,7 @@ namespace _1460353.Controllers
                                         }
                                         else
                                         {
-                                            TempData["Error"] ="Rất tiếc. Tài khoản của bạn không đủ tiền để tham gia đấu giá"
+                                            TempData["Error"] = "Rất tiếc. Tài khoản của bạn không đủ tiền để tham gia đấu giá";
                                             return RedirectToAction("ChiTiet", "Product", new { id = proId });
                                         }
                                     }
@@ -580,6 +580,50 @@ namespace _1460353.Controllers
                     data.SaveChanges();
                 }
                 return Json(1, JsonRequestBehavior.DenyGet);
+            }
+        }
+
+        //29/6
+        [Filters.LoginUser]
+        public ActionResult list_dau(int page=1)//danh sach san phan dang tham gia dau gia
+        {
+            using (var data=new Models.daugiaEntities())
+            {
+                var id_nguoidung = Helpers.Login.nguoidung().id; 
+                var list_sanpham = data.sanphams.Where(sp => sp.tinhtrang == 1 && sp.id_nguoidunghientai==id_nguoidung).ToList();// danh sách sản phẩm còn han đấu giá ma nguoi dung dang giứ giá
+                ViewBag.page = page;
+                ViewBag.pageTotal = list_sanpham.Count % 4 == 0 ? (list_sanpham.Count / 4) : (list_sanpham.Count / 4)+1;
+
+                return View(list_sanpham.Skip((page-1)*4).Take(4).ToList()); 
+            }
+            
+        }
+
+        [Filters.LoginUser]
+        public ActionResult list_win(int page=1)//danh sach san phan dang thang
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var id_nguoidung = Helpers.Login.nguoidung().id;
+                var list_sanpham = data.sanphams.Where(sp => sp.tinhtrang == 2 && sp.id_nguoidunghientai == id_nguoidung).OrderByDescending(sp=>sp.ngayketthuc).ToList();// danh sách sản phẩm kết thúc đấu giá và người dùng chiến thắng
+                ViewBag.page = page;
+                ViewBag.pageTotal = list_sanpham.Count % 4 == 0 ? (list_sanpham.Count / 4) : (list_sanpham.Count / 4) + 1;
+
+                return View(list_sanpham.Skip((page - 1) * 4).Take(4).ToList());
+            }
+        }
+
+        [Filters.LoginUser]
+        public ActionResult list_daduocmua(int page=1)
+        {
+            using (var data = new Models.daugiaEntities())
+            {
+                var id_nguoidung = Helpers.Login.nguoidung().id;
+                var list_sanpham = data.sanphams.Where(sp => sp.tinhtrang == 2 && sp.id_nguoidung == id_nguoidung && sp.id_nguoidunghientai!=null).OrderByDescending(sp => sp.ngayketthuc).ToList();// danh sách sản phẩm đã có người mua
+                ViewBag.page = page;
+                ViewBag.pageTotal = list_sanpham.Count % 4 == 0 ? (list_sanpham.Count / 4) : (list_sanpham.Count / 4) + 1;
+
+                return View(list_sanpham.Skip((page - 1) * 4).Take(4).ToList());
             }
         }
 

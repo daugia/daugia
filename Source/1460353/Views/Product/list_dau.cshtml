@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Danh sách sản phẩm đang tham giá đấu giá";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model  List<_1460353.Models.sanpham>
+
+<div class="pager">
+    <h2 class="animated bounceInDown" style="color:#ff00dc">Danh sách sản phẩm đang tham giá đấu giá</h2>
+</div>
+
+<ul class="pagination">
+    @if (ViewBag.page > 1)
+    {
+    <li><a href="@Url.Action("list_dau","product",new {page=ViewBag.page-1 })"></a></li>}
+
+    @for (var i = 1; i <= ViewBag.pageTotal; i++)
+    {
+        if (i == ViewBag.page)
+        {
+            <li class="active"><a href="@Url.Action("list_dau","product",new {page=i })">@i</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("list_dau","product",new {page=i })">@i</a></li>
+        }
+    }
+    @if (ViewBag.page < ViewBag.pageTotal)
+    {
+        <li><a href="@Url.Action("list_dau","product",new {page=ViewBag.page+1 })"></a></li>}
+</ul>
+
+<div class="well">
+    <table id="table" class="table table-striped">
+        <tr>
+            <td>Hình ảnh</td>
+            <td>Tên sản phẩm</td>
+            <td>Giá khởi điểm</td>
+            <td>Giá hiện tại</td>
+            <td>Ngày bắt đầu</td>
+            <td>Ngày kết thúc</td>
+
+        </tr>
+        @foreach (var sp in Model)
+        {
+            <tr class="tr">
+                <td><a href="@Url.Action("chitiet","product",new{id=sp.id})"><img class="img" style="width:60px;height:60px" src="@sp.hinh1" /></a></td>
+                <td>@sp.ten</td>
+                <td>@sp.giakhoidiem</td>
+                <td>@sp.giahientai</td>
+                <td>@sp.ngaybatdau</td>
+                <td>@sp.ngayketthuc</td>
+
+            </tr>
+        }
+    </table>
+</div>

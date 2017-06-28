@@ -1307,6 +1307,9 @@
     <Content Include="Views\DanhGia\Index.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Shared\_Admin_Dashboard.cshtml" />
+    <Content Include="Views\Product\list_dau.cshtml" />
+    <Content Include="Views\Product\list_win.cshtml" />
+    <Content Include="Views\Product\list_daduocmua.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

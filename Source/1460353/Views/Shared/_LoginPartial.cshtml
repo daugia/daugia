@@ -54,7 +54,7 @@
                     }
 
 
-                    <li><a href="@Url.Action("index", "danhgia", new {id=_1460353.Helpers.Login.nguoidung().id })">Đánh giá</a></li>
+                    <li><a href="@Url.Action("index", "danhgia", new {id=_1460353.Helpers.Login.nguoidung().id })"><i class="glyphicon glyphicon-thumbs-up"></i>Đánh giá</a></li>
                     <li><a href="@Url.Action("Edit","User")"><i class="glyphicon glyphicon-pencil text-success"></i>Cập nhât thông tin</a></li>
                     <li><a href="@Url.Action("EditPass","User")"><i class="glyphicon glyphicon-cog text-success"></i>Đổi mật khẩu</a></li>
 
@@ -62,18 +62,21 @@
                     <li role="separator" class="divider"></li>
                     <li>
                         <a href="@Url.Action("New","Product")">
-                            Đăng sản phẩm
                             @if (_1460353.Helpers.Login.nguoidung().capphep == 1)
                             { <i style="color:forestgreen" class="glyphicon glyphicon-check"></i> }
                             else
                             { <i style="color:red" class="glyphicon glyphicon-minus-sign"></i> }
+                            Đăng sản phẩm
+                            
                         </a>
                     </li>
-                    <li><a href="@Url.Action("Manage","Product")">Quản lý sản phẩm<sup><b class="noficon">@_1460353.Helpers.Login.listsell().Count</b></sup></a></li>
-                    <li><a href="@Url.Action("Index","DanhGia",new {id=_1460353.Helpers.Login.nguoidung().id})">Điểm Hiện Tại :  @_1460353.Helpers.Login.nguoidung().diem - Xem Đánh Giá Bản Thân</a></li>
-                    <li><a href="@Url.Action("Index","LichSuDau")">Lịch Sử Đấu</a></li>
-                    <li><a href="@Url.Action("NguoiMua","DanhGia")">Đánh Giá Khi Bạn Mua Thành Công Sản Phẩm</a></li>
-                    <li><a href="@Url.Action("NguoiBan","DanhGia")">Đánh Giá Khi Bạn Bán Thành Công Sản Phẩm</a></li>
+                    <li><a href="@Url.Action("Manage","Product")"><i class="glyphicon glyphicon-screenshot"></i>Quản lý sản phẩm<sup><b class="noficon">@_1460353.Helpers.Login.listsell().Count</b></sup></a></li>
+                   
+                    <li><a href="@Url.Action("list_dau","product")"><i class="glyphicon glyphicon-screenshot text text-warning"></i> Sản phẩm đang đấu</a></li>
+                    <li><a href="@Url.Action("list_win","product")"><i class="glyphicon glyphicon-screenshot text text-success"></i> Sản phẩm đã thắng</a></li>
+                    <li><a href="@Url.Action("list_daduocmua","product")"><i class="glyphicon glyphicon-screenshot text text-primary"></i> Sản phẩm đã có người mua</a></li>
+
+                   
                     <li role="separator" class="divider"></li>
                     <li><a href="#yeucau" data-toggle="modal">Yêu cầu bán hàng</a></li>
                     <li><a id="logout_l" href="@Url.Action("Logout","User")"><i  class="glyphicon glyphicon-off text-danger"></i>--Đăng xuất</a></li>
