@@ -270,7 +270,7 @@ namespace _1460353.Controllers
                                     {
                                         if (Gia > model.giahientai)
                                         {
-                                            if (Gia > (model.giacaonhat+model.buocgia))
+                                            if (Gia >= (model.giacaonhat+model.buocgia))
                                             {
                                                 if (nguoidungt != null)
                                                 {

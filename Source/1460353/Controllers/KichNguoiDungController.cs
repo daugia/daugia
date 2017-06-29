@@ -52,8 +52,9 @@ namespace _1460353.Controllers
                         ndht.taikhoan = ndht.taikhoan - lsds.tiendadau;
                         Helpers.thongbao.create_with_id("Bây giờ người giữ giá cao nhất của sản phẩm" + sp.ten + " là: ", ndht.id);
                     }
+                    daugia.SaveChanges();
                 }
-                daugia.SaveChanges();
+
                 return RedirectToAction("LSSanPham", "LichSuDau", new { id = idsp });
             }
         }

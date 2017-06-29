@@ -43,7 +43,7 @@ namespace _1460353.Controllers.Admin
                     if (sp.id_nguoidung == ndold.id)//san pham cua nguoi dung //tra gia cho nguoi giữ giá và gắn sản phẩm = -1 (xóa)
                     {
                         var nd_giugia = data.nguoidungs.Find(sp.id_nguoidunghientai);
-                        nd_giugia.taikhoan += sp.giahientai;
+                        nd_giugia.taikhoan += sp.giacaonhat;
                         data.Entry(nd_giugia).State = System.Data.Entity.EntityState.Modified;
                         data.SaveChanges();
                         //gui thong bao cho nguoi giu gia
